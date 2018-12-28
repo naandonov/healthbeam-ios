@@ -21,13 +21,13 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Apple Watch Companion Settings@2x.png",
+      "filename" : "iPad Settings 29pt@2x-1.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Apple Watch Companion Settings@3x.png",
+      "filename" : "iPhone Settings 29pt@3x.png",
       "scale" : "3x"
     },
     {
@@ -111,7 +111,7 @@
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "Apple Watch App Store@2x.png",
+      "filename" : "App Store iOS.png",
       "scale" : "1x"
     },
     {
