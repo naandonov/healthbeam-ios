@@ -1,0 +1,9 @@
+target 'HealthBeam' do
+  use_frameworks!
+
+  # Pods for HealthBeam
+  pod 'DGActivityIndicatorView', '~> 2.1.1'
+  pod 'KeychainAccess', '~> 3.1.2'
+  pod 'Cleanse', '~> 4.2.0'
+
+end

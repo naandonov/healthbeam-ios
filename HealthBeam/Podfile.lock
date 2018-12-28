@@ -1,0 +1,24 @@
+PODS:
+  - Cleanse (4.2.0)
+  - DGActivityIndicatorView (2.1.1)
+  - KeychainAccess (3.1.2)
+
+DEPENDENCIES:
+  - Cleanse (~> 4.2.0)
+  - DGActivityIndicatorView (~> 2.1.1)
+  - KeychainAccess (~> 3.1.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Cleanse
+    - DGActivityIndicatorView
+    - KeychainAccess
+
+SPEC CHECKSUMS:
+  Cleanse: 2a911c5697695db101ea33c92571282088aa6f0d
+  DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
+  KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
+
+PODFILE CHECKSUM: e42c17f041b49d32cb765ebfb818eb1307b6ae59
+
+COCOAPODS: 1.5.2
