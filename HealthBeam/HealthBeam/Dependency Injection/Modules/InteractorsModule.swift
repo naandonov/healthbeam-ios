@@ -12,6 +12,9 @@ import Cleanse
 class InteractorsModule: Module {
     static func configure(binder: SingletonBinder) {
         
+        binder
+            .bind(LoginInteractorProtocol.self)
+            .to(factory: LoginInteractor.init)
 
     }
 }

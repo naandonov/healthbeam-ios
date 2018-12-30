@@ -24,7 +24,24 @@ class CustomizableView: UIView {
     @IBInspectable
     var bottomRight: Bool = false
     
-    var corners: UIRectCorner = []
+    var corners: UIRectCorner {
+        var cornersMultitude: UIRectCorner = []
+        if topLeft {
+            cornersMultitude.insert(.topLeft)
+        }
+        if topRight {
+            cornersMultitude.insert(.topRight)
+        }
+        if bottomLeft {
+            cornersMultitude.insert(.bottomLeft)
+        }
+        if bottomRight {
+            cornersMultitude.insert(.bottomRight)
+        }
+        return cornersMultitude
+    }
+    
+    
     private var boundsInvalidationBlock: BoundsInvalidationBlock {
         return { [weak self] corners in
             return UIBezierPath(roundedRect: self?.bounds ?? .zero,
@@ -71,6 +88,21 @@ class CustomizableView: UIView {
         internalLayer.addSublayer(gradientLayer)
     }
     
+    func setLinearGradientBackground(colors: UIColor...){
+        var cgColors: [CGColor] = []
+        for color in colors {
+            cgColors.append(color.cgColor)
+        }
+        gradientLayer.colors = cgColors
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        gradientLayer.locations = [NSNumber(floatLiteral: 0.0), NSNumber(floatLiteral: 1.0)]
+        
+        let gradientMask = CAShapeLayer()
+        gradientLayer.mask = gradientMask
+        internalLayer.addSublayer(gradientLayer)
+    }
+    
 }
 
 //MARK: - Interface builder customizations
@@ -83,21 +115,7 @@ extension CustomizableView {
             return roundingRadius
         }
         set {
-            corners = []
             roundingRadius =  newValue
-            if topLeft {
-                corners = [corners, .topLeft]
-            }
-            if topRight {
-                corners = [corners, .topRight]
-            }
-            if bottomLeft {
-                corners = [corners, .bottomLeft]
-            }
-            if bottomRight {
-                corners = [corners, .bottomRight]
-            }
-            
             layer.backgroundColor = UIColor.clear.cgColor
             layer.insertSublayer(internalLayer, at: 0)
         }

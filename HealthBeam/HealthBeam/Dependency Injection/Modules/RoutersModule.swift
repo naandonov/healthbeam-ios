@@ -12,6 +12,9 @@ import Cleanse
 class RoutersModule: Module {
     static func configure(binder: SingletonBinder) {
         
+        binder
+            .bind(LoginRouterProtocol.self)
+            .to(factory: LoginRouter.init)
 
     }
 }

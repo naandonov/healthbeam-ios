@@ -13,7 +13,7 @@ struct MainStoryboard: Tag {
     typealias Element = UIStoryboard
 }
 
-struct PasscodeStoryboard: Tag {
+struct AuthenticationStoryboard: Tag {
     typealias Element = UIStoryboard
 }
 
@@ -23,7 +23,12 @@ struct StoryboardsModule: Module {
         binder
             .bind()
             .tagged(with: MainStoryboard.self)
-            .to(value: UIStoryboard(name: "Main", bundle: nil))
+            .to(value: UIStoryboard.main)
+        
+        binder
+            .bind()
+            .tagged(with: AuthenticationStoryboard.self)
+            .to(value: UIStoryboard.authentication)
         
     }
 }

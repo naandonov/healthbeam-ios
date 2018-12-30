@@ -21,9 +21,17 @@ struct ViewControllersModule: Module {
                 return viewController
         }
         
-//        binder
-//            .bindPropertyInjectionOf(InteractionsNavigationController.self)
-//            .to(injector: InteractionsNavigationController.injectProperties)
+        binder
+            .bind(LoginViewController.self)
+            .to {  (authenticationStoryboard: TaggedProvider<AuthenticationStoryboard>, injector: PropertyInjector<LoginViewController>) in
+                let viewController: LoginViewController! =  authenticationStoryboard.get().instantiateViewController()
+                injector.injectProperties(into: viewController)
+                return viewController
+        }
+        
+        binder
+            .bindPropertyInjectionOf(LoginViewController.self)
+            .to(injector: LoginViewController.injectProperties)
     
         
     }

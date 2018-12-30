@@ -11,7 +11,19 @@ import UIKit
 extension UIColor {
     
     class var darkBlue: UIColor {
-        return UIColor.init(hexString: "#01195A")
+        return UIColor(hexString: "#4487b1")
+    }
+    
+    class var neutralBlue: UIColor {
+        return UIColor(hexString: "#65aad2")
+    }
+    
+    class var lightBlue: UIColor {
+        return UIColor(hexString: "#86cdf2")
+    }
+    
+    class var paleGray: UIColor {
+        return UIColor(hexString: "#f7f7f7")
     }
     
     //MARK: - Utilities

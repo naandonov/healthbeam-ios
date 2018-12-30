@@ -18,7 +18,11 @@ extension UIFont {
         return UIFont.systemFont(ofSize: size, weight: .light)
     }
     
-    class func applicationRegularFont(withSize size: CGFloat = 20) -> UIFont {
+    class func applicationRegularFont(withSize size: CGFloat = 17) -> UIFont {
+        return UIFont.systemFont(ofSize: size, weight: .regular)
+    }
+    
+    class func applicationSubButtonTextFont(withSize size: CGFloat = 13) -> UIFont {
         return UIFont.systemFont(ofSize: size, weight: .regular)
     }
 }

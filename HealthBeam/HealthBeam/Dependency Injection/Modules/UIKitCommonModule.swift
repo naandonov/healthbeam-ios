@@ -23,7 +23,7 @@ struct UIKitCommonModule: Module {
         
         binder
             .bind(UIWindow.self)
-            .to { (mainScreen: UIScreen, rootViewController: ViewController) in
+            .to { (mainScreen: UIScreen, rootViewController: LoginViewController) in
                 let window = UIWindow(frame: mainScreen.bounds)
                 window.rootViewController = rootViewController
                 return window

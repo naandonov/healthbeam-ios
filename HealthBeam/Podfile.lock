@@ -2,23 +2,31 @@ PODS:
   - Cleanse (4.2.0)
   - DGActivityIndicatorView (2.1.1)
   - KeychainAccess (3.1.2)
+  - lottie-ios (2.5.2)
+  - UnderLineTextField (2.1.0)
 
 DEPENDENCIES:
   - Cleanse (~> 4.2.0)
   - DGActivityIndicatorView (~> 2.1.1)
   - KeychainAccess (~> 3.1.2)
+  - lottie-ios (~> 2.5.0)
+  - UnderLineTextField (~> 2.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Cleanse
     - DGActivityIndicatorView
     - KeychainAccess
+    - lottie-ios
+    - UnderLineTextField
 
 SPEC CHECKSUMS:
   Cleanse: 2a911c5697695db101ea33c92571282088aa6f0d
   DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
   KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
+  lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
+  UnderLineTextField: b3f5307b56962331e30a965e81b79aae2df1de83
 
-PODFILE CHECKSUM: e42c17f041b49d32cb765ebfb818eb1307b6ae59
+PODFILE CHECKSUM: d6bb01c68c9660a4a07aac2830ee3e3c539b488a
 
 COCOAPODS: 1.5.2

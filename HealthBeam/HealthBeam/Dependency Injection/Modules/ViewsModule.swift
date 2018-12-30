@@ -11,6 +11,10 @@ import Cleanse
 
 struct ViewsModule: Module {
     static func configure(binder: SingletonBinder) {
-      
+        
+        binder
+            .bind(LightLogoView.self)
+            .to(value: LightLogoView.fromNib())
+        
     }
 }

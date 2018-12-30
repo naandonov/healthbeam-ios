@@ -12,6 +12,9 @@ import Cleanse
 class PresentersModule: Module {
     static func configure(binder: SingletonBinder) {
         
+        binder
+            .bind(LoginPresenterProtocol.self)
+            .to(factory: LoginPresenter.init)
 
     }
 }

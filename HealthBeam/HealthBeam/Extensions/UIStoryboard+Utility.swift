@@ -18,6 +18,10 @@ extension UIStoryboard {
     class var main: UIStoryboard {
         return UIStoryboard(name: "Main", bundle: nil)
     }
+    
+    class var authentication: UIStoryboard {
+        return UIStoryboard(name: "Authentication", bundle: nil)
+    }
 }
 
 extension UIViewController {

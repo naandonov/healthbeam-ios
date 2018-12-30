@@ -50,11 +50,24 @@
 		4E0FEFEF21D6C4030046303F /* InteractorsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFE221D6C4030046303F /* InteractorsModule.swift */; };
 		4E0FEFF021D6C4030046303F /* PresentersModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFE321D6C4030046303F /* PresentersModule.swift */; };
 		4E0FEFF121D6C4030046303F /* RoutersModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFE421D6C4030046303F /* RoutersModule.swift */; };
+		4E0FEFF521D796A40046303F /* LightLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFF421D796A40046303F /* LightLogoView.swift */; };
+		4E0FEFF721D796B00046303F /* LightLogoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E0FEFF621D796B00046303F /* LightLogoView.xib */; };
+		4E0FEFFE21D7B7490046303F /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFF921D7B7490046303F /* LoginPresenter.swift */; };
+		4E0FEFFF21D7B7490046303F /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFFA21D7B7490046303F /* LoginRouter.swift */; };
+		4E0FF00021D7B7490046303F /* LoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFFB21D7B7490046303F /* LoginModels.swift */; };
+		4E0FF00121D7B7490046303F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFFC21D7B7490046303F /* LoginViewController.swift */; };
+		4E0FF00221D7B7490046303F /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFFD21D7B7490046303F /* LoginInteractor.swift */; };
+		4E0FF00421D7B86D0046303F /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E0FF00321D7B86D0046303F /* Authentication.storyboard */; };
+		4E0FF00621D7C2700046303F /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FF00521D7C2700046303F /* RoundedButton.swift */; };
 		4E39ECAD21D381B40041F44C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E39ECAC21D381B40041F44C /* AppDelegate.swift */; };
 		4E39ECAF21D381B40041F44C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E39ECAE21D381B40041F44C /* ViewController.swift */; };
 		4E39ECB221D381B40041F44C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E39ECB021D381B40041F44C /* Main.storyboard */; };
 		4E39ECB421D381B60041F44C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E39ECB321D381B60041F44C /* Assets.xcassets */; };
 		4E39ECB721D381B60041F44C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E39ECB521D381B60041F44C /* LaunchScreen.storyboard */; };
+		4E93800E21D949B30083ED03 /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93800D21D949B30083ED03 /* FloatingTextField.swift */; };
+		4E93801121D9795A0083ED03 /* KeyboardScrollHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */; };
+		4E93801321D981020083ED03 /* UIView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801221D981020083ED03 /* UIView+Utilities.swift */; };
+		4E93801521D9850C0083ED03 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801421D9850C0083ED03 /* String+Validation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +114,15 @@
 		4E0FEFE221D6C4030046303F /* InteractorsModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractorsModule.swift; sourceTree = "<group>"; };
 		4E0FEFE321D6C4030046303F /* PresentersModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentersModule.swift; sourceTree = "<group>"; };
 		4E0FEFE421D6C4030046303F /* RoutersModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutersModule.swift; sourceTree = "<group>"; };
+		4E0FEFF421D796A40046303F /* LightLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightLogoView.swift; sourceTree = "<group>"; };
+		4E0FEFF621D796B00046303F /* LightLogoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LightLogoView.xib; sourceTree = "<group>"; };
+		4E0FEFF921D7B7490046303F /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		4E0FEFFA21D7B7490046303F /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		4E0FEFFB21D7B7490046303F /* LoginModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModels.swift; sourceTree = "<group>"; };
+		4E0FEFFC21D7B7490046303F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4E0FEFFD21D7B7490046303F /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		4E0FF00321D7B86D0046303F /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		4E0FF00521D7C2700046303F /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		4E39ECA921D381B40041F44C /* HealthBeam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthBeam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E39ECAC21D381B40041F44C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E39ECAE21D381B40041F44C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +131,10 @@
 		4E39ECB621D381B60041F44C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E39ECB821D381B60041F44C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E39ECBE21D3890B0041F44C /* HealthBeam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthBeam.entitlements; sourceTree = "<group>"; };
+		4E93800D21D949B30083ED03 /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
+		4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollHandler.swift; sourceTree = "<group>"; };
+		4E93801221D981020083ED03 /* UIView+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utilities.swift"; sourceTree = "<group>"; };
+		4E93801421D9850C0083ED03 /* String+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
 		C51DB985299E669B58F873E4 /* Pods-HealthBeam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HealthBeam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HealthBeam/Pods-HealthBeam.debug.xcconfig"; sourceTree = "<group>"; };
 		EB7E67FF51437CA2F3446B14 /* Pods_HealthBeam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HealthBeam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -137,6 +163,8 @@
 		4E0FEF5421D6BA6A0046303F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				4E0FEFF821D7B7330046303F /* Login */,
+				4E0FEFF221D796590046303F /* UI Components */,
 				4E0FEFCC21D6C0FB0046303F /* Storyboards */,
 				4E0FEFB421D6BE960046303F /* Common */,
 			);
@@ -249,8 +277,10 @@
 				4E0FEFB921D6BF040046303F /* UINavigationController+Utilities.swift */,
 				4E0FEFBA21D6BF040046303F /* UIStoryboard+Utility.swift */,
 				4E0FEFBD21D6BF050046303F /* UIView+Animations.swift */,
+				4E93801221D981020083ED03 /* UIView+Utilities.swift */,
 				4E0FEFC121D6BF050046303F /* UIView+LayoutConstraints.swift */,
 				4E0FEFBC21D6BF050046303F /* UIView+Nib.swift */,
+				4E93801421D9850C0083ED03 /* String+Validation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -259,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				4E39ECB021D381B40041F44C /* Main.storyboard */,
+				4E0FF00321D7B86D0046303F /* Authentication.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -266,6 +297,7 @@
 		4E0FEFCD21D6C1A90046303F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				4E93800F21D979460083ED03 /* Helpers */,
 				4E0FEFCF21D6C2430046303F /* CustomizableView.swift */,
 				4E0FEFD021D6C2430046303F /* NibLoadableView.swift */,
 				4E0FEFCE21D6C2430046303F /* ScrollCollectionsReusability.swift */,
@@ -298,6 +330,37 @@
 				4E0FEFDD21D6C4030046303F /* WorkersModule.swift */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		4E0FEFF221D796590046303F /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				4E0FEFF321D796660046303F /* Views */,
+			);
+			path = "UI Components";
+			sourceTree = "<group>";
+		};
+		4E0FEFF321D796660046303F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4E0FF00521D7C2700046303F /* RoundedButton.swift */,
+				4E0FEFF421D796A40046303F /* LightLogoView.swift */,
+				4E0FEFF621D796B00046303F /* LightLogoView.xib */,
+				4E93800D21D949B30083ED03 /* FloatingTextField.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4E0FEFF821D7B7330046303F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4E0FEFF921D7B7490046303F /* LoginPresenter.swift */,
+				4E0FEFFA21D7B7490046303F /* LoginRouter.swift */,
+				4E0FEFFB21D7B7490046303F /* LoginModels.swift */,
+				4E0FEFFC21D7B7490046303F /* LoginViewController.swift */,
+				4E0FEFFD21D7B7490046303F /* LoginInteractor.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		4E39ECA021D381B40041F44C = {
@@ -334,6 +397,14 @@
 				4E39ECB821D381B60041F44C /* Info.plist */,
 			);
 			path = HealthBeam;
+			sourceTree = "<group>";
+		};
+		4E93800F21D979460083ED03 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		A63C187DDE74FA1310D0681A /* Frameworks */ = {
@@ -412,6 +483,8 @@
 				4E39ECB721D381B60041F44C /* LaunchScreen.storyboard in Resources */,
 				4E39ECB421D381B60041F44C /* Assets.xcassets in Resources */,
 				4E39ECB221D381B40041F44C /* Main.storyboard in Resources */,
+				4E0FEFF721D796B00046303F /* LightLogoView.xib in Resources */,
+				4E0FF00421D7B86D0046303F /* Authentication.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,12 +519,16 @@
 				"${BUILT_PRODUCTS_DIR}/Cleanse/Cleanse.framework",
 				"${BUILT_PRODUCTS_DIR}/DGActivityIndicatorView/DGActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/UnderLineTextField/UnderLineTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cleanse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UnderLineTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -467,37 +544,47 @@
 			files = (
 				4E0FEFC421D6BF050046303F /* UIStoryboard+Utility.swift in Sources */,
 				4E0FEFC321D6BF050046303F /* UINavigationController+Utilities.swift in Sources */,
+				4E0FEFFE21D7B7490046303F /* LoginPresenter.swift in Sources */,
 				4E0FEFE621D6C4030046303F /* StoryboardsModule.swift in Sources */,
 				4E0FEFEF21D6C4030046303F /* InteractorsModule.swift in Sources */,
 				4E0FEFA121D6BCB20046303F /* Extension.swift in Sources */,
 				4E0FEFEE21D6C4030046303F /* ApplicationModule.swift in Sources */,
 				4E0FEFF021D6C4030046303F /* PresentersModule.swift in Sources */,
 				4E0FEFD121D6C2430046303F /* ScrollCollectionsReusability.swift in Sources */,
+				4E0FF00021D7B7490046303F /* LoginModels.swift in Sources */,
 				4E0FEFA421D6BCB20046303F /* Request.swift in Sources */,
+				4E93801321D981020083ED03 /* UIView+Utilities.swift in Sources */,
+				4E0FF00621D7C2700046303F /* RoundedButton.swift in Sources */,
 				4E0FEFC721D6BF050046303F /* UIView+Animations.swift in Sources */,
 				4E0FEFAB21D6BCB20046303F /* BaseOperation.swift in Sources */,
 				4E0FEFEC21D6C4030046303F /* ViewsModule.swift in Sources */,
+				4E0FF00121D7B7490046303F /* LoginViewController.swift in Sources */,
 				4E0FEFA521D6BCB20046303F /* APIConstants.swift in Sources */,
 				4E0FEFEA21D6C4030046303F /* WorkersModule.swift in Sources */,
+				4E0FEFFF21D7B7490046303F /* LoginRouter.swift in Sources */,
 				4E0FEFAD21D6BCB20046303F /* NetworkingManager.swift in Sources */,
 				4E39ECAF21D381B40041F44C /* ViewController.swift in Sources */,
 				4E0FEFC821D6BF050046303F /* NotificationCenter+Utilities.swift in Sources */,
 				4E0FEF9D21D6BCB20046303F /* ResponseProtocol.swift in Sources */,
 				4E0FEF9C21D6BCB20046303F /* OperationProtocol.swift in Sources */,
+				4E0FEFF521D796A40046303F /* LightLogoView.swift in Sources */,
 				4E0FEF9B21D6BCB20046303F /* Commons.swift in Sources */,
 				4E0FEFB321D6BE630046303F /* Beacon.swift in Sources */,
 				4E39ECAD21D381B40041F44C /* AppDelegate.swift in Sources */,
 				4E0FEFC221D6BF050046303F /* String+Localization.swift in Sources */,
+				4E0FF00221D7B7490046303F /* LoginInteractor.swift in Sources */,
 				4E0FEFA021D6BCB20046303F /* ServiceConfig.swift in Sources */,
 				4E0FEFE521D6C4030046303F /* ViewControllersModule.swift in Sources */,
 				4E0FEFAE21D6BCB20046303F /* KeychainManager.swift in Sources */,
 				4E0FEFCA21D6BF050046303F /* UIColor+Additions.swift in Sources */,
 				4E0FEFC921D6BF050046303F /* UIFont+Additions.swift in Sources */,
+				4E93801521D9850C0083ED03 /* String+Validation.swift in Sources */,
 				4E0FEFA321D6BCB20046303F /* Response.swift in Sources */,
 				4E0FEFE921D6C4030046303F /* ManagersModule.swift in Sources */,
 				4E0FEFEB21D6C4030046303F /* UserInterfaceModule.swift in Sources */,
 				4E0FEF9F21D6BCB20046303F /* ServiceProtocol.swift in Sources */,
 				4E0FEFB021D6BCB20046303F /* BeaconsManager.swift in Sources */,
+				4E93801121D9795A0083ED03 /* KeyboardScrollHandler.swift in Sources */,
 				4E0FEF9E21D6BCB20046303F /* Service.swift in Sources */,
 				4E0FEFA221D6BCB20046303F /* RequestProtocol.swift in Sources */,
 				4E0FEFD221D6C2430046303F /* CustomizableView.swift in Sources */,
@@ -509,6 +596,7 @@
 				4E0FEFB621D6BEAE0046303F /* AuthorizationWorker.swift in Sources */,
 				4E0FEFCB21D6BF050046303F /* UIView+LayoutConstraints.swift in Sources */,
 				4E0FEFD321D6C2430046303F /* NibLoadableView.swift in Sources */,
+				4E93800E21D949B30083ED03 /* FloatingTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

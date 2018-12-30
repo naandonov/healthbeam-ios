@@ -5,5 +5,7 @@ target 'HealthBeam' do
   pod 'DGActivityIndicatorView', '~> 2.1.1'
   pod 'KeychainAccess', '~> 3.1.2'
   pod 'Cleanse', '~> 4.2.0'
+  pod 'UnderLineTextField', '~> 2.1'
+  pod 'lottie-ios', '~> 2.5.0'
 
 end
