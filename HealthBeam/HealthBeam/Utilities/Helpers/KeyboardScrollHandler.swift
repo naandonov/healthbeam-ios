@@ -59,9 +59,8 @@ extension KeyboardScrollHandler {
             return
         }
         
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             keyboardHeight = keyboardSize.height
-            
             UIView.animate(withDuration: 0.3) { [weak self] in
                 guard let strongSelf = self, let keyboardHeight = strongSelf.keyboardHeight else {
                     return

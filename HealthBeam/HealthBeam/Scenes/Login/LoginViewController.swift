@@ -146,7 +146,7 @@ extension LoginViewController: UnderLineTextFieldDelegate {
         else if textField == passwordTextField {
 //            try? passwordTextField.validate()
             //Fixes an issue causing the animation for setting the content inset to zero and the one changing the content offset so that the textfield is visible to be in a conflict
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
                 _ = self?.passwordTextField.resignFirstResponder()
             }
             initiateLogin()
