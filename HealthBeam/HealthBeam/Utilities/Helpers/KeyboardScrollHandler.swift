@@ -72,12 +72,16 @@ extension KeyboardScrollHandler {
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        UIView.animate(withDuration: 0.3) { [weak self] in
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
             guard let strongSelf = self else {
                 return
             }
-            strongSelf.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        }
-        keyboardHeight = nil
+            strongSelf.scrollView.contentInset = .zero
+            }, completion: { [weak self] success in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.keyboardHeight = nil
+        })
     }
 }

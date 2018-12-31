@@ -54,6 +54,8 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         
         emailTextField.placeholder = "Email".localized()
         emailTextField.keyboardType = .emailAddress
+        emailTextField.textContentType = .emailAddress
+        emailTextField.autocorrectionType = .no
         emailTextField.font = .applicationRegularFont()
         emailTextField.delegate = self
         //Curently there is a bug in the UnderLineTextField library disregarding the onCommit validation type
@@ -139,12 +141,14 @@ extension LoginViewController: UnderLineTextFieldDelegate {
         
         if textField == emailTextField {
 //            try? emailTextField.validate()
-            _ = emailTextField.resignFirstResponder()
             _ = passwordTextField.becomeFirstResponder()
         }
         else if textField == passwordTextField {
 //            try? passwordTextField.validate()
-            _ = passwordTextField.resignFirstResponder()
+            //Fixes an issue causing the animation for setting the content inset to zero and the one changing the content offset so that the textfield is visible to be in a conflict
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
+                _ = self?.passwordTextField.resignFirstResponder()
+            }
             initiateLogin()
         }
         return true
