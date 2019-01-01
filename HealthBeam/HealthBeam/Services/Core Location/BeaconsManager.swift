@@ -177,7 +177,7 @@ extension BeaconsManager: CLLocationManagerDelegate {
             let parsedBeacons = beacons.compactMap {
                 Beacon(minor: $0.minor.intValue, major: $0.major.intValue, rssi: $0.rssi)
             }
-            print("\(parsedBeacons)")
+            log.verbose("\(parsedBeacons)")
             let beaconsUserInfo = [Constants.Notifications.UserInfoBeaconsKey: parsedBeacons]
             notificationCenter.post(Notification(name: Constants.Notifications.BeaconsFound, object: self, userInfo: beaconsUserInfo))
             self.lastBeaconsUpdate = Date()
@@ -185,18 +185,18 @@ extension BeaconsManager: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        log.error(error)
     }
     
     
     func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
-        print(error)
+        log.error(error)
     }
     
     
     private func locationManager(manager: CLLocationManager!, rangingBeaconsDidFailForRegion region: CLBeaconRegion!, withError error: Error?) {
         if let error = error {
-            print(error)
+            log.error(error)
         }
     }
     

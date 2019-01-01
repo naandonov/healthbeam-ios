@@ -25,11 +25,25 @@ struct ManagersModule: Module {
             .to(factory: NetworkingManager.init)
         
         binder
+            .bind(CoreDataHandler.self)
+            .sharedInScope()
+            .to(factory: CoreDataHandler.init)
+        
+        binder
+            .bind(CoreDataStack.self)
+            .to(factory: CoreDataManager.init)
+        
+        binder
             .bind(NotificationCenter.self)
-            .to { NotificationCenter.default }
+            .to(value: NotificationCenter.default)
         
         binder
             .bind(UNUserNotificationCenter.self)
-            .to { UNUserNotificationCenter.current() }
+            .to(value: UNUserNotificationCenter.current())
+        
+        binder
+            .bind(AuthorizationWorker.self)
+            .sharedInScope()
+            .to(factory: AuthorizationManager.init)
     }
 }

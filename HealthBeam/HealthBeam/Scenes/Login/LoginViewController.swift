@@ -14,7 +14,7 @@ typealias LoginPresenterProtocol =  LoginPresentationLogic
 typealias LoginRouterProtocol = LoginRoutingLogic & LoginDataPassing
 
 protocol LoginDisplayLogic: class {
-    
+    func displayLoginResult(viewModel: Login.Interaction.ViewModel)
 }
 
 class LoginViewController: UIViewController, LoginDisplayLogic {
@@ -93,13 +93,23 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
             try passwordTextField.validate()
         }
         catch {
-            print("validation failed")
+            log.warning("validation failed")
             return
         }
         
         LoadingOverlay.showOn(view)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        interactor?.login(request: Login.Interaction.Request(email: emailTextField.text!, password: passwordTextField.text!))
+    }
+    
+    //MARK: - Displaying Logic
+    
+    func displayLoginResult(viewModel: Login.Interaction.ViewModel) {
+        if viewModel.isSuccessful {
             LoadingOverlay.hideWithSuccess()
+        }
+        else {
+            LoadingOverlay.hide()
+            UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
         }
     }
 }

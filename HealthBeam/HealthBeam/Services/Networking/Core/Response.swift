@@ -34,7 +34,7 @@ public class Response: ResponseProtocol {
         do {
             return try decoder.decode(T.self, from: data)
         } catch let error {
-            print(error)
+            log.error(error)
             return nil
         }
     }

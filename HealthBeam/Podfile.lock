@@ -3,6 +3,7 @@ PODS:
   - DGActivityIndicatorView (2.1.1)
   - KeychainAccess (3.1.2)
   - lottie-ios (2.5.2)
+  - SwiftyBeaver (1.6.1)
   - UnderLineTextField (2.1.0)
 
 DEPENDENCIES:
@@ -10,6 +11,7 @@ DEPENDENCIES:
   - DGActivityIndicatorView (~> 2.1.1)
   - KeychainAccess (~> 3.1.2)
   - lottie-ios (~> 2.5.0)
+  - SwiftyBeaver
   - UnderLineTextField (~> 2.1)
 
 SPEC REPOS:
@@ -18,6 +20,7 @@ SPEC REPOS:
     - DGActivityIndicatorView
     - KeychainAccess
     - lottie-ios
+    - SwiftyBeaver
     - UnderLineTextField
 
 SPEC CHECKSUMS:
@@ -25,8 +28,9 @@ SPEC CHECKSUMS:
   DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
   KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
   lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
+  SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
   UnderLineTextField: b3f5307b56962331e30a965e81b79aae2df1de83
 
-PODFILE CHECKSUM: d6bb01c68c9660a4a07aac2830ee3e3c539b488a
+PODFILE CHECKSUM: fbedcbc262bb05447906a947b6ab4b57e34a876e
 
 COCOAPODS: 1.5.2

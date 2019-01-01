@@ -26,7 +26,8 @@ public final class ServiceConfig {
         self.url = url
         self.name = name ?? (url.host ?? "")
         
-        if isAuthorizationRequired, let token = AuthorizationWorker().getAuthorizationToken() {
+        //TODO: Refactor for using the dependency injection graph instead
+        if isAuthorizationRequired, let token = AuthorizationManager().getAuthorizationToken() {
             self.headers["Authorization"] = "Bearer \(token)"
         }
     }

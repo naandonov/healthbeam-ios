@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol AuthorizationWorker {
+    func checkForAuthorization() -> Bool
+    func setAuthorizationToken(_ token: String)
+    func getAuthorizationToken() -> String?
+    func deleteAuthorizationToken() throws
+}
 
-class AuthorizationWorker {
+class AuthorizationManager: AuthorizationWorker {
     
     func checkForAuthorization() -> Bool {
         return KeychainManager.getAuthorizationToken() != nil

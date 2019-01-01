@@ -10,15 +10,21 @@ import UIKit
 
 struct Login {
     
-    struct Placeholder {
-        struct Request {
-            
+    struct Result: Codable {
+        let accessToken: String
+    }
+    
+    struct Interaction {
+        struct Request: Codable {
+            let email: String
+            let password: String
         }
         struct Response {
-            
+            let isSuccessful: Bool
         }
         struct ViewModel {
-            
+            let isSuccessful: Bool
+            let errorMessage: String?
         }
     }
 }

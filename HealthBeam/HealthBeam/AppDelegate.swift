@@ -9,6 +9,10 @@
 import UIKit
 import UserNotifications
 import Cleanse
+import SwiftyBeaver
+
+//Global Logger
+let log = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -53,6 +57,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
 extension AppDelegate {
     private func applicationSetup() {
+        //Configuring the logger's output
+        let console = ConsoleDestination()
+        log.addDestination(console)
         //try? KeychainManager.deleteAuthorizationToken()
         userNotificationCenter?.requestAuthorization(options: [.sound, .alert], completionHandler: { _,_ in })
         window?.makeKeyAndVisible()
@@ -64,7 +71,7 @@ extension AppDelegate {
             propertyInjector.injectProperties(into: self)
         }
         catch {
-            print(error.localizedDescription)
+            log.error(error.localizedDescription)
             fatalError("Unable to setup the dependency injection graph, reason: \(error.localizedDescription)")
         }
     }
