@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LoadingOverlayView" customModule="HealthBeam">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S0T-Ux-9OH">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view clipsSubviews="YES" clearsContextBeforeDrawing="NO" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERa-sn-Lzi" customClass="CustomizableView" customModule="HealthBeam" customModuleProvider="target">
+                    <rect key="frame" x="100" y="246" width="175" height="175"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1h-EL-hSd" customClass="LOTAnimationView">
+                            <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="animation" value="done"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BY3-G2-WSg" customClass="LOTAnimationView">
+                            <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="animation" value="loading"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="BY3-G2-WSg" firstAttribute="centerY" secondItem="ERa-sn-Lzi" secondAttribute="centerY" id="2oq-fC-3DK"/>
+                        <constraint firstAttribute="trailing" secondItem="BY3-G2-WSg" secondAttribute="trailing" id="9by-OO-g3Z"/>
+                        <constraint firstItem="BY3-G2-WSg" firstAttribute="centerX" secondItem="ERa-sn-Lzi" secondAttribute="centerX" id="G06-t6-0et"/>
+                        <constraint firstItem="O1h-EL-hSd" firstAttribute="top" secondItem="ERa-sn-Lzi" secondAttribute="top" id="J9R-Co-iPc"/>
+                        <constraint firstItem="BY3-G2-WSg" firstAttribute="top" secondItem="ERa-sn-Lzi" secondAttribute="top" id="Q07-Re-U5W"/>
+                        <constraint firstAttribute="trailing" secondItem="O1h-EL-hSd" secondAttribute="trailing" id="RkI-Nl-Pvd"/>
+                        <constraint firstAttribute="bottom" secondItem="BY3-G2-WSg" secondAttribute="bottom" id="UhF-dE-Nos"/>
+                        <constraint firstItem="O1h-EL-hSd" firstAttribute="leading" secondItem="ERa-sn-Lzi" secondAttribute="leading" id="bGW-yf-m3i"/>
+                        <constraint firstAttribute="bottom" secondItem="O1h-EL-hSd" secondAttribute="bottom" id="bdL-wH-GLK"/>
+                        <constraint firstAttribute="width" secondItem="ERa-sn-Lzi" secondAttribute="height" multiplier="1:1" id="er7-wg-m7V"/>
+                        <constraint firstItem="BY3-G2-WSg" firstAttribute="leading" secondItem="ERa-sn-Lzi" secondAttribute="leading" id="hDl-Xn-3RR"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="topLeft" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="topRight" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="bottomLeft" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="bottomRight" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="30"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="internalColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="S0T-Ux-9OH" secondAttribute="trailing" id="2qx-S7-6rR"/>
+                <constraint firstAttribute="bottom" secondItem="S0T-Ux-9OH" secondAttribute="bottom" id="6uA-th-T7y"/>
+                <constraint firstItem="ERa-sn-Lzi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="IBi-FP-ac9"/>
+                <constraint firstItem="ERa-sn-Lzi" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="100" id="SpZ-SU-CVj"/>
+                <constraint firstItem="ERa-sn-Lzi" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bOL-VH-4Jd"/>
+                <constraint firstItem="S0T-Ux-9OH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fLn-L8-6ef"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ERa-sn-Lzi" secondAttribute="trailing" constant="100" id="iH0-1u-mJH"/>
+                <constraint firstItem="S0T-Ux-9OH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="y82-Bm-c2v"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="animationsContainer" destination="ERa-sn-Lzi" id="Kie-0y-vb7"/>
+                <outlet property="loadingAnimationView" destination="BY3-G2-WSg" id="Mfg-E7-rKO"/>
+                <outlet property="successAnimationView" destination="O1h-EL-hSd" id="LLs-an-KaG"/>
+            </connections>
+            <point key="canvasLocation" x="148" y="48.125937031484263"/>
+        </view>
+    </objects>
+</document>

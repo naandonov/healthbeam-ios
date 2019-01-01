@@ -96,6 +96,11 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
             print("validation failed")
             return
         }
+        
+        LoadingOverlay.showOn(view)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            LoadingOverlay.hideWithSuccess()
+        }
     }
 }
 
