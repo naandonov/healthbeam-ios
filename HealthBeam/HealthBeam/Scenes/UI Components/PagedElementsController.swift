@@ -13,9 +13,10 @@ protocol PagedElementsControllerDelegate: class {
     func cellForItem(_ item: ElementType, in tableView: UITableView) -> UITableViewCell
     func cellForPlaceholderItemIn(tableView: UITableView) -> UITableViewCell
     func cellHeightIn(tableView: UITableView) -> CGFloat
+    
 }
 
-class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObject, UITableViewDataSource, UITableViewDelegate {
+class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObject, UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
     
     private weak var tableView: UITableView?
     weak var delegate: Delegate?
@@ -28,6 +29,7 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.prefetchDataSource = self
     }
     
     func invalidate(initialBatchResult: BatchResult<Delegate.ElementType>) {
@@ -67,6 +69,16 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
             return delegate.cellForItem(element, in: tableView)
         }
         return delegate.cellForPlaceholderItemIn(tableView: tableView)
+    }
+    
+    //MARK:- UITableViewDataSourcePrefetching
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+         print("prefetchRowsAt \(indexPaths)")
+    }
+    
+    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        print("cancelPrefetchingForRowsAt \(indexPaths)")
     }
 }
 
