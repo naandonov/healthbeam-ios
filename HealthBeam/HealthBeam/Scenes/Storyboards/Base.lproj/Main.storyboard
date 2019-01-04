@@ -17,24 +17,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ahS-K4-hlf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="o4b-P8-MZN">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="M7u-L1-ter"/>
-                                </constraints>
-                            </view>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ahS-K4-hlf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Cgl-Fb-fZ1"/>
-                            <constraint firstItem="ahS-K4-hlf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="EsP-f4-cVs"/>
-                            <constraint firstItem="ahS-K4-hlf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ni6-C3-9aB"/>
+                            <constraint firstItem="o4b-P8-MZN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Gtj-8t-MwN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="o4b-P8-MZN" secondAttribute="bottom" id="TXk-Vf-TVa"/>
+                            <constraint firstItem="o4b-P8-MZN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="eob-i9-6He"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="o4b-P8-MZN" secondAttribute="trailing" id="nKG-Bi-EQL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="topViewContainer" destination="ahS-K4-hlf" id="yRV-6Q-e3s"/>
+                        <outlet property="tableView" destination="o4b-P8-MZN" id="5Xz-Rl-tzZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

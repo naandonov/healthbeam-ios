@@ -24,6 +24,7 @@ struct APIConstants {
         case login
         case logout
         case user
+        case patients
         
         
         var endpointString: String {
@@ -34,6 +35,8 @@ struct APIConstants {
                 return "/logout"
             case .user:
                 return "/user"
+            case .patients:
+                return "/patients"
             }
         }
     }

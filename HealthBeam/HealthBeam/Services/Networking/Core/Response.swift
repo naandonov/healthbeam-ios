@@ -30,6 +30,7 @@ public class Response: ResponseProtocol {
         guard let data = data else { return nil }
         
         let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
         
         do {
             return try decoder.decode(T.self, from: data)
