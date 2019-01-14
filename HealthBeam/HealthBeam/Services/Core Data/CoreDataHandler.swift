@@ -29,7 +29,10 @@ class CoreDataHandler {
                 return
             }
             do {
-                _ = try strongSelf.createOrUpdateUserEntity(for: userProfile, context: context)
+                let userEntity = try strongSelf.createOrUpdateUserEntity(for: userProfile, context: context)
+                let premiseEntity = try strongSelf.createOrFetchPremise(for: userProfile.premise, context: context)
+                userEntity.premise = premiseEntity
+                premiseEntity.addToUsers(userEntity)
                 try context.save()
                 if let completion = completion {
                     completion(true)
@@ -54,8 +57,7 @@ extension CoreDataHandler {
         let userEntity: UserEntity
         if let existingUser = try context.fetch(fetchRequest).first {
             userEntity = existingUser
-        }
-        else {
+        } else {
             userEntity = NSEntityDescription.insertNewObject(forEntityName: UserEntity.entityName, into: context) as! UserEntity
         }
         
@@ -67,5 +69,21 @@ extension CoreDataHandler {
         userEntity.discoveryRegions = userProfile.discoveryRegions
         
         return userEntity
+    }
+    
+    private func createOrFetchPremise(for premiseModel: Premise, context: NSManagedObjectContext) throws -> PremiseEntity {
+        let fetchRequest: NSFetchRequest<PremiseEntity> = PremiseEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id = %lld", Int64(premiseModel.id))
+        
+        if let existingPremise = try context.fetch(fetchRequest).first {
+            return existingPremise
+        } else {
+            let premiseEntity = NSEntityDescription.insertNewObject(forEntityName: PremiseEntity.entityName, into: context) as! PremiseEntity
+            premiseEntity.id = Int64(premiseModel.id)
+            premiseEntity.name = premiseModel.name
+            premiseEntity.type = premiseModel.type
+            
+            return premiseEntity
+        }
     }
 }

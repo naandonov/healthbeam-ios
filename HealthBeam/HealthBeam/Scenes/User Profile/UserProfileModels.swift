@@ -8,6 +8,12 @@
 
 import UIKit
 
+struct Premise: Codable {
+    let id: Int
+    let name: String
+    let type: String
+}
+
 struct UserProfile {
     
     struct Model: Codable {
@@ -17,6 +23,7 @@ struct UserProfile {
         let email: String
         var discoveryRegions: [String]
         let accountType: String?
+        let premise: Premise
     }
     
     struct Placeholder {

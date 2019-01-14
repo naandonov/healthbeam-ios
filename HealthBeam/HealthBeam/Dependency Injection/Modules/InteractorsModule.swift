@@ -15,6 +15,10 @@ class InteractorsModule: Module {
         binder
             .bind(LoginInteractorProtocol.self)
             .to(factory: LoginInteractor.init)
+        
+        binder
+            .bind(MenuInteractorProtocol.self)
+            .to(factory: MenuInteractor.init)
 
     }
 }

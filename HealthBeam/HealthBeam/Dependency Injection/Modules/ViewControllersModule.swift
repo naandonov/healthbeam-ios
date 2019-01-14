@@ -30,9 +30,20 @@ struct ViewControllersModule: Module {
         }
         
         binder
+            .bind(MenuViewController.self)
+            .to {  (menuStoryboard: TaggedProvider<MenuStoryboard>, injector: PropertyInjector<MenuViewController>) in
+                let viewController: MenuViewController! =  menuStoryboard.get().instantiateViewController()
+                injector.injectProperties(into: viewController)
+                return viewController
+        }
+        
+        binder
             .bindPropertyInjectionOf(LoginViewController.self)
             .to(injector: LoginViewController.injectProperties)
-    
         
+        binder
+            .bindPropertyInjectionOf(MenuViewController.self)
+            .to(injector: MenuViewController.injectProperties)
+    
     }
 }

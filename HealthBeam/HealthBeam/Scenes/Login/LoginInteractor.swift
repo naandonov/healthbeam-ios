@@ -15,11 +15,21 @@ protocol LoginBusinessLogic {
 }
 
 protocol LoginDataStore {
+    var postAuthorizationHandler: PostAuthorizationHandler? { get set }
 }
+
+protocol PostAuthorizationHandler: class {
+    func handleSuccessfullAuthorization(userProfile: UserProfile.Model)
+}
+
+weak var postAuthorizationHandler: PostAuthorizationHandler?
+
 
 class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     
     var presenter: LoginPresentationLogic?
+    
+    weak var postAuthorizationHandler: PostAuthorizationHandler?
     
     private var authorizationWorker: AuthorizationWorker
     private var coreDataHandler: CoreDataHandler
@@ -74,7 +84,11 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     
     private func storeUserProfile(_ userProfile: UserProfile.Model) {
         coreDataHandler.storeUserProfile(userProfile) { [weak self] success in
-            self?.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: success))
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.postAuthorizationHandler?.handleSuccessfullAuthorization(userProfile: userProfile)
+            strongSelf.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: success))
         }
     }
     

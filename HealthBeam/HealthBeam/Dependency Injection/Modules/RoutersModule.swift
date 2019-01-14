@@ -15,6 +15,10 @@ class RoutersModule: Module {
         binder
             .bind(LoginRouterProtocol.self)
             .to(factory: LoginRouter.init)
+        
+        binder
+            .bind(MenuRouterProtocol.self)
+            .to(factory: MenuRouter.init)
 
     }
 }

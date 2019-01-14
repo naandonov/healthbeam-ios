@@ -14,7 +14,7 @@ class BaseUnsignedOperation<T: Codable>: BaseOperation, Networkable {
     typealias ResponseType = T
     
     override func main() {
-        guard let serviceConfig = ServiceConfig(base: APIConstants.BaseURL.HealthBeamRoot.urlString) else {
+        guard let serviceConfig = ServiceConfig(base: APIConstants.BaseURL.healthBeamRoot.urlString) else {
             state = .finished
             return
         }

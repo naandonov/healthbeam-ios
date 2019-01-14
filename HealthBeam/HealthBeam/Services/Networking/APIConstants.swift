@@ -10,11 +10,11 @@ import Foundation
 
 struct APIConstants {
     enum BaseURL {
-        case HealthBeamRoot
+        case healthBeamRoot
         
         var urlString: String {
             switch self {
-            case .HealthBeamRoot:
+            case .healthBeamRoot:
                 return "http://localhost:8080/v1"
             }
         }

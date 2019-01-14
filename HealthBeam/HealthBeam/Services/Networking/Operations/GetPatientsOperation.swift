@@ -14,17 +14,20 @@ class GetPatientsOperation: BaseSignedOperation<BatchResult<Patient>> {
         super.init()
     }
     
-    convenience init(searchQuery: String?=nil, completion: CompletionBlock<ResponseType>?) {
+    convenience init(searchQuery: String?=nil, pageQuery: Int?=nil, completion: CompletionBlock<ResponseType>?) {
         self.init()
-        var parmaeters: ParametersDict = [:]
+        var fields: ParametersDict = [:]
         if let searchQuery = searchQuery {
-            parmaeters["search"] = searchQuery
+            fields["search"] = searchQuery
+        }
+        if let pageQuery = pageQuery {
+            fields["page"] = pageQuery
         }
         
         self.request = Request(method: .get,
                                endpoint: APIConstants.EndPoint.patients.endpointString,
-                               params: parmaeters,
-                               fields: nil,
+                               params: nil,
+                               fields: fields,
                                body: nil)
         self.completion = completion
     }

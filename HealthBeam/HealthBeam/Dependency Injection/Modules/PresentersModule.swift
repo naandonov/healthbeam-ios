@@ -15,6 +15,10 @@ class PresentersModule: Module {
         binder
             .bind(LoginPresenterProtocol.self)
             .to(factory: LoginPresenter.init)
+        
+        binder
+            .bind(MenuPresenterProtocol.self)
+            .to(factory: MenuPresenter.init)
 
     }
 }

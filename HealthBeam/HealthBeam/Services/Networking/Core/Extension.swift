@@ -48,7 +48,7 @@ public extension String {
     }
     
     public func stringByAdding(urlEncodedFields fields: ParametersDict?) throws -> String {
-        guard let f = fields else { return self }
+        guard let f = fields, f.count > 0 else { return self }
         return try f.urlEncodedString(base: self)
     }
 }

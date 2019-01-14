@@ -106,6 +106,7 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
     func displayLoginResult(viewModel: Login.Interaction.ViewModel) {
         if viewModel.isSuccessful {
             LoadingOverlay.hideWithSuccess()
+            dismiss(animated: true, completion: nil)
         }
         else {
             LoadingOverlay.hide()

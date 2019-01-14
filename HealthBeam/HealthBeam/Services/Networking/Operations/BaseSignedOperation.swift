@@ -14,7 +14,7 @@ class BaseSignedOperation<T: Codable>: BaseOperation, Networkable {
     var completion: CompletionBlock<ResponseType>?
     
     override func main() {
-        guard let serviceConfig = ServiceConfig(base: APIConstants.BaseURL.HealthBeamRoot.urlString, isAuthorizationRequired: true) else {
+        guard let serviceConfig = ServiceConfig(base: APIConstants.BaseURL.healthBeamRoot.urlString, isAuthorizationRequired: true) else {
             state = .finished
             return
         }

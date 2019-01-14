@@ -94,6 +94,13 @@
 		4ED74C1F21DBCBBA009AB7C3 /* GetUserProfileOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED74C1E21DBCBBA009AB7C3 /* GetUserProfileOperation.swift */; };
 		4ED74C2121DBE0FD009AB7C3 /* NSManagedObject+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED74C2021DBE0FD009AB7C3 /* NSManagedObject+Utilities.swift */; };
 		4ED74C2321DBE95A009AB7C3 /* UIAlertController+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED74C2221DBE95A009AB7C3 /* UIAlertController+Utilities.swift */; };
+		4EF9E2B021ED18F300E0DDD0 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EF9E2AF21ED18F300E0DDD0 /* Menu.storyboard */; };
+		4EF9E2B721ED1AD300E0DDD0 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9E2B221ED1AD300E0DDD0 /* MenuPresenter.swift */; };
+		4EF9E2B821ED1AD300E0DDD0 /* MenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9E2B321ED1AD300E0DDD0 /* MenuRouter.swift */; };
+		4EF9E2B921ED1AD300E0DDD0 /* MenuModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9E2B421ED1AD300E0DDD0 /* MenuModels.swift */; };
+		4EF9E2BA21ED1AD300E0DDD0 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9E2B521ED1AD300E0DDD0 /* MenuViewController.swift */; };
+		4EF9E2BB21ED1AD300E0DDD0 /* MenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9E2B621ED1AD300E0DDD0 /* MenuInteractor.swift */; };
+		4EF9E2BD21ED1C0A00E0DDD0 /* MenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9E2BC21ED1C0A00E0DDD0 /* MenuNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -187,6 +194,13 @@
 		4ED74C1E21DBCBBA009AB7C3 /* GetUserProfileOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileOperation.swift; sourceTree = "<group>"; };
 		4ED74C2021DBE0FD009AB7C3 /* NSManagedObject+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Utilities.swift"; sourceTree = "<group>"; };
 		4ED74C2221DBE95A009AB7C3 /* UIAlertController+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Utilities.swift"; sourceTree = "<group>"; };
+		4EF9E2AF21ED18F300E0DDD0 /* Menu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
+		4EF9E2B221ED1AD300E0DDD0 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
+		4EF9E2B321ED1AD300E0DDD0 /* MenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRouter.swift; sourceTree = "<group>"; };
+		4EF9E2B421ED1AD300E0DDD0 /* MenuModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModels.swift; sourceTree = "<group>"; };
+		4EF9E2B521ED1AD300E0DDD0 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		4EF9E2B621ED1AD300E0DDD0 /* MenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuInteractor.swift; sourceTree = "<group>"; };
+		4EF9E2BC21ED1C0A00E0DDD0 /* MenuNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuNavigationController.swift; sourceTree = "<group>"; };
 		C51DB985299E669B58F873E4 /* Pods-HealthBeam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HealthBeam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HealthBeam/Pods-HealthBeam.debug.xcconfig"; sourceTree = "<group>"; };
 		EB7E67FF51437CA2F3446B14 /* Pods_HealthBeam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HealthBeam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -215,7 +229,7 @@
 		4E0FEF5421D6BA6A0046303F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				4EC355D221DF62220011D723 /* Patients Search */,
+				4EF9E2B121ED1AAF00E0DDD0 /* Menu */,
 				4ED74C1321DBC67D009AB7C3 /* User Profile */,
 				4E0FEFF821D7B7330046303F /* Login */,
 				4E0FEFF221D796590046303F /* UI Components */,
@@ -357,6 +371,7 @@
 			children = (
 				4E39ECB021D381B40041F44C /* Main.storyboard */,
 				4E0FF00321D7B86D0046303F /* Authentication.storyboard */,
+				4EF9E2AF21ED18F300E0DDD0 /* Menu.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -498,13 +513,6 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
-		4EC355D221DF62220011D723 /* Patients Search */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Patients Search";
-			sourceTree = "<group>";
-		};
 		4ED74C1321DBC67D009AB7C3 /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,6 +523,19 @@
 				4ED74C1821DBC6A7009AB7C3 /* UserProfileInteractor.swift */,
 			);
 			path = "User Profile";
+			sourceTree = "<group>";
+		};
+		4EF9E2B121ED1AAF00E0DDD0 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				4EF9E2B221ED1AD300E0DDD0 /* MenuPresenter.swift */,
+				4EF9E2B321ED1AD300E0DDD0 /* MenuRouter.swift */,
+				4EF9E2B421ED1AD300E0DDD0 /* MenuModels.swift */,
+				4EF9E2B521ED1AD300E0DDD0 /* MenuViewController.swift */,
+				4EF9E2B621ED1AD300E0DDD0 /* MenuInteractor.swift */,
+				4EF9E2BC21ED1C0A00E0DDD0 /* MenuNavigationController.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		A63C187DDE74FA1310D0681A /* Frameworks */ = {
@@ -595,6 +616,7 @@
 				4E39ECB421D381B60041F44C /* Assets.xcassets in Resources */,
 				4E48E58B21DAC3D900069CC4 /* loading.json in Resources */,
 				4E39ECB221D381B40041F44C /* Main.storyboard in Resources */,
+				4EF9E2B021ED18F300E0DDD0 /* Menu.storyboard in Resources */,
 				4E0FEFF721D796B00046303F /* LightLogoView.xib in Resources */,
 				4E0FF00421D7B86D0046303F /* Authentication.storyboard in Resources */,
 				4E48E58921DAC29C00069CC4 /* done.json in Resources */,
@@ -661,6 +683,7 @@
 				4ED74C1A21DBC6A7009AB7C3 /* UserProfileRouter.swift in Sources */,
 				4E0FEFC421D6BF050046303F /* UIStoryboard+Utility.swift in Sources */,
 				4ED74C0821DBAA9A009AB7C3 /* CoreDataHandler.swift in Sources */,
+				4EF9E2BB21ED1AD300E0DDD0 /* MenuInteractor.swift in Sources */,
 				4E0FEFC321D6BF050046303F /* UINavigationController+Utilities.swift in Sources */,
 				4ED74C1C21DBC6A7009AB7C3 /* UserProfileViewController.swift in Sources */,
 				4E0FEFFE21D7B7490046303F /* LoginPresenter.swift in Sources */,
@@ -669,6 +692,7 @@
 				4ED74C1D21DBC6A7009AB7C3 /* UserProfileInteractor.swift in Sources */,
 				4E0FEFEF21D6C4030046303F /* InteractorsModule.swift in Sources */,
 				4E0FEFA121D6BCB20046303F /* Extension.swift in Sources */,
+				4EF9E2B721ED1AD300E0DDD0 /* MenuPresenter.swift in Sources */,
 				4ED74C2321DBE95A009AB7C3 /* UIAlertController+Utilities.swift in Sources */,
 				4EC355D121DF62180011D723 /* GetPatientsOperation.swift in Sources */,
 				4E0FEFEE21D6C4030046303F /* ApplicationModule.swift in Sources */,
@@ -677,7 +701,9 @@
 				4E0FEFF021D6C4030046303F /* PresentersModule.swift in Sources */,
 				4ED74C1B21DBC6A7009AB7C3 /* UserProfileModels.swift in Sources */,
 				4E0FEFD121D6C2430046303F /* ScrollCollectionsReusability.swift in Sources */,
+				4EF9E2B921ED1AD300E0DDD0 /* MenuModels.swift in Sources */,
 				4E0FF00021D7B7490046303F /* LoginModels.swift in Sources */,
+				4EF9E2BA21ED1AD300E0DDD0 /* MenuViewController.swift in Sources */,
 				4E0FEFA421D6BCB20046303F /* Request.swift in Sources */,
 				4E93801321D981020083ED03 /* UIView+Utilities.swift in Sources */,
 				4E0FF00621D7C2700046303F /* RoundedButton.swift in Sources */,
@@ -719,6 +745,7 @@
 				4E0FEFB021D6BCB20046303F /* BeaconsManager.swift in Sources */,
 				4E93801121D9795A0083ED03 /* KeyboardScrollHandler.swift in Sources */,
 				4E0FEF9E21D6BCB20046303F /* Service.swift in Sources */,
+				4EF9E2BD21ED1C0A00E0DDD0 /* MenuNavigationController.swift in Sources */,
 				4ED74C0C21DBBFE8009AB7C3 /* BaseUnsignedOperation.swift in Sources */,
 				4E0FEFA221D6BCB20046303F /* RequestProtocol.swift in Sources */,
 				4E0FEFD221D6C2430046303F /* CustomizableView.swift in Sources */,
@@ -734,6 +761,7 @@
 				4E48E58F21DB989200069CC4 /* CoreDataManager.swift in Sources */,
 				4E0FEFCB21D6BF050046303F /* UIView+LayoutConstraints.swift in Sources */,
 				4E0FEFD321D6C2430046303F /* NibLoadableView.swift in Sources */,
+				4EF9E2B821ED1AD300E0DDD0 /* MenuRouter.swift in Sources */,
 				4E93800E21D949B30083ED03 /* FloatingTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
