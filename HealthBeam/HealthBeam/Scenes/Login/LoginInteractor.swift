@@ -47,7 +47,7 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
             switch result {
             case let .success(responseObject):
                 guard let value = responseObject.value else {
-                    strongSelf.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: false))
+                    strongSelf.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: false, user: nil))
                     return
                 }
                 strongSelf.authorizationWorker.setAuthorizationToken(value.accessToken)
@@ -55,7 +55,7 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
                 
             case let .failure(responseObject):
                 log.error(responseObject.localizedDescription)
-                strongSelf.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: false))
+                strongSelf.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: false, user: nil))
             }
         }
         NetworkingManager.shared.addNetwork(operation: loginOperation)
@@ -69,13 +69,13 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
             switch result {
             case let .success(responseObject):
                 guard let value = responseObject.value else {
-                    strongSelf.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: false))
+                    strongSelf.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: false, user: nil))
                     return
                 }
                 strongSelf.storeUserProfile(value)
             case let .failure(responseObject):
                 log.error(responseObject.localizedDescription)
-                strongSelf.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: false))
+                strongSelf.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: false, user: nil))
             }
         }
         NetworkingManager.shared.addNetwork(operation: getUserProfileOperation)
@@ -87,8 +87,7 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
             guard let strongSelf = self else {
                 return
             }
-            strongSelf.postAuthorizationHandler?.handleSuccessfullAuthorization(userProfile: userProfile)
-            strongSelf.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: success))
+            strongSelf.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: success, user: userProfile))
         }
     }
     

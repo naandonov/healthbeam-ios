@@ -101,6 +101,7 @@
 		4EF9E2BA21ED1AD300E0DDD0 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9E2B521ED1AD300E0DDD0 /* MenuViewController.swift */; };
 		4EF9E2BB21ED1AD300E0DDD0 /* MenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9E2B621ED1AD300E0DDD0 /* MenuInteractor.swift */; };
 		4EF9E2BD21ED1C0A00E0DDD0 /* MenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9E2BC21ED1C0A00E0DDD0 /* MenuNavigationController.swift */; };
+		8C196B7221EE3EAE004F2549 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C196B7121EE3EAE004F2549 /* NotificationsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -201,6 +202,7 @@
 		4EF9E2B521ED1AD300E0DDD0 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		4EF9E2B621ED1AD300E0DDD0 /* MenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuInteractor.swift; sourceTree = "<group>"; };
 		4EF9E2BC21ED1C0A00E0DDD0 /* MenuNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuNavigationController.swift; sourceTree = "<group>"; };
+		8C196B7121EE3EAE004F2549 /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		C51DB985299E669B58F873E4 /* Pods-HealthBeam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HealthBeam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HealthBeam/Pods-HealthBeam.debug.xcconfig"; sourceTree = "<group>"; };
 		EB7E67FF51437CA2F3446B14 /* Pods_HealthBeam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HealthBeam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -340,6 +342,7 @@
 			children = (
 				4E0FEFB521D6BEAE0046303F /* AuthorizationWorker.swift */,
 				4ED74C1121DBC346009AB7C3 /* CommonModels.swift */,
+				8C196B7121EE3EAE004F2549 /* NotificationsManager.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -730,6 +733,7 @@
 				4E39ECAD21D381B40041F44C /* AppDelegate.swift in Sources */,
 				4E0FEFC221D6BF050046303F /* String+Localization.swift in Sources */,
 				4E0FF00221D7B7490046303F /* LoginInteractor.swift in Sources */,
+				8C196B7221EE3EAE004F2549 /* NotificationsManager.swift in Sources */,
 				4E0FEFA021D6BCB20046303F /* ServiceConfig.swift in Sources */,
 				4E0FEFE521D6C4030046303F /* ViewControllersModule.swift in Sources */,
 				4E0FEFAE21D6BCB20046303F /* KeychainManager.swift in Sources */,

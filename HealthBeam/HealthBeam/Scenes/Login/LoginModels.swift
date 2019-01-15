@@ -21,9 +21,11 @@ struct Login {
         }
         struct Response {
             let isSuccessful: Bool
+            let user: UserProfile.Model?
         }
         struct ViewModel {
             let isSuccessful: Bool
+            let user: UserProfile.Model?
             let errorMessage: String?
         }
     }

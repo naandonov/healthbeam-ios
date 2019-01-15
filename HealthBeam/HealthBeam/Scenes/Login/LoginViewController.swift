@@ -106,7 +106,12 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
     func displayLoginResult(viewModel: Login.Interaction.ViewModel) {
         if viewModel.isSuccessful {
             LoadingOverlay.hideWithSuccess()
-            dismiss(animated: true, completion: nil)
+            if let user = viewModel.user {
+                router?.dismiss(forAuthenticated: user)
+            }
+            else {
+             UIAlertController.presentAlertControllerWithErrorMessage("A problem has occurend. Please try agian.".localized(), on: self)
+            }
         }
         else {
             LoadingOverlay.hide()

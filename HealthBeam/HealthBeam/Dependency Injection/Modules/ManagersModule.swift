@@ -45,5 +45,10 @@ struct ManagersModule: Module {
             .bind(AuthorizationWorker.self)
             .sharedInScope()
             .to(factory: AuthorizationManager.init)
+        
+        binder
+            .bind(NotificationManger.self)
+            .sharedInScope()
+            .to(factory: NotificationManger.init)
     }
 }
