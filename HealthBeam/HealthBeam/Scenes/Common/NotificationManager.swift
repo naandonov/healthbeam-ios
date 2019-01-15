@@ -20,11 +20,12 @@ class NotificationManger: NSObject {
     
     func requestNotifiationServices() {
         userNotificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { success, error in
-            
+
         }
     }
     
     func requestDeviceToken(completitionHandler: @escaping TokenRequest) {
+        UIApplication.shared.registerForRemoteNotifications()
         if let deviceTokenString = deviceTokenString{
             completitionHandler(deviceTokenString)
         }
@@ -44,7 +45,6 @@ class NotificationManger: NSObject {
 extension NotificationManger: UNUserNotificationCenterDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // 1. Convert device token to string
         let tokenParts = deviceToken.map { data -> String in
             return String(format: "%02.2hhx", data)
         }

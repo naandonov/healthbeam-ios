@@ -1,5 +1,5 @@
 PODS:
-  - Cleanse (4.2.0)
+  - Cleanse (4.2.1)
   - DGActivityIndicatorView (2.1.1)
   - KeychainAccess (3.1.2)
   - lottie-ios (2.5.2)
@@ -24,7 +24,7 @@ SPEC REPOS:
     - UnderLineTextField
 
 SPEC CHECKSUMS:
-  Cleanse: 2a911c5697695db101ea33c92571282088aa6f0d
+  Cleanse: 69034f7bf8c2e11302f86660971bf06136150eaf
   DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
   KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
   lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
@@ -33,4 +33,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: fbedcbc262bb05447906a947b6ab4b57e34a876e
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.5.2

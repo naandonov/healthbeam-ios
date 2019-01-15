@@ -12,6 +12,10 @@ protocol MenuBusinessLogic {
     var presenter: MenuPresentationLogic? { get set }
     
     func performAuthorizationCheck(request: Menu.AuthorizationCheck.Request)
+    func updateUserProfile(request: Menu.UserProfileUpdate.Request)
+
+    func requestNotificationServices()
+    func updateDeviceToken()
 }
 
 protocol MenuDataStore {
@@ -20,16 +24,84 @@ protocol MenuDataStore {
 
 class MenuInteractor: MenuBusinessLogic, MenuDataStore {
     
-    private let authorizationWorker: AuthorizationWorker
     var presenter: MenuPresentationLogic?
     
-    init(authorizationWorker: AuthorizationWorker) {
+    private let authorizationWorker: AuthorizationWorker
+    private let notificationManager: NotificationManger
+    private let networkingManager: NetworkingManager
+    private var coreDataHandler: CoreDataHandler
+
+    
+    init(authorizationWorker: AuthorizationWorker,
+         notificationManager: NotificationManger,
+         networkingManager: NetworkingManager,
+         coreDataHandler: CoreDataHandler) {
         self.authorizationWorker = authorizationWorker
+        self.notificationManager = notificationManager
+        self.networkingManager = networkingManager
+        self.coreDataHandler = coreDataHandler
     }
     
     func performAuthorizationCheck(request: Menu.AuthorizationCheck.Request) {
         let authorizationGranted = authorizationWorker.checkForAuthorization()
         presenter?.handleAuthorization(response: Menu.AuthorizationCheck.Response(authorizationGranted: authorizationGranted))
+    }
+    
+    func requestNotificationServices() {
+        notificationManager.requestNotifiationServices()
+    }
+    
+    func updateDeviceToken() {
+        notificationManager.requestDeviceToken { [weak self] token in
+            guard let strongSelf = self else {
+                return
+            }
+            let operation = AssignDeviceTokenOperation(deviceToken: token, completion: { result in
+                switch result {
+                case let .success(responseObject):
+                    log.debug(responseObject)
+                case let .failure(responseObject):
+                    log.error(responseObject.localizedDescription)
+                }
+            })
+            strongSelf.networkingManager.addNetwork(operation: operation)
+        }
+    }
+    
+    func updateUserProfile(request: Menu.UserProfileUpdate.Request) {
+        
+        let getUserProfileOperation = GetUserProfileOperation { [weak self] result in
+            guard let strongSelf = self else {
+                return
+            }
+            switch result {
+            case let .success(responseObject):
+                guard let value = responseObject.value else {
+                    strongSelf.presenter?.handleUserProfileUpdate(response: Menu.UserProfileUpdate.Response(user: nil))
+                    return
+                }
+                strongSelf.storeUserProfile(value)
+            case let .failure(responseObject):
+                log.error(responseObject.localizedDescription)
+                strongSelf.presenter?.handleUserProfileUpdate(response: Menu.UserProfileUpdate.Response(user: nil))
+            }
+        }
+        networkingManager.addNetwork(operation: getUserProfileOperation)
+    }
+}
+
+//MARK: - Utilities
+
+extension MenuInteractor {
+    
+    private func storeUserProfile(_ userProfile: UserProfile.Model) {
+        coreDataHandler.storeUserProfile(userProfile) { [weak self] success in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.presenter?.handleUserProfileUpdate(response: Menu.UserProfileUpdate.Response(user: userProfile))
+
+        }
     }
     
 }

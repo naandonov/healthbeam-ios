@@ -20,4 +20,15 @@ struct Menu {
             let authorizationGranted: Bool
         }
     }
+    
+    struct UserProfileUpdate {
+        struct Request {
+        }
+        struct Response {
+            let user: UserProfile.Model?
+        }
+        struct ViewModel {
+            let user: UserProfile.Model?
+        }
+    }
 }

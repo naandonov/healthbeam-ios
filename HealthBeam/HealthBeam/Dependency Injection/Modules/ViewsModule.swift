@@ -16,5 +16,8 @@ struct ViewsModule: Module {
             .bind(LightLogoView.self)
             .to(value: LightLogoView.fromNib())
         
+        binder
+            .bind(StartupLoadingView.self)
+            .to(value: StartupLoadingView.fromNib())
     }
 }

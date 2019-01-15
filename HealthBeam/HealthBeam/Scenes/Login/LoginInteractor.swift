@@ -33,10 +33,14 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     
     private var authorizationWorker: AuthorizationWorker
     private var coreDataHandler: CoreDataHandler
+    private var networkingManager: NetworkingManager
     
-    init(authorizationWorker: AuthorizationWorker, coreDataHandler: CoreDataHandler) {
+    init(authorizationWorker: AuthorizationWorker,
+         coreDataHandler: CoreDataHandler,
+         networkingManager: NetworkingManager) {
         self.authorizationWorker = authorizationWorker
         self.coreDataHandler = coreDataHandler
+        self.networkingManager = networkingManager
     }
     
     func login(request: Login.Interaction.Request) {
@@ -58,7 +62,7 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
                 strongSelf.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: false, user: nil))
             }
         }
-        NetworkingManager.shared.addNetwork(operation: loginOperation)
+        networkingManager.addNetwork(operation: loginOperation)
     }
     
     private func getUserProfile() {
@@ -78,7 +82,7 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
                 strongSelf.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: false, user: nil))
             }
         }
-        NetworkingManager.shared.addNetwork(operation: getUserProfileOperation)
+        networkingManager.addNetwork(operation: getUserProfileOperation)
         
     }
     
