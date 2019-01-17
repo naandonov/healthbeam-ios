@@ -40,7 +40,7 @@ extension AppDelegate {
         //Configuring the logger's output
         let console = ConsoleDestination()
         log.addDestination(console)
-        //try? KeychainManager.deleteAuthorizationToken()
+//        try? KeychainManager.deleteAuthorizationToken()
         userNotificationCenter?.requestAuthorization(options: [.sound, .alert], completionHandler: { _,_ in })
         window?.makeKeyAndVisible()
     }

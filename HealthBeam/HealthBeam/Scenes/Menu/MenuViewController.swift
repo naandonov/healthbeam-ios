@@ -25,6 +25,12 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
     var interactor: MenuInteractorProtocol?
     var router: MenuRouterProtocol?
     
+    @IBOutlet weak var premiseNameLabel: UILabel!
+    @IBOutlet weak var premiseTypeLabel: UILabel!
+    
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userDesignationLabel: UILabel!
+    
     // MARK:- View lifecycle
     
     override func viewDidLoad() {
@@ -46,7 +52,7 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
     //MARK: - Setup UI
     
     private func setupUI() {
-        
+        view.setApplicationGradientBackground()
     }
     
     //MARK:- Display Logic
@@ -71,6 +77,7 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
 //            UIAlertController.presentAlertControllerWithErrorMessage("A problem has occured.", on: self)
             return
         }
+        setProfileInformation(userProfile: user)
     }
     
     //MARK:- Setup
@@ -79,11 +86,20 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
         interactor?.requestNotificationServices()
         interactor?.updateDeviceToken()
     }
+    
+    func setProfileInformation(userProfile: UserProfile.Model) {
+        premiseNameLabel.text = userProfile.premise.name
+        premiseTypeLabel.text = userProfile.premise.type
+        
+        userNameLabel.text = userProfile.fullName
+        userDesignationLabel.text = userProfile.designation
+    }
 }
 
 extension MenuViewController: PostAuthorizationHandler {
     func handleSuccessfullAuthorization(userProfile: UserProfile.Model) {
         updateDeviceToken()
+        setProfileInformation(userProfile: userProfile)
     }
 }
 

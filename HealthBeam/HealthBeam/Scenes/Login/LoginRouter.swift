@@ -24,8 +24,8 @@ class LoginRouter: LoginRoutingLogic, LoginDataPassing {
   var dataStore: LoginDataStore?
     
     func dismiss(forAuthenticated user: UserProfile.Model) {
-        viewController?.dismiss(animated: true) { [weak self] in
-            self?.dataStore?.postAuthorizationHandler?.handleSuccessfullAuthorization(userProfile: user)
+        dataStore?.postAuthorizationHandler?.handleSuccessfullAuthorization(userProfile: user)
+        viewController?.dismiss(animated: true) { 
         }
     }
 }
