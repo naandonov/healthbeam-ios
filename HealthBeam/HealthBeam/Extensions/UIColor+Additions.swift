@@ -26,6 +26,10 @@ extension UIColor {
         return UIColor(hexString: "#f7f7f7")
     }
     
+    class var shadowColor: UIColor {
+        return UIColor(hexString: "#979797")
+    }
+    
     //MARK: - Utilities
     
     convenience init(hexString: String) {

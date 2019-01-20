@@ -16,6 +16,7 @@ typealias MenuRouterProtocol = MenuRoutingLogic & MenuDataPassing
 protocol MenuDisplayLogic: class {
     func didPerformAuthorizationCheck(viewModel: Menu.AuthorizationCheck.ViewModel)
     func didPerformProfileUpdate(viewModel: Menu.UserProfileUpdate.ViewModel)
+    func didPerformUserLogout(viewModel: Menu.UserLogout.ViewModel)
     func didReceiveAuthorizationRevocation()
 }
 
@@ -32,12 +33,15 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userDesignationLabel: UILabel!
     
+    @IBOutlet weak var menuCollectionView: UICollectionView!
+    
     // MARK:- View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         interactor?.performAuthorizationCheck(request: Menu.AuthorizationCheck.Request())
+        configureMenuCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,10 +54,32 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-    //MARK: - Setup UI
+    //MARK: - Setup
     
     private func setupUI() {
         view.setApplicationGradientBackground()
+    }
+    
+    private func configureMenuCollectionView() {
+        if let layout = menuCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+            layout.itemSize = CGSize(width: 250, height: 340)
+            layout.minimumInteritemSpacing = 20.0
+        }
+        menuCollectionView.delegate = self
+        menuCollectionView.dataSource = self
+        
+        let sidePadding = StyleCoordinator.Metrics.defaultSidePadding
+        menuCollectionView.contentInset = UIEdgeInsets(top: 0, left: sidePadding, bottom: 0, right: sidePadding)
+        menuCollectionView.contentOffset = CGPoint(x: -sidePadding, y: 0)
+        menuCollectionView.showsVerticalScrollIndicator = false
+        menuCollectionView.showsHorizontalScrollIndicator = false
+        
+        menuCollectionView.registerNib(MenuCollectionViewCell.self)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     //MARK:- Display Logic
@@ -63,7 +89,6 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
             router?.routeToAuthorization(withHandler: self, animated: false)
         }
         else {
-            updateDeviceToken()
             interactor?.updateUserProfile(request: Menu.UserProfileUpdate.Request())
             if let startupLoadingView = startupLoadingView {
                 view.addSubview(startupLoadingView)
@@ -73,16 +98,26 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
     }
     
     func didPerformProfileUpdate(viewModel: Menu.UserProfileUpdate.ViewModel) {
-        startupLoadingView?.animateFade(positive: false, completition: nil)
+        startupLoadingView?.animateFade(positive: false) { [weak self] _ in
+            self?.startupLoadingView?.removeFromSuperview()
+            self?.startupLoadingView = nil
+        }
         guard let user = viewModel.user else {
 //            UIAlertController.presentAlertControllerWithErrorMessage("A problem has occured.", on: self)
             return
         }
         setProfileInformation(userProfile: user)
+        updateDeviceToken()
     }
     
     func didReceiveAuthorizationRevocation() {
         router?.routeToAuthorization(withHandler: self, animated: false)
+    }
+    
+    func didPerformUserLogout(viewModel: Menu.UserLogout.ViewModel) {
+        if viewModel.isLogoutSuccessful {
+            router?.routeToAuthorization(withHandler: self, animated: true)
+        }
     }
     
     //MARK:- Setup
@@ -100,6 +135,37 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
         userDesignationLabel.text = userProfile.designation
     }
 }
+
+//MARK:- UICollectionViewDelegate
+
+extension MenuViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        interactor?.performUserLogout(request: Menu.UserLogout.Request())
+    }
+}
+
+//MARK:- UICollectionViewDataSource
+
+extension MenuViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MenuCollectionViewCell
+        guard let option = interactor?.options[0] else {
+            fatalError("Option for \(indexPath) does not exist")
+        }
+        cell.imageView.image = UIImage(named: option.iconName)
+        cell.titleLabel.text = option.name
+        cell.descriptionLabel.text = option.description
+        cell.alpha = 0.9
+        
+        return cell
+    }
+}
+
+//MARK: - PostAuthorizationHandler
 
 extension MenuViewController: PostAuthorizationHandler {
     func handleSuccessfullAuthorization(userProfile: UserProfile.Model) {

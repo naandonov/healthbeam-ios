@@ -27,6 +27,9 @@ class MenuRouter:  MenuRoutingLogic, MenuDataPassing {
     private let loginViewControllerProvider: Provider<LoginViewController>
     
     func routeToAuthorization(withHandler handler: PostAuthorizationHandler?, animated: Bool) {
+        if viewController?.presentedViewController != nil {
+            return
+        }
         let loginViewController = loginViewControllerProvider.get()
         loginViewController.router?.dataStore?.postAuthorizationHandler = handler
         viewController?.present(loginViewController, animated: animated, completion: nil)

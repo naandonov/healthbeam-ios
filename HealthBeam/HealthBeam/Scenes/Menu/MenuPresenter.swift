@@ -13,6 +13,7 @@ protocol MenuPresentationLogic {
     
     func handleAuthorization(response: Menu.AuthorizationCheck.Response)
     func handleUserProfileUpdate(response: Menu.UserProfileUpdate.Response)
+    func handleUserLogout(response: Menu.UserLogout.Response)
     func handleAuthorizationRevocation()
     
 }
@@ -34,5 +35,8 @@ class MenuPresenter: MenuPresentationLogic {
     func handleAuthorizationRevocation() {
         presenterOutput?.didReceiveAuthorizationRevocation()
     }
-
+    
+    func handleUserLogout(response: Menu.UserLogout.Response) {
+        presenterOutput?.didPerformUserLogout(viewModel: Menu.UserLogout.ViewModel(isLogoutSuccessful: response.isLogoutSuccessful))
+    }
 }

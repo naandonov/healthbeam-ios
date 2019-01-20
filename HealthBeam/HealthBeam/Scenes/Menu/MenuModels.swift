@@ -31,4 +31,21 @@ struct Menu {
             let user: UserProfile.Model?
         }
     }
+    
+    struct UserLogout {
+        struct Request {
+        }
+        struct Response {
+             let isLogoutSuccessful: Bool
+        }
+        struct ViewModel {
+             let isLogoutSuccessful: Bool
+        }
+    }
+    
+    struct Option {
+        let iconName: String
+        let name: String
+        let description: String
+    }
 }
