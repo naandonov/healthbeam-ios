@@ -16,6 +16,7 @@ typealias MenuRouterProtocol = MenuRoutingLogic & MenuDataPassing
 protocol MenuDisplayLogic: class {
     func didPerformAuthorizationCheck(viewModel: Menu.AuthorizationCheck.ViewModel)
     func didPerformProfileUpdate(viewModel: Menu.UserProfileUpdate.ViewModel)
+    func didReceiveAuthorizationRevocation()
 }
 
 class MenuViewController: UIViewController, MenuDisplayLogic {
@@ -59,7 +60,7 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
     
     func didPerformAuthorizationCheck(viewModel: Menu.AuthorizationCheck.ViewModel) {
         if !viewModel.authorizationGranted {
-            router?.routeToAuthorization(withHandler: self)
+            router?.routeToAuthorization(withHandler: self, animated: false)
         }
         else {
             updateDeviceToken()
@@ -78,6 +79,10 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
             return
         }
         setProfileInformation(userProfile: user)
+    }
+    
+    func didReceiveAuthorizationRevocation() {
+        router?.routeToAuthorization(withHandler: self, animated: false)
     }
     
     //MARK:- Setup

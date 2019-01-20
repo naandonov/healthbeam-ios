@@ -39,7 +39,7 @@ class ViewController: UIViewController, PagedElementsControllerDelegate, PagedEl
                     handler(value)
                 }
             case let .failure(error):
-                log.error(error)
+                log.error(error.description)
                 
             }
         }

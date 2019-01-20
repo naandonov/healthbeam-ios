@@ -14,11 +14,20 @@ class BaseSignedOperation<T: Codable>: BaseOperation, Networkable {
     var completion: CompletionBlock<ResponseType>?
     
     override func main() {
-        guard let serviceConfig = ServiceConfig(base: APIConstants.BaseURL.healthBeamRoot.urlString, isAuthorizationRequired: true) else {
+        guard let serviceConfig = ServiceConfig(base: APIConstants.BaseURL.healthBeamRoot.urlString) else {
             state = .finished
             return
         }
         let service = Service(serviceConfig)
+        
+        guard let authorizationWorker = Injector.authorizationWorker else {
+            log.error("Missing AuthorizationWorker implementaion")
+            state = .finished
+            return
+        }
+        if let token = authorizationWorker.getAuthorizationToken() {
+            service.headers["Authorization"] = "Bearer \(token)"
+        }
         
         state = .executing
         execute(in: service) { [weak self] (result: Result<ResponseType>) in
@@ -26,8 +35,17 @@ class BaseSignedOperation<T: Codable>: BaseOperation, Networkable {
                 return
             }
             
+            if case let .failure(responseObject) = result {
+                if case let .responseValidation(errorCode) = responseObject, errorCode == 401 {
+                    do {
+                        try authorizationWorker.revokeAuthorization()
+                    } catch {
+                        log.error("Unable to revoke current authorization, reason: \(error.localizedDescription)")
+                    }
+                }
+            }
+            
             strongSelf.completion?(result)
-            log.debug(result)
             strongSelf.state = .finished
         }
     }

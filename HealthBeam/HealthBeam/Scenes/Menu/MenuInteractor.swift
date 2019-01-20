@@ -26,17 +26,22 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
     
     var presenter: MenuPresentationLogic?
     
-    private let authorizationWorker: AuthorizationWorker
+    private lazy var authorizationWorker: AuthorizationWorker = {
+        guard var authorizationWorker = Injector.authorizationWorker else {
+            assert(false, "Missing AuthorizationWorker implementaion")
+        }
+        authorizationWorker.delegate = self
+        return authorizationWorker
+    } ()
+    
     private let notificationManager: NotificationManger
     private let networkingManager: NetworkingManager
-    private var coreDataHandler: CoreDataHandler
+    private let coreDataHandler: CoreDataHandler
 
     
-    init(authorizationWorker: AuthorizationWorker,
-         notificationManager: NotificationManger,
+    init(notificationManager: NotificationManger,
          networkingManager: NetworkingManager,
          coreDataHandler: CoreDataHandler) {
-        self.authorizationWorker = authorizationWorker
         self.notificationManager = notificationManager
         self.networkingManager = networkingManager
         self.coreDataHandler = coreDataHandler
@@ -61,7 +66,7 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
                 case let .success(responseObject):
                     log.debug(responseObject)
                 case let .failure(responseObject):
-                    log.error(responseObject.localizedDescription)
+                    log.error(responseObject.description)
                 }
             })
             strongSelf.networkingManager.addNetwork(operation: operation)
@@ -82,11 +87,17 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
                 }
                 strongSelf.storeUserProfile(value)
             case let .failure(responseObject):
-                log.error(responseObject.localizedDescription)
+                log.error(responseObject.description)
                 strongSelf.presenter?.handleUserProfileUpdate(response: Menu.UserProfileUpdate.Response(user: nil))
             }
         }
         networkingManager.addNetwork(operation: getUserProfileOperation)
+    }
+}
+
+extension MenuInteractor: AutorizationEvents {
+    func authorizationHasExpired() {
+        presenter?.handleAuthorizationRevocation()
     }
 }
 

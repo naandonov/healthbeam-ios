@@ -8,12 +8,36 @@
 
 import Foundation
 
-enum MSError: Error {
+public enum MSError: Error {
     case error
     case unableToParseJSON
     case badRequest
     case generic(message: String)
     case responseValidation(errorCode: Int)
+    
+    var description: String {
+        let errorMessage: String
+        let errorCode: String
+        switch self {
+        case .error:
+            errorMessage = "Error"
+            errorCode = "Not Applicable"
+        case .unableToParseJSON:
+            errorMessage = "Unable to Parse JSON"
+            errorCode = "Not Applicable"
+        case .badRequest:
+            errorMessage = HTTPURLResponse.localizedString(forStatusCode: 401)
+            errorCode = "401"
+        case let .generic(message):
+            errorMessage = message
+            errorCode = "Not Applicable"
+        case let .responseValidation(code):
+            errorMessage = HTTPURLResponse.localizedString(forStatusCode: code)
+            errorCode = String(code)
+        }
+        
+        return "Network error, reason: \(errorMessage), status code: \(errorCode)"
+    }
 }
 
 public final class Box<T> {
@@ -26,7 +50,7 @@ public final class Box<T> {
 
 public enum Result<T> {
     case success(Box<T>)
-    case failure(Error)
+    case failure(MSError)
 }
 
 public class Service: ServiceProtocol {
@@ -58,7 +82,8 @@ public class Service: ServiceProtocol {
             guard let httpURLResponse = response as? HTTPURLResponse,
                 self.validateResponse(response: httpURLResponse) else {
                     DispatchQueue.main.async {
-                        completion(Result.failure(MSError.responseValidation(errorCode: ((response as? HTTPURLResponse)?.statusCode) ?? -1)))
+                        let errorCode = (response as? HTTPURLResponse)?.statusCode ?? -1
+                        completion(Result.failure(MSError.responseValidation(errorCode: errorCode)))
                     }
                     return
             }

@@ -60,10 +60,13 @@ extension AppDelegate {
 //MARK: - Properties Injection
 
 extension AppDelegate {
-    func injectProperties(_ window: UIWindow, userNotificationCenter: UNUserNotificationCenter, notificationManager: NotificationManger) {
+    func injectProperties(_ window: UIWindow, userNotificationCenter: UNUserNotificationCenter, notificationManager: NotificationManger, authorizationWorker: AuthorizationWorker) {
         self.window = window
         self.userNotificationCenter = userNotificationCenter
         self.notificationManager = notificationManager
+        
+        //Manual Injection
+        Injector.authorizationWorker = authorizationWorker
     }
 }
 

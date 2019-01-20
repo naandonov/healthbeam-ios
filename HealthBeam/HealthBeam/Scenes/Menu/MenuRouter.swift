@@ -12,7 +12,7 @@ import Cleanse
 protocol MenuRoutingLogic {
     var viewController: MenuViewController? { get set }
     
-    func routeToAuthorization(withHandler handler: PostAuthorizationHandler?)
+    func routeToAuthorization(withHandler handler: PostAuthorizationHandler?, animated: Bool)
 }
 
 protocol MenuDataPassing {
@@ -26,10 +26,10 @@ class MenuRouter:  MenuRoutingLogic, MenuDataPassing {
     
     private let loginViewControllerProvider: Provider<LoginViewController>
     
-    func routeToAuthorization(withHandler handler: PostAuthorizationHandler?) {
+    func routeToAuthorization(withHandler handler: PostAuthorizationHandler?, animated: Bool) {
         let loginViewController = loginViewControllerProvider.get()
         loginViewController.router?.dataStore?.postAuthorizationHandler = handler
-        viewController?.present(loginViewController, animated: false, completion: nil)
+        viewController?.present(loginViewController, animated: animated, completion: nil)
     }
     
     init(loginViewControllerProvider: Provider<LoginViewController>) {

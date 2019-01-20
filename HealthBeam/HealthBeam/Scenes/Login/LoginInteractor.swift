@@ -58,7 +58,7 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
                 strongSelf.getUserProfile()
                 
             case let .failure(responseObject):
-                log.error(responseObject.localizedDescription)
+                log.error(responseObject.description)
                 strongSelf.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: false, user: nil))
             }
         }
@@ -78,7 +78,7 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
                 }
                 strongSelf.storeUserProfile(value)
             case let .failure(responseObject):
-                log.error(responseObject.localizedDescription)
+                log.error(responseObject.description)
                 strongSelf.presenter?.processLogin(response: Login.Interaction.Response(isSuccessful: false, user: nil))
             }
         }

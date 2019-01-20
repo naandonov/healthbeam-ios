@@ -19,16 +19,10 @@ public final class ServiceConfig {
     
     public var timeout: TimeInterval = 15.0
     
-    public init?(name: String? = nil, base urlString: String, isAuthorizationRequired: Bool
-         = false) {
+    public init?(name: String? = nil, base urlString: String) {
         guard let url = URL(string: urlString) else { return nil}
         
         self.url = url
         self.name = name ?? (url.host ?? "")
-        
-        //TODO: Refactor for using the dependency injection graph instead
-        if isAuthorizationRequired, let token = AuthorizationManager().getAuthorizationToken() {
-            self.headers["Authorization"] = "Bearer \(token)"
-        }
     }
 }

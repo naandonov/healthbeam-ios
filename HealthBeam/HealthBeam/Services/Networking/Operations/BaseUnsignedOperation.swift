@@ -28,7 +28,6 @@ class BaseUnsignedOperation<T: Codable>: BaseOperation, Networkable {
             }
             
             strongSelf.completion?(result)
-            log.debug(result)
             strongSelf.state = .finished
         }
     }

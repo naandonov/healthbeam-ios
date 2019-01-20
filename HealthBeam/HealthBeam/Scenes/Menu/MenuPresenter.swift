@@ -13,6 +13,7 @@ protocol MenuPresentationLogic {
     
     func handleAuthorization(response: Menu.AuthorizationCheck.Response)
     func handleUserProfileUpdate(response: Menu.UserProfileUpdate.Response)
+    func handleAuthorizationRevocation()
     
 }
 
@@ -28,6 +29,10 @@ class MenuPresenter: MenuPresentationLogic {
     
     func handleUserProfileUpdate(response: Menu.UserProfileUpdate.Response) {
         presenterOutput?.didPerformProfileUpdate(viewModel: Menu.UserProfileUpdate.ViewModel(user: response.user))
+    }
+    
+    func handleAuthorizationRevocation() {
+        presenterOutput?.didReceiveAuthorizationRevocation()
     }
 
 }

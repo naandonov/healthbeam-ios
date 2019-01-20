@@ -59,6 +59,7 @@
 		4E0FF00221D7B7490046303F /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFFD21D7B7490046303F /* LoginInteractor.swift */; };
 		4E0FF00421D7B86D0046303F /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E0FF00321D7B86D0046303F /* Authentication.storyboard */; };
 		4E0FF00621D7C2700046303F /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FF00521D7C2700046303F /* RoundedButton.swift */; };
+		4E2DEA4D21F4CE0D000E0C61 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */; };
 		4E39ECAD21D381B40041F44C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E39ECAC21D381B40041F44C /* AppDelegate.swift */; };
 		4E39ECAF21D381B40041F44C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E39ECAE21D381B40041F44C /* ViewController.swift */; };
 		4E39ECB221D381B40041F44C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E39ECB021D381B40041F44C /* Main.storyboard */; };
@@ -160,6 +161,7 @@
 		4E0FEFFD21D7B7490046303F /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		4E0FF00321D7B86D0046303F /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		4E0FF00521D7C2700046303F /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		4E39ECA921D381B40041F44C /* HealthBeam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthBeam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E39ECAC21D381B40041F44C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E39ECAE21D381B40041F44C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 		4E0FEF5521D6BA7A0046303F /* Dependency Injection */ = {
 			isa = PBXGroup;
 			children = (
+				4E2DEA4B21F4CDE9000E0C61 /* Utilities */,
 				4E0FEFD421D6C3F60046303F /* Components */,
 				4E0FEFD721D6C4030046303F /* Modules */,
 			);
@@ -459,6 +462,14 @@
 				4E0FEFFD21D7B7490046303F /* LoginInteractor.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		4E2DEA4B21F4CDE9000E0C61 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		4E39ECA021D381B40041F44C = {
@@ -705,6 +716,7 @@
 				4ED74C1D21DBC6A7009AB7C3 /* UserProfileInteractor.swift in Sources */,
 				4E0FEFEF21D6C4030046303F /* InteractorsModule.swift in Sources */,
 				4E0FEFA121D6BCB20046303F /* Extension.swift in Sources */,
+				4E2DEA4D21F4CE0D000E0C61 /* Injector.swift in Sources */,
 				4EF9E2B721ED1AD300E0DDD0 /* MenuPresenter.swift in Sources */,
 				4ED74C2321DBE95A009AB7C3 /* UIAlertController+Utilities.swift in Sources */,
 				4EC355D121DF62180011D723 /* GetPatientsOperation.swift in Sources */,
