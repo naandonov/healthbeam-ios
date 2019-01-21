@@ -44,8 +44,13 @@ struct Menu {
     }
     
     struct Option {
+        let type: OptionType
         let iconName: String
         let name: String
         let description: String
+        
+        enum OptionType {
+            case patientsSearch
+        }
     }
 }

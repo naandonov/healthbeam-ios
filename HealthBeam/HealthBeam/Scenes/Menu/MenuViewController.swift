@@ -140,7 +140,15 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
 
 extension MenuViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        interactor?.performUserLogout(request: Menu.UserLogout.Request())
+//        interactor?.performUserLogout(request: Menu.UserLogout.Request())
+        guard let option = interactor?.options[indexPath.row] else {
+            fatalError("Option for \(indexPath) does not exist")
+        }
+        
+        switch option.type {
+        case .patientsSearch:
+            router?.routeToPatientsSearch()
+        }
     }
 }
 
@@ -148,12 +156,12 @@ extension MenuViewController: UICollectionViewDelegate {
 
 extension MenuViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return interactor?.options.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MenuCollectionViewCell
-        guard let option = interactor?.options[0] else {
+        guard let option = interactor?.options[indexPath.row] else {
             fatalError("Option for \(indexPath) does not exist")
         }
         cell.imageView.image = UIImage(named: option.iconName)

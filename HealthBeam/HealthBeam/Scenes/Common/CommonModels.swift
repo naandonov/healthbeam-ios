@@ -8,8 +8,6 @@
 
 import Foundation
 
-#warning ("extract to the patients search scene")
-
 struct Patient: Codable {
     let id: Int
     var fullName: String
@@ -21,16 +19,13 @@ struct Patient: Codable {
     var premiseLocation: String
 }
 
-
 struct BatchResult<T: Codable>: Codable {
-    
     let items: [T]
     let totalPagesCount: Int
     let elementsInPage: Int
     let currentPage: Int
     let totalElementsCount: Int
 }
-
 
 struct FormattedResponse: Codable {
     let result: String

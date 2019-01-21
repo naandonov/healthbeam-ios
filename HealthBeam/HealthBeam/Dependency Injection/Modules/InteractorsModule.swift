@@ -19,6 +19,9 @@ class InteractorsModule: Module {
         binder
             .bind(MenuInteractorProtocol.self)
             .to(factory: MenuInteractor.init)
-
+        
+        binder
+            .bind(PatientsSearchInteractorProtocol.self)
+            .to(factory: PatientsSearchInteractor.init)
     }
 }

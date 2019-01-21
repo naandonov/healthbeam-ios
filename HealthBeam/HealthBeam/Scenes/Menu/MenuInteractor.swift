@@ -27,7 +27,8 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
     var presenter: MenuPresentationLogic?
     let options: [Menu.Option] = {
         var model:[Menu.Option] = []
-        let patientsOption = Menu.Option(iconName: "patientsIcon",
+        let patientsOption = Menu.Option(type: .patientsSearch,
+                                         iconName: "patientsIcon",
                                          name: "Patients Search".localized(),
                                          description: "Search for a specific patient, who has been registered to your premise".localized())
         model.append(patientsOption)

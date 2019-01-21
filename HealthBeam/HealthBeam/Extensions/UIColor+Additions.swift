@@ -30,6 +30,10 @@ extension UIColor {
         return UIColor(hexString: "#979797")
     }
     
+    class var subtleGray: UIColor {
+        return UIColor(hexString: "#E8E8E8")
+    }
+    
     //MARK: - Utilities
     
     convenience init(hexString: String) {

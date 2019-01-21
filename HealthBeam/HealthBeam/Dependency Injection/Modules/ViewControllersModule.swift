@@ -38,12 +38,23 @@ struct ViewControllersModule: Module {
         }
         
         binder
+            .bind(PatientsSearchViewController.self)
+            .to {  (patientsStoryboard: TaggedProvider<PatientsStoryboard>, injector: PropertyInjector<PatientsSearchViewController>) in
+                let viewController: PatientsSearchViewController! =  patientsStoryboard.get().instantiateViewController()
+                injector.injectProperties(into: viewController)
+                return viewController
+        }
+        
+        binder
             .bindPropertyInjectionOf(LoginViewController.self)
             .to(injector: LoginViewController.injectProperties)
         
         binder
             .bindPropertyInjectionOf(MenuViewController.self)
             .to(injector: MenuViewController.injectProperties)
-    
+        
+        binder
+            .bindPropertyInjectionOf(PatientsSearchViewController.self)
+            .to(injector: PatientsSearchViewController.injectProperties)
     }
 }

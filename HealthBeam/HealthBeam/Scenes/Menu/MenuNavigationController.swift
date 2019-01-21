@@ -11,7 +11,9 @@ import UIKit
 
 class MenuNavigationController: UINavigationController {
     
-    
-    
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationBar.prefersLargeTitles = true
+
+    }
 }

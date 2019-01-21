@@ -16,8 +16,8 @@ protocol PagedElementsControllerSearchDelegate: PagedElementsControllerDelegate 
 
 protocol PagedElementsControllerDelegate: class {
     associatedtype ElementType: Codable
-    func cellForItem(_ item: ElementType, in tableView: UITableView) -> UITableViewCell
-    func cellForPlaceholderItemIn(tableView: UITableView) -> UITableViewCell
+    func cellForItem(_ item: ElementType, in tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
+    func cellForPlaceholderItemIn(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
     func cellHeightIn(tableView: UITableView) -> CGFloat
     
     func requestPage(_ page: Int, in tableView: UITableView, handler: @escaping ((BatchResult<ElementType>) -> ()))
@@ -79,9 +79,9 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
         }
         requestPageIfNeededFor(section: indexPath.section)
         if let element = element(for: indexPath) {
-            return delegate.cellForItem(element, in: tableView)
+            return delegate.cellForItem(element, in: tableView, indexPath: indexPath)
         }
-        return delegate.cellForPlaceholderItemIn(tableView: tableView)
+        return delegate.cellForPlaceholderItemIn(tableView: tableView, indexPath: indexPath)
     }
     
     //MARK:- UITableViewDataSourcePrefetching

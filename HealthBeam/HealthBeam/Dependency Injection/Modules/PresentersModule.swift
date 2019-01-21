@@ -19,6 +19,10 @@ class PresentersModule: Module {
         binder
             .bind(MenuPresenterProtocol.self)
             .to(factory: MenuPresenter.init)
+        
+        binder
+            .bind(PatientsSearchPresenterProtocol.self)
+            .to(factory: PatientsSearchPresenter.init)
 
     }
 }

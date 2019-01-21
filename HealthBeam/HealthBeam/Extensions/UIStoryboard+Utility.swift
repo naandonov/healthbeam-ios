@@ -26,6 +26,10 @@ extension UIStoryboard {
     class var menu: UIStoryboard {
         return UIStoryboard(name: "Menu", bundle: nil)
     }
+    
+    class var patients: UIStoryboard {
+        return UIStoryboard(name: "Patients", bundle: nil)
+    }
 }
 
 extension UIViewController {

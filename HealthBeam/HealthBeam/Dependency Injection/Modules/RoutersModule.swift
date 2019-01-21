@@ -20,5 +20,9 @@ class RoutersModule: Module {
             .bind(MenuRouterProtocol.self)
             .to(factory: MenuRouter.init)
 
+        binder
+            .bind(PatientsSearchRouterProtocol.self)
+            .to(factory: PatientsSearchRouter.init)
+
     }
 }

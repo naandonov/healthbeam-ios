@@ -50,13 +50,13 @@ class ViewController: UIViewController, PagedElementsControllerDelegate, PagedEl
         
     }
     
-    func cellForItem(_ item: Patient, in tableView: UITableView) -> UITableViewCell {
+    func cellForItem(_ item: Patient, in tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
         cell?.textLabel?.text = item.fullName
         return cell!
     }
     
-    func cellForPlaceholderItemIn(tableView: UITableView) -> UITableViewCell {
+    func cellForPlaceholderItemIn(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
         cell?.textLabel?.text = "Placeholder"
         return cell!

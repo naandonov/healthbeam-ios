@@ -13,6 +13,7 @@ protocol MenuRoutingLogic {
     var viewController: MenuViewController? { get set }
     
     func routeToAuthorization(withHandler handler: PostAuthorizationHandler?, animated: Bool)
+    func routeToPatientsSearch()
 }
 
 protocol MenuDataPassing {
@@ -25,6 +26,7 @@ class MenuRouter:  MenuRoutingLogic, MenuDataPassing {
     var dataStore: MenuDataStore?
     
     private let loginViewControllerProvider: Provider<LoginViewController>
+    private let patientsSearchViewControllerProvider: Provider<PatientsSearchViewController>
     
     func routeToAuthorization(withHandler handler: PostAuthorizationHandler?, animated: Bool) {
         if viewController?.presentedViewController != nil {
@@ -35,7 +37,14 @@ class MenuRouter:  MenuRoutingLogic, MenuDataPassing {
         viewController?.present(loginViewController, animated: animated, completion: nil)
     }
     
-    init(loginViewControllerProvider: Provider<LoginViewController>) {
+    func routeToPatientsSearch() {
+        let patientsSearchViewController = patientsSearchViewControllerProvider.get()
+        viewController?.navigationController?.pushViewController(patientsSearchViewController, animated: true)
+    }
+    
+    init(loginViewControllerProvider: Provider<LoginViewController>,
+         patientsSearchViewControllerProvider: Provider<PatientsSearchViewController>) {
         self.loginViewControllerProvider = loginViewControllerProvider
+        self.patientsSearchViewControllerProvider = patientsSearchViewControllerProvider
     }
 }
