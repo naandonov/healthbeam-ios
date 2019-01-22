@@ -44,7 +44,7 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
     private var searchResultsUpdatingWrapper: SearchResultsUpdatingWrapper?
     
     private var modelCollection: [Int: BatchResult<Delegate.ElementType>] = [:]
-    private var estimatedCollection: [Int: Int] = [:]
+    private var estimatedCollection: [Int: Int] = [0:20]
     private var pendingPageRequests: Set<Int> = []
     
     init(tableView: UITableView, delegate: Delegate) {
@@ -134,8 +134,8 @@ extension PagedElementsController  {
     
     func invalidate(referenceBatchResult: BatchResult<Delegate.ElementType>) {
         estimatedCollection = [:]
-        let ceilValue = referenceBatchResult.currentPage == referenceBatchResult.totalPagesCount ? referenceBatchResult.currentPage : referenceBatchResult.currentPage + 1
-        for sectionNumber in 0..<ceilValue {
+//        let ceilValue = referenceBatchResult.currentPage == referenceBatchResult.totalPagesCount ? referenceBatchResult.currentPage : referenceBatchResult.currentPage + 1
+        for sectionNumber in 0..<referenceBatchResult.totalPagesCount  {
             estimatedCollection[sectionNumber] = referenceBatchResult.elementsInPage
         }
     }
@@ -160,25 +160,43 @@ extension PagedElementsController  {
                 return
             }
             
-            tableView.beginUpdates()
+            let currentPageElements = tableView.numberOfRows(inSection: section)
+            let newPageElements = batchElement.elementsInPage
             
-            let currentPages = strongSelf.estimatedCollection.count
-            strongSelf.invalidate(referenceBatchResult: batchElement)
-            let newPages = strongSelf.estimatedCollection.count
+            let currentPageIndexPaths = (0..<currentPageElements).map() { IndexPath(row: $0, section: section) }
+            let newPageIndexPaths = (0..<newPageElements).map() { IndexPath(row: $0, section: section) }
             
-            if newPages > currentPages {
-                let upperRange = currentPages..<newPages
-                tableView.insertSections(IndexSet(integersIn: upperRange), with: .fade)
+            UIView.performWithoutAnimation {
+                
+                tableView.beginUpdates()
+                
+                let currentPages = strongSelf.estimatedCollection.count
+                strongSelf.invalidate(referenceBatchResult: batchElement)
+                let newPages = strongSelf.estimatedCollection.count
+                
+                if newPages > currentPages {
+                    let upperRange = currentPages..<newPages
+                    tableView.insertSections(IndexSet(integersIn: upperRange), with: .none)
+                }
+                if newPages < currentPages {
+                    let lowerRange = newPages..<currentPages
+                    tableView.deleteSections(IndexSet(integersIn: lowerRange), with: .none)
+                }
+             
+                
+                if currentPageElements > newPageElements {
+                    let obsoleteIndexPaths = currentPageIndexPaths.filter() { !newPageIndexPaths.contains($0) }
+                    tableView.deleteRows(at: obsoleteIndexPaths, with: .none)
+                    tableView.scrollToRow(at: obsoleteIndexPaths.last!, at: .bottom, animated: true)
+                }
+                else if currentPageElements < newPageElements {
+                    let newIdexPaths = newPageIndexPaths.filter() { !currentPageIndexPaths.contains($0) }
+                    tableView.deleteRows(at: newIdexPaths, with: .none)
+                }
+                strongSelf.modelCollection[section] = batchElement
+                tableView.endUpdates()
+                tableView.reloadRows(at: newPageIndexPaths, with: .fade)
             }
-            if newPages < currentPages {
-                let lowerRange = newPages..<currentPages
-                tableView.deleteSections(IndexSet(integersIn: lowerRange), with: .fade)
-            }
-            tableView.deleteSections(IndexSet(integer: section), with: .none)
-            strongSelf.modelCollection[section] = batchElement
-            tableView.insertSections(IndexSet(integer: section), with: .none)
-            tableView.endUpdates()
-            tableView.reloadSections(IndexSet(arrayLiteral: section), with: .fade)
             strongSelf.pendingPageRequests.remove(section)
         }
     }

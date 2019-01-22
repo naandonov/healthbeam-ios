@@ -74,13 +74,11 @@ extension PatientsSearchViewController: PagedElementsControllerDelegate {
         cell.ageLabel.text = item.birthDate.yearsSince()
         cell.locationLabel.text = item.premiseLocation
         cell.healthRecordsLabel.text = "0"
-        
         return cell
     }
     
     func cellForPlaceholderItemIn(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as PatientTableViewCell
-        
         return cell
     }
     
