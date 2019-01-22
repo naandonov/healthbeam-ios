@@ -89,6 +89,8 @@
 		4E93801E21DA98510083ED03 /* LoadingOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E93801D21DA98510083ED03 /* LoadingOverlayView.xib */; };
 		4E93EA3A21F661E5007C8BE8 /* PatientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93EA3821F661E5007C8BE8 /* PatientTableViewCell.swift */; };
 		4E93EA3B21F661E5007C8BE8 /* PatientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E93EA3921F661E5007C8BE8 /* PatientTableViewCell.xib */; };
+		4E93EA3E21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93EA3C21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.swift */; };
+		4E93EA3F21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E93EA3D21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib */; };
 		4EC355D121DF62180011D723 /* GetPatientsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC355D021DF62180011D723 /* GetPatientsOperation.swift */; };
 		4EC355D621DF7E490011D723 /* Date+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC355D521DF7E480011D723 /* Date+Utilities.swift */; };
 		4EC355DC21DF8F0F0011D723 /* PagedElementsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC355DB21DF8F0F0011D723 /* PagedElementsController.swift */; };
@@ -206,6 +208,8 @@
 		4E93801D21DA98510083ED03 /* LoadingOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingOverlayView.xib; sourceTree = "<group>"; };
 		4E93EA3821F661E5007C8BE8 /* PatientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientTableViewCell.swift; sourceTree = "<group>"; };
 		4E93EA3921F661E5007C8BE8 /* PatientTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PatientTableViewCell.xib; sourceTree = "<group>"; };
+		4E93EA3C21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientPlaceholderTableViewCell.swift; sourceTree = "<group>"; };
+		4E93EA3D21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PatientPlaceholderTableViewCell.xib; sourceTree = "<group>"; };
 		4EC355D021DF62180011D723 /* GetPatientsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPatientsOperation.swift; sourceTree = "<group>"; };
 		4EC355D521DF7E480011D723 /* Date+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Utilities.swift"; sourceTree = "<group>"; };
 		4EC355DB21DF8F0F0011D723 /* PagedElementsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedElementsController.swift; sourceTree = "<group>"; };
@@ -480,6 +484,8 @@
 				4EF9E2C221EE7AE200E0DDD0 /* StartupLoadingView.xib */,
 				4E93EA3821F661E5007C8BE8 /* PatientTableViewCell.swift */,
 				4E93EA3921F661E5007C8BE8 /* PatientTableViewCell.xib */,
+				4E93EA3C21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.swift */,
+				4E93EA3D21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -692,6 +698,7 @@
 				4E0FF00421D7B86D0046303F /* Authentication.storyboard in Resources */,
 				4E48E58921DAC29C00069CC4 /* done.json in Resources */,
 				4E93801A21DA979D0083ED03 /* pulse_loader.json in Resources */,
+				4E93EA3F21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -796,6 +803,7 @@
 				4E0FEFAD21D6BCB20046303F /* NetworkingManager.swift in Sources */,
 				4E39ECAF21D381B40041F44C /* ViewController.swift in Sources */,
 				4E0FEFC821D6BF050046303F /* NotificationCenter+Utilities.swift in Sources */,
+				4E93EA3E21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.swift in Sources */,
 				4E93EA3A21F661E5007C8BE8 /* PatientTableViewCell.swift in Sources */,
 				4E0FEF9D21D6BCB20046303F /* ResponseProtocol.swift in Sources */,
 				4ED74C1221DBC346009AB7C3 /* CommonModels.swift in Sources */,

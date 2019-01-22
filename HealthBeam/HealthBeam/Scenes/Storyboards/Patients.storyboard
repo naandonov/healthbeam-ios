@@ -12,7 +12,7 @@
         <!--Patients Search View Controller-->
         <scene sceneID="4Mk-Z6-lse">
             <objects>
-                <viewController storyboardIdentifier="PatientsSearchViewController" id="XB1-6F-Js5" customClass="PatientsSearchViewController" customModule="HealthBeam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PatientsSearchViewController" automaticallyAdjustsScrollViewInsets="NO" id="XB1-6F-Js5" customClass="PatientsSearchViewController" customModule="HealthBeam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HSq-wx-UZf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,7 +24,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="zVd-ww-8fk" firstAttribute="bottom" secondItem="TAz-OW-RcG" secondAttribute="bottom" id="8Ur-kf-1IW"/>
+                            <constraint firstAttribute="bottom" secondItem="TAz-OW-RcG" secondAttribute="bottom" id="8Ur-kf-1IW"/>
                             <constraint firstItem="TAz-OW-RcG" firstAttribute="top" secondItem="zVd-ww-8fk" secondAttribute="top" id="QC2-ce-cBU"/>
                             <constraint firstItem="TAz-OW-RcG" firstAttribute="leading" secondItem="zVd-ww-8fk" secondAttribute="leading" id="cIZ-w0-xo3"/>
                             <constraint firstItem="zVd-ww-8fk" firstAttribute="trailing" secondItem="TAz-OW-RcG" secondAttribute="trailing" id="gaR-0l-dJl"/>

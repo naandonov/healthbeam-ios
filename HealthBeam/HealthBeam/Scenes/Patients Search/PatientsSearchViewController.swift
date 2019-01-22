@@ -32,7 +32,7 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
         setupUI()
         
         pageElementsController = PagedElementsController(tableView: tableView, delegate: self)
-//        pageElementsController?.configureSearchBarIn(viewController: self)
+        pageElementsController?.configureSearchBarIn(viewController: self)
     }
     
     //MARK: - Setup UI
@@ -41,8 +41,14 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
         navigationItem.title = "Patients".localized()
         navigationItem.largeTitleDisplayMode = .always
         
+        view.backgroundColor = .paleGray
+        tableView.contentInsetAdjustmentBehavior = .never
+        tableView.showsVerticalScrollIndicator = false
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         tableView.registerNib(PatientTableViewCell.self)
+        tableView.registerNib(PatientPlaceholderTableViewCell.self)
     }
 }
 
@@ -74,16 +80,18 @@ extension PatientsSearchViewController: PagedElementsControllerDelegate {
         cell.ageLabel.text = item.birthDate.yearsSince()
         cell.locationLabel.text = item.premiseLocation
         cell.healthRecordsLabel.text = "0"
+        cell.selectionStyle = .none
         return cell
     }
     
     func cellForPlaceholderItemIn(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as PatientTableViewCell
+        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as PatientPlaceholderTableViewCell
+        cell.selectionStyle = .none
         return cell
     }
     
     func cellHeightIn(tableView: UITableView) -> CGFloat {
-        return 161.5
+        return 141.5
     }
     
     func requestPage(_ page: Int, in tableView: UITableView, handler: @escaping ((BatchResult<Patient>) -> ())) {
@@ -102,5 +110,23 @@ extension PatientsSearchViewController: PagedElementsControllerDelegate {
     
     func discardRequestForPage(_ page: Int) {
         
+    }
+}
+
+//MARK:- PagedElementsControllerSearchDelegate
+
+extension PatientsSearchViewController: PagedElementsControllerSearchDelegate {
+    func searchFor(_ searchTerm: String, handler: @escaping ((BatchResult<Patient>) -> ())) {
+        let operation = GetPatientsOperation(searchQuery: searchTerm) { result in
+            switch result {
+                
+            case let .success(response):
+                handler(response.value!)
+            case .failure(_):
+                print("bad")
+            }
+        }
+        
+        NetworkingManager.shared.addNetwork(operation: operation)
     }
 }
