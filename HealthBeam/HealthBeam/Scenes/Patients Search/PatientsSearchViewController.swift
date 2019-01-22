@@ -24,6 +24,7 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
     @IBOutlet weak var tableView: UITableView!
     
     private var pageElementsController: PagedElementsController<PatientsSearchViewController>?
+    private var keyboardScrollHandler: KeyboardScrollHandler?
     
     // MARK:- View lifecycle
     
@@ -33,6 +34,8 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
         
         pageElementsController = PagedElementsController(tableView: tableView, delegate: self)
         pageElementsController?.configureSearchBarIn(viewController: self)
+        
+        keyboardScrollHandler = KeyboardScrollHandler(scrollView: tableView, notificationCenter: NotificationCenter.default)
     }
     
     //MARK: - Setup UI
@@ -42,6 +45,7 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
         navigationItem.largeTitleDisplayMode = .always
         
         view.backgroundColor = .paleGray
+        
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = .clear

@@ -15,7 +15,7 @@ class KeyboardScrollHandler {
     private let notificationCenter: NotificationCenter
     
     init(scrollView: UIScrollView, notificationCenter: NotificationCenter) {
-        scrollView.bounces = false
+//        scrollView.bounces = false
         self.scrollView = scrollView
         scrollView.keyboardDismissMode = .interactive
         self.notificationCenter = notificationCenter

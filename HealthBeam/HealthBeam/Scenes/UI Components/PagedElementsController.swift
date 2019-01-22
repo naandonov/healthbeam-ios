@@ -47,6 +47,8 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
     private var estimatedCollection: [Int: Int] = [0:20]
     private var pendingPageRequests: Set<Int> = []
     
+    private var previousSearchTerm = ""
+    
     init(tableView: UITableView, delegate: Delegate) {
         self.delegate = delegate
         self.tableView = tableView
@@ -121,8 +123,13 @@ extension PagedElementsController: SearchResultHandler where Delegate: PagedElem
             let delegate = delegate else {
                 return
         }
+        if text == previousSearchTerm {
+            return
+        }
+        
         delegate.searchFor(text) { [weak self] batchElement in
             self?.refreshContent(initialBatchResult: batchElement)
+            self?.previousSearchTerm = text
         }
     }
 }
@@ -134,7 +141,7 @@ extension PagedElementsController  {
     
     func invalidate(referenceBatchResult: BatchResult<Delegate.ElementType>) {
         estimatedCollection = [:]
-//        let ceilValue = referenceBatchResult.currentPage == referenceBatchResult.totalPagesCount ? referenceBatchResult.currentPage : referenceBatchResult.currentPage + 1
+        //        let ceilValue = referenceBatchResult.currentPage == referenceBatchResult.totalPagesCount ? referenceBatchResult.currentPage : referenceBatchResult.currentPage + 1
         for sectionNumber in 0..<referenceBatchResult.totalPagesCount  {
             estimatedCollection[sectionNumber] = referenceBatchResult.elementsInPage
         }
@@ -182,7 +189,7 @@ extension PagedElementsController  {
                     let lowerRange = newPages..<currentPages
                     tableView.deleteSections(IndexSet(integersIn: lowerRange), with: .none)
                 }
-             
+                
                 
                 if currentPageElements > newPageElements {
                     let obsoleteIndexPaths = currentPageIndexPaths.filter() { !newPageIndexPaths.contains($0) }
