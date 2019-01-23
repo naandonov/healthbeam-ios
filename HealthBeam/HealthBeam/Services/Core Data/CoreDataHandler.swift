@@ -10,6 +10,8 @@ import Foundation
 import CoreData
 
 typealias CoreDataCompletion = (Bool) -> ()
+typealias UserFetchCompletion = (UserProfile.Model?) -> ()
+
 
 class CoreDataHandler {
     
@@ -46,13 +48,37 @@ class CoreDataHandler {
             }
         }
     }
+    
+    func getUserProfile(completition: UserFetchCompletion) {
+        let context = coreDataStack.mainContext
+        context.performAndWait {
+            let usersFetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+            let users = try? context.fetch(usersFetchRequest)
+            
+            if let existingUser = users?.first {
+                let premiseFetchRequest: NSFetchRequest<PremiseEntity> = PremiseEntity.fetchRequest()
+                premiseFetchRequest.predicate = NSPredicate(format: "id = %lld", Int64(existingUser.id))
+                let premises = try? context.fetch(premiseFetchRequest)
+                
+                if let premise = premises?.first {
+                    
+                    if let premiseModel = premise.model() {
+                        let userModel = existingUser.modelWithPremise(premiseModel)
+                        completition(userModel)
+                        return
+                    }
+                }
+            }
+            completition(nil)
+        }
+    }
 }
 
 extension CoreDataHandler {
     
     private func createOrUpdateUserEntity(for userProfile: UserProfile.Model, context: NSManagedObjectContext) throws -> UserEntity {
         let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "email = %@", userProfile.email)
+        //        fetchRequest.predicate = NSPredicate(format: "email = %@", userProfile.email)
         
         let userEntity: UserEntity
         if let existingUser = try context.fetch(fetchRequest).first {
@@ -61,12 +87,7 @@ extension CoreDataHandler {
             userEntity = NSEntityDescription.insertNewObject(forEntityName: UserEntity.entityName, into: context) as! UserEntity
         }
         
-        userEntity.id = Int64(userProfile.id)
-        userEntity.fullName = userProfile.fullName
-        userEntity.email = userProfile.email
-        userEntity.designation = userProfile.designation
-        userEntity.accountType = userProfile.accountType
-        userEntity.discoveryRegions = userProfile.discoveryRegions
+        userEntity.assignFromModel(userProfile)
         
         return userEntity
     }
@@ -79,11 +100,9 @@ extension CoreDataHandler {
             return existingPremise
         } else {
             let premiseEntity = NSEntityDescription.insertNewObject(forEntityName: PremiseEntity.entityName, into: context) as! PremiseEntity
-            premiseEntity.id = Int64(premiseModel.id)
-            premiseEntity.name = premiseModel.name
-            premiseEntity.type = premiseModel.type
-            
+            premiseEntity.assignFromModel(premiseModel)
             return premiseEntity
         }
     }
 }
+

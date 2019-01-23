@@ -91,6 +91,8 @@
 		4E93EA3B21F661E5007C8BE8 /* PatientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E93EA3921F661E5007C8BE8 /* PatientTableViewCell.xib */; };
 		4E93EA3E21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93EA3C21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.swift */; };
 		4E93EA3F21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E93EA3D21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib */; };
+		4E93EA4121F918A7007C8BE8 /* UserEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93EA4021F918A7007C8BE8 /* UserEntity+Mapping.swift */; };
+		4E93EA4421F91A55007C8BE8 /* PremiseEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93EA4321F91A55007C8BE8 /* PremiseEntity+Mapping.swift */; };
 		4EC355D121DF62180011D723 /* GetPatientsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC355D021DF62180011D723 /* GetPatientsOperation.swift */; };
 		4EC355D621DF7E490011D723 /* Date+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC355D521DF7E480011D723 /* Date+Utilities.swift */; };
 		4EC355DC21DF8F0F0011D723 /* PagedElementsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC355DB21DF8F0F0011D723 /* PagedElementsController.swift */; };
@@ -210,6 +212,8 @@
 		4E93EA3921F661E5007C8BE8 /* PatientTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PatientTableViewCell.xib; sourceTree = "<group>"; };
 		4E93EA3C21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientPlaceholderTableViewCell.swift; sourceTree = "<group>"; };
 		4E93EA3D21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PatientPlaceholderTableViewCell.xib; sourceTree = "<group>"; };
+		4E93EA4021F918A7007C8BE8 /* UserEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+Mapping.swift"; sourceTree = "<group>"; };
+		4E93EA4321F91A55007C8BE8 /* PremiseEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PremiseEntity+Mapping.swift"; sourceTree = "<group>"; };
 		4EC355D021DF62180011D723 /* GetPatientsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPatientsOperation.swift; sourceTree = "<group>"; };
 		4EC355D521DF7E480011D723 /* Date+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Utilities.swift"; sourceTree = "<group>"; };
 		4EC355DB21DF8F0F0011D723 /* PagedElementsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedElementsController.swift; sourceTree = "<group>"; };
@@ -302,6 +306,7 @@
 		4E0FEF7F21D6BCB20046303F /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				4E93EA4221F918AD007C8BE8 /* Extensions */,
 				4E48E58E21DB989200069CC4 /* CoreDataManager.swift */,
 				4ED74C0721DBAA9A009AB7C3 /* CoreDataHandler.swift */,
 			);
@@ -586,6 +591,15 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
+		4E93EA4221F918AD007C8BE8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4E93EA4021F918A7007C8BE8 /* UserEntity+Mapping.swift */,
+				4E93EA4321F91A55007C8BE8 /* PremiseEntity+Mapping.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		4ED74C1321DBC67D009AB7C3 /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -793,6 +807,7 @@
 				4EC355DC21DF8F0F0011D723 /* PagedElementsController.swift in Sources */,
 				4E2DEA5421F50126000E0C61 /* StyleCoordinator.swift in Sources */,
 				4E0FEFC721D6BF050046303F /* UIView+Animations.swift in Sources */,
+				4E93EA4421F91A55007C8BE8 /* PremiseEntity+Mapping.swift in Sources */,
 				4E0FEFAB21D6BCB20046303F /* BaseOperation.swift in Sources */,
 				4E0FEFEC21D6C4030046303F /* ViewsModule.swift in Sources */,
 				4E0FF00121D7B7490046303F /* LoginViewController.swift in Sources */,
@@ -836,6 +851,7 @@
 				4EF9E2BD21ED1C0A00E0DDD0 /* MenuNavigationController.swift in Sources */,
 				4ED74C0C21DBBFE8009AB7C3 /* BaseUnsignedOperation.swift in Sources */,
 				4E0FEFA221D6BCB20046303F /* RequestProtocol.swift in Sources */,
+				4E93EA4121F918A7007C8BE8 /* UserEntity+Mapping.swift in Sources */,
 				4E0FEFD221D6C2430046303F /* CustomizableView.swift in Sources */,
 				4E0FEFF121D6C4030046303F /* RoutersModule.swift in Sources */,
 				4E48E58D21DAD62100069CC4 /* LoadingOverlay.swift in Sources */,

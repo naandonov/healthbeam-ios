@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 protocol PagedElementsControllerSearchDelegate: PagedElementsControllerDelegate {
     func searchFor(_ searchTerm: String, handler: @escaping ((BatchResult<ElementType>) -> ()))
 }

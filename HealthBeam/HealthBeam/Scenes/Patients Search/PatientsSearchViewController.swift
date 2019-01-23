@@ -13,7 +13,7 @@ typealias PatientsSearchPresenterProtocol =  PatientsSearchPresentationLogic
 typealias PatientsSearchRouterProtocol = PatientsSearchRoutingLogic & PatientsSearchDataPassing
 
 protocol PatientsSearchDisplayLogic: class {
-    
+    func processPatientsSearchReult(viewModel: PatientsSearch.Retrieval.ViewModel)
 }
 
 class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic {
@@ -53,6 +53,14 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
         tableView.tableFooterView = UIView()
         tableView.registerNib(PatientTableViewCell.self)
         tableView.registerNib(PatientPlaceholderTableViewCell.self)
+    }
+    
+    //MARK: - Displaying Logic
+    
+    func processPatientsSearchReult(viewModel: PatientsSearch.Retrieval.ViewModel) {
+        if !viewModel.isSuccessful {
+            UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
+        }
     }
 }
 
@@ -98,39 +106,24 @@ extension PatientsSearchViewController: PagedElementsControllerDelegate {
         return 141.5
     }
     
-    func requestPage(_ page: Int, in tableView: UITableView, handler: @escaping ((BatchResult<Patient>) -> ())) {
-        let operation = GetPatientsOperation(pageQuery: page) { result in
-            switch result {
-                
-            case let .success(response):
-                handler(response.value!)
-            case .failure(_):
-                print("bad")
-            }
-        }
-        
-        NetworkingManager.shared.addNetwork(operation: operation)
+    func requestPage(_ page: Int, in tableView: UITableView, handler: @escaping PatientsSearchHandler) {
+        let searchTerm = navigationItem.searchController?.searchBar.text
+        interactor?.retrievePatients(request: PatientsSearch.Retrieval.Request(page: page,
+                                                                               searchQuery: searchTerm,
+                                                                               handler: handler))
     }
     
     func discardRequestForPage(_ page: Int) {
-        
+//        interactor?.cancelSearchRequestFor(page: page)
     }
 }
 
 //MARK:- PagedElementsControllerSearchDelegate
 
 extension PatientsSearchViewController: PagedElementsControllerSearchDelegate {
-    func searchFor(_ searchTerm: String, handler: @escaping ((BatchResult<Patient>) -> ())) {
-        let operation = GetPatientsOperation(searchQuery: searchTerm) { result in
-            switch result {
-                
-            case let .success(response):
-                handler(response.value!)
-            case .failure(_):
-                print("bad")
-            }
-        }
-        
-        NetworkingManager.shared.addNetwork(operation: operation)
+    func searchFor(_ searchTerm: String, handler: @escaping PatientsSearchHandler) {
+        interactor?.retrievePatients(request: PatientsSearch.Retrieval.Request(page: 1,
+                                                                               searchQuery: searchTerm,
+                                                                               handler: handler))
     }
 }

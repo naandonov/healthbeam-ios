@@ -16,7 +16,7 @@
         <relationship name="premise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PremiseEntity" inverseName="users" inverseEntity="PremiseEntity" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UserEntity" positionX="-63" positionY="-18" width="128" height="150"/>
         <element name="PremiseEntity" positionX="-63" positionY="27" width="128" height="105"/>
+        <element name="UserEntity" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>

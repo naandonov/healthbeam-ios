@@ -10,15 +10,19 @@ import UIKit
 
 struct PatientsSearch {
     
-    struct Placeholder {
+    struct Retrieval {
         struct Request {
-            
+            let page: Int
+            let searchQuery: String?
+            let handler: PatientsSearchHandler
         }
         struct Response {
-            
+            let isSuccessful: Bool
+            let error: MSError?
         }
         struct ViewModel {
-            
+            let isSuccessful: Bool
+            let errorMessage: String?
         }
     }
 }

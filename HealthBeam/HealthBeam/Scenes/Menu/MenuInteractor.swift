@@ -91,13 +91,17 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
             switch result {
             case let .success(responseObject):
                 guard let value = responseObject.value else {
-                    strongSelf.presenter?.handleUserProfileUpdate(response: Menu.UserProfileUpdate.Response(user: nil))
+                    strongSelf.coreDataHandler.getUserProfile { [weak self] user in
+                        self?.presenter?.handleUserProfileUpdate(response: Menu.UserProfileUpdate.Response(user: user))
+                    }
                     return
                 }
                 strongSelf.storeUserProfile(value)
             case let .failure(responseObject):
                 log.error(responseObject.description)
-                strongSelf.presenter?.handleUserProfileUpdate(response: Menu.UserProfileUpdate.Response(user: nil))
+                strongSelf.coreDataHandler.getUserProfile { [weak self] user in
+                    self?.presenter?.handleUserProfileUpdate(response: Menu.UserProfileUpdate.Response(user: user))
+                }
             }
         }
         networkingManager.addNetwork(operation: getUserProfileOperation)

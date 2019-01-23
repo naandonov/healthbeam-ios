@@ -16,6 +16,16 @@ public enum MSError: Error {
     case responseValidation(errorCode: Int)
     
     var description: String {
+        let (errorMessage, errorCode) = errorContent()
+        return "Network error, reason: \(errorMessage), status code: \(errorCode)"
+    }
+    
+    var userFiendlyDescription: String {
+        let (errorMessage, _) = errorContent()
+        return errorMessage
+    }
+    
+    private func errorContent() -> (errorMessage: String, errorCode: String) {
         let errorMessage: String
         let errorCode: String
         switch self {
@@ -35,8 +45,7 @@ public enum MSError: Error {
             errorMessage = HTTPURLResponse.localizedString(forStatusCode: code)
             errorCode = String(code)
         }
-        
-        return "Network error, reason: \(errorMessage), status code: \(errorCode)"
+        return (errorMessage, errorCode)
     }
 }
 
@@ -99,7 +108,7 @@ public class Service: ServiceProtocol {
                 completion(Result.success(Box(value: object.result)))
             }
         }
-
+        
         dataTask.resume()
     }
 }
