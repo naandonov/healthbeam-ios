@@ -43,7 +43,7 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
     private var searchResultsUpdatingWrapper: SearchResultsUpdatingWrapper?
     
     private var modelCollection: [Int: BatchResult<Delegate.ElementType>] = [:]
-    private var estimatedCollection: [Int: Int] = [0:20]
+    private var estimatedCollection: [Int: Int] = [:]
     private var pendingPageRequests: Set<Int> = []
     
     private var previousSearchTerm = ""
@@ -137,6 +137,13 @@ extension PagedElementsController: SearchResultHandler where Delegate: PagedElem
 //MARK: - Utilities
 
 extension PagedElementsController  {
+    
+    func reset() {
+        estimatedCollection = [0:20]
+        modelCollection = [:]
+        pendingPageRequests = []
+        tableView?.reloadData()
+    }
     
     func invalidate(referenceBatchResult: BatchResult<Delegate.ElementType>) {
         estimatedCollection = [:]

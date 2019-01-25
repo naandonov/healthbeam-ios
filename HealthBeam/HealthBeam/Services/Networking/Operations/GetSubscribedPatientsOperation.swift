@@ -1,20 +1,19 @@
 //
-//  GetPatientsOperation.swift
+//  GetSubscribedPatientsOperation.swift
 //  HealthBeam
 //
-//  Created by Nikolay Andonov on 4.01.19.
+//  Created by Nikolay Andonov on 25.01.19.
 //  Copyright © 2019 nikolay.andonov. All rights reserved.
 //
 
 import Foundation
 
-class GetPatientsOperation: BaseSignedOperation<BatchResult<Patient>> {
-    
+class GetSubscribedPatientsOperation: BaseSignedOperation<BatchResult<Patient>> {
     private override init() {
         super.init()
     }
     
-    convenience init(patientsSegment: PatientsSearch.Segment, searchQuery: String?=nil, pageQuery: Int?=nil, completion: CompletionBlock<ResponseType>?) {
+    convenience init(searchQuery: String?=nil, pageQuery: Int?=nil, completion: CompletionBlock<ResponseType>?) {
         self.init()
         var fields: ParametersDict = [:]
         if let searchQuery = searchQuery {
@@ -24,20 +23,11 @@ class GetPatientsOperation: BaseSignedOperation<BatchResult<Patient>> {
             fields["page"] = pageQuery
         }
         
-        let endpoint: String
-        switch patientsSegment {
-        case .all:
-            endpoint = APIConstants.EndPoint.patients.endpointString
-        case .observed:
-            endpoint = APIConstants.EndPoint.subscriptions.endpointString
-        }
-        
         self.request = Request(method: .get,
-                               endpoint: endpoint,
+                               endpoint: APIConstants.EndPoint.subscriptions.endpointString,
                                params: nil,
                                fields: fields,
                                body: nil)
         self.completion = completion
     }
-    
 }

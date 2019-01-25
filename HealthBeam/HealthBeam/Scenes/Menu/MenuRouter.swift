@@ -38,6 +38,9 @@ class MenuRouter:  MenuRoutingLogic, MenuDataPassing {
     }
     
     func routeToPatientsSearch() {
+        guard viewController?.navigationController?.viewControllers.count == 1 else {
+            return
+        }
         let patientsSearchViewController = patientsSearchViewControllerProvider.get()
         viewController?.navigationController?.pushViewController(patientsSearchViewController, animated: true)
     }

@@ -59,6 +59,7 @@
 		4E0FF00221D7B7490046303F /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFFD21D7B7490046303F /* LoginInteractor.swift */; };
 		4E0FF00421D7B86D0046303F /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E0FF00321D7B86D0046303F /* Authentication.storyboard */; };
 		4E0FF00621D7C2700046303F /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FF00521D7C2700046303F /* RoundedButton.swift */; };
+		4E17F18221FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F18121FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift */; };
 		4E2DEA4D21F4CE0D000E0C61 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */; };
 		4E2DEA5121F4E31C000E0C61 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */; };
 		4E2DEA5221F4E31C000E0C61 /* MenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */; };
@@ -177,6 +178,7 @@
 		4E0FEFFD21D7B7490046303F /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		4E0FF00321D7B86D0046303F /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		4E0FF00521D7C2700046303F /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		4E17F18121FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubscribedPatientsOperation.swift; sourceTree = "<group>"; };
 		4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				4ED74C1E21DBCBBA009AB7C3 /* GetUserProfileOperation.swift */,
 				4EC355D021DF62180011D723 /* GetPatientsOperation.swift */,
 				4EF9E2BE21EE6E3700E0DDD0 /* AssignDeviceTokenOperation.swift */,
+				4E17F18121FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -806,6 +809,7 @@
 				4ED74C0E21DBC19E009AB7C3 /* BaseSignedOperation.swift in Sources */,
 				4EC355DC21DF8F0F0011D723 /* PagedElementsController.swift in Sources */,
 				4E2DEA5421F50126000E0C61 /* StyleCoordinator.swift in Sources */,
+				4E17F18221FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift in Sources */,
 				4E0FEFC721D6BF050046303F /* UIView+Animations.swift in Sources */,
 				4E93EA4421F91A55007C8BE8 /* PremiseEntity+Mapping.swift in Sources */,
 				4E0FEFAB21D6BCB20046303F /* BaseOperation.swift in Sources */,

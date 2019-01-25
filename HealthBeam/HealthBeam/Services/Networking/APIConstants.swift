@@ -29,6 +29,7 @@ struct APIConstants {
         case user
         case userDeviceToken
         case patients
+        case subscriptions
         
         
         var endpointString: String {
@@ -43,6 +44,8 @@ struct APIConstants {
                 return "/user/assignToken"
             case .patients:
                 return "/patients"
+            case .subscriptions:
+                return "/user/subscriptions"
             }
         }
     }

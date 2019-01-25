@@ -10,10 +10,25 @@ import UIKit
 
 struct PatientsSearch {
     
+    enum Segment: Int {
+        case all = 0
+        case observed
+        
+        var title: String {
+            switch self {
+            case .all:
+                return "All".localized()
+            case .observed:
+                return "Observed".localized()
+            }
+        }
+    }
+    
     struct Retrieval {
         struct Request {
             let page: Int
             let searchQuery: String?
+            let segment: PatientsSearch.Segment
             let handler: PatientsSearchHandler
         }
         struct Response {

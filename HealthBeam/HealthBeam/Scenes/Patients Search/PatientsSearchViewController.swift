@@ -25,6 +25,7 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
     
     private var pageElementsController: PagedElementsController<PatientsSearchViewController>?
     private var keyboardScrollHandler: KeyboardScrollHandler?
+    @IBOutlet weak var patientsSegmentedControl: UISegmentedControl!
     
     // MARK:- View lifecycle
     
@@ -34,8 +35,15 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
         
         pageElementsController = PagedElementsController(tableView: tableView, delegate: self)
         pageElementsController?.configureSearchBarIn(viewController: self)
+        pageElementsController?.reset()
         
         keyboardScrollHandler = KeyboardScrollHandler(scrollView: tableView, notificationCenter: NotificationCenter.default)
+        
+        navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        let allSegment = PatientsSearch.Segment.all
+        let observedSegment = PatientsSearch.Segment.observed
+        patientsSegmentedControl.setTitle(allSegment.title, forSegmentAt: allSegment.rawValue)
+        patientsSegmentedControl.setTitle(observedSegment.title, forSegmentAt: observedSegment.rawValue)
     }
     
     //MARK: - Setup UI
@@ -53,6 +61,7 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
         tableView.tableFooterView = UIView()
         tableView.registerNib(PatientTableViewCell.self)
         tableView.registerNib(PatientPlaceholderTableViewCell.self)
+        
     }
     
     //MARK: - Displaying Logic
@@ -62,6 +71,20 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
             UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
         }
     }
+    
+    //MARK: - Actions
+    @IBAction func patientsSegmentAction(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case PatientsSearch.Segment.all.rawValue:
+            break
+        case PatientsSearch.Segment.observed.rawValue:
+            break
+        default:
+            break
+        }
+        pageElementsController?.reset()
+    }
+    
 }
 
 //MARK: - Properties Injection
@@ -107,14 +130,18 @@ extension PatientsSearchViewController: PagedElementsControllerDelegate {
     }
     
     func requestPage(_ page: Int, in tableView: UITableView, handler: @escaping PatientsSearchHandler) {
+        guard let segment = PatientsSearch.Segment(rawValue: patientsSegmentedControl.selectedSegmentIndex) else {
+            return
+        }
         let searchTerm = navigationItem.searchController?.searchBar.text
         interactor?.retrievePatients(request: PatientsSearch.Retrieval.Request(page: page,
                                                                                searchQuery: searchTerm,
+                                                                               segment: segment,
                                                                                handler: handler))
     }
     
     func discardRequestForPage(_ page: Int) {
-//        interactor?.cancelSearchRequestFor(page: page)
+        //        interactor?.cancelSearchRequestFor(page: page)
     }
 }
 
@@ -122,8 +149,12 @@ extension PatientsSearchViewController: PagedElementsControllerDelegate {
 
 extension PatientsSearchViewController: PagedElementsControllerSearchDelegate {
     func searchFor(_ searchTerm: String, handler: @escaping PatientsSearchHandler) {
+        guard let segment = PatientsSearch.Segment(rawValue: patientsSegmentedControl.selectedSegmentIndex) else {
+            return
+        }
         interactor?.retrievePatients(request: PatientsSearch.Retrieval.Request(page: 1,
                                                                                searchQuery: searchTerm,
+                                                                               segment: segment,
                                                                                handler: handler))
     }
 }
