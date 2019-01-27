@@ -92,6 +92,7 @@
             <connections>
                 <outlet property="descriptionLabel" destination="shd-Np-LGB" id="vNl-ZI-dFk"/>
                 <outlet property="imageView" destination="CEI-tB-vTR" id="WXO-iM-AWE"/>
+                <outlet property="innerContainerView" destination="8Jg-BG-SYY" id="xFd-2y-2Xn"/>
                 <outlet property="titleLabel" destination="944-My-0cB" id="Soz-lr-iPT"/>
             </connections>
             <point key="canvasLocation" x="320" y="314.39280359820094"/>

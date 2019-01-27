@@ -9,9 +9,22 @@
 import UIKit
 
 protocol PagedElementsControllerSearchDelegate: PagedElementsControllerDelegate {
-    func searchFor(_ searchTerm: String, handler: @escaping ((BatchResult<ElementType>) -> ()))
 }
 
+protocol PagedElementsControllerListDelegate: PagedElementsControllerDelegate {
+}
+
+extension PagedElementsControllerDelegate where Self: PagedElementsControllerSearchDelegate  {
+    func requestPage(_ page: Int, in tableView: UITableView, handler: @escaping ((BatchResult<ElementType>) -> ())) {
+       //Empty implementation, this method is no longer applicable for the conforming type
+    }
+}
+
+extension PagedElementsControllerDelegate where Self: PagedElementsControllerListDelegate {
+    func requestPage(_ page: Int, in tableView: UITableView, scopeIndex: Int?, handler: @escaping ((BatchResult<ElementType>) -> ())) {
+        //Empty implementation, this method is no longer applicable for the conforming type
+    }
+}
 
 protocol PagedElementsControllerDelegate: class {
     associatedtype ElementType: Codable
@@ -20,23 +33,42 @@ protocol PagedElementsControllerDelegate: class {
     func cellHeightIn(tableView: UITableView) -> CGFloat
     
     func requestPage(_ page: Int, in tableView: UITableView, handler: @escaping ((BatchResult<ElementType>) -> ()))
+    func requestPage(_ page: Int, in tableView: UITableView, scopeIndex: Int?, handler: @escaping ((BatchResult<ElementType>) -> ()))
     func discardRequestForPage(_ page: Int)
 }
 
 private protocol SearchResultHandler: class {
     func updateSearchResults(for searchController: UISearchController)
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int)
 }
 //The wrapper is required in order to overcome the contitional conformance
-private class SearchResultsUpdatingWrapper: NSObject, UISearchResultsUpdating {
+private class SearchResultsUpdatingWrapper: NSObject, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
     weak var delegate: SearchResultHandler?
     func updateSearchResults(for searchController: UISearchController) {
         if let delegate = delegate {
             delegate.updateSearchResults(for: searchController)
         }
     }
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        if let delegate = delegate {
+            delegate.searchBar(searchBar, selectedScopeButtonIndexDidChange: selectedScope)
+        }
+    }
+}
+
+private class ApplicationThemedView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setApplicationGradientBackground()
+    }
 }
 
 class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObject, UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
+    
+    enum BarStyle {
+        case infered
+        case light
+    }
     
     private weak var tableView: UITableView?
     private weak var delegate: Delegate?
@@ -45,6 +77,9 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
     private var modelCollection: [Int: BatchResult<Delegate.ElementType>] = [:]
     private var estimatedCollection: [Int: Int] = [:]
     private var pendingPageRequests: Set<Int> = []
+    
+    private var searchBar: UISearchBar?
+    private var segmentedControl: UISegmentedControl?
     
     private var previousSearchTerm = ""
     
@@ -56,6 +91,42 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
         tableView.dataSource = self
         tableView.prefetchDataSource = self
     }
+    
+    func scopeIndex() -> Int? {
+        return segmentedControl?.selectedSegmentIndex
+    }
+    
+    func configureScopeSelectionControlWith(scopeTitles: [String], style: BarStyle) {
+        
+        let containerView = ApplicationThemedView()
+        containerView.addConstraintForHeight(44)
+        tableView?.tableHeaderView = containerView
+        if let tableView = tableView {
+            containerView.setEqualWidthTo(view: tableView)
+        }
+        
+        let segmentedControl = UISegmentedControl.init(items: scopeTitles)
+        segmentedControl.selectedSegmentIndex = 0
+        containerView.addSubview(segmentedControl)
+        containerView.addConstraintsForWrappedInsideView(segmentedControl,
+                                                         edgeInset: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16),
+                                                         pinBottom: false)
+        
+        switch style {
+        case .infered:
+            break
+        case .light:
+            segmentedControl.tintColor = .white
+        }
+        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
+        self.segmentedControl = segmentedControl
+    }
+    
+    @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        reset()
+    }
+    
+    //MARK:- UITableViewDataSource
     
     //MARK:- UITableViewDataSource
     
@@ -106,19 +177,45 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
 
 extension PagedElementsController: SearchResultHandler where Delegate: PagedElementsControllerSearchDelegate {
     
-    func configureSearchBarIn(viewController: UIViewController) {
+    func configureSearchBarIn(viewController: UIViewController, style: BarStyle = .infered, scopeTitles: [String]? = nil) {
         let searchController = UISearchController(searchResultsController: nil)
         searchResultsUpdatingWrapper = SearchResultsUpdatingWrapper()
         searchResultsUpdatingWrapper?.delegate = self
         searchController.searchResultsUpdater = searchResultsUpdatingWrapper
+        searchController.delegate = searchResultsUpdatingWrapper
         searchController.dimsBackgroundDuringPresentation = false
         viewController.navigationItem.hidesSearchBarWhenScrolling = false
         viewController.navigationItem.searchController = searchController
         viewController.definesPresentationContext = true
+        let searchBar = searchController.searchBar
+        
+        viewController.view.setApplicationGradientBackground()
+
+        switch style {
+        case .infered:
+            break
+        case .light:
+            searchBar.barStyle = .black
+            searchBar.tintColor = .white
+            searchBar.searchBarStyle = .minimal
+            
+            searchBar.setImage(UIImage(named: "searchIcon"), for: .search, state: .normal)
+            searchBar.setImage(UIImage(named: "searchIcon"), for: .resultsList, state: .normal)
+            searchBar.setImage(UIImage(named: "cancelIcon"), for: .clear, state: .normal)
+        }
+        
+        if let scopeTitles = scopeTitles {
+            configureScopeSelectionControlWith(scopeTitles: scopeTitles, style: style)
+        }
+        
+        searchBar.delegate = searchResultsUpdatingWrapper
+        self.searchBar = searchBar
+        
     }
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text,
+            let tableView = tableView,
             let delegate = delegate else {
                 return
         }
@@ -126,13 +223,16 @@ extension PagedElementsController: SearchResultHandler where Delegate: PagedElem
             return
         }
         
-        delegate.searchFor(text) { [weak self] batchElement in
+        delegate.requestPage(1, in: tableView, scopeIndex: scopeIndex()) { [weak self] batchElement in
             self?.refreshContent(initialBatchResult: batchElement)
             self?.previousSearchTerm = text
         }
     }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        reset()
+    }
 }
-
 
 //MARK: - Utilities
 
@@ -143,6 +243,10 @@ extension PagedElementsController  {
         modelCollection = [:]
         pendingPageRequests = []
         tableView?.reloadData()
+        tableView?.layoutIfNeeded()
+//        tableView?.beginUpdates()
+//        tableView?.endUpdates()
+        
     }
     
     func invalidate(referenceBatchResult: BatchResult<Delegate.ElementType>) {
@@ -163,12 +267,12 @@ extension PagedElementsController  {
     private func requestPageIfNeededFor(section: Int) {
         guard !pendingPageRequests.contains(section),
             modelCollection[section] == nil,
-            let delegate = delegate,
+         //   let delegate = delegate,
             let tableView = tableView else {
                 return
         }
         pendingPageRequests.insert(section)
-        delegate.requestPage(section + 1, in: tableView) { [weak self] batchElement in
+        let batchHandler: (BatchResult<Delegate.ElementType>) -> () = { [weak self] batchElement in
             guard let strongSelf = self else {
                 return
             }
@@ -211,6 +315,13 @@ extension PagedElementsController  {
                 tableView.reloadRows(at: newPageIndexPaths, with: .fade)
             }
             strongSelf.pendingPageRequests.remove(section)
+        }
+        
+        
+        if delegate is PagedElementsControllerSearchDelegate {
+            delegate?.requestPage(section + 1, in: tableView, scopeIndex: scopeIndex(), handler: batchHandler)
+        } else if delegate is PagedElementsControllerListDelegate {
+            delegate?.requestPage(section + 1, in: tableView, handler: batchHandler)
         }
     }
     

@@ -13,17 +13,25 @@ protocol MenuRoutingLogic {
     var viewController: MenuViewController? { get set }
     
     func routeToAuthorization(withHandler handler: PostAuthorizationHandler?, animated: Bool)
-    func routeToPatientsSearch()
+    func routeToPatientsSearch(cell: MenuCollectionViewCell)
 }
 
 protocol MenuDataPassing {
     var dataStore: MenuDataStore? {get set}
 }
 
-class MenuRouter:  MenuRoutingLogic, MenuDataPassing {
+class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
     
     weak var viewController: MenuViewController?
+    private lazy var navigationController: UINavigationController? = {
+        let navigationController = viewController?.navigationController
+        navigationController?.delegate = self
+        return navigationController
+    }()
+    
     var dataStore: MenuDataStore?
+    
+    private weak var menuTransitionCell: MenuCollectionViewCell?
     
     private let loginViewControllerProvider: Provider<LoginViewController>
     private let patientsSearchViewControllerProvider: Provider<PatientsSearchViewController>
@@ -37,17 +45,40 @@ class MenuRouter:  MenuRoutingLogic, MenuDataPassing {
         viewController?.present(loginViewController, animated: animated, completion: nil)
     }
     
-    func routeToPatientsSearch() {
+    func routeToPatientsSearch(cell: MenuCollectionViewCell) {
         guard viewController?.navigationController?.viewControllers.count == 1 else {
             return
         }
         let patientsSearchViewController = patientsSearchViewControllerProvider.get()
-        viewController?.navigationController?.pushViewController(patientsSearchViewController, animated: true)
+        patientsSearchViewController.view.layoutSubviews()
+        menuTransitionCell = cell
+        navigationController?.pushViewController(patientsSearchViewController, animated: true)
     }
     
     init(loginViewControllerProvider: Provider<LoginViewController>,
          patientsSearchViewControllerProvider: Provider<PatientsSearchViewController>) {
         self.loginViewControllerProvider = loginViewControllerProvider
         self.patientsSearchViewControllerProvider = patientsSearchViewControllerProvider
+    }
+}
+
+extension MenuRouter: UINavigationControllerDelegate {
+    
+    func navigationController(_ navigationController: UINavigationController,
+                              animationControllerFor operation: UINavigationController.Operation,
+                              from fromVC: UIViewController,
+                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        guard let menuTransitionCell = menuTransitionCell else {
+            return nil
+        }
+        switch operation {
+        case .push:
+            return MenuTransition(cell: menuTransitionCell, direction: .forward)
+        case .pop:
+            return nil
+//            return MenuTransition(sourceFrame: menuTransitionSourceFrame, direction: .backward)
+        default:
+            return nil
+        }
     }
 }

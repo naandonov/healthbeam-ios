@@ -28,7 +28,7 @@ struct PatientsSearch {
         struct Request {
             let page: Int
             let searchQuery: String?
-            let segment: PatientsSearch.Segment
+            let segment: PatientsSearch.Segment?
             let handler: PatientsSearchHandler
         }
         struct Response {

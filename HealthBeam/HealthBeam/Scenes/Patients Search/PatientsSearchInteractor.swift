@@ -31,7 +31,15 @@ class PatientsSearchInteractor: PatientsSearchBusinessLogic, PatientsSearchDataS
     func retrievePatients(request: PatientsSearch.Retrieval.Request) {
         cancelSearchRequestFor(page: request.page)
         
-        let operation = GetPatientsOperation(patientsSegment: request.segment, searchQuery: request.searchQuery, pageQuery: request.page) {[weak self] result in
+        let segment: PatientsSearch.Segment
+        if let selectedSegment = request.segment {
+            segment = selectedSegment
+        }
+        else {
+            segment = PatientsSearch.Segment.all
+        }
+        
+        let operation = GetPatientsOperation(patientsSegment: segment, searchQuery: request.searchQuery, pageQuery: request.page) {[weak self] result in
             guard let strongSelf = self else {
                 return
             }

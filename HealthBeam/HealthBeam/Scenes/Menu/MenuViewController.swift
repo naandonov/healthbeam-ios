@@ -144,10 +144,11 @@ extension MenuViewController: UICollectionViewDelegate {
         guard let option = interactor?.options[indexPath.row] else {
             fatalError("Option for \(indexPath) does not exist")
         }
-        
         switch option.type {
         case .patientsSearch:
-            router?.routeToPatientsSearch()
+            if let cell = collectionView.cellForItem(at: indexPath) as? MenuCollectionViewCell {
+                router?.routeToPatientsSearch(cell: cell)
+            }
         }
     }
 }
