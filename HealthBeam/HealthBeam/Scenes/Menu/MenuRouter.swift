@@ -30,9 +30,13 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
     }()
     
     var dataStore: MenuDataStore?
-    
-    private weak var menuTransitionCell: MenuCollectionViewCell?
-    
+
+    private weak var hideableView: UIView?
+    private var outerRect: CGRect?
+    private var innerRect: CGRect?
+    private var innerSnapshot: UIImage?
+
+
     private let loginViewControllerProvider: Provider<LoginViewController>
     private let patientsSearchViewControllerProvider: Provider<PatientsSearchViewController>
     
@@ -51,7 +55,14 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
         }
         let patientsSearchViewController = patientsSearchViewControllerProvider.get()
         patientsSearchViewController.view.layoutSubviews()
-        menuTransitionCell = cell
+
+        hideableView = cell
+        if let view = viewController?.view {
+            outerRect = cell.contentView.convert(cell.contentView.frame, to: view)
+            innerRect = cell.innerContainerView.convert(cell.innerContainerView.frame, to: view)
+        }
+        innerSnapshot = cell.innerContainerView.snapshot()
+
         navigationController?.pushViewController(patientsSearchViewController, animated: true)
     }
     
@@ -68,15 +79,31 @@ extension MenuRouter: UINavigationControllerDelegate {
                               animationControllerFor operation: UINavigationController.Operation,
                               from fromVC: UIViewController,
                               to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        guard let menuTransitionCell = menuTransitionCell else {
-            return nil
+        guard let hideableView = hideableView,
+            let innerRect = innerRect,
+            let outerRect = outerRect,
+            let innerSnapshot = innerSnapshot else {
+                return nil
         }
+
+let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
+        view.layer.cornerRadius = 30
+
         switch operation {
         case .push:
-            return MenuTransition(cell: menuTransitionCell, direction: .forward)
+            return MenuTransition(direction: .forward,
+                                  hideableView: hideableView,
+                                  outerRect: outerRect,
+                                  innerRect: innerRect,
+                                  innerSnapshot: innerSnapshot,
+                                  cornerRadius: 30)
         case .pop:
-            return nil
-//            return MenuTransition(sourceFrame: menuTransitionSourceFrame, direction: .backward)
+            return MenuTransition(direction: .backward,
+                                  hideableView: hideableView,
+                                  outerRect: outerRect,
+                                  innerRect: innerRect,
+                                  innerSnapshot: innerSnapshot,
+                                  cornerRadius: 30)
         default:
             return nil
         }

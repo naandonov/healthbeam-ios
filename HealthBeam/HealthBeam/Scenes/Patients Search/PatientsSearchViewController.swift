@@ -60,7 +60,11 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
         tableView.registerNib(PatientTableViewCell.self)
         tableView.registerNib(PatientPlaceholderTableViewCell.self)
     }
-    
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     //MARK: - Displaying Logic
     
     func processPatientsSearchReult(viewModel: PatientsSearch.Retrieval.ViewModel) {

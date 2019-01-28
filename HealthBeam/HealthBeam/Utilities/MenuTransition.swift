@@ -9,63 +9,69 @@
 import UIKit
 
 class MenuTransition: NSObject, UIViewControllerAnimatedTransitioning {
-    
-    private let cardCornerRadius: CGFloat = 30.0
-    
+
     enum Direction {
         case forward
         case backward
     }
-    
-    
-    private weak var cell: MenuCollectionViewCell?
-    private let direction: Direction
-    
 
+    private let direction: Direction
+
+    private weak var hideableView: UIView?
+    private let outerRect: CGRect
+    private let innerRect: CGRect
+    private let innerSnapshot: UIImage
+    private let cornerRadius: CGFloat
     
-    init(cell: MenuCollectionViewCell?, direction: Direction) {
-        self.cell = cell
+    init(direction: Direction,
+         hideableView: UIView,
+         outerRect: CGRect,
+         innerRect: CGRect,
+         innerSnapshot: UIImage,
+         cornerRadius: CGFloat) {
         self.direction = direction
+        self.hideableView = hideableView
+        self.outerRect = outerRect
+        self.innerRect = innerRect
+        self.innerSnapshot = innerSnapshot
+        self.cornerRadius = cornerRadius
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 1.0
+        return 0.9
     }
     
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard
             let fromViewController = transitionContext.viewController(forKey: .from),
             let toViewController = transitionContext.viewController(forKey: .to),
-            let cell = cell,
-            let innerCellContainerView = cell.innerContainerView
+            let hideableView = hideableView
             else {
                 return
         }
-    
-        let contentCellView = cell.contentView
-        
-        let finalFrame = toViewController.view.frame
-        let initialFrame = contentCellView.convert(contentCellView.frame, to: fromViewController.view)
-        let initialInnerContainerFrame = innerCellContainerView.convert(innerCellContainerView.frame, to: fromViewController.view)
-        
-        
-        let renderer = UIGraphicsImageRenderer(size: innerCellContainerView.bounds.size)
-        let optionCardImage = renderer.image { ctx in
-            innerCellContainerView.drawHierarchy(in: innerCellContainerView.bounds, afterScreenUpdates: false)
-        }
-        let optionCardImageView = UIImageView(image: optionCardImage)
-        optionCardImageView.frame = initialInnerContainerFrame
 
+        let isForwardDirection = direction == .forward
+
+        let finalFrame = toViewController.view.frame
+       // let initialFrame = outerRect//contentCellView.convert(contentCellView.frame, to: fromViewController.view)
+        //let initialInnerContainerFrame = innerCellContainerView.convert(innerCellContainerView.frame, to: fromViewController.view)
         
-        let expandView = UIView(frame: initialFrame)
+        
+//        let renderer = UIGraphicsImageRenderer(size: innerCellContainerView.bounds.size)
+//        let optionCardImage = renderer.image { ctx in
+//            innerCellContainerView.drawHierarchy(in: innerCellContainerView.bounds, afterScreenUpdates: false)
+//        }
+        let optionCardImageView = UIImageView(image: innerSnapshot)
+        optionCardImageView.frame = innerRect
+        optionCardImageView.alpha = isForwardDirection ? 1.0 : 0.0
+
+        let expandView = UIView(frame: isForwardDirection ? outerRect : finalFrame)
         expandView.backgroundColor = .white
-        expandView.alpha = 0.9
-        expandView.layer.cornerRadius = cardCornerRadius
+        expandView.alpha = isForwardDirection ? 0.9 : 0.0
+        expandView.layer.cornerRadius = cornerRadius
         expandView.clipsToBounds = true
-        let expandViewFinalFrame = finalFrame.inset(by: UIEdgeInsets(top: 0,
-                                                                     left: 0,
-                                                                     bottom: 0,
-                                                                     right: 0))
+
+        let expandViewFinalFrame = isForwardDirection ? finalFrame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) : outerRect
         optionCardImageView.center = expandView.center
         
         transitionContext.containerView.addSubview(toViewController.view)
@@ -73,28 +79,61 @@ class MenuTransition: NSObject, UIViewControllerAnimatedTransitioning {
         transitionContext.containerView.addSubview(optionCardImageView)
         
         toViewController.view.alpha = 0.0
-        cell.isHidden = true
+        hideableView.isHidden = true
+
+        switch direction {
+        case .forward:
+            toViewController.navigationController?.navigationBar.alpha = 0.0
+            toViewController.navigationItem.searchController?.searchBar.alpha = 0.0
+        case .backward:
+            fromViewController.navigationController?.navigationBar.alpha =  0.5
+            fromViewController.navigationItem.searchController?.searchBar.alpha = 0.5
+        }
         
-        toViewController.navigationController?.navigationBar.alpha = 0.0
-        toViewController.navigationItem.searchController?.searchBar.alpha = 0.0
+
         
         let duration = self.transitionDuration(using: transitionContext)
         UIView.animateKeyframes(withDuration: duration, delay: 0, options: [.calculationModeLinear], animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.4) {
-                optionCardImageView.center = toViewController.view.center
-                expandView.frame = expandViewFinalFrame
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {  [weak self] in
+                guard let direction = self?.direction else {
+                    return
+                }
+
+                switch direction {
+                case .forward:
+                    optionCardImageView.center = toViewController.view.center
+                    expandView.frame = expandViewFinalFrame
+                    toViewController.navigationController?.navigationBar.alpha = 0.0
+                    toViewController.navigationItem.searchController?.searchBar.alpha = 0.0
+                case .backward:
+                    optionCardImageView.alpha = 1.0
+                    expandView.alpha = 0.9
+                    fromViewController.navigationController?.navigationBar.alpha = 0.0
+                    fromViewController.navigationItem.searchController?.searchBar.alpha = 0.0
+                }
             }
-            UIView.addKeyframe(withRelativeStartTime: 0.4, relativeDuration: 0.0) {
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.0) {
                 toViewController.view.alpha = 1.0
             }
-            UIView.addKeyframe(withRelativeStartTime: 0.4, relativeDuration: 0.6) {
-                optionCardImageView.alpha = 0.0
-                expandView.alpha = 0.0
-                toViewController.navigationController?.navigationBar.alpha = 1.0
-                toViewController.navigationItem.searchController?.searchBar.alpha = 1.0
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) { [weak self] in
+                guard let direction = self?.direction else {
+                    return
+                }
+
+                switch direction {
+                case .forward:
+                    toViewController.navigationController?.navigationBar.alpha = 1.0
+                    toViewController.navigationItem.searchController?.searchBar.alpha = 1.0
+                    optionCardImageView.alpha = 0.0
+                    expandView.alpha = 0.0
+                case .backward:
+                    expandView.frame = self?.outerRect ?? .zero
+                    optionCardImageView.center = expandView.center
+                    break
+                }
             }
             }, completion:{ success in
-                cell.isHidden = false
+                hideableView.isHidden = false
                 optionCardImageView.removeFromSuperview()
                 expandView.removeFromSuperview()
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
