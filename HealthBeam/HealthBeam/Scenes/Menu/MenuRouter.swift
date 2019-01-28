@@ -86,9 +86,6 @@ extension MenuRouter: UINavigationControllerDelegate {
                 return nil
         }
 
-let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
-        view.layer.cornerRadius = 30
-
         switch operation {
         case .push:
             return MenuTransition(direction: .forward,
