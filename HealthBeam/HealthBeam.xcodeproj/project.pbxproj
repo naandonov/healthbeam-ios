@@ -82,6 +82,9 @@
 		4E48E58D21DAD62100069CC4 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E48E58C21DAD62100069CC4 /* LoadingOverlay.swift */; };
 		4E48E58F21DB989200069CC4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E48E58E21DB989200069CC4 /* CoreDataManager.swift */; };
 		4E48E59321DB9A3200069CC4 /* HealthBeamModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E48E59121DB9A3200069CC4 /* HealthBeamModel.xcdatamodeld */; };
+		4E62DF0B2200E6360090BFAF /* ModificationElementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62DF0A2200E6360090BFAF /* ModificationElementController.swift */; };
+		4E62DF0E2200E6E40090BFAF /* ModificationElementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62DF0C2200E6E40090BFAF /* ModificationElementTableViewCell.swift */; };
+		4E62DF0F2200E6E40090BFAF /* ModificationElementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E62DF0D2200E6E40090BFAF /* ModificationElementTableViewCell.xib */; };
 		4E93800E21D949B30083ED03 /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93800D21D949B30083ED03 /* FloatingTextField.swift */; };
 		4E93801121D9795A0083ED03 /* KeyboardScrollHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */; };
 		4E93801321D981020083ED03 /* UIView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801221D981020083ED03 /* UIView+Utilities.swift */; };
@@ -208,6 +211,9 @@
 		4E48E58C21DAD62100069CC4 /* LoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		4E48E58E21DB989200069CC4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		4E48E59221DB9A3200069CC4 /* healthbeam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = healthbeam.xcdatamodel; sourceTree = "<group>"; };
+		4E62DF0A2200E6360090BFAF /* ModificationElementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationElementController.swift; sourceTree = "<group>"; };
+		4E62DF0C2200E6E40090BFAF /* ModificationElementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationElementTableViewCell.swift; sourceTree = "<group>"; };
+		4E62DF0D2200E6E40090BFAF /* ModificationElementTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModificationElementTableViewCell.xib; sourceTree = "<group>"; };
 		4E93800D21D949B30083ED03 /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
 		4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollHandler.swift; sourceTree = "<group>"; };
 		4E93801221D981020083ED03 /* UIView+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utilities.swift"; sourceTree = "<group>"; };
@@ -445,7 +451,6 @@
 				4E0FEFCF21D6C2430046303F /* CustomizableView.swift */,
 				4E0FEFD021D6C2430046303F /* NibLoadableView.swift */,
 				4E0FEFCE21D6C2430046303F /* ScrollCollectionsReusability.swift */,
-				4EBC81FD21FE06CD008427A8 /* MenuTransition.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -483,6 +488,7 @@
 			children = (
 				4E0FEFF321D796660046303F /* Views */,
 				4EC355DB21DF8F0F0011D723 /* PagedElementsController.swift */,
+				4E62DF0A2200E6360090BFAF /* ModificationElementController.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -506,6 +512,8 @@
 				4E93EA3921F661E5007C8BE8 /* PatientTableViewCell.xib */,
 				4E93EA3C21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.swift */,
 				4E93EA3D21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib */,
+				4E62DF0C2200E6E40090BFAF /* ModificationElementTableViewCell.swift */,
+				4E62DF0D2200E6E40090BFAF /* ModificationElementTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -630,6 +638,7 @@
 		4EF9E2B121ED1AAF00E0DDD0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				4EBC81FD21FE06CD008427A8 /* MenuTransition.swift */,
 				4EF9E2B221ED1AD300E0DDD0 /* MenuPresenter.swift */,
 				4EF9E2B321ED1AD300E0DDD0 /* MenuRouter.swift */,
 				4EF9E2B421ED1AD300E0DDD0 /* MenuModels.swift */,
@@ -721,6 +730,7 @@
 				4E93EA3B21F661E5007C8BE8 /* PatientTableViewCell.xib in Resources */,
 				4E2DEA6321F655C7000E0C61 /* Patients.storyboard in Resources */,
 				4E39ECB221D381B40041F44C /* Main.storyboard in Resources */,
+				4E62DF0F2200E6E40090BFAF /* ModificationElementTableViewCell.xib in Resources */,
 				4EF9E2B021ED18F300E0DDD0 /* Menu.storyboard in Resources */,
 				4E2DEA5221F4E31C000E0C61 /* MenuCollectionViewCell.xib in Resources */,
 				4E0FEFF721D796B00046303F /* LightLogoView.xib in Resources */,
@@ -813,6 +823,7 @@
 				4E2DEA6021F6557E000E0C61 /* PatientsSearchViewController.swift in Sources */,
 				4E0FEFF021D6C4030046303F /* PresentersModule.swift in Sources */,
 				4ED74C1B21DBC6A7009AB7C3 /* UserProfileModels.swift in Sources */,
+				4E62DF0E2200E6E40090BFAF /* ModificationElementTableViewCell.swift in Sources */,
 				4E0FEFD121D6C2430046303F /* ScrollCollectionsReusability.swift in Sources */,
 				4EF9E2B921ED1AD300E0DDD0 /* MenuModels.swift in Sources */,
 				4E0FF00021D7B7490046303F /* LoginModels.swift in Sources */,
@@ -850,6 +861,7 @@
 				4E0FF00221D7B7490046303F /* LoginInteractor.swift in Sources */,
 				4E2DEA5121F4E31C000E0C61 /* MenuCollectionViewCell.swift in Sources */,
 				8C196B7221EE3EAE004F2549 /* NotificationManager.swift in Sources */,
+				4E62DF0B2200E6360090BFAF /* ModificationElementController.swift in Sources */,
 				4E0FEFA021D6BCB20046303F /* ServiceConfig.swift in Sources */,
 				4E0FEFE521D6C4030046303F /* ViewControllersModule.swift in Sources */,
 				4E0FEFAE21D6BCB20046303F /* KeychainManager.swift in Sources */,
