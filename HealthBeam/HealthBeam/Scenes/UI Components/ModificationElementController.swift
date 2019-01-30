@@ -13,6 +13,10 @@ class ModificationDatasource<T: Codable> {
     let inputDescriptors: [InputDescriptor]
     enum InputDescriptor {
         case standard(title: String, keyPath: WritableKeyPath<T, String>, isRequired: Bool)
+        case standardOptional(title: String, keyPath: WritableKeyPath<T, String?>, isRequired: Bool)
+        case multitude(title: String, keyPath: WritableKeyPath<T, [String]?>, isRequired: Bool)
+        case datePicker(title: String, keyPath: WritableKeyPath<T, Date?>, isRequired: Bool)
+        case itemsPicker(title: String, keyPath: WritableKeyPath<T, String?>, model: [String] ,isRequired: Bool)
     }
     
     init(element: T, inputDescriptors: [InputDescriptor]) {
@@ -23,20 +27,30 @@ class ModificationDatasource<T: Codable> {
 
 class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
-    private weak var tableView: UITableView?
+    private var tableView: UITableView?
+    private weak var containerView: UIView?
     private let dataSource: ModificationDatasource<T>
     private var activeValidationMarkup = false
+    private weak var owner: UIViewController?
+
     
-    init(tableView: UITableView, dataSource: ModificationDatasource<T>) {
+    init(containerView: UIView, dataSource: ModificationDatasource<T>, owner: UIViewController) {
         self.dataSource = dataSource
+        self.owner = owner
         super.init()
-        self.tableView = tableView
-        
-        tableView.dataSource = self
-//        tableView.delegate = self
-        
-        tableView.registerNib(ModificationElementTableViewCell.self)
-        tableView.reloadData()
+
+        let plainTableView = UITableView(frame: .zero, style: .plain)
+        containerView.addSubview(plainTableView)
+        containerView.addConstraintsForWrappedInsideView(plainTableView)
+
+        plainTableView.dataSource = self
+        plainTableView.delegate = self
+
+        plainTableView.registerNib(ModificationElementTableViewCell.self)
+        plainTableView.reloadData()
+
+        self.tableView = plainTableView
+        self.containerView = containerView
     }
     
     func requestModifiedElement() -> T? {
@@ -56,11 +70,37 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         for inputDescriptor in dataSource.inputDescriptors {
             switch inputDescriptor {
                 
-            case let .standard(title, keyPath, isRequired):
-                if isRequired && dataSource.element[keyPath: keyPath].count == 0 {
+            case let .standard(_, keyPath, isRequired):
+                if dataSource.element[keyPath: keyPath].count == 0 && isRequired {
+                    return false
+                }
+            case let .standardOptional(_, keyPath, isRequired):
+                if !isStringInputValid(keyPath: keyPath, isRequired: isRequired) {
+                    return false
+                }
+            case let .multitude(_, keyPath, isRequired):
+                let content = dataSource.element[keyPath: keyPath]
+                if  isRequired && (content == nil || content?.count == 0 || content?.first?.count == 0)  {
+                    return false
+                }
+            case let .datePicker(_, keyPath, isRequired):
+                let content = dataSource.element[keyPath: keyPath]
+                if  isRequired && (content == nil)  {
+                    return false
+                }
+            case let .itemsPicker(_, keyPath, _, isRequired):
+                if !isStringInputValid(keyPath: keyPath, isRequired: isRequired) {
                     return false
                 }
             }
+        }
+        return true
+    }
+
+    private func isStringInputValid(keyPath: WritableKeyPath<T, String?>, isRequired: Bool) -> Bool {
+        let content = dataSource.element[keyPath: keyPath]
+        if  isRequired && (content == nil || content?.count == 0)  {
+            return false
         }
         return true
     }
@@ -75,8 +115,9 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         let cell: ModificationElementTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         let inputDescriptor = dataSource.inputDescriptors[indexPath.row]
         switch inputDescriptor {
-
         case let .standard(title, keyPath, isRequired):
+            break
+        case let .standardOptional(title, keyPath, isRequired):
             cell.titleLabel.text = title
             cell.textField.tag = indexPath.row
             cell.textField.delegate = self
@@ -88,6 +129,12 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
             else {
                 cell.backgroundColor = .white
             }
+        case let .multitude(title, keyPath, isRequired):
+            break
+        case let .datePicker(title, keyPath, isRequired):
+            break
+        case let .itemsPicker(title, keyPath, model, isRequired):
+            break
         }
         
         
@@ -101,7 +148,15 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         let inputDescriptor = dataSource.inputDescriptors[textField.tag]
         switch inputDescriptor {
         case let .standard(title, keyPath, isRequired):
+            break
+        case let .standardOptional(title, keyPath, isRequired):
             dataSource.element[keyPath: keyPath] = text
+        case let .multitude(title, keyPath, isRequired):
+            break
+        case let .datePicker(title, keyPath, isRequired):
+            break
+        case let .itemsPicker(title, keyPath, model, isRequired):
+            break
         }
     }
     

@@ -10,13 +10,13 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate {//, PagedElementsControllerDelegate, PagedElementsControllerSearchDelegate {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var containerView: UIView!
 
     var modificaitonElementController: ModificationElementController<Element>?
     
     struct Element: Codable {
-        var name: String
-        var title: String
+        var name: String?
+        var title: String?
     }
     
     var element = Element(name: "Niki", title: "")
@@ -24,9 +24,8 @@ class ViewController: UIViewController, UITableViewDelegate {//, PagedElementsCo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let dataSource = ModificationDatasource(element: element, inputDescriptors: [.standard(title: "Full Name", keyPath: \Element.name, isRequired: true), .standard(title: "Title", keyPath: \Element.title, isRequired: true)])
-        modificaitonElementController = ModificationElementController(tableView: tableView, dataSource: dataSource)
-        tableView.delegate = self
+        let dataSource = ModificationDatasource(element: element, inputDescriptors: [.standardOptional(title: "Full Name", keyPath: \Element.name, isRequired: true), .standardOptional(title: "Title", keyPath: \Element.title, isRequired: true)])
+        modificaitonElementController = ModificationElementController(containerView: containerView, dataSource: dataSource, owner: self)
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
             print(self.element)
         }
