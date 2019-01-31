@@ -56,8 +56,10 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
 
         plainTableView.dataSource = self
         plainTableView.delegate = self
+        plainTableView.isEditing = true
 
         plainTableView.registerNib(ModificationElementTableViewCell.self)
+        plainTableView.registerNib(AddMoreTableViewCell.self)
         plainTableView.reloadData()
 
         self.tableView = plainTableView
@@ -121,13 +123,18 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if case let .multitude(_, keyPath, _) = dataSource.inputDescriptors[section] {
+            return (dataSource.element[keyPath: keyPath]?.count ?? 0) + 1
+        }
         return 1
     }
     
-    //MARK:- UITextFieldDatasource
+    //MARK:- UITableViewDatasource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ModificationElementTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        cell.textField.inputView = nil
+        cell.textField.inputAccessoryView = nil
         let inputDescriptor = dataSource.inputDescriptors[indexPath.section]
         let cellTitle: String
         switch inputDescriptor {
@@ -139,8 +146,22 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
             cell.textField.text = dataSource.element[keyPath: keyPath]
 
         case let .multitude(title, keyPath, isRequired):
-            cellTitle = title
-            break
+            let content: [String]
+            if let element = dataSource.element[keyPath: keyPath] {
+                content = element
+            }
+            else {
+                content = []
+            }
+            if indexPath.row < content.count {
+                cellTitle = indexPath.section == 0 ? title : ""
+                cell.textField.text = content[indexPath.row]
+                cell.textField.tag = indexPath.section
+            } else {
+                let addCell: AddMoreTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                addCell.addMoreButton.tag = indexPath.section
+                return addCell
+            }
         case let .datePicker(title, keyPath, isRequired):
             cellTitle = title
             cell.textField.text = dataSource.element[keyPath: keyPath]?.simpleDateString() ?? ""
@@ -159,8 +180,53 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         return cell
     }
     
-    //MARK:- UITextFieldDelegate
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard case let .multitude(_, keyPath, _) = dataSource.inputDescriptors[indexPath.section] else {
+            return
+        }
+        
+        if editingStyle == .delete {
+            dataSource.element[keyPath: keyPath]?.remove(at: indexPath.row)
+            tableView.deleteRows(at: [IndexPath(row: indexPath.row, section: indexPath.section)], with: .automatic)
+        }
+        else if editingStyle == .insert {
+            tableView.firstResponder()?.resignFirstResponder()
+            dataSource.element[keyPath: keyPath] =  (dataSource.element[keyPath: keyPath] ?? []) + [""]
+            tableView.insertRows(at: [IndexPath(row: indexPath.row, section: indexPath.section)], with: .automatic)
+        }
+    }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if case let .multitude(_, keyPath, _) = dataSource.inputDescriptors[indexPath.section] {
+            let content = dataSource.element[keyPath: keyPath] ?? []
+            if indexPath.row >= content.count {
+                return .insert
+            } else {
+                return .delete
+            }
+        }
+        
+        
+        return .none
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        if case .multitude(_, _, _) = dataSource.inputDescriptors[indexPath.section] {
+            return true
+        }
+        return false
+    }
+    
+    //MARK:- UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let inputDescriptor = dataSource.inputDescriptors[indexPath.section]
+        if case .datePicker(_, _, _) = inputDescriptor {
+            
+        }
+    }
+    
+    //MARK:- UITextFieldDelegate
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         let inputDescriptor = dataSource.inputDescriptors[textField.tag]
@@ -190,20 +256,14 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         case let .standardOptional(title, keyPath, isRequired):
             dataSource.element[keyPath: keyPath] = text
         case let .multitude(title, keyPath, isRequired):
-            break
+            guard let indexPath = tableView?.indexPathForRow(at: textField.convert(textField.center, to: tableView)) else {
+                return
+            }
+            dataSource.element[keyPath: keyPath]?[indexPath.row] = text
         case let .datePicker(title, keyPath, isRequired):
             break
         case let .itemsPicker(title, keyPath, model, isRequired):
             break
-        }
-    }
-    
-    //MARK:- UITableViewDelegate
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let inputDescriptor = dataSource.inputDescriptors[indexPath.section]
-        if case .datePicker(_, _, _) = inputDescriptor {
-            
         }
     }
     

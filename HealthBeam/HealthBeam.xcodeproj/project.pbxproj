@@ -61,6 +61,8 @@
 		4E0FF00621D7C2700046303F /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FF00521D7C2700046303F /* RoundedButton.swift */; };
 		4E17F18221FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F18121FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift */; };
 		4E17F18421FC6B020083AE50 /* CAGradientLayer+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F18321FC6B020083AE50 /* CAGradientLayer+Utilities.swift */; };
+		4E17F3D7220389A900E113ED /* AddMoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3D5220389A900E113ED /* AddMoreTableViewCell.swift */; };
+		4E17F3D8220389A900E113ED /* AddMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E17F3D6220389A900E113ED /* AddMoreTableViewCell.xib */; };
 		4E2DEA4D21F4CE0D000E0C61 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */; };
 		4E2DEA5121F4E31C000E0C61 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */; };
 		4E2DEA5221F4E31C000E0C61 /* MenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */; };
@@ -187,6 +189,8 @@
 		4E0FF00521D7C2700046303F /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		4E17F18121FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubscribedPatientsOperation.swift; sourceTree = "<group>"; };
 		4E17F18321FC6B020083AE50 /* CAGradientLayer+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+Utilities.swift"; sourceTree = "<group>"; };
+		4E17F3D5220389A900E113ED /* AddMoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoreTableViewCell.swift; sourceTree = "<group>"; };
+		4E17F3D6220389A900E113ED /* AddMoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMoreTableViewCell.xib; sourceTree = "<group>"; };
 		4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -486,9 +490,9 @@
 		4E0FEFF221D796590046303F /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
+				4E17F3D42203890800E113ED /* Modification Element */,
 				4E0FEFF321D796660046303F /* Views */,
 				4EC355DB21DF8F0F0011D723 /* PagedElementsController.swift */,
-				4E62DF0A2200E6360090BFAF /* ModificationElementController.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -512,8 +516,6 @@
 				4E93EA3921F661E5007C8BE8 /* PatientTableViewCell.xib */,
 				4E93EA3C21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.swift */,
 				4E93EA3D21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib */,
-				4E62DF0C2200E6E40090BFAF /* ModificationElementTableViewCell.swift */,
-				4E62DF0D2200E6E40090BFAF /* ModificationElementTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -528,6 +530,18 @@
 				4E0FEFFD21D7B7490046303F /* LoginInteractor.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		4E17F3D42203890800E113ED /* Modification Element */ = {
+			isa = PBXGroup;
+			children = (
+				4E62DF0C2200E6E40090BFAF /* ModificationElementTableViewCell.swift */,
+				4E62DF0D2200E6E40090BFAF /* ModificationElementTableViewCell.xib */,
+				4E62DF0A2200E6360090BFAF /* ModificationElementController.swift */,
+				4E17F3D5220389A900E113ED /* AddMoreTableViewCell.swift */,
+				4E17F3D6220389A900E113ED /* AddMoreTableViewCell.xib */,
+			);
+			path = "Modification Element";
 			sourceTree = "<group>";
 		};
 		4E2DEA4B21F4CDE9000E0C61 /* Utilities */ = {
@@ -731,6 +745,7 @@
 				4E2DEA6321F655C7000E0C61 /* Patients.storyboard in Resources */,
 				4E39ECB221D381B40041F44C /* Main.storyboard in Resources */,
 				4E62DF0F2200E6E40090BFAF /* ModificationElementTableViewCell.xib in Resources */,
+				4E17F3D8220389A900E113ED /* AddMoreTableViewCell.xib in Resources */,
 				4EF9E2B021ED18F300E0DDD0 /* Menu.storyboard in Resources */,
 				4E2DEA5221F4E31C000E0C61 /* MenuCollectionViewCell.xib in Resources */,
 				4E0FEFF721D796B00046303F /* LightLogoView.xib in Resources */,
@@ -834,6 +849,7 @@
 				4ED74C0E21DBC19E009AB7C3 /* BaseSignedOperation.swift in Sources */,
 				4EC355DC21DF8F0F0011D723 /* PagedElementsController.swift in Sources */,
 				4E2DEA5421F50126000E0C61 /* StyleCoordinator.swift in Sources */,
+				4E17F3D7220389A900E113ED /* AddMoreTableViewCell.swift in Sources */,
 				4E17F18221FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift in Sources */,
 				4E0FEFC721D6BF050046303F /* UIView+Animations.swift in Sources */,
 				4E93EA4421F91A55007C8BE8 /* PremiseEntity+Mapping.swift in Sources */,
