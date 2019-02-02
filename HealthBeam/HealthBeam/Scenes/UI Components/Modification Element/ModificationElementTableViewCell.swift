@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ModificationElementTableViewCell: UITableViewCell, NibLoadableView {
+class ModificationElementTableViewCell: ModificationBaseTableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var textField: UITextField!

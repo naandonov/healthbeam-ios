@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddMoreTableViewCell: UITableViewCell, NibLoadableView {
+class AddMoreTableViewCell: ModificationBaseTableViewCell {
 
     @IBOutlet weak var addMoreButton: UIButton!
     override func awakeFromNib() {

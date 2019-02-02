@@ -65,6 +65,7 @@
 		4E17F3D8220389A900E113ED /* AddMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E17F3D6220389A900E113ED /* AddMoreTableViewCell.xib */; };
 		4E17F3DB2204E27700E113ED /* NotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3D92204E27700E113ED /* NotesTableViewCell.swift */; };
 		4E17F3DC2204E27700E113ED /* NotesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E17F3DA2204E27700E113ED /* NotesTableViewCell.xib */; };
+		4E17F3DE2205A10C00E113ED /* ModificationBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3DD2205A10C00E113ED /* ModificationBaseTableViewCell.swift */; };
 		4E2DEA4D21F4CE0D000E0C61 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */; };
 		4E2DEA5121F4E31C000E0C61 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */; };
 		4E2DEA5221F4E31C000E0C61 /* MenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */; };
@@ -195,6 +196,7 @@
 		4E17F3D6220389A900E113ED /* AddMoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMoreTableViewCell.xib; sourceTree = "<group>"; };
 		4E17F3D92204E27700E113ED /* NotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableViewCell.swift; sourceTree = "<group>"; };
 		4E17F3DA2204E27700E113ED /* NotesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotesTableViewCell.xib; sourceTree = "<group>"; };
+		4E17F3DD2205A10C00E113ED /* ModificationBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationBaseTableViewCell.swift; sourceTree = "<group>"; };
 		4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -546,6 +548,7 @@
 				4E17F3D6220389A900E113ED /* AddMoreTableViewCell.xib */,
 				4E17F3D92204E27700E113ED /* NotesTableViewCell.swift */,
 				4E17F3DA2204E27700E113ED /* NotesTableViewCell.xib */,
+				4E17F3DD2205A10C00E113ED /* ModificationBaseTableViewCell.swift */,
 			);
 			path = "Modification Element";
 			sourceTree = "<group>";
@@ -826,6 +829,7 @@
 				4EF9E2BB21ED1AD300E0DDD0 /* MenuInteractor.swift in Sources */,
 				4E0FEFC321D6BF050046303F /* UINavigationController+Utilities.swift in Sources */,
 				4ED74C1C21DBC6A7009AB7C3 /* UserProfileViewController.swift in Sources */,
+				4E17F3DE2205A10C00E113ED /* ModificationBaseTableViewCell.swift in Sources */,
 				4E0FEFFE21D7B7490046303F /* LoginPresenter.swift in Sources */,
 				4ED74C1F21DBCBBA009AB7C3 /* GetUserProfileOperation.swift in Sources */,
 				4E0FEFE621D6C4030046303F /* StoryboardsModule.swift in Sources */,
