@@ -41,10 +41,10 @@ extension UICollectionView: ScrollCollectionProtocol {
         return dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     }
     func register(_ nib: UINib?, forCellReuseIdentifier identifier: String) {
-        return register(nib, forCellWithReuseIdentifier: identifier)
+        register(nib, forCellWithReuseIdentifier: identifier)
     }
     func register(_ cellClass: AnyClass?, forCellReuseIdentifier identifier: String) {
-        return register(cellClass, forCellWithReuseIdentifier: identifier)
+        register(cellClass, forCellWithReuseIdentifier: identifier)
     }
 }
 

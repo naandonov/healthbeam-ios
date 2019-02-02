@@ -13,6 +13,10 @@ extension Date {
         return DateFormatter.extendedDateFormatter.date(from: dateString)
     }
     
+    func simpleDateString() -> String {
+        return DateFormatter.simpleDateFormatter.string(from: self)
+    }
+    
     func extendedDateString() -> String {
         return DateFormatter.extendedDateFormatter.string(from: self)
     }
@@ -27,6 +31,12 @@ extension DateFormatter {
     static let extendedDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return formatter
+    }()
+    
+    static let simpleDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd yyyy"
         return formatter
     }()
 }

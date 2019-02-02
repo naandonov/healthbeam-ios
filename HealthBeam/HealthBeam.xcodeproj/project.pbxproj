@@ -61,6 +61,11 @@
 		4E0FF00621D7C2700046303F /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FF00521D7C2700046303F /* RoundedButton.swift */; };
 		4E17F18221FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F18121FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift */; };
 		4E17F18421FC6B020083AE50 /* CAGradientLayer+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F18321FC6B020083AE50 /* CAGradientLayer+Utilities.swift */; };
+		4E17F3D7220389A900E113ED /* AddMoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3D5220389A900E113ED /* AddMoreTableViewCell.swift */; };
+		4E17F3D8220389A900E113ED /* AddMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E17F3D6220389A900E113ED /* AddMoreTableViewCell.xib */; };
+		4E17F3DB2204E27700E113ED /* NotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3D92204E27700E113ED /* NotesTableViewCell.swift */; };
+		4E17F3DC2204E27700E113ED /* NotesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E17F3DA2204E27700E113ED /* NotesTableViewCell.xib */; };
+		4E17F3DE2205A10C00E113ED /* ModificationBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3DD2205A10C00E113ED /* ModificationBaseTableViewCell.swift */; };
 		4E2DEA4D21F4CE0D000E0C61 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */; };
 		4E2DEA5121F4E31C000E0C61 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */; };
 		4E2DEA5221F4E31C000E0C61 /* MenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */; };
@@ -82,6 +87,9 @@
 		4E48E58D21DAD62100069CC4 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E48E58C21DAD62100069CC4 /* LoadingOverlay.swift */; };
 		4E48E58F21DB989200069CC4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E48E58E21DB989200069CC4 /* CoreDataManager.swift */; };
 		4E48E59321DB9A3200069CC4 /* HealthBeamModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E48E59121DB9A3200069CC4 /* HealthBeamModel.xcdatamodeld */; };
+		4E62DF0B2200E6360090BFAF /* ModificationElementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62DF0A2200E6360090BFAF /* ModificationElementController.swift */; };
+		4E62DF0E2200E6E40090BFAF /* ModificationElementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62DF0C2200E6E40090BFAF /* ModificationElementTableViewCell.swift */; };
+		4E62DF0F2200E6E40090BFAF /* ModificationElementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E62DF0D2200E6E40090BFAF /* ModificationElementTableViewCell.xib */; };
 		4E93800E21D949B30083ED03 /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93800D21D949B30083ED03 /* FloatingTextField.swift */; };
 		4E93801121D9795A0083ED03 /* KeyboardScrollHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */; };
 		4E93801321D981020083ED03 /* UIView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801221D981020083ED03 /* UIView+Utilities.swift */; };
@@ -184,6 +192,11 @@
 		4E0FF00521D7C2700046303F /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		4E17F18121FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubscribedPatientsOperation.swift; sourceTree = "<group>"; };
 		4E17F18321FC6B020083AE50 /* CAGradientLayer+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+Utilities.swift"; sourceTree = "<group>"; };
+		4E17F3D5220389A900E113ED /* AddMoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoreTableViewCell.swift; sourceTree = "<group>"; };
+		4E17F3D6220389A900E113ED /* AddMoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMoreTableViewCell.xib; sourceTree = "<group>"; };
+		4E17F3D92204E27700E113ED /* NotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableViewCell.swift; sourceTree = "<group>"; };
+		4E17F3DA2204E27700E113ED /* NotesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotesTableViewCell.xib; sourceTree = "<group>"; };
+		4E17F3DD2205A10C00E113ED /* ModificationBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationBaseTableViewCell.swift; sourceTree = "<group>"; };
 		4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -208,6 +221,9 @@
 		4E48E58C21DAD62100069CC4 /* LoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		4E48E58E21DB989200069CC4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		4E48E59221DB9A3200069CC4 /* healthbeam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = healthbeam.xcdatamodel; sourceTree = "<group>"; };
+		4E62DF0A2200E6360090BFAF /* ModificationElementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationElementController.swift; sourceTree = "<group>"; };
+		4E62DF0C2200E6E40090BFAF /* ModificationElementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationElementTableViewCell.swift; sourceTree = "<group>"; };
+		4E62DF0D2200E6E40090BFAF /* ModificationElementTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModificationElementTableViewCell.xib; sourceTree = "<group>"; };
 		4E93800D21D949B30083ED03 /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
 		4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollHandler.swift; sourceTree = "<group>"; };
 		4E93801221D981020083ED03 /* UIView+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utilities.swift"; sourceTree = "<group>"; };
@@ -445,7 +461,6 @@
 				4E0FEFCF21D6C2430046303F /* CustomizableView.swift */,
 				4E0FEFD021D6C2430046303F /* NibLoadableView.swift */,
 				4E0FEFCE21D6C2430046303F /* ScrollCollectionsReusability.swift */,
-				4EBC81FD21FE06CD008427A8 /* MenuTransition.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -481,6 +496,7 @@
 		4E0FEFF221D796590046303F /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
+				4E17F3D42203890800E113ED /* Modification Element */,
 				4E0FEFF321D796660046303F /* Views */,
 				4EC355DB21DF8F0F0011D723 /* PagedElementsController.swift */,
 			);
@@ -520,6 +536,21 @@
 				4E0FEFFD21D7B7490046303F /* LoginInteractor.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		4E17F3D42203890800E113ED /* Modification Element */ = {
+			isa = PBXGroup;
+			children = (
+				4E62DF0A2200E6360090BFAF /* ModificationElementController.swift */,
+				4E62DF0C2200E6E40090BFAF /* ModificationElementTableViewCell.swift */,
+				4E62DF0D2200E6E40090BFAF /* ModificationElementTableViewCell.xib */,
+				4E17F3D5220389A900E113ED /* AddMoreTableViewCell.swift */,
+				4E17F3D6220389A900E113ED /* AddMoreTableViewCell.xib */,
+				4E17F3D92204E27700E113ED /* NotesTableViewCell.swift */,
+				4E17F3DA2204E27700E113ED /* NotesTableViewCell.xib */,
+				4E17F3DD2205A10C00E113ED /* ModificationBaseTableViewCell.swift */,
+			);
+			path = "Modification Element";
 			sourceTree = "<group>";
 		};
 		4E2DEA4B21F4CDE9000E0C61 /* Utilities */ = {
@@ -630,6 +661,7 @@
 		4EF9E2B121ED1AAF00E0DDD0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				4EBC81FD21FE06CD008427A8 /* MenuTransition.swift */,
 				4EF9E2B221ED1AD300E0DDD0 /* MenuPresenter.swift */,
 				4EF9E2B321ED1AD300E0DDD0 /* MenuRouter.swift */,
 				4EF9E2B421ED1AD300E0DDD0 /* MenuModels.swift */,
@@ -721,6 +753,8 @@
 				4E93EA3B21F661E5007C8BE8 /* PatientTableViewCell.xib in Resources */,
 				4E2DEA6321F655C7000E0C61 /* Patients.storyboard in Resources */,
 				4E39ECB221D381B40041F44C /* Main.storyboard in Resources */,
+				4E62DF0F2200E6E40090BFAF /* ModificationElementTableViewCell.xib in Resources */,
+				4E17F3D8220389A900E113ED /* AddMoreTableViewCell.xib in Resources */,
 				4EF9E2B021ED18F300E0DDD0 /* Menu.storyboard in Resources */,
 				4E2DEA5221F4E31C000E0C61 /* MenuCollectionViewCell.xib in Resources */,
 				4E0FEFF721D796B00046303F /* LightLogoView.xib in Resources */,
@@ -728,6 +762,7 @@
 				4E48E58921DAC29C00069CC4 /* done.json in Resources */,
 				4E93801A21DA979D0083ED03 /* pulse_loader.json in Resources */,
 				4E93EA3F21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib in Resources */,
+				4E17F3DC2204E27700E113ED /* NotesTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,6 +829,7 @@
 				4EF9E2BB21ED1AD300E0DDD0 /* MenuInteractor.swift in Sources */,
 				4E0FEFC321D6BF050046303F /* UINavigationController+Utilities.swift in Sources */,
 				4ED74C1C21DBC6A7009AB7C3 /* UserProfileViewController.swift in Sources */,
+				4E17F3DE2205A10C00E113ED /* ModificationBaseTableViewCell.swift in Sources */,
 				4E0FEFFE21D7B7490046303F /* LoginPresenter.swift in Sources */,
 				4ED74C1F21DBCBBA009AB7C3 /* GetUserProfileOperation.swift in Sources */,
 				4E0FEFE621D6C4030046303F /* StoryboardsModule.swift in Sources */,
@@ -813,6 +849,7 @@
 				4E2DEA6021F6557E000E0C61 /* PatientsSearchViewController.swift in Sources */,
 				4E0FEFF021D6C4030046303F /* PresentersModule.swift in Sources */,
 				4ED74C1B21DBC6A7009AB7C3 /* UserProfileModels.swift in Sources */,
+				4E62DF0E2200E6E40090BFAF /* ModificationElementTableViewCell.swift in Sources */,
 				4E0FEFD121D6C2430046303F /* ScrollCollectionsReusability.swift in Sources */,
 				4EF9E2B921ED1AD300E0DDD0 /* MenuModels.swift in Sources */,
 				4E0FF00021D7B7490046303F /* LoginModels.swift in Sources */,
@@ -823,6 +860,7 @@
 				4ED74C0E21DBC19E009AB7C3 /* BaseSignedOperation.swift in Sources */,
 				4EC355DC21DF8F0F0011D723 /* PagedElementsController.swift in Sources */,
 				4E2DEA5421F50126000E0C61 /* StyleCoordinator.swift in Sources */,
+				4E17F3D7220389A900E113ED /* AddMoreTableViewCell.swift in Sources */,
 				4E17F18221FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift in Sources */,
 				4E0FEFC721D6BF050046303F /* UIView+Animations.swift in Sources */,
 				4E93EA4421F91A55007C8BE8 /* PremiseEntity+Mapping.swift in Sources */,
@@ -850,11 +888,13 @@
 				4E0FF00221D7B7490046303F /* LoginInteractor.swift in Sources */,
 				4E2DEA5121F4E31C000E0C61 /* MenuCollectionViewCell.swift in Sources */,
 				8C196B7221EE3EAE004F2549 /* NotificationManager.swift in Sources */,
+				4E62DF0B2200E6360090BFAF /* ModificationElementController.swift in Sources */,
 				4E0FEFA021D6BCB20046303F /* ServiceConfig.swift in Sources */,
 				4E0FEFE521D6C4030046303F /* ViewControllersModule.swift in Sources */,
 				4E0FEFAE21D6BCB20046303F /* KeychainManager.swift in Sources */,
 				4E0FEFCA21D6BF050046303F /* UIColor+Additions.swift in Sources */,
 				4E0FEFC921D6BF050046303F /* UIFont+Additions.swift in Sources */,
+				4E17F3DB2204E27700E113ED /* NotesTableViewCell.swift in Sources */,
 				4ED74C2121DBE0FD009AB7C3 /* NSManagedObject+Utilities.swift in Sources */,
 				4E93801521D9850C0083ED03 /* String+Validation.swift in Sources */,
 				4E0FEFA321D6BCB20046303F /* Response.swift in Sources */,

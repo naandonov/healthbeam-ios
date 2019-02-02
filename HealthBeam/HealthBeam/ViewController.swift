@@ -8,104 +8,70 @@
 
 import UIKit
 
-class ViewController: UIViewController {//, PagedElementsControllerDelegate, PagedElementsControllerSearchDelegate {
+class ViewController: UIViewController, UITableViewDelegate {//, PagedElementsControllerDelegate, PagedElementsControllerSearchDelegate {
     
-//    var lastSearchOperation: Operation?
-//
-//    func searchFor(_ searchTerm: String, handler: @escaping ((BatchResult<Patient>) -> ())) {
-//        if let lastSearchOperation = lastSearchOperation {
-//            print("cancelation")
-//            lastSearchOperation.cancel()
-//        }
-//        let operation = GetPatientsOperation(patientsSegment: .all, searchQuery: searchTerm) { result in
-//            switch result {
-//            case let .success(responseObject):
-//                handler(responseObject.value!)
-//            case let .failure(error):
-//                print(error)
-//            }
-//        }
-//        NetworkingManager.shared.addNetwork(operation: operation)
-//        lastSearchOperation = operation
-//    }
-//
-//
-//    func requestPage(_ page: Int, in tableView: UITableView, handler: @escaping ((BatchResult<Patient>) -> ())) {
-//        let operation = GetPatientsOperation(pageQuery: page) { result in
-//            switch result {
-//            case let .success(responseObject):
-//                print("New Request: \(page)")
-//                if let value = responseObject.value {
-//                    handler(value)
-//                }
-//            case let .failure(error):
-//                log.error(error.description)
-//
-//            }
-//        }
-//        NetworkingManager.shared.addNetwork(operation: operation)
-//    }
-//
-//    func discardRequestForPage(_ page: Int) {
-//
-//    }
-//
-//    func cellForItem(_ item: Patient, in tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
-//        cell?.textLabel?.text = item.fullName
-//        return cell!
-//    }
-//
-//    func cellForPlaceholderItemIn(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
-//        cell?.textLabel?.text = "Placeholder"
-//        return cell!
-//    }
-//
-//    func cellHeightIn(tableView: UITableView) -> CGFloat {
-//        return 200.0
-//    }
-//
-//
-//
-//
-//    typealias ElementType = Patient
-//
-//
-//    @IBOutlet weak var tableView: UITableView!
-//
-//    var pagedElementsController: PagedElementsController<ViewController>?
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-//
-//
-//
-//       let searchController = UISearchController(searchResultsController: self)
-////        searchController.searchResultsUpdater = self
-//        searchController.searchBar.autocapitalizationType = .none
-//        navigationItem.searchController = searchController
-//
-//        pagedElementsController = PagedElementsController(tableView: tableView, delegate: self)
-//        pagedElementsController?.configureSearchBarIn(viewController: self)
-//
-//        let operation = GetPatientsOperation { result in
-//            switch result {
-//
-//            case let .success(responseObject):
-//                print(responseObject)
-//                self.pagedElementsController?.refreshContent(initialBatchResult: responseObject.value!)
-//            case let .failure(error):
-//                print(error)
-//
-//            }
-//        }
-//        NetworkingManager.shared.addNetwork(operation: operation)
-//
-//    }
-//
+    @IBOutlet weak var containerView: UIView!
+
+    var modificaitonElementController: ModificationElementController<Element>?
+    
+    struct Element: Codable {
+        var name: String?
+        var title: String?
+        var date: Date?
+        var date1: Date?
+        var value: String?
+        var value2: String?
+        var value3: [String]?
+        var text: String?
+
+
+
+    }
+    
+    var element = Element(name: "Niki", title: "", date: nil, date1: Date(), value: nil, value2: "", value3: ["test", "test2"], text: nil)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+//        let dataSource = ModificationDatasource(element: element, inputDescriptors: [
+//            .standardOptional(title: "Full Name", keyPath: \Element.name, isRequired: true),
+//                                                                                     .standardOptional(title: "Title", keyPath: \Element.title, isRequired: true),
+//                                                                                     .datePicker(title: "Birth Date", keyPath: \Element.date, isRequired: true),
+//                                                                                     .datePicker(title: "Birth Date1", keyPath: \Element.date1, isRequired: true),
+//                                                                                     .itemsPicker(title: "Select", keyPath: \Element.value, model: ["a", "b", "c"], isRequired: true),
+//                                                                                     .itemsPicker(title: "Select 2", keyPath: \Element.value2, model: ["1", "2", "3"], isRequired: true),
+//                                                                                     .multitude(title: "Attr", keyPath: \Element.value3, isRequired: true),
+//                                                                                     .notes(title: "Text", keyPath: \Element.text, isRequired: true)
+//                                                                                     ]
+//                                                )
+        
+        
+        let dataSource = ModificationDatasource(element: element, inputDescriptors: [
+            .standardOptional(title: "Full Name", keyPath: \Element.name, isRequired: true),
+            .standardOptional(title: "Title", keyPath: \Element.title, isRequired: false),
+            .datePickerOptional(title: "Birth Date", keyPath: \Element.date, isRequired: false),
+            .datePickerOptional(title: "Birth Date1", keyPath: \Element.date1, isRequired: false),
+            .itemsPickerOptional(title: "Select", keyPath: \Element.value, model: ["a", "b", "c"], isRequired: false),
+            .itemsPickerOptional(title: "Select 2", keyPath: \Element.value2, model: ["1", "2", "3"], isRequired: false),
+            .multitudeOptional(title: "Attr", keyPath: \Element.value3, isRequired: true),
+            .notesOptional(title: "Text", keyPath: \Element.text, isRequired: false)
+            ])
+        
+        modificaitonElementController = ModificationElementController(containerView: containerView, dataSource: dataSource)
+    }
+    
+    @IBAction func validate(_ sender: Any) {
+        
+        do {
+           let a = try modificaitonElementController?.requestModifiedElement()
+            print(a)
+        } catch ModificationError.failedInputValidation {
+            print("validation error")
+        }
+        catch {
+        }
+        
+    }
     
     
 }
