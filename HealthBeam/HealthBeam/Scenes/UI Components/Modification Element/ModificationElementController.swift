@@ -14,9 +14,13 @@ class ModificationDatasource<T: Codable> {
     enum InputDescriptor {
         case standard(title: String, keyPath: WritableKeyPath<T, String>, isRequired: Bool)
         case standardOptional(title: String, keyPath: WritableKeyPath<T, String?>, isRequired: Bool)
-        case multitude(title: String, keyPath: WritableKeyPath<T, [String]?>, isRequired: Bool)
-        case datePicker(title: String, keyPath: WritableKeyPath<T, Date?>, isRequired: Bool)
-        case itemsPicker(title: String, keyPath: WritableKeyPath<T, String?>, model: [String] ,isRequired: Bool)
+        case multitude(title: String, keyPath: WritableKeyPath<T, [String]>, isRequired: Bool)
+        case multitudeOptional(title: String, keyPath: WritableKeyPath<T, [String]?>, isRequired: Bool)
+        case datePickerOptional(title: String, keyPath: WritableKeyPath<T, Date?>, isRequired: Bool)
+        case itemsPicker(title: String, keyPath: WritableKeyPath<T, String>, model: [String] ,isRequired: Bool)
+        case itemsPickerOptional(title: String, keyPath: WritableKeyPath<T, String?>, model: [String] ,isRequired: Bool)
+        case notes(title: String, keyPath: WritableKeyPath<T, String>, isRequired: Bool)
+        case notesOptional(title: String, keyPath: WritableKeyPath<T, String?>, isRequired: Bool)
     }
     
     init(element: T, inputDescriptors: [InputDescriptor]) {
@@ -25,12 +29,16 @@ class ModificationDatasource<T: Codable> {
     }
 }
 
-class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+enum ModificationError: Error {
+    case failedInputValidation
+}
+
+class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate {
+
     
     private var tableView: UITableView?
     private weak var containerView: UIView?
     private let dataSource: ModificationDatasource<T>
-    private weak var owner: UIViewController?
     
     private lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
@@ -45,9 +53,8 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         return elementsPicker
     }()
     
-    init(containerView: UIView, dataSource: ModificationDatasource<T>, owner: UIViewController) {
+    init(containerView: UIView, dataSource: ModificationDatasource<T>) {
         self.dataSource = dataSource
-        self.owner = owner
         super.init()
 
         let plainTableView = UITableView(frame: .zero, style: .plain)
@@ -60,17 +67,29 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
 
         plainTableView.registerNib(ModificationElementTableViewCell.self)
         plainTableView.registerNib(AddMoreTableViewCell.self)
+        plainTableView.registerNib(NotesTableViewCell.self)
         plainTableView.reloadData()
 
         self.tableView = plainTableView
         self.containerView = containerView
     }
     
-    func requestModifiedElement() -> T? {
+    func requestModifiedElement() throws -> T? {
         tableView?.firstResponder()?.resignFirstResponder()
-        tableView?.reloadData()
         guard inputIsValud() else {
-            return nil
+            throw ModificationError.failedInputValidation
+        }
+        
+        for (index, inputDescriptor) in dataSource.inputDescriptors.enumerated() {
+            if case let .multitude(_, keyPath, _) = inputDescriptor {
+                let content = dataSource.element[keyPath:keyPath]
+                dataSource.element[keyPath:keyPath] = content.filter({ $0.count > 0})
+                tableView?.reloadSections(IndexSet(integer: index), with: .automatic)
+            } else if case let .multitudeOptional(_, keyPath, _) = inputDescriptor {
+                let content = dataSource.element[keyPath:keyPath]
+                dataSource.element[keyPath:keyPath] = content?.filter({ $0.count > 0})
+                tableView?.reloadSections(IndexSet(integer: index), with: .automatic)
+            }
         }
         
         return dataSource.element
@@ -81,19 +100,24 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
             switch inputDescriptor {
                 
             case let .standard(_, keyPath, isRequired):
-                if dataSource.element[keyPath: keyPath].count == 0 && isRequired {
+                if !isStringInputValid(keyPath: keyPath, isRequired: isRequired) {
                     return false
                 }
             case let .standardOptional(_, keyPath, isRequired):
-                if !isStringInputValid(keyPath: keyPath, isRequired: isRequired) {
+                if !isStringOptionalInputValid(keyPath: keyPath, isRequired: isRequired) {
                     return false
                 }
             case let .multitude(_, keyPath, isRequired):
                 let content = dataSource.element[keyPath: keyPath]
-                if  isRequired && (content == nil || content?.count == 0 || content?.first?.count == 0)  {
+                if  isRequired && content.filter({ $0.count > 0}).count == 0  {
                     return false
                 }
-            case let .datePicker(_, keyPath, isRequired):
+            case let .multitudeOptional(_, keyPath, isRequired):
+                let content = dataSource.element[keyPath: keyPath]
+                if  isRequired && (content == nil || content?.filter({ $0.count > 0}).count == 0 )  {
+                    return false
+                }
+            case let .datePickerOptional(_, keyPath, isRequired):
                 let content = dataSource.element[keyPath: keyPath]
                 if  isRequired && (content == nil)  {
                     return false
@@ -102,14 +126,34 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
                 if !isStringInputValid(keyPath: keyPath, isRequired: isRequired) {
                     return false
                 }
+            case let .itemsPickerOptional(_, keyPath, _, isRequired):
+                if !isStringOptionalInputValid(keyPath: keyPath, isRequired: isRequired) {
+                    return false
+                }
+            case let .notes(_, keyPath, isRequired):
+                if !isStringInputValid(keyPath: keyPath, isRequired: isRequired) {
+                    return false
+                }
+            case let .notesOptional(_, keyPath, isRequired):
+                if !isStringOptionalInputValid(keyPath: keyPath, isRequired: isRequired) {
+                    return false
+                }
             }
         }
         return true
     }
 
-    private func isStringInputValid(keyPath: WritableKeyPath<T, String?>, isRequired: Bool) -> Bool {
+    private func isStringOptionalInputValid(keyPath: WritableKeyPath<T, String?>, isRequired: Bool) -> Bool {
         let content = dataSource.element[keyPath: keyPath]
         if  isRequired && (content == nil || content?.count == 0)  {
+            return false
+        }
+        return true
+    }
+    
+    private func isStringInputValid(keyPath: WritableKeyPath<T, String>, isRequired: Bool) -> Bool {
+        let content = dataSource.element[keyPath: keyPath]
+        if isRequired && content.count == 0 {
             return false
         }
         return true
@@ -124,6 +168,8 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if case let .multitude(_, keyPath, _) = dataSource.inputDescriptors[section] {
+            return dataSource.element[keyPath: keyPath].count + 1
+        } else if case let .multitudeOptional(_, keyPath, _) = dataSource.inputDescriptors[section] {
             return (dataSource.element[keyPath: keyPath]?.count ?? 0) + 1
         }
         return 1
@@ -132,20 +178,31 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
     //MARK:- UITableViewDatasource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ModificationElementTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.textField.inputView = nil
-        cell.textField.inputAccessoryView = nil
         let inputDescriptor = dataSource.inputDescriptors[indexPath.section]
-        let cellTitle: String
+        
         switch inputDescriptor {
-        case let .standard(title, keyPath, isRequired):
-            cellTitle = title
-            break
-        case let .standardOptional(title, keyPath, isRequired):
-            cellTitle = title
-            cell.textField.text = dataSource.element[keyPath: keyPath]
-
-        case let .multitude(title, keyPath, isRequired):
+        case let .standard(title, keyPath, _):
+            let cell: ModificationElementTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            let text = dataSource.element[keyPath: keyPath]
+            configureStringInputCell(cell: cell, title: title, text: text, indexPath: indexPath)
+            return cell
+        case let .standardOptional(title, keyPath, _):
+            let cell: ModificationElementTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            let text = dataSource.element[keyPath: keyPath]
+            configureStringInputCell(cell: cell, title: title, text: text, indexPath: indexPath)
+            return cell
+        case let .multitude(title, keyPath, _):
+            let content = dataSource.element[keyPath: keyPath]
+            if indexPath.row < content.count {
+                let cell: ModificationElementTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                configureMultitudeInputCell(cell: cell, title: title, content: content, indexPath: indexPath)
+                return cell
+            } else {
+                let cell: AddMoreTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                configureAddMoreCell(cell: cell, indexPath: indexPath)
+                return cell
+            }
+        case let .multitudeOptional(title, keyPath, _):
             let content: [String]
             if let element = dataSource.element[keyPath: keyPath] {
                 content = element
@@ -154,58 +211,84 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
                 content = []
             }
             if indexPath.row < content.count {
-                cellTitle = indexPath.section == 0 ? title : ""
-                cell.textField.text = content[indexPath.row]
-                cell.textField.tag = indexPath.section
+                let cell: ModificationElementTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                configureMultitudeInputCell(cell: cell, title: title, content: content, indexPath: indexPath)
+                return cell
             } else {
-                let addCell: AddMoreTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                addCell.addMoreButton.tag = indexPath.section
-                return addCell
+                let cell: AddMoreTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                configureAddMoreCell(cell: cell, indexPath: indexPath)
+                return cell
             }
-        case let .datePicker(title, keyPath, isRequired):
-            cellTitle = title
-            cell.textField.text = dataSource.element[keyPath: keyPath]?.simpleDateString() ?? ""
-            configureDatePicker(cell.textField, indexPath: indexPath)
-            
-        case let .itemsPicker(title, keyPath, model, isRequired):
-            cellTitle = title
-            cell.textField.text = dataSource.element[keyPath: keyPath] ?? ""
-            configureElementsPicker(cell.textField, indexPath: indexPath)
-            break
+        case let .datePickerOptional(title, keyPath, _):
+            let cell: ModificationElementTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            let date = dataSource.element[keyPath: keyPath]
+            configureDatePickerCell(cell: cell, title: title, date: date, indexPath: indexPath)
+            return cell
+        case let .itemsPicker(title, keyPath, _, _):
+            let cell: ModificationElementTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            let text = dataSource.element[keyPath: keyPath]
+            configureItemsPicker(cell: cell, title: title, text: text, indexPath: indexPath)
+            return cell
+        case let .itemsPickerOptional(title, keyPath, _, _):
+            let cell: ModificationElementTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            let text = dataSource.element[keyPath: keyPath]
+            configureItemsPicker(cell: cell, title: title, text: text, indexPath: indexPath)
+            return cell
+        case let .notes(title, keyPath, _):
+            let cell: NotesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            let text = dataSource.element[keyPath: keyPath]
+            configureNotesInputCell(cell: cell, title: title, text: text, indexPath: indexPath)
+            return cell
+        case let .notesOptional(title, keyPath, _):
+            let cell: NotesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            let text = dataSource.element[keyPath: keyPath]
+            configureNotesInputCell(cell: cell, title: title, text: text, indexPath: indexPath)
+            return cell
         }
-        cell.textField.delegate = self
-        cell.textField.tag = indexPath.section
-        cell.titleLabel.text = cellTitle
-        cell.selectionStyle = .none
-        return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard case let .multitude(_, keyPath, _) = dataSource.inputDescriptors[indexPath.section] else {
-            return
-        }
-        
-        if editingStyle == .delete {
-            dataSource.element[keyPath: keyPath]?.remove(at: indexPath.row)
-            tableView.deleteRows(at: [IndexPath(row: indexPath.row, section: indexPath.section)], with: .automatic)
-        }
-        else if editingStyle == .insert {
-            tableView.firstResponder()?.resignFirstResponder()
-            dataSource.element[keyPath: keyPath] =  (dataSource.element[keyPath: keyPath] ?? []) + [""]
-            tableView.insertRows(at: [IndexPath(row: indexPath.row, section: indexPath.section)], with: .automatic)
+        if case let .multitude(_, keyPath, _) = dataSource.inputDescriptors[indexPath.section] {
+            if editingStyle == .delete {
+                dataSource.element[keyPath: keyPath].remove(at: indexPath.row)
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                if indexPath.row == 0 {
+                    tableView.reloadRows(at: [IndexPath(row: 1, section: indexPath.section)], with: .automatic)
+                }
+                tableView.endUpdates()
+            }
+            else if editingStyle == .insert {
+                tableView.firstResponder()?.resignFirstResponder()
+                dataSource.element[keyPath: keyPath].append("")
+                tableView.insertRows(at: [indexPath], with: .automatic)
+            }
+        } else if case let .multitudeOptional(_, keyPath, _) = dataSource.inputDescriptors[indexPath.section] {
+            if editingStyle == .delete {
+                dataSource.element[keyPath: keyPath]?.remove(at: indexPath.row)
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                if indexPath.row == 0 {
+                    tableView.reloadRows(at: [IndexPath(row: 1, section: indexPath.section)], with: .automatic)
+                }
+                tableView.endUpdates()
+            }
+            else if editingStyle == .insert {
+                tableView.firstResponder()?.resignFirstResponder()
+                dataSource.element[keyPath: keyPath] =  (dataSource.element[keyPath: keyPath] ?? []) + [""]
+                tableView.insertRows(at: [indexPath], with: .automatic)
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         if case let .multitude(_, keyPath, _) = dataSource.inputDescriptors[indexPath.section] {
+            let content = dataSource.element[keyPath: keyPath]
+            return indexPath.row >= content.count ? .insert : .delete
+        } else if case let .multitudeOptional(_, keyPath, _) = dataSource.inputDescriptors[indexPath.section] {
             let content = dataSource.element[keyPath: keyPath] ?? []
-            if indexPath.row >= content.count {
-                return .insert
-            } else {
-                return .delete
-            }
+            return indexPath.row >= content.count ? .insert : .delete
         }
-        
         
         return .none
     }
@@ -213,27 +296,45 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         if case .multitude(_, _, _) = dataSource.inputDescriptors[indexPath.section] {
             return true
+        } else if case .multitudeOptional(_, _, _) = dataSource.inputDescriptors[indexPath.section] {
+            return true
         }
         return false
     }
     
     //MARK:- UITableViewDelegate
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let inputDescriptor = dataSource.inputDescriptors[indexPath.section]
-        if case .datePicker(_, _, _) = inputDescriptor {
-            
+        if case .notes(_, _, _) = inputDescriptor {
+            return 80
+        } else if case .notesOptional(_, _, _) = inputDescriptor {
+            return 80
         }
+        return 44
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
     }
     
     //MARK:- UITextFieldDelegate
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         let inputDescriptor = dataSource.inputDescriptors[textField.tag]
-        if case let .datePicker(_, keyPath, _) = inputDescriptor {
+        
+        switch inputDescriptor {
+        case let .datePickerOptional(_, keyPath, _):
             datePicker.date = dataSource.element[keyPath: keyPath] ?? Date()
-        }
-        else if case let .itemsPicker(_, keyPath, model, _) = inputDescriptor {
+        case let .itemsPicker(_, keyPath, model, _):
+            itemsPicker.tag = textField.tag
+            let value = dataSource.element[keyPath: keyPath]
+            guard let selectedIndex = model.firstIndex(of: value) else {
+                    itemsPicker.selectRow(0, inComponent: 0, animated: false)
+                    return true
+            }
+            itemsPicker.selectRow(selectedIndex, inComponent: 0, animated: false)
+        case let .itemsPickerOptional(_, keyPath, model, _):
             itemsPicker.tag = textField.tag
             guard let value = dataSource.element[keyPath: keyPath],
                 let selectedIndex = model.firstIndex(of: value) else {
@@ -241,6 +342,9 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
                     return true
             }
             itemsPicker.selectRow(selectedIndex, inComponent: 0, animated: false)
+
+        default:
+            break
         }
         return true
     }
@@ -251,20 +355,37 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         }
         let inputDescriptor = dataSource.inputDescriptors[textField.tag]
         switch inputDescriptor {
-        case let .standard(title, keyPath, isRequired):
-            break
-        case let .standardOptional(title, keyPath, isRequired):
+        case let .standard(_, keyPath, _):
             dataSource.element[keyPath: keyPath] = text
-        case let .multitude(title, keyPath, isRequired):
+        case let .standardOptional(_, keyPath, _):
+            dataSource.element[keyPath: keyPath] = text
+        case let .multitude(_, keyPath, _):
+            guard let indexPath = tableView?.indexPathForRow(at: textField.convert(textField.center, to: tableView)) else {
+                return
+            }
+            dataSource.element[keyPath: keyPath][indexPath.row] = text
+        case let .multitudeOptional(_, keyPath, _):
             guard let indexPath = tableView?.indexPathForRow(at: textField.convert(textField.center, to: tableView)) else {
                 return
             }
             dataSource.element[keyPath: keyPath]?[indexPath.row] = text
-        case let .datePicker(title, keyPath, isRequired):
-            break
-        case let .itemsPicker(title, keyPath, model, isRequired):
+        default:
             break
         }
+    }
+    
+    //MARK:- UITextViewDelegate
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        guard let text = textView.text else {
+            return
+        }
+        if case let .notes(_, keyPath, _) = dataSource.inputDescriptors[textView.tag] {
+            dataSource.element[keyPath: keyPath] = text
+        } else if case let .notesOptional(_, keyPath, _) = dataSource.inputDescriptors[textView.tag] {
+            dataSource.element[keyPath: keyPath] = text
+        }
+        
     }
     
     //MARK:- UIPickerViewDataSource
@@ -277,6 +398,8 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         let inputDescriptor = dataSource.inputDescriptors[pickerView.tag]
         if case let .itemsPicker(_, _, model, _) = inputDescriptor {
             return model.count
+        } else if case let .itemsPickerOptional(_, _, model, _) = inputDescriptor {
+            return model.count
         }
         return 0
     }
@@ -286,6 +409,8 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let inputDescriptor = dataSource.inputDescriptors[pickerView.tag]
         if case let .itemsPicker(_, _, model, _) = inputDescriptor {
+            return model[row]
+        } else if case let .itemsPickerOptional(_, _, model, _) = inputDescriptor {
             return model[row]
         }
         return ""
@@ -316,14 +441,58 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
     }
     
     @objc private func donePickingDate(barButton: UIBarButtonItem) {
-        owner?.view.endEditing(true)
-        if case let .datePicker(_, keyPath, _) = dataSource.inputDescriptors[barButton.tag] {
+        tableView?.endEditing(true)
+        let inputDescriptor = dataSource.inputDescriptors[barButton.tag]
+        switch inputDescriptor {
+        case let .datePickerOptional(_, keyPath, _):
             dataSource.element[keyPath: keyPath] = datePicker.date
-        }
-        else if case let .itemsPicker(_, keyPath, model, _) = dataSource.inputDescriptors[barButton.tag] {
+        case let .itemsPicker(_, keyPath, model, _):
             dataSource.element[keyPath: keyPath] = model[itemsPicker.selectedRow(inComponent: 0)]
+        case let .itemsPickerOptional(_, keyPath, model, _):
+            dataSource.element[keyPath: keyPath] = model[itemsPicker.selectedRow(inComponent: 0)]
+        default:
+            break
         }
         tableView?.reloadSections(IndexSet(integer: barButton.tag), with: .automatic)
     }
 }
 
+//MARK:- Cells Configurations
+
+extension ModificationElementController {
+    
+    private func configureStringInputCell(cell: ModificationElementTableViewCell, title: String, text: String?, indexPath: IndexPath) {
+        cell.titleLabel.text = title
+        cell.textField.text = text
+        cell.textField.delegate = self
+        cell.textField.tag = indexPath.section
+    }
+    
+    private func configureMultitudeInputCell(cell: ModificationElementTableViewCell, title: String, content: [String], indexPath: IndexPath) {
+        let title = indexPath.row == 0 ? title : ""
+        configureStringInputCell(cell: cell, title: title, text: content[indexPath.row], indexPath: indexPath)
+    }
+    
+    private func configureAddMoreCell(cell: AddMoreTableViewCell, indexPath: IndexPath) {
+        cell.addMoreButton.tag = indexPath.section
+    }
+    
+    private func configureDatePickerCell(cell: ModificationElementTableViewCell, title: String, date: Date?, indexPath: IndexPath) {
+        let text = date?.simpleDateString() ?? ""
+        configureStringInputCell(cell: cell, title: title, text: text, indexPath: indexPath)
+        configureDatePicker(cell.textField, indexPath: indexPath)
+    }
+    
+    private func configureItemsPicker(cell: ModificationElementTableViewCell, title: String, text: String?, indexPath: IndexPath) {
+        configureStringInputCell(cell: cell, title: title, text: text, indexPath: indexPath)
+        configureElementsPicker(cell.textField, indexPath: indexPath)
+    }
+    
+    private func configureNotesInputCell(cell: NotesTableViewCell, title: String, text: String?, indexPath: IndexPath) {
+        cell.titleLabel.text = title
+        cell.textView.text = text
+        cell.textView.delegate = self
+        cell.textView.tag = indexPath.section
+    }
+    
+}

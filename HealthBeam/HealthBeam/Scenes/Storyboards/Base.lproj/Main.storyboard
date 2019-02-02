@@ -18,16 +18,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97n-06-GH2">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="602"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kih-jO-uEQ">
+                                <rect key="frame" x="164.5" y="630" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="validate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7eF-c5-X3t"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="97n-06-GH2" secondAttribute="bottom" id="Jen-zv-zJK"/>
+                            <constraint firstItem="kih-jO-uEQ" firstAttribute="top" secondItem="97n-06-GH2" secondAttribute="bottom" constant="8" id="3J7-Ik-Old"/>
+                            <constraint firstItem="kih-jO-uEQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="P4i-xl-Vfc"/>
                             <constraint firstItem="97n-06-GH2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YBI-66-JK9"/>
                             <constraint firstAttribute="trailing" secondItem="97n-06-GH2" secondAttribute="trailing" id="lil-ph-ach"/>
                             <constraint firstItem="97n-06-GH2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="t4J-Wr-1qh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kih-jO-uEQ" secondAttribute="bottom" constant="7" id="tPN-hU-phO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

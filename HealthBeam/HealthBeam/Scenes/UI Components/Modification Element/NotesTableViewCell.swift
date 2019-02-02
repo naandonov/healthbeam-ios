@@ -1,16 +1,17 @@
 //
-//  AddMoreTableViewCell.swift
+//  NotesTableViewCell.swift
 //  HealthBeam
 //
-//  Created by Nikolay Andonov on 31.01.19.
+//  Created by Nikolay Andonov on 1.02.19.
 //  Copyright © 2019 nikolay.andonov. All rights reserved.
 //
 
 import UIKit
 
-class AddMoreTableViewCell: UITableViewCell, NibLoadableView {
+class NotesTableViewCell: UITableViewCell, NibLoadableView {
 
-    @IBOutlet weak var addMoreButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var textView: UITextView!
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
