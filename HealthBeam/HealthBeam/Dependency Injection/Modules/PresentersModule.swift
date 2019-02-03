@@ -23,6 +23,10 @@ class PresentersModule: Module {
         binder
             .bind(PatientsSearchPresenterProtocol.self)
             .to(factory: PatientsSearchPresenter.init)
+        
+        binder
+            .bind(PatientDetailsPresenterProtocol.self)
+            .to(factory: PatientDetailsPresenter.init)
 
     }
 }

@@ -10,7 +10,31 @@ import UIKit
 
 class RoundedButton: UIButton {
     
-    let gradientLayer = CAGradientLayer()
+    @IBInspectable
+    var prominentStyle = true {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
+    private let gradientLayer: CAGradientLayer = {
+        let gradientLayer: CAGradientLayer = CAGradientLayer()
+        gradientLayer.frame = .zero
+        gradientLayer.colors = [UIColor.darkBlue.cgColor, UIColor.lightBlue.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        gradientLayer.locations = [NSNumber(floatLiteral: 0.0), NSNumber(floatLiteral: 1.0)]
+        return gradientLayer
+    }()
+    
+    private let shapeLayer: CAShapeLayer = {
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.lineWidth = 2
+//        shapeLayer.path = UIBezierPath(rect: self.bounds).CGPath
+        shapeLayer.fillColor = nil
+        shapeLayer.strokeColor = UIColor.white.cgColor
+        return shapeLayer
+    }()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,19 +46,24 @@ class RoundedButton: UIButton {
         clipsToBounds = true
         layer.cornerRadius = bounds.height/2
         gradientLayer.frame = bounds
+        shapeLayer.path = UIBezierPath(roundedRect: bounds.insetBy(dx: 2, dy: 2), cornerRadius: bounds.height/2).cgPath
+//        shapeLayer.cornerRadius = bounds.height/2
+        
+        if prominentStyle {
+            gradientLayer.mask = nil
+            setTitleColor(.white, for: .normal)
+        } else {
+            gradientLayer.mask = shapeLayer
+            setTitleColor(.neutralBlue, for: .normal)
+        }
     }
     
     //MARK:- Utilities
     
     private func setupUI() {
        
-        gradientLayer.frame = bounds
-        gradientLayer.colors = [UIColor.darkBlue.cgColor, UIColor.lightBlue.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
-        gradientLayer.locations = [NSNumber(floatLiteral: 0.0), NSNumber(floatLiteral: 1.0)]
+    
         layer.insertSublayer(gradientLayer, at: 0)
         
-        setTitleColor(.white, for: .normal)
     }
 }

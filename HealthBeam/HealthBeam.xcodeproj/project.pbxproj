@@ -67,6 +67,12 @@
 		4E17F3DC2204E27700E113ED /* NotesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E17F3DA2204E27700E113ED /* NotesTableViewCell.xib */; };
 		4E17F3DE2205A10C00E113ED /* ModificationBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3DD2205A10C00E113ED /* ModificationBaseTableViewCell.swift */; };
 		4E17F3E022070E2C00E113ED /* ModificationStandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3DF22070E2C00E113ED /* ModificationStandardTextField.swift */; };
+		4E17F3E72207219700E113ED /* PatientDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3E22207219700E113ED /* PatientDetailsPresenter.swift */; };
+		4E17F3E82207219700E113ED /* PatientDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3E32207219700E113ED /* PatientDetailsRouter.swift */; };
+		4E17F3E92207219700E113ED /* PatientDetailsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3E42207219700E113ED /* PatientDetailsModels.swift */; };
+		4E17F3EA2207219700E113ED /* PatientDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3E52207219700E113ED /* PatientDetailsViewController.swift */; };
+		4E17F3EB2207219700E113ED /* PatientDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3E62207219700E113ED /* PatientDetailsInteractor.swift */; };
+		4E17F3ED22072B1300E113ED /* OutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3EC22072B1300E113ED /* OutlineView.swift */; };
 		4E2DEA4D21F4CE0D000E0C61 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */; };
 		4E2DEA5121F4E31C000E0C61 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */; };
 		4E2DEA5221F4E31C000E0C61 /* MenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */; };
@@ -91,6 +97,13 @@
 		4E62DF0B2200E6360090BFAF /* ModificationElementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62DF0A2200E6360090BFAF /* ModificationElementController.swift */; };
 		4E62DF0E2200E6E40090BFAF /* ModificationElementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62DF0C2200E6E40090BFAF /* ModificationElementTableViewCell.swift */; };
 		4E62DF0F2200E6E40090BFAF /* ModificationElementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E62DF0D2200E6E40090BFAF /* ModificationElementTableViewCell.xib */; };
+		4E6EB7962207643F00146B8C /* String+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EB7952207643F00146B8C /* String+Calculations.swift */; };
+		4E6EB79A220766A600146B8C /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EB798220766A600146B8C /* ListItemTableViewCell.swift */; };
+		4E6EB79B220766A600146B8C /* ListItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E6EB799220766A600146B8C /* ListItemTableViewCell.xib */; };
+		4E6EB79E220766C200146B8C /* HealthRecordPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EB79C220766C200146B8C /* HealthRecordPreviewTableViewCell.swift */; };
+		4E6EB79F220766C200146B8C /* HealthRecordPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E6EB79D220766C200146B8C /* HealthRecordPreviewTableViewCell.xib */; };
+		4E6EB7A2220766D100146B8C /* AddHealthRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EB7A0220766D100146B8C /* AddHealthRecordTableViewCell.swift */; };
+		4E6EB7A3220766D100146B8C /* AddHealthRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E6EB7A1220766D100146B8C /* AddHealthRecordTableViewCell.xib */; };
 		4E93800E21D949B30083ED03 /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93800D21D949B30083ED03 /* FloatingTextField.swift */; };
 		4E93801121D9795A0083ED03 /* KeyboardScrollHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */; };
 		4E93801321D981020083ED03 /* UIView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801221D981020083ED03 /* UIView+Utilities.swift */; };
@@ -199,6 +212,12 @@
 		4E17F3DA2204E27700E113ED /* NotesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotesTableViewCell.xib; sourceTree = "<group>"; };
 		4E17F3DD2205A10C00E113ED /* ModificationBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationBaseTableViewCell.swift; sourceTree = "<group>"; };
 		4E17F3DF22070E2C00E113ED /* ModificationStandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationStandardTextField.swift; sourceTree = "<group>"; };
+		4E17F3E22207219700E113ED /* PatientDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailsPresenter.swift; sourceTree = "<group>"; };
+		4E17F3E32207219700E113ED /* PatientDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailsRouter.swift; sourceTree = "<group>"; };
+		4E17F3E42207219700E113ED /* PatientDetailsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailsModels.swift; sourceTree = "<group>"; };
+		4E17F3E52207219700E113ED /* PatientDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailsViewController.swift; sourceTree = "<group>"; };
+		4E17F3E62207219700E113ED /* PatientDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailsInteractor.swift; sourceTree = "<group>"; };
+		4E17F3EC22072B1300E113ED /* OutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineView.swift; sourceTree = "<group>"; };
 		4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -226,6 +245,13 @@
 		4E62DF0A2200E6360090BFAF /* ModificationElementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationElementController.swift; sourceTree = "<group>"; };
 		4E62DF0C2200E6E40090BFAF /* ModificationElementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationElementTableViewCell.swift; sourceTree = "<group>"; };
 		4E62DF0D2200E6E40090BFAF /* ModificationElementTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModificationElementTableViewCell.xib; sourceTree = "<group>"; };
+		4E6EB7952207643F00146B8C /* String+Calculations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Calculations.swift"; sourceTree = "<group>"; };
+		4E6EB798220766A600146B8C /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
+		4E6EB799220766A600146B8C /* ListItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListItemTableViewCell.xib; sourceTree = "<group>"; };
+		4E6EB79C220766C200146B8C /* HealthRecordPreviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordPreviewTableViewCell.swift; sourceTree = "<group>"; };
+		4E6EB79D220766C200146B8C /* HealthRecordPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HealthRecordPreviewTableViewCell.xib; sourceTree = "<group>"; };
+		4E6EB7A0220766D100146B8C /* AddHealthRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHealthRecordTableViewCell.swift; sourceTree = "<group>"; };
+		4E6EB7A1220766D100146B8C /* AddHealthRecordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddHealthRecordTableViewCell.xib; sourceTree = "<group>"; };
 		4E93800D21D949B30083ED03 /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
 		4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollHandler.swift; sourceTree = "<group>"; };
 		4E93801221D981020083ED03 /* UIView+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utilities.swift"; sourceTree = "<group>"; };
@@ -299,6 +325,7 @@
 		4E0FEF5421D6BA6A0046303F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				4E17F3E12207217400E113ED /* Patient Details */,
 				4E2DEA5721F65552000E0C61 /* Patients Search */,
 				4EF9E2B121ED1AAF00E0DDD0 /* Menu */,
 				4ED74C1321DBC67D009AB7C3 /* User Profile */,
@@ -435,6 +462,7 @@
 				4E0FEFC121D6BF050046303F /* UIView+LayoutConstraints.swift */,
 				4E0FEFBC21D6BF050046303F /* UIView+Nib.swift */,
 				4E93801421D9850C0083ED03 /* String+Validation.swift */,
+				4E6EB7952207643F00146B8C /* String+Calculations.swift */,
 				4ED74C2021DBE0FD009AB7C3 /* NSManagedObject+Utilities.swift */,
 				4ED74C2221DBE95A009AB7C3 /* UIAlertController+Utilities.swift */,
 				4EC355DD21DFABD00011D723 /* Collection+Utilities.swift */,
@@ -524,6 +552,7 @@
 				4E93EA3921F661E5007C8BE8 /* PatientTableViewCell.xib */,
 				4E93EA3C21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.swift */,
 				4E93EA3D21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib */,
+				4E17F3EC22072B1300E113ED /* OutlineView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -554,6 +583,19 @@
 				4E17F3DF22070E2C00E113ED /* ModificationStandardTextField.swift */,
 			);
 			path = "Modification Element";
+			sourceTree = "<group>";
+		};
+		4E17F3E12207217400E113ED /* Patient Details */ = {
+			isa = PBXGroup;
+			children = (
+				4E6EB7972207667B00146B8C /* Views */,
+				4E17F3E22207219700E113ED /* PatientDetailsPresenter.swift */,
+				4E17F3E32207219700E113ED /* PatientDetailsRouter.swift */,
+				4E17F3E42207219700E113ED /* PatientDetailsModels.swift */,
+				4E17F3E52207219700E113ED /* PatientDetailsViewController.swift */,
+				4E17F3E62207219700E113ED /* PatientDetailsInteractor.swift */,
+			);
+			path = "Patient Details";
 			sourceTree = "<group>";
 		};
 		4E2DEA4B21F4CDE9000E0C61 /* Utilities */ = {
@@ -620,6 +662,19 @@
 				4E48E59121DB9A3200069CC4 /* HealthBeamModel.xcdatamodeld */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4E6EB7972207667B00146B8C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4E6EB798220766A600146B8C /* ListItemTableViewCell.swift */,
+				4E6EB799220766A600146B8C /* ListItemTableViewCell.xib */,
+				4E6EB79C220766C200146B8C /* HealthRecordPreviewTableViewCell.swift */,
+				4E6EB79D220766C200146B8C /* HealthRecordPreviewTableViewCell.xib */,
+				4E6EB7A0220766D100146B8C /* AddHealthRecordTableViewCell.swift */,
+				4E6EB7A1220766D100146B8C /* AddHealthRecordTableViewCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		4E93800F21D979460083ED03 /* Helpers */ = {
@@ -751,12 +806,15 @@
 				4EF9E2C321EE7AE200E0DDD0 /* StartupLoadingView.xib in Resources */,
 				4E93801E21DA98510083ED03 /* LoadingOverlayView.xib in Resources */,
 				4E39ECB721D381B60041F44C /* LaunchScreen.storyboard in Resources */,
+				4E6EB79F220766C200146B8C /* HealthRecordPreviewTableViewCell.xib in Resources */,
+				4E6EB7A3220766D100146B8C /* AddHealthRecordTableViewCell.xib in Resources */,
 				4E39ECB421D381B60041F44C /* Assets.xcassets in Resources */,
 				4E48E58B21DAC3D900069CC4 /* loading.json in Resources */,
 				4E93EA3B21F661E5007C8BE8 /* PatientTableViewCell.xib in Resources */,
 				4E2DEA6321F655C7000E0C61 /* Patients.storyboard in Resources */,
 				4E39ECB221D381B40041F44C /* Main.storyboard in Resources */,
 				4E62DF0F2200E6E40090BFAF /* ModificationElementTableViewCell.xib in Resources */,
+				4E6EB79B220766A600146B8C /* ListItemTableViewCell.xib in Resources */,
 				4E17F3D8220389A900E113ED /* AddMoreTableViewCell.xib in Resources */,
 				4EF9E2B021ED18F300E0DDD0 /* Menu.storyboard in Resources */,
 				4E2DEA5221F4E31C000E0C61 /* MenuCollectionViewCell.xib in Resources */,
@@ -826,9 +884,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ED74C1A21DBC6A7009AB7C3 /* UserProfileRouter.swift in Sources */,
+				4E17F3E82207219700E113ED /* PatientDetailsRouter.swift in Sources */,
 				4E0FEFC421D6BF050046303F /* UIStoryboard+Utility.swift in Sources */,
 				4ED74C0821DBAA9A009AB7C3 /* CoreDataHandler.swift in Sources */,
 				8C8E3AE021FF517D00563059 /* UIView+ImageProcessing.swift in Sources */,
+				4E17F3EA2207219700E113ED /* PatientDetailsViewController.swift in Sources */,
 				4EF9E2BB21ED1AD300E0DDD0 /* MenuInteractor.swift in Sources */,
 				4E0FEFC321D6BF050046303F /* UINavigationController+Utilities.swift in Sources */,
 				4ED74C1C21DBC6A7009AB7C3 /* UserProfileViewController.swift in Sources */,
@@ -851,13 +911,17 @@
 				4EC355D621DF7E490011D723 /* Date+Utilities.swift in Sources */,
 				4E2DEA6021F6557E000E0C61 /* PatientsSearchViewController.swift in Sources */,
 				4E0FEFF021D6C4030046303F /* PresentersModule.swift in Sources */,
+				4E6EB79E220766C200146B8C /* HealthRecordPreviewTableViewCell.swift in Sources */,
 				4ED74C1B21DBC6A7009AB7C3 /* UserProfileModels.swift in Sources */,
 				4E62DF0E2200E6E40090BFAF /* ModificationElementTableViewCell.swift in Sources */,
 				4E0FEFD121D6C2430046303F /* ScrollCollectionsReusability.swift in Sources */,
 				4EF9E2B921ED1AD300E0DDD0 /* MenuModels.swift in Sources */,
+				4E6EB7962207643F00146B8C /* String+Calculations.swift in Sources */,
 				4E0FF00021D7B7490046303F /* LoginModels.swift in Sources */,
 				4EF9E2BA21ED1AD300E0DDD0 /* MenuViewController.swift in Sources */,
 				4E0FEFA421D6BCB20046303F /* Request.swift in Sources */,
+				4E6EB79A220766A600146B8C /* ListItemTableViewCell.swift in Sources */,
+				4E6EB7A2220766D100146B8C /* AddHealthRecordTableViewCell.swift in Sources */,
 				4E93801321D981020083ED03 /* UIView+Utilities.swift in Sources */,
 				4E0FF00621D7C2700046303F /* RoundedButton.swift in Sources */,
 				4ED74C0E21DBC19E009AB7C3 /* BaseSignedOperation.swift in Sources */,
@@ -873,6 +937,7 @@
 				4E48E59321DB9A3200069CC4 /* HealthBeamModel.xcdatamodeld in Sources */,
 				4E0FEFA521D6BCB20046303F /* APIConstants.swift in Sources */,
 				4E0FEFEA21D6C4030046303F /* WorkersModule.swift in Sources */,
+				4E17F3E72207219700E113ED /* PatientDetailsPresenter.swift in Sources */,
 				4E0FEFFF21D7B7490046303F /* LoginRouter.swift in Sources */,
 				4E0FEFAD21D6BCB20046303F /* NetworkingManager.swift in Sources */,
 				4E39ECAF21D381B40041F44C /* ViewController.swift in Sources */,
@@ -889,6 +954,7 @@
 				4E0FEFB321D6BE630046303F /* Beacon.swift in Sources */,
 				4E39ECAD21D381B40041F44C /* AppDelegate.swift in Sources */,
 				4E0FEFC221D6BF050046303F /* String+Localization.swift in Sources */,
+				4E17F3ED22072B1300E113ED /* OutlineView.swift in Sources */,
 				4E0FF00221D7B7490046303F /* LoginInteractor.swift in Sources */,
 				4E2DEA5121F4E31C000E0C61 /* MenuCollectionViewCell.swift in Sources */,
 				8C196B7221EE3EAE004F2549 /* NotificationManager.swift in Sources */,
@@ -897,6 +963,7 @@
 				4E0FEFE521D6C4030046303F /* ViewControllersModule.swift in Sources */,
 				4E0FEFAE21D6BCB20046303F /* KeychainManager.swift in Sources */,
 				4E0FEFCA21D6BF050046303F /* UIColor+Additions.swift in Sources */,
+				4E17F3EB2207219700E113ED /* PatientDetailsInteractor.swift in Sources */,
 				4E0FEFC921D6BF050046303F /* UIFont+Additions.swift in Sources */,
 				4E17F3DB2204E27700E113ED /* NotesTableViewCell.swift in Sources */,
 				4ED74C2121DBE0FD009AB7C3 /* NSManagedObject+Utilities.swift in Sources */,
@@ -913,6 +980,7 @@
 				4EF9E2BD21ED1C0A00E0DDD0 /* MenuNavigationController.swift in Sources */,
 				4ED74C0C21DBBFE8009AB7C3 /* BaseUnsignedOperation.swift in Sources */,
 				4E0FEFA221D6BCB20046303F /* RequestProtocol.swift in Sources */,
+				4E17F3E92207219700E113ED /* PatientDetailsModels.swift in Sources */,
 				4E93EA4121F918A7007C8BE8 /* UserEntity+Mapping.swift in Sources */,
 				4E0FEFD221D6C2430046303F /* CustomizableView.swift in Sources */,
 				4E0FEFF121D6C4030046303F /* RoutersModule.swift in Sources */,

@@ -13,6 +13,7 @@ struct StyleCoordinator {
     struct Metrics {
         static let defaultSidePadding: CGFloat = 30.0
         static let cardViewCornerRadius: CGFloat = 30.0
+        static let subCardViewCornerRadius: CGFloat = 15.0
     }
 }
 

@@ -23,7 +23,7 @@ struct UIKitCommonModule: Module {
         
         binder
             .bind(UIWindow.self)
-            .to { (mainScreen: UIScreen, rootViewController: MenuViewController) in
+            .to { (mainScreen: UIScreen, rootViewController: PatientDetailsViewController) in
                 let window = UIWindow(frame: mainScreen.bounds)
                 window.rootViewController = MenuNavigationController(rootViewController: rootViewController)
                 return window
