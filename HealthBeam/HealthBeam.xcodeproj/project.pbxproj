@@ -66,6 +66,7 @@
 		4E17F3DB2204E27700E113ED /* NotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3D92204E27700E113ED /* NotesTableViewCell.swift */; };
 		4E17F3DC2204E27700E113ED /* NotesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E17F3DA2204E27700E113ED /* NotesTableViewCell.xib */; };
 		4E17F3DE2205A10C00E113ED /* ModificationBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3DD2205A10C00E113ED /* ModificationBaseTableViewCell.swift */; };
+		4E17F3E022070E2C00E113ED /* ModificationStandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3DF22070E2C00E113ED /* ModificationStandardTextField.swift */; };
 		4E2DEA4D21F4CE0D000E0C61 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */; };
 		4E2DEA5121F4E31C000E0C61 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */; };
 		4E2DEA5221F4E31C000E0C61 /* MenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */; };
@@ -197,6 +198,7 @@
 		4E17F3D92204E27700E113ED /* NotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableViewCell.swift; sourceTree = "<group>"; };
 		4E17F3DA2204E27700E113ED /* NotesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotesTableViewCell.xib; sourceTree = "<group>"; };
 		4E17F3DD2205A10C00E113ED /* ModificationBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationBaseTableViewCell.swift; sourceTree = "<group>"; };
+		4E17F3DF22070E2C00E113ED /* ModificationStandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationStandardTextField.swift; sourceTree = "<group>"; };
 		4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 				4E17F3D92204E27700E113ED /* NotesTableViewCell.swift */,
 				4E17F3DA2204E27700E113ED /* NotesTableViewCell.xib */,
 				4E17F3DD2205A10C00E113ED /* ModificationBaseTableViewCell.swift */,
+				4E17F3DF22070E2C00E113ED /* ModificationStandardTextField.swift */,
 			);
 			path = "Modification Element";
 			sourceTree = "<group>";
@@ -874,6 +877,7 @@
 				4E0FEFAD21D6BCB20046303F /* NetworkingManager.swift in Sources */,
 				4E39ECAF21D381B40041F44C /* ViewController.swift in Sources */,
 				4E0FEFC821D6BF050046303F /* NotificationCenter+Utilities.swift in Sources */,
+				4E17F3E022070E2C00E113ED /* ModificationStandardTextField.swift in Sources */,
 				4E93EA3E21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.swift in Sources */,
 				4E93EA3A21F661E5007C8BE8 /* PatientTableViewCell.swift in Sources */,
 				4E0FEF9D21D6BCB20046303F /* ResponseProtocol.swift in Sources */,

@@ -10,7 +10,6 @@ import UIKit
 
 class AddMoreTableViewCell: ModificationBaseTableViewCell {
 
-    @IBOutlet weak var addMoreButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none

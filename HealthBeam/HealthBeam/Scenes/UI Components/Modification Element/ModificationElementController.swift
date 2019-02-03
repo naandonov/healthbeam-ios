@@ -12,8 +12,8 @@ class ModificationDatasource<T: Codable> {
     var element: T
     let inputDescriptors: [InputDescriptor]
     enum InputDescriptor {
-        case standard(title: String, keyPath: WritableKeyPath<T, String>, isRequired: Bool)
-        case standardOptional(title: String, keyPath: WritableKeyPath<T, String?>, isRequired: Bool)
+        case standard(title: String, keyPath: WritableKeyPath<T, String>, keyboardType: UIKeyboardType, isRequired: Bool)
+        case standardOptional(title: String, keyPath: WritableKeyPath<T, String?>, keyboardType: UIKeyboardType, isRequired: Bool)
         case multitude(title: String, keyPath: WritableKeyPath<T, [String]>, isRequired: Bool)
         case multitudeOptional(title: String, keyPath: WritableKeyPath<T, [String]?>, isRequired: Bool)
         case datePickerOptional(title: String, keyPath: WritableKeyPath<T, Date?>, isRequired: Bool)
@@ -39,6 +39,7 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
     private var tableView: UITableView?
     private weak var containerView: UIView?
     private let dataSource: ModificationDatasource<T>
+    private var keyboardScrollHandler: KeyboardScrollHandler?
     
     private var failedVerificationIndexPaths: [IndexPath] = []
     
@@ -55,11 +56,11 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         return elementsPicker
     }()
     
-    init(containerView: UIView, dataSource: ModificationDatasource<T>) {
+    init(containerView: UIView, dataSource: ModificationDatasource<T>, notificationCenter: NotificationCenter) {
         self.dataSource = dataSource
         super.init()
 
-        let plainTableView = UITableView(frame: .zero, style: .plain)
+        let plainTableView = UITableView(frame: .zero, style: .grouped)
         containerView.addSubview(plainTableView)
         containerView.addConstraintsForWrappedInsideView(plainTableView)
 
@@ -71,6 +72,8 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         plainTableView.registerNib(AddMoreTableViewCell.self)
         plainTableView.registerNib(NotesTableViewCell.self)
         plainTableView.reloadData()
+        
+        keyboardScrollHandler = KeyboardScrollHandler(scrollView: plainTableView, notificationCenter: notificationCenter, enableTapToDismiss: false)
 
         self.tableView = plainTableView
         self.containerView = containerView
@@ -114,12 +117,12 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         var shouldFail = false
         for (index, inputDescriptor) in dataSource.inputDescriptors.enumerated() {
             switch inputDescriptor {
-            case let .standard(_, keyPath, isRequired):
+            case let .standard(_, keyPath, _, isRequired):
                 if !isStringInputValid(keyPath: keyPath, isRequired: isRequired) {
                     failedVerificationIndexPaths.append(IndexPath(row: 0, section: index))
                     shouldFail = true
                 }
-            case let .standardOptional(_, keyPath, isRequired):
+            case let .standardOptional(_, keyPath, _, isRequired):
                 if !isStringOptionalInputValid(keyPath: keyPath, isRequired: isRequired) {
                     failedVerificationIndexPaths.append(IndexPath(row: 0, section: index))
                     shouldFail = true
@@ -205,15 +208,15 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         let inputDescriptor = dataSource.inputDescriptors[indexPath.section]
         let returnCell: ModificationBaseTableViewCell
         switch inputDescriptor {
-        case let .standard(title, keyPath, _):
+        case let .standard(title, keyPath, keyboardType, _):
             let cell: ModificationElementTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             let text = dataSource.element[keyPath: keyPath]
-            configureStringInputCell(cell: cell, title: title, text: text, indexPath: indexPath)
+            configureStringInputCell(cell: cell, title: title, text: text, keyboardType: keyboardType, indexPath: indexPath)
             returnCell = cell
-        case let .standardOptional(title, keyPath, _):
+        case let .standardOptional(title, keyPath, keyboardType, _):
             let cell: ModificationElementTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             let text = dataSource.element[keyPath: keyPath]
-            configureStringInputCell(cell: cell, title: title, text: text, indexPath: indexPath)
+            configureStringInputCell(cell: cell, title: title, text: text, keyboardType: keyboardType, indexPath: indexPath)
             returnCell = cell
         case let .multitude(title, keyPath, _):
             let content = dataSource.element[keyPath: keyPath]
@@ -222,7 +225,7 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
                 configureMultitudeInputCell(cell: cell, title: title, content: content, indexPath: indexPath)
                 returnCell = cell
             } else {
-                let cell: AddMoreTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                let cell: ModificationElementTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 configureAddMoreCell(cell: cell, indexPath: indexPath)
                 returnCell = cell
             }
@@ -239,7 +242,7 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
                 configureMultitudeInputCell(cell: cell, title: title, content: content, indexPath: indexPath)
                 returnCell = cell
             } else {
-                let cell: AddMoreTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                let cell: ModificationElementTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 configureAddMoreCell(cell: cell, indexPath: indexPath)
                 returnCell = cell
             }
@@ -333,6 +336,43 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         return false
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let inputDescriptor = dataSource.inputDescriptors[section]
+        switch inputDescriptor {
+            
+        case .standard(let title, _, _, _):
+            return title
+        case .standardOptional(let title, _, _, _):
+            return title
+        case .multitude(let title, _, _):
+            return title
+        case let .multitudeOptional(title, _, isRequired):
+            var output = title
+            if isRequired {
+                output += "*"
+            }
+            return output
+        case .datePickerOptional(let title, _, _):
+            return title
+        case .itemsPicker(let title, _, _, _):
+            return title
+        case .itemsPickerOptional(let title, _, _, _):
+            return title
+        case let .notes(title, _, isRequired):
+            var output = title
+            if isRequired {
+                output += "*"
+            }
+            return output
+        case let .notesOptional(title, _, isRequired):
+            var output = title
+            if isRequired {
+                output += "*"
+            }
+            return output
+        }
+    }
+    
     //MARK:- UITableViewDelegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -348,6 +388,7 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
     }
+    
     
     //MARK:- UITextFieldDelegate
     
@@ -386,9 +427,9 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         }
         let inputDescriptor = dataSource.inputDescriptors[textField.tag]
         switch inputDescriptor {
-        case let .standard(_, keyPath, _):
+        case let .standard(_, keyPath, _, _):
             dataSource.element[keyPath: keyPath] = text
-        case let .standardOptional(_, keyPath, _):
+        case let .standardOptional(_, keyPath, _, _):
             dataSource.element[keyPath: keyPath] = text
         case let .multitude(_, keyPath, _):
             guard let indexPath = tableView?.indexPathForRow(at: textField.convert(textField.center, to: tableView)) else {
@@ -403,6 +444,12 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         default:
             break
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+       nextResponderFromSection(textField.tag)
+        
+        return true
     }
     
     //MARK:- UITextViewDelegate
@@ -484,6 +531,7 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
         default:
             break
         }
+        nextResponderFromSection(barButton.tag)
         tableView?.reloadSections(IndexSet(integer: barButton.tag), with: .automatic)
     }
 }
@@ -492,38 +540,61 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
 
 extension ModificationElementController {
     
-    private func configureStringInputCell(cell: ModificationElementTableViewCell, title: String, text: String?, indexPath: IndexPath) {
-        cell.titleLabel.text = title
+    private func configureStringInputCell(cell: ModificationElementTableViewCell, title: String, text: String?, keyboardType: UIKeyboardType, indexPath: IndexPath) {
         cell.textField.text = text
+        cell.textField.keyboardType = keyboardType
+        cell.textField.attributedPlaceholder = NSAttributedString(string: "\("Enter".localized()) \(title)")
         cell.textField.delegate = self
         cell.textField.tag = indexPath.section
+        
+        if indexPath.section < dataSource.inputDescriptors.count - 1 {
+            cell.textField.returnKeyType = .next
+        }
     }
     
     private func configureMultitudeInputCell(cell: ModificationElementTableViewCell, title: String, content: [String], indexPath: IndexPath) {
         let title = indexPath.row == 0 ? title : ""
-        configureStringInputCell(cell: cell, title: title, text: content[indexPath.row], indexPath: indexPath)
+        configureStringInputCell(cell: cell, title: title, text: content[indexPath.row], keyboardType: .default, indexPath: indexPath)
+        cell.textField.attributedPlaceholder = NSAttributedString(string: "Enter New".localized())
     }
     
-    private func configureAddMoreCell(cell: AddMoreTableViewCell, indexPath: IndexPath) {
-        cell.addMoreButton.tag = indexPath.section
+    private func configureAddMoreCell(cell: ModificationElementTableViewCell, indexPath: IndexPath) {
+        cell.textField.text = "Add".localized()
+        cell.textField.isUserInteractionEnabled = false
     }
     
     private func configureDatePickerCell(cell: ModificationElementTableViewCell, title: String, date: Date?, indexPath: IndexPath) {
         let text = date?.simpleDateString() ?? ""
-        configureStringInputCell(cell: cell, title: title, text: text, indexPath: indexPath)
+        configureStringInputCell(cell: cell, title: title, text: text, keyboardType: .default, indexPath: indexPath)
+        cell.textField.tintColor = .clear
+        cell.textField.canPerformActions = false
         configureDatePicker(cell.textField, indexPath: indexPath)
     }
     
     private func configureItemsPicker(cell: ModificationElementTableViewCell, title: String, text: String?, indexPath: IndexPath) {
-        configureStringInputCell(cell: cell, title: title, text: text, indexPath: indexPath)
+        configureStringInputCell(cell: cell, title: title, text: text, keyboardType: .default, indexPath: indexPath)
+        cell.textField.tintColor = .clear
+        cell.textField.canPerformActions = false
         configureElementsPicker(cell.textField, indexPath: indexPath)
     }
     
     private func configureNotesInputCell(cell: NotesTableViewCell, title: String, text: String?, indexPath: IndexPath) {
-        cell.titleLabel.text = title
         cell.textView.text = text
         cell.textView.delegate = self
         cell.textView.tag = indexPath.section
     }
     
+}
+
+//Utilities
+
+extension ModificationElementController {
+    private func nextResponderFromSection(_ section: Int) {
+//        let nextIndex = IndexPath(row: 0, section: section + 1)
+//        if let cell = tableView?.cellForRow(at: nextIndex) as? ModificationElementTableViewCell {
+//            cell.textField.becomeFirstResponder()
+//        } else if let cell = tableView?.cellForRow(at: nextIndex) as? NotesTableViewCell {
+//            cell.textView.becomeFirstResponder
+//        }
+    }
 }

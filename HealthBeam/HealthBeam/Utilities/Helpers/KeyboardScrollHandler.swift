@@ -14,14 +14,16 @@ class KeyboardScrollHandler {
     private var keyboardHeight: CGFloat?
     private let notificationCenter: NotificationCenter
     
-    init(scrollView: UIScrollView, notificationCenter: NotificationCenter) {
+    init(scrollView: UIScrollView, notificationCenter: NotificationCenter, enableTapToDismiss: Bool = true) {
 //        scrollView.bounces = false
         self.scrollView = scrollView
         scrollView.keyboardDismissMode = .interactive
         self.notificationCenter = notificationCenter
         
         registerForKeyboardEvents()
-        setTapGestureRecognizer()
+        if enableTapToDismiss {
+            setTapGestureRecognizer()
+        }
     }
     
     deinit {

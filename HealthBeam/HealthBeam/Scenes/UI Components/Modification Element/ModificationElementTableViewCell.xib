@@ -18,31 +18,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="332" height="44.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQa-6P-Ybv">
-                        <rect key="frame" x="16" y="12" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3GF-iu-f6v">
-                        <rect key="frame" x="76" y="7.5" width="240" height="30"/>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3GF-iu-f6v" customClass="ModificationStandardTextField" customModule="HealthBeam" customModuleProvider="target">
+                        <rect key="frame" x="16" y="0.0" width="300" height="44.5"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ZQa-6P-Ybv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="HOB-uX-Spc"/>
+                    <constraint firstItem="3GF-iu-f6v" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="BAY-Gc-JXy"/>
+                    <constraint firstAttribute="bottom" secondItem="3GF-iu-f6v" secondAttribute="bottom" id="HqW-HS-ZgY"/>
                     <constraint firstItem="3GF-iu-f6v" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="KRV-Jf-mJ3"/>
                     <constraint firstAttribute="trailing" secondItem="3GF-iu-f6v" secondAttribute="trailing" constant="16" id="aZ6-2O-r0j"/>
-                    <constraint firstItem="3GF-iu-f6v" firstAttribute="leading" secondItem="ZQa-6P-Ybv" secondAttribute="trailing" constant="18" id="ei7-9O-pXO"/>
-                    <constraint firstItem="ZQa-6P-Ybv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ujI-Sf-3BX"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="textField" destination="3GF-iu-f6v" id="xT6-A5-a34"/>
-                <outlet property="titleLabel" destination="ZQa-6P-Ybv" id="aw8-KY-TUc"/>
             </connections>
             <point key="canvasLocation" x="300.80000000000001" y="183.05847076461771"/>
         </tableViewCell>

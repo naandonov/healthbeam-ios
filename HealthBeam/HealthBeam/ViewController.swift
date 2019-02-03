@@ -47,17 +47,17 @@ class ViewController: UIViewController, UITableViewDelegate {//, PagedElementsCo
         
         
         let dataSource = ModificationDatasource(element: element, inputDescriptors: [
-            .standardOptional(title: "Full Name", keyPath: \Element.name, isRequired: true),
-            .standardOptional(title: "Title", keyPath: \Element.title, isRequired: false),
+            .standardOptional(title: "Title", keyPath: \Element.title, keyboardType: .default, isRequired: true),
             .datePickerOptional(title: "Birth Date", keyPath: \Element.date, isRequired: false),
             .datePickerOptional(title: "Birth Date1", keyPath: \Element.date1, isRequired: false),
             .itemsPickerOptional(title: "Select", keyPath: \Element.value, model: ["a", "b", "c"], isRequired: false),
             .itemsPickerOptional(title: "Select 2", keyPath: \Element.value2, model: ["1", "2", "3"], isRequired: false),
             .multitudeOptional(title: "Attr", keyPath: \Element.value3, isRequired: true),
-            .notesOptional(title: "Text", keyPath: \Element.text, isRequired: false)
+            .notesOptional(title: "Text", keyPath: \Element.text, isRequired: true),
+             .standardOptional(title: "Title", keyPath: \Element.title, keyboardType: .default, isRequired: false),
             ])
         
-        modificaitonElementController = ModificationElementController(containerView: containerView, dataSource: dataSource)
+        modificaitonElementController = ModificationElementController(containerView: containerView, dataSource: dataSource, notificationCenter: NotificationCenter.default)
     }
     
     @IBAction func validate(_ sender: Any) {

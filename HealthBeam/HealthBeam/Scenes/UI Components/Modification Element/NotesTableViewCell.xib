@@ -18,14 +18,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="77.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GS8-Cm-MUL">
-                        <rect key="frame" x="16" y="28.5" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="sdfdsfsf sfds f sf sdf s fs fs f dsf dsf ds fds fds f ds" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8a4-N4-fvH">
-                        <rect key="frame" x="74" y="16" width="230" height="45.5"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="sdfdsfsf sfds f sf sdf s fs fs f dsf dsf ds fds fds f ds" translatesAutoresizingMaskIntoConstraints="NO" id="8a4-N4-fvH">
+                        <rect key="frame" x="16" y="8" width="288" height="61.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -33,17 +27,14 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="8a4-N4-fvH" secondAttribute="trailing" constant="16" id="7Vk-iz-bDG"/>
-                    <constraint firstItem="8a4-N4-fvH" firstAttribute="leading" secondItem="GS8-Cm-MUL" secondAttribute="trailing" constant="16" id="J71-OP-FAL"/>
-                    <constraint firstItem="GS8-Cm-MUL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="NVM-O7-t40"/>
-                    <constraint firstAttribute="bottom" secondItem="8a4-N4-fvH" secondAttribute="bottom" constant="16" id="X0N-fT-VgL"/>
-                    <constraint firstItem="8a4-N4-fvH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="jEk-sw-6xu"/>
-                    <constraint firstItem="GS8-Cm-MUL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kLp-yZ-nTZ"/>
+                    <constraint firstAttribute="bottom" secondItem="8a4-N4-fvH" secondAttribute="bottom" constant="8" id="X0N-fT-VgL"/>
+                    <constraint firstItem="8a4-N4-fvH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="jEk-sw-6xu"/>
+                    <constraint firstItem="8a4-N4-fvH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="jSG-mN-dY3"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="textView" destination="8a4-N4-fvH" id="4UO-Kd-8Kr"/>
-                <outlet property="titleLabel" destination="GS8-Cm-MUL" id="O1R-Y8-yIM"/>
             </connections>
             <point key="canvasLocation" x="81.599999999999994" y="63.868065967016499"/>
         </tableViewCell>

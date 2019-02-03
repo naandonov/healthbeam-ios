@@ -17,21 +17,8 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TU3-6b-MGg">
-                        <rect key="frame" x="16" y="7" width="46" height="30"/>
-                        <state key="normal" title="Button"/>
-                    </button>
-                </subviews>
-                <constraints>
-                    <constraint firstItem="TU3-6b-MGg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="JjQ-dP-rBL"/>
-                    <constraint firstItem="TU3-6b-MGg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="dhJ-jd-MaX"/>
-                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <connections>
-                <outlet property="addMoreButton" destination="TU3-6b-MGg" id="pML-km-6rV"/>
-            </connections>
         </tableViewCell>
     </objects>
 </document>
