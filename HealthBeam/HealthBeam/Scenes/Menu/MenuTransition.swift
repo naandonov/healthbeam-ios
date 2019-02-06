@@ -114,6 +114,7 @@ class MenuTransition: NSObject, UIViewControllerAnimatedTransitioning {
             }
             UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.0) {
                 toViewController.view.alpha = 1.0
+                toViewController.navigationItem.searchController?.searchBar.alpha = 1.0
             }
             UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) { [weak self] in
                 guard let direction = self?.direction else {
@@ -123,7 +124,6 @@ class MenuTransition: NSObject, UIViewControllerAnimatedTransitioning {
                 switch direction {
                 case .forward:
                     toViewController.navigationController?.navigationBar.alpha = 1.0
-                    toViewController.navigationItem.searchController?.searchBar.alpha = 1.0
                     optionCardImageView.alpha = 0.0
                     expandView.alpha = 0.0
                 case .backward:

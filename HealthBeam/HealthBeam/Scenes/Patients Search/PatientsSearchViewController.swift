@@ -17,6 +17,11 @@ protocol PatientsSearchDisplayLogic: class {
     func processPatientAttributesReult(viewModel: PatientsSearch.Attributes.ViewModel)
 }
 
+protocol PatientsModificationProtocol: class {
+    func didDeletePatient(_ patient: Patient)
+    func didUpdatePatient(_ patient: Patient)
+}
+
 class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic {
     
     var interactor: PatientsSearchInteractorProtocol?
@@ -48,7 +53,7 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
     private func setupUI() {
         navigationItem.title = "Patients".localized()
         navigationItem.largeTitleDisplayMode = .always
-        
+    
         view.backgroundColor = .paleGray
         
         tableView.contentInsetAdjustmentBehavior = .never
@@ -82,6 +87,20 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
             router?.routeToPatientDetails()
         }
     }
+}
+
+//MARK: - PatientsModificationProtocol
+
+extension PatientsSearchViewController: PatientsModificationProtocol {
+    func didDeletePatient(_ patient: Patient) {
+        pageElementsController?.reset()
+    }
+    
+    func didUpdatePatient(_ patient: Patient) {
+        pageElementsController?.reset()
+    }
+    
+    
 }
 
 //MARK: - Properties Injection
@@ -143,7 +162,7 @@ extension PatientsSearchViewController: PagedElementsControllerSearchDelegate {
     }
     
     func didSelectItem(_ item: Patient) {
-        LoadingOverlay.showOn(view)
+        LoadingOverlay.showOn(navigationController?.view ?? view)
         interactor?.retrievePatientAttributes(request: PatientsSearch.Attributes.Request(selectedPatient: item))
     }
 }

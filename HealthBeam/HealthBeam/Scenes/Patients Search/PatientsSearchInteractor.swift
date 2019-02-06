@@ -33,6 +33,7 @@ class PatientsSearchInteractor: PatientsSearchBusinessLogic, PatientsSearchDataS
     var selectedPatientAttributes: PatientAttributes?
     
     private var searchOperations: [Int: Operation] = [:]
+    private let networkingManager: NetworkingManager
     
     func retrievePatients(request: PatientsSearch.Retrieval.Request) {
         cancelSearchRequestFor(page: request.page)
@@ -101,4 +102,7 @@ class PatientsSearchInteractor: PatientsSearchBusinessLogic, PatientsSearchDataS
         }
     }
     
+    init(networkingManager: NetworkingManager) {
+        self.networkingManager = networkingManager
+    }
 }

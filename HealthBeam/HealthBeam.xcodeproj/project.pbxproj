@@ -84,6 +84,9 @@
 		4E24BE9F220A195100E89F0E /* PatientTagsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BE9A220A195100E89F0E /* PatientTagsSearchViewController.swift */; };
 		4E24BEA0220A195100E89F0E /* PatientTagsSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BE9B220A195100E89F0E /* PatientTagsSearchInteractor.swift */; };
 		4E24BEA2220A1FB900E89F0E /* GetPatientAttributesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BEA1220A1FB900E89F0E /* GetPatientAttributesOperation.swift */; };
+		4E24BEA4220B937A00E89F0E /* DeletePatientOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BEA3220B937A00E89F0E /* DeletePatientOperation.swift */; };
+		4E24BEA6220B945900E89F0E /* UpdatePatientOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BEA5220B945900E89F0E /* UpdatePatientOperation.swift */; };
+		4E24BEA8220B953B00E89F0E /* CreatePatientOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BEA7220B953B00E89F0E /* CreatePatientOperation.swift */; };
 		4E2DEA4D21F4CE0D000E0C61 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */; };
 		4E2DEA5121F4E31C000E0C61 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */; };
 		4E2DEA5221F4E31C000E0C61 /* MenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */; };
@@ -240,6 +243,9 @@
 		4E24BE9A220A195100E89F0E /* PatientTagsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientTagsSearchViewController.swift; sourceTree = "<group>"; };
 		4E24BE9B220A195100E89F0E /* PatientTagsSearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientTagsSearchInteractor.swift; sourceTree = "<group>"; };
 		4E24BEA1220A1FB900E89F0E /* GetPatientAttributesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPatientAttributesOperation.swift; sourceTree = "<group>"; };
+		4E24BEA3220B937A00E89F0E /* DeletePatientOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePatientOperation.swift; sourceTree = "<group>"; };
+		4E24BEA5220B945900E89F0E /* UpdatePatientOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePatientOperation.swift; sourceTree = "<group>"; };
+		4E24BEA7220B953B00E89F0E /* CreatePatientOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePatientOperation.swift; sourceTree = "<group>"; };
 		4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -433,6 +439,9 @@
 				4EF9E2BE21EE6E3700E0DDD0 /* AssignDeviceTokenOperation.swift */,
 				4E17F18121FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift */,
 				4E24BEA1220A1FB900E89F0E /* GetPatientAttributesOperation.swift */,
+				4E24BEA3220B937A00E89F0E /* DeletePatientOperation.swift */,
+				4E24BEA5220B945900E89F0E /* UpdatePatientOperation.swift */,
+				4E24BEA7220B953B00E89F0E /* CreatePatientOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -938,6 +947,7 @@
 				4ED74C0821DBAA9A009AB7C3 /* CoreDataHandler.swift in Sources */,
 				8C8E3AE021FF517D00563059 /* UIView+ImageProcessing.swift in Sources */,
 				4E17F3EA2207219700E113ED /* PatientDetailsViewController.swift in Sources */,
+				4E24BEA6220B945900E89F0E /* UpdatePatientOperation.swift in Sources */,
 				4EF9E2BB21ED1AD300E0DDD0 /* MenuInteractor.swift in Sources */,
 				4E0FEFC321D6BF050046303F /* UINavigationController+Utilities.swift in Sources */,
 				4ED74C1C21DBC6A7009AB7C3 /* UserProfileViewController.swift in Sources */,
@@ -994,6 +1004,7 @@
 				4E17F3E72207219700E113ED /* PatientDetailsPresenter.swift in Sources */,
 				4E0FEFFF21D7B7490046303F /* LoginRouter.swift in Sources */,
 				4E0FEFAD21D6BCB20046303F /* NetworkingManager.swift in Sources */,
+				4E24BEA8220B953B00E89F0E /* CreatePatientOperation.swift in Sources */,
 				4E39ECAF21D381B40041F44C /* ViewController.swift in Sources */,
 				4E0FEFC821D6BF050046303F /* NotificationCenter+Utilities.swift in Sources */,
 				4E17F3E022070E2C00E113ED /* ModificationStandardTextField.swift in Sources */,
@@ -1036,6 +1047,7 @@
 				4E0FEFB021D6BCB20046303F /* BeaconsManager.swift in Sources */,
 				4E93801121D9795A0083ED03 /* KeyboardScrollHandler.swift in Sources */,
 				4E0FEF9E21D6BCB20046303F /* Service.swift in Sources */,
+				4E24BEA4220B937A00E89F0E /* DeletePatientOperation.swift in Sources */,
 				4EF9E2BD21ED1C0A00E0DDD0 /* MenuNavigationController.swift in Sources */,
 				4ED74C0C21DBBFE8009AB7C3 /* BaseUnsignedOperation.swift in Sources */,
 				4E0FEFA221D6BCB20046303F /* RequestProtocol.swift in Sources */,

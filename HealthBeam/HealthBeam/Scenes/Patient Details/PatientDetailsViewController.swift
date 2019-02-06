@@ -14,6 +14,7 @@ typealias PatientDetailsRouterProtocol = PatientDetailsRoutingLogic & PatientDet
 
 protocol PatientDetailsDisplayLogic: class {
     func displayPatientDetails(viewModel: PatientDetails.AttributeProcessing.ViewModel)
+    func displayDeletePatientResult(viewModel: PatientDetails.Delete.ViewModel)
 }
 
 class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic {
@@ -22,6 +23,7 @@ class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic
     var router: PatientDetailsRouterProtocol?
     
     private var patientDetails: PatientDetails.Model?
+    weak var modificationDelegate: PatientsModificationProtocol?
     
     
     @IBOutlet weak var genderLabel: UILabel!
@@ -57,7 +59,6 @@ class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
         interactor?.handlePatientDetails(request: PatientDetails.AttributeProcessing.Request())
     }
     
@@ -72,7 +73,7 @@ class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic
     
     private func setupUI() {
         genderLabel.textColor = .neutralBlue
-        
+                
         tableView.registerNib(ListItemTableViewCell.self)
         tableView.registerNib(HealthRecordPreviewTableViewCell.self)
         tableView.registerNib(AddHealthRecordTableViewCell.self)
@@ -83,6 +84,14 @@ class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic
         tableView.separatorStyle = .none
         
         tableView.tableHeaderView = patientDescriptionView
+        
+        view.setApplicationGradientBackground()
+        navigationItem.title = "Details".localized()
+        
+        let deleteBarButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteBarButtonAction))
+        let editBarButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(editBarButtonAction))
+        navigationItem.setRightBarButtonItems([deleteBarButton, editBarButton], animated: false)
+
     }
     
     //MARK: - Displaying Logic
@@ -133,18 +142,50 @@ class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic
         
     }
     
+    func displayDeletePatientResult(viewModel: PatientDetails.Delete.ViewModel) {
+        if viewModel.isSuccessful {
+            LoadingOverlay.hideWithSuccess { [unowned self] _ in
+                self.modificationDelegate?.didDeletePatient(viewModel.deletedPatient)
+                self.navigationController?.popViewController(animated: true)
+            }
+        } else {
+            LoadingOverlay.hide()
+            UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
+        }
+    }
+    
 }
 
 //MARK:- Button Actions
 
 extension PatientDetailsViewController {
     
-    @IBAction func subscriptionButtonAction(_ sender: Any) {
+    @objc private func deleteBarButtonAction(barButton: UIBarButtonItem) {
+        UIAlertController.presentAlertControllerWithTitleMessage("Delete Confirmation".localized(),
+                                                                 message: "Are you sure you want to delete \(patientDetails?.patient.fullName ?? "the patient")",
+            confirmationAction: "Yes".localized(),
+            discardAction: true,
+            confirmationHandler: { [weak self] in
+                guard let patient = self?.patientDetails?.patient,
+                      let strongSelf = self else {
+                    return
+                }
+                strongSelf.interactor?.deletePatient(request: PatientDetails.Delete.Request(patient: patient))
+                LoadingOverlay.showOn(strongSelf.navigationController?.view ?? strongSelf.view)
+        }, on: self)
+    }
+    
+    @objc private func editBarButtonAction(barButton: UIBarButtonItem) {
+        
+    }
+    
+    @IBAction func subscriptionButtonAction(_ sender: UIButton) {
         
         
     }
     
-    @IBAction func tagAssignButtonAction(_ sender: Any) {
+    @IBAction func tagAssignButtonAction(_ sender: UIButton) {
+
     }
 }
 

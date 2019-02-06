@@ -14,12 +14,19 @@ extension UIAlertController {
         presentAlertControllerWithTitleMessage("Something Went Wrong".localized(), message: errorMessage, on: presentingViewControler)
     }
     
-    class func presentAlertControllerWithTitleMessage(_ title: String, message: String, on presentingViewControler: UIViewController) {
+    class func presentAlertControllerWithTitleMessage(_ title: String, message: String, confirmationAction: String = "OK".localized(), discardAction: Bool = false, confirmationHandler:(()->Void)? = nil, on presentingViewControler: UIViewController) {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK".localized(), style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: confirmationAction, style: .default, handler: { _ in
+            confirmationHandler?()
+        })
         alertController.addAction(okAction)
+        if discardAction {
+            alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: nil))
+        }
         
         presentingViewControler.present(alertController, animated: true, completion: nil)
     }
+    
+    
 }

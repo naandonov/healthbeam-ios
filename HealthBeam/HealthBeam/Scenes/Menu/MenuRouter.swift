@@ -30,13 +30,13 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
     }()
     
     var dataStore: MenuDataStore?
-
+    
     private weak var hideableView: UIView?
     private var outerRect: CGRect?
     private var innerRect: CGRect?
     private var innerSnapshot: UIImage?
-
-
+    
+    
     private let loginViewControllerProvider: Provider<LoginViewController>
     private let patientsSearchViewControllerProvider: Provider<PatientsSearchViewController>
     
@@ -55,14 +55,14 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
         }
         let patientsSearchViewController = patientsSearchViewControllerProvider.get()
         patientsSearchViewController.view.layoutSubviews()
-
+        
         hideableView = cell
         if let view = viewController?.view {
             outerRect = cell.contentView.convert(cell.contentView.frame, to: view)
             innerRect = cell.innerContainerView.convert(cell.innerContainerView.frame, to: view)
         }
         innerSnapshot = cell.innerContainerView.snapshot()
-
+        
         navigationController?.pushViewController(patientsSearchViewController, animated: true)
     }
     
@@ -83,12 +83,12 @@ extension MenuRouter: UINavigationControllerDelegate {
             let innerRect = innerRect,
             let outerRect = outerRect,
             let innerSnapshot = innerSnapshot,
-        (fromVC is MenuViewController && toVC is PatientsSearchViewController) ||
-         (toVC is MenuViewController && fromVC is PatientsSearchViewController)
-        else {
+            (operation == .push && navigationController.viewControllers.count == 2) ||
+                (operation == .pop && navigationController.viewControllers.count == 1)
+            else {
                 return nil
         }
-
+        
         switch operation {
         case .push:
             return MenuTransition(direction: .forward,

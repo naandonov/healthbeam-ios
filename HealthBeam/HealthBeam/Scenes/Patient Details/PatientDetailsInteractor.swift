@@ -12,6 +12,7 @@ protocol PatientDetailsBusinessLogic {
     var presenter: PatientDetailsPresentationLogic? { get set }
     
     func handlePatientDetails(request: PatientDetails.AttributeProcessing.Request)
+    func deletePatient(request: PatientDetails.Delete.Request)
 }
 
 protocol PatientDetailsDataStore {
@@ -23,7 +24,8 @@ class PatientDetailsInteractor: PatientDetailsBusinessLogic, PatientDetailsDataS
     
     var patient: Patient?
     var patientAttributes: PatientAttributes?
-    let coreDataHandler: CoreDataHandler
+    private let coreDataHandler: CoreDataHandler
+    private let networkingManager: NetworkingManager
     
     var presenter: PatientDetailsPresentationLogic?
     
@@ -48,7 +50,28 @@ class PatientDetailsInteractor: PatientDetailsBusinessLogic, PatientDetailsDataS
         }
     }
     
-    init(coreDataHandler: CoreDataHandler) {
+    func deletePatient(request: PatientDetails.Delete.Request) {
+        let operation = DeletePatientOperation(patientId: request.patient.id) { [weak self] result in
+            guard let strongSelf = self else {
+                return
+            }
+            switch result {
+            case let .success(responseObject):
+                if let value = responseObject.value, value.type == .success   {
+                    strongSelf.presenter?.processDeletePatientOperation(response: PatientDetails.Delete.Response(isSuccessful: true, patient: request.patient, error: nil))
+                } else {
+                    strongSelf.presenter?.processDeletePatientOperation(response: PatientDetails.Delete.Response(isSuccessful: false, patient: request.patient, error: nil))
+                }
+            case let .failure(responseObject):
+                log.error(responseObject.description)
+                strongSelf.presenter?.processDeletePatientOperation(response: PatientDetails.Delete.Response(isSuccessful: false, patient: request.patient, error: responseObject))
+            }
+        }
+        networkingManager.addNetwork(operation: operation)
+    }
+    
+    init(coreDataHandler: CoreDataHandler, networkingManager: NetworkingManager) {
         self.coreDataHandler = coreDataHandler
+        self.networkingManager = networkingManager
     }
 }

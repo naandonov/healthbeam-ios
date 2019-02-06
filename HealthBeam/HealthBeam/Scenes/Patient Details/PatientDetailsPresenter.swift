@@ -12,6 +12,8 @@ protocol PatientDetailsPresentationLogic {
     var presenterOutput: PatientDetailsDisplayLogic? { get set }
     
     func presentationForPatientsDescription(response: PatientDetails.AttributeProcessing.Response)
+    func processDeletePatientOperation(response: PatientDetails.Delete.Response)
+
 }
 
 enum PatientDetailsSection: Int {
@@ -38,6 +40,20 @@ class PatientDetailsPresenter: PatientDetailsPresentationLogic {
     
     func presentationForPatientsDescription(response: PatientDetails.AttributeProcessing.Response) {
         presenterOutput?.displayPatientDetails(viewModel: PatientDetails.AttributeProcessing.ViewModel(patientDetails: response.patientDetails))
+    }
+    
+    func processDeletePatientOperation(response: PatientDetails.Delete.Response) {
+        var errorMessage: String?
+        if !response.isSuccessful {
+            if let error = response.error {
+                errorMessage = error.userFiendlyDescription
+            } else {
+                errorMessage = "Unknowned error has occured".localized()
+            }
+        }
+        presenterOutput?.displayDeletePatientResult(viewModel: PatientDetails.Delete.ViewModel(isSuccessful: response.isSuccessful,
+                                                                                               deletedPatient: response.patient,
+                                                                                               errorMessage: errorMessage))
     }
     
 }

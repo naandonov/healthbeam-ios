@@ -30,6 +30,7 @@ class PatientsSearchRouter:  PatientsSearchRoutingLogic, PatientsSearchDataPassi
         let patientDetailsViewController = patientDetailsViewControllerProvider.get()
         patientDetailsViewController.router?.dataStore?.patient = dataStore?.selectedPatient
         patientDetailsViewController.router?.dataStore?.patientAttributes = dataStore?.selectedPatientAttributes
+        patientDetailsViewController.modificationDelegate = viewController
         viewController?.navigationController?.pushViewController(patientDetailsViewController, animated: true)
     }
     

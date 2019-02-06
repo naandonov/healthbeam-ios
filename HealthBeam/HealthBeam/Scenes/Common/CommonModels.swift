@@ -51,6 +51,19 @@ struct BatchResult<T: Codable>: Codable {
     let totalElementsCount: Int
 }
 
-struct FormattedResponse: Codable {
-    let result: String
+struct GenericResponse: Codable {
+    let status: String
+    
+    var type: ResultType {
+        if let resultType = ResultType(rawValue: status) {
+            return resultType
+        }
+        return ResultType.unknown
+    }
+    
+    enum ResultType: String {
+        case success = "success"
+        case faliure = "faliure"
+        case unknown = "unknown"
+    }
 }

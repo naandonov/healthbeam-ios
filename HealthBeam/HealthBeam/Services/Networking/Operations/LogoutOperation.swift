@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LogoutOperation: BaseSignedOperation<FormattedResponse> {
+class LogoutOperation: BaseSignedOperation<GenericResponse> {
     
     private override init() {
         super.init()
