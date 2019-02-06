@@ -14,6 +14,7 @@ typealias PatientsSearchRouterProtocol = PatientsSearchRoutingLogic & PatientsSe
 
 protocol PatientsSearchDisplayLogic: class {
     func processPatientsSearchReult(viewModel: PatientsSearch.Retrieval.ViewModel)
+    func processPatientAttributesReult(viewModel: PatientsSearch.Attributes.ViewModel)
 }
 
 class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic {
@@ -27,7 +28,6 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
     @IBOutlet weak var tableView: UITableView!
     
     private var pageElementsController: PagedElementsController<PatientsSearchViewController>?
-    private var keyboardScrollHandler: KeyboardScrollHandler?
     
     // MARK:- View lifecycle
     
@@ -36,12 +36,11 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
         setupUI()
         
         pageElementsController = PagedElementsController(tableView: tableView, delegate: self)
-        pageElementsController?.configureSearchBarIn(viewController: self, style: .light, scopeTitles: [allSegment.title, observedSegment.title])
+        pageElementsController?.configureSearchBarIn(viewController: self, style: .light)
+        pageElementsController?.configureScopeSelectionControlWith(scopeTitles: [allSegment.title, observedSegment.title], style: .light)
         pageElementsController?.reset()
-        
-        keyboardScrollHandler = KeyboardScrollHandler(scrollView: tableView, notificationCenter: NotificationCenter.default)
-        
-        navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+                
+//        navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
     }
     
     //MARK: - Setup UI
@@ -61,15 +60,26 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
         tableView.registerNib(PatientPlaceholderTableViewCell.self)
     }
 
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
 
     //MARK: - Displaying Logic
     
     func processPatientsSearchReult(viewModel: PatientsSearch.Retrieval.ViewModel) {
         if !viewModel.isSuccessful {
             UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
+        }
+    }
+    
+    func processPatientAttributesReult(viewModel: PatientsSearch.Attributes.ViewModel) {
+        LoadingOverlay.hide()
+        if !viewModel.isSuccessful {
+            UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
+        } else {
+            router?.routeToPatientDetails()
         }
     }
 }
@@ -101,7 +111,7 @@ extension PatientsSearchViewController: PagedElementsControllerSearchDelegate {
         cell.nameLabel.text = item.fullName
         cell.ageLabel.text = item.birthDate.yearsSince()
         cell.locationLabel.text = item.premiseLocation
-        cell.healthRecordsLabel.text = "0"
+        cell.healthRecordsLabel.text = item.personalIdentification
         cell.selectionStyle = .none
         return cell
     }
@@ -130,5 +140,10 @@ extension PatientsSearchViewController: PagedElementsControllerSearchDelegate {
     
     func discardRequestForPage(_ page: Int) {
         //        interactor?.cancelSearchRequestFor(page: page)
+    }
+    
+    func didSelectItem(_ item: Patient) {
+        LoadingOverlay.showOn(view)
+        interactor?.retrievePatientAttributes(request: PatientsSearch.Attributes.Request(selectedPatient: item))
     }
 }

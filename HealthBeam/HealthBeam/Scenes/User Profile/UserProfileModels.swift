@@ -16,6 +16,12 @@ struct Premise: Codable {
 
 struct UserProfile {
     
+    struct ExternalModel: Codable {
+        let id: Int
+        var fullName: String
+        var designation: String
+    }
+    
     struct Model: Codable {
         let id: Int
         var fullName: String

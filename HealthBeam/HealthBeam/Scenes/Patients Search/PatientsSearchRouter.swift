@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Cleanse
 
 protocol PatientsSearchRoutingLogic {
     var viewController: PatientsSearchViewController? { get set }
+    
+    func routeToPatientDetails()
 }
 
 protocol PatientsSearchDataPassing {
@@ -20,5 +23,18 @@ class PatientsSearchRouter:  PatientsSearchRoutingLogic, PatientsSearchDataPassi
     
   weak var viewController: PatientsSearchViewController?
   var dataStore: PatientsSearchDataStore?
+    
+    private let patientDetailsViewControllerProvider: Provider<PatientDetailsViewController>
+    
+    func routeToPatientDetails() {
+        let patientDetailsViewController = patientDetailsViewControllerProvider.get()
+        patientDetailsViewController.router?.dataStore?.patient = dataStore?.selectedPatient
+        patientDetailsViewController.router?.dataStore?.patientAttributes = dataStore?.selectedPatientAttributes
+        viewController?.navigationController?.pushViewController(patientDetailsViewController, animated: true)
+    }
+    
+    init(patientDetailsViewControllerProvider: Provider<PatientDetailsViewController>) {
+        self.patientDetailsViewControllerProvider = patientDetailsViewControllerProvider
+    }
     
 }

@@ -82,7 +82,10 @@ extension MenuRouter: UINavigationControllerDelegate {
         guard let hideableView = hideableView,
             let innerRect = innerRect,
             let outerRect = outerRect,
-            let innerSnapshot = innerSnapshot else {
+            let innerSnapshot = innerSnapshot,
+        (fromVC is MenuViewController && toVC is PatientsSearchViewController) ||
+         (toVC is MenuViewController && fromVC is PatientsSearchViewController)
+        else {
                 return nil
         }
 

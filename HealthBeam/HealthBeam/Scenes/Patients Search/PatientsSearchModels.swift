@@ -24,6 +24,20 @@ struct PatientsSearch {
         }
     }
     
+    struct Attributes {
+        struct Request {
+            let selectedPatient: Patient
+        }
+        struct Response {
+            let isSuccessful: Bool
+            let error: MSError?
+        }
+        struct ViewModel {
+            let isSuccessful: Bool
+            let errorMessage: String?
+        }
+    }
+    
     struct Retrieval {
         struct Request {
             let page: Int

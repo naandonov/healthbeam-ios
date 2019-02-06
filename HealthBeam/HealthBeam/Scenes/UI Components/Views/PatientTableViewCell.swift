@@ -26,7 +26,7 @@ class PatientTableViewCell: UITableViewCell, NibLoadableView {
         
         ageTitleLabel.text = "Age:".localized()
         locationTitleLabel.text = "Location:".localized()
-        healthRecordsTitleLabel.text = "Health Records:".localized()
+        healthRecordsTitleLabel.text = "PID:".localized()
         
     }
 

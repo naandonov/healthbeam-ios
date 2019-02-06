@@ -12,6 +12,8 @@ protocol PatientsSearchPresentationLogic {
     var presenterOutput: PatientsSearchDisplayLogic? { get set }
     
     func handlePatientsSearchResult(response: PatientsSearch.Retrieval.Response)
+    func handlePatientAttributesResult(response: PatientsSearch.Attributes.Response)
+
 }
 
 class PatientsSearchPresenter: PatientsSearchPresentationLogic {
@@ -29,6 +31,19 @@ class PatientsSearchPresenter: PatientsSearchPresentationLogic {
         }
         
         presenterOutput?.processPatientsSearchReult(viewModel: PatientsSearch.Retrieval.ViewModel(isSuccessful: response.isSuccessful, errorMessage: errorMessage))
+    }
+    
+    func handlePatientAttributesResult(response: PatientsSearch.Attributes.Response) {
+        var errorMessage: String?
+        if !response.isSuccessful {
+            if let error = response.error {
+                errorMessage = error.userFiendlyDescription
+            } else {
+                errorMessage = "Unknowned error has occured".localized()
+            }
+        }
+        
+        presenterOutput?.processPatientAttributesReult(viewModel: PatientsSearch.Attributes.ViewModel(isSuccessful: response.isSuccessful, errorMessage: errorMessage))
     }
     
 }

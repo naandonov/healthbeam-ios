@@ -73,6 +73,17 @@
 		4E17F3EA2207219700E113ED /* PatientDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3E52207219700E113ED /* PatientDetailsViewController.swift */; };
 		4E17F3EB2207219700E113ED /* PatientDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3E62207219700E113ED /* PatientDetailsInteractor.swift */; };
 		4E17F3ED22072B1300E113ED /* OutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3EC22072B1300E113ED /* OutlineView.swift */; };
+		4E24BE8F220A140300E89F0E /* HealthRecordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BE8A220A140300E89F0E /* HealthRecordPresenter.swift */; };
+		4E24BE90220A140300E89F0E /* HealthRecordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BE8B220A140300E89F0E /* HealthRecordRouter.swift */; };
+		4E24BE91220A140300E89F0E /* HealthRecordModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BE8C220A140300E89F0E /* HealthRecordModels.swift */; };
+		4E24BE92220A140300E89F0E /* HealthRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BE8D220A140300E89F0E /* HealthRecordViewController.swift */; };
+		4E24BE93220A140300E89F0E /* HealthRecordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BE8E220A140300E89F0E /* HealthRecordInteractor.swift */; };
+		4E24BE9C220A195100E89F0E /* PatientTagsSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BE97220A195100E89F0E /* PatientTagsSearchPresenter.swift */; };
+		4E24BE9D220A195100E89F0E /* PatientTagsSearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BE98220A195100E89F0E /* PatientTagsSearchRouter.swift */; };
+		4E24BE9E220A195100E89F0E /* PatientTagsSearchModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BE99220A195100E89F0E /* PatientTagsSearchModels.swift */; };
+		4E24BE9F220A195100E89F0E /* PatientTagsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BE9A220A195100E89F0E /* PatientTagsSearchViewController.swift */; };
+		4E24BEA0220A195100E89F0E /* PatientTagsSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BE9B220A195100E89F0E /* PatientTagsSearchInteractor.swift */; };
+		4E24BEA2220A1FB900E89F0E /* GetPatientAttributesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BEA1220A1FB900E89F0E /* GetPatientAttributesOperation.swift */; };
 		4E2DEA4D21F4CE0D000E0C61 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */; };
 		4E2DEA5121F4E31C000E0C61 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */; };
 		4E2DEA5221F4E31C000E0C61 /* MenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */; };
@@ -218,6 +229,17 @@
 		4E17F3E52207219700E113ED /* PatientDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailsViewController.swift; sourceTree = "<group>"; };
 		4E17F3E62207219700E113ED /* PatientDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailsInteractor.swift; sourceTree = "<group>"; };
 		4E17F3EC22072B1300E113ED /* OutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineView.swift; sourceTree = "<group>"; };
+		4E24BE8A220A140300E89F0E /* HealthRecordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordPresenter.swift; sourceTree = "<group>"; };
+		4E24BE8B220A140300E89F0E /* HealthRecordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordRouter.swift; sourceTree = "<group>"; };
+		4E24BE8C220A140300E89F0E /* HealthRecordModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordModels.swift; sourceTree = "<group>"; };
+		4E24BE8D220A140300E89F0E /* HealthRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordViewController.swift; sourceTree = "<group>"; };
+		4E24BE8E220A140300E89F0E /* HealthRecordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordInteractor.swift; sourceTree = "<group>"; };
+		4E24BE97220A195100E89F0E /* PatientTagsSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientTagsSearchPresenter.swift; sourceTree = "<group>"; };
+		4E24BE98220A195100E89F0E /* PatientTagsSearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientTagsSearchRouter.swift; sourceTree = "<group>"; };
+		4E24BE99220A195100E89F0E /* PatientTagsSearchModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientTagsSearchModels.swift; sourceTree = "<group>"; };
+		4E24BE9A220A195100E89F0E /* PatientTagsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientTagsSearchViewController.swift; sourceTree = "<group>"; };
+		4E24BE9B220A195100E89F0E /* PatientTagsSearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientTagsSearchInteractor.swift; sourceTree = "<group>"; };
+		4E24BEA1220A1FB900E89F0E /* GetPatientAttributesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPatientAttributesOperation.swift; sourceTree = "<group>"; };
 		4E2DEA4C21F4CE0D000E0C61 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		4E2DEA4F21F4E31C000E0C61 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -325,6 +347,8 @@
 		4E0FEF5421D6BA6A0046303F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				4E24BE96220A191100E89F0E /* PatientTagsSearch */,
+				4E24BE89220A13D600E89F0E /* Health Record */,
 				4E17F3E12207217400E113ED /* Patient Details */,
 				4E2DEA5721F65552000E0C61 /* Patients Search */,
 				4EF9E2B121ED1AAF00E0DDD0 /* Menu */,
@@ -408,6 +432,7 @@
 				4EC355D021DF62180011D723 /* GetPatientsOperation.swift */,
 				4EF9E2BE21EE6E3700E0DDD0 /* AssignDeviceTokenOperation.swift */,
 				4E17F18121FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift */,
+				4E24BEA1220A1FB900E89F0E /* GetPatientAttributesOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -596,6 +621,30 @@
 				4E17F3E62207219700E113ED /* PatientDetailsInteractor.swift */,
 			);
 			path = "Patient Details";
+			sourceTree = "<group>";
+		};
+		4E24BE89220A13D600E89F0E /* Health Record */ = {
+			isa = PBXGroup;
+			children = (
+				4E24BE8A220A140300E89F0E /* HealthRecordPresenter.swift */,
+				4E24BE8B220A140300E89F0E /* HealthRecordRouter.swift */,
+				4E24BE8C220A140300E89F0E /* HealthRecordModels.swift */,
+				4E24BE8D220A140300E89F0E /* HealthRecordViewController.swift */,
+				4E24BE8E220A140300E89F0E /* HealthRecordInteractor.swift */,
+			);
+			path = "Health Record";
+			sourceTree = "<group>";
+		};
+		4E24BE96220A191100E89F0E /* PatientTagsSearch */ = {
+			isa = PBXGroup;
+			children = (
+				4E24BE97220A195100E89F0E /* PatientTagsSearchPresenter.swift */,
+				4E24BE98220A195100E89F0E /* PatientTagsSearchRouter.swift */,
+				4E24BE99220A195100E89F0E /* PatientTagsSearchModels.swift */,
+				4E24BE9A220A195100E89F0E /* PatientTagsSearchViewController.swift */,
+				4E24BE9B220A195100E89F0E /* PatientTagsSearchInteractor.swift */,
+			);
+			path = PatientTagsSearch;
 			sourceTree = "<group>";
 		};
 		4E2DEA4B21F4CDE9000E0C61 /* Utilities */ = {
@@ -905,6 +954,7 @@
 				4EC355D121DF62180011D723 /* GetPatientsOperation.swift in Sources */,
 				4E2DEA6121F6557E000E0C61 /* PatientsSearchInteractor.swift in Sources */,
 				4E0FEFEE21D6C4030046303F /* ApplicationModule.swift in Sources */,
+				4E24BE9E220A195100E89F0E /* PatientTagsSearchModels.swift in Sources */,
 				4E2DEA5D21F6557E000E0C61 /* PatientsSearchPresenter.swift in Sources */,
 				4EC355DE21DFABD00011D723 /* Collection+Utilities.swift in Sources */,
 				4EBC81FE21FE06CD008427A8 /* MenuTransition.swift in Sources */,
@@ -917,17 +967,21 @@
 				4E0FEFD121D6C2430046303F /* ScrollCollectionsReusability.swift in Sources */,
 				4EF9E2B921ED1AD300E0DDD0 /* MenuModels.swift in Sources */,
 				4E6EB7962207643F00146B8C /* String+Calculations.swift in Sources */,
+				4E24BE91220A140300E89F0E /* HealthRecordModels.swift in Sources */,
 				4E0FF00021D7B7490046303F /* LoginModels.swift in Sources */,
 				4EF9E2BA21ED1AD300E0DDD0 /* MenuViewController.swift in Sources */,
 				4E0FEFA421D6BCB20046303F /* Request.swift in Sources */,
 				4E6EB79A220766A600146B8C /* ListItemTableViewCell.swift in Sources */,
 				4E6EB7A2220766D100146B8C /* AddHealthRecordTableViewCell.swift in Sources */,
+				4E24BE9F220A195100E89F0E /* PatientTagsSearchViewController.swift in Sources */,
 				4E93801321D981020083ED03 /* UIView+Utilities.swift in Sources */,
 				4E0FF00621D7C2700046303F /* RoundedButton.swift in Sources */,
 				4ED74C0E21DBC19E009AB7C3 /* BaseSignedOperation.swift in Sources */,
 				4EC355DC21DF8F0F0011D723 /* PagedElementsController.swift in Sources */,
 				4E2DEA5421F50126000E0C61 /* StyleCoordinator.swift in Sources */,
 				4E17F3D7220389A900E113ED /* AddMoreTableViewCell.swift in Sources */,
+				4E24BE92220A140300E89F0E /* HealthRecordViewController.swift in Sources */,
+				4E24BE90220A140300E89F0E /* HealthRecordRouter.swift in Sources */,
 				4E17F18221FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift in Sources */,
 				4E0FEFC721D6BF050046303F /* UIView+Animations.swift in Sources */,
 				4E93EA4421F91A55007C8BE8 /* PremiseEntity+Mapping.swift in Sources */,
@@ -947,6 +1001,7 @@
 				4E93EA3A21F661E5007C8BE8 /* PatientTableViewCell.swift in Sources */,
 				4E0FEF9D21D6BCB20046303F /* ResponseProtocol.swift in Sources */,
 				4ED74C1221DBC346009AB7C3 /* CommonModels.swift in Sources */,
+				4E24BEA0220A195100E89F0E /* PatientTagsSearchInteractor.swift in Sources */,
 				4ED74C1021DBC30F009AB7C3 /* LogoutOperation.swift in Sources */,
 				4E0FEF9C21D6BCB20046303F /* OperationProtocol.swift in Sources */,
 				4E0FEFF521D796A40046303F /* LightLogoView.swift in Sources */,
@@ -956,6 +1011,7 @@
 				4E0FEFC221D6BF050046303F /* String+Localization.swift in Sources */,
 				4E17F3ED22072B1300E113ED /* OutlineView.swift in Sources */,
 				4E0FF00221D7B7490046303F /* LoginInteractor.swift in Sources */,
+				4E24BEA2220A1FB900E89F0E /* GetPatientAttributesOperation.swift in Sources */,
 				4E2DEA5121F4E31C000E0C61 /* MenuCollectionViewCell.swift in Sources */,
 				8C196B7221EE3EAE004F2549 /* NotificationManager.swift in Sources */,
 				4E62DF0B2200E6360090BFAF /* ModificationElementController.swift in Sources */,
@@ -971,8 +1027,11 @@
 				4E0FEFA321D6BCB20046303F /* Response.swift in Sources */,
 				4E0FEFE921D6C4030046303F /* ManagersModule.swift in Sources */,
 				4ED74C0A21DBBCD6009AB7C3 /* LoginOperation.swift in Sources */,
+				4E24BE93220A140300E89F0E /* HealthRecordInteractor.swift in Sources */,
+				4E24BE8F220A140300E89F0E /* HealthRecordPresenter.swift in Sources */,
 				4E2DEA5621F504E7000E0C61 /* CardView.swift in Sources */,
 				4E0FEFEB21D6C4030046303F /* UserInterfaceModule.swift in Sources */,
+				4E24BE9D220A195100E89F0E /* PatientTagsSearchRouter.swift in Sources */,
 				4E0FEF9F21D6BCB20046303F /* ServiceProtocol.swift in Sources */,
 				4E0FEFB021D6BCB20046303F /* BeaconsManager.swift in Sources */,
 				4E93801121D9795A0083ED03 /* KeyboardScrollHandler.swift in Sources */,
@@ -982,6 +1041,7 @@
 				4E0FEFA221D6BCB20046303F /* RequestProtocol.swift in Sources */,
 				4E17F3E92207219700E113ED /* PatientDetailsModels.swift in Sources */,
 				4E93EA4121F918A7007C8BE8 /* UserEntity+Mapping.swift in Sources */,
+				4E24BE9C220A195100E89F0E /* PatientTagsSearchPresenter.swift in Sources */,
 				4E0FEFD221D6C2430046303F /* CustomizableView.swift in Sources */,
 				4E0FEFF121D6C4030046303F /* RoutersModule.swift in Sources */,
 				4E48E58D21DAD62100069CC4 /* LoadingOverlay.swift in Sources */,

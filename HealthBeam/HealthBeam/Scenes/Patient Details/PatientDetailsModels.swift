@@ -10,15 +10,22 @@ import UIKit
 
 struct PatientDetails {
     
-    struct Placeholder {
+    struct Model {
+        var patient: Patient
+        let healthRecords: [HealthRecord]
+        let patientTag: PatientTag?
+        let isObserved: Bool
+    }
+    
+    
+    struct AttributeProcessing {
         struct Request {
-            
         }
         struct Response {
-            
+            let patientDetails: Model
         }
         struct ViewModel {
-            
+            let patientDetails: Model
         }
     }
 }

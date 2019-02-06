@@ -14,17 +14,23 @@ protocol PatientsSearchBusinessLogic {
     var presenter: PatientsSearchPresentationLogic? { get set }
     
     func retrievePatients(request: PatientsSearch.Retrieval.Request)
+    func retrievePatientAttributes(request: PatientsSearch.Attributes.Request)
+
     func cancelSearchRequestFor(page: Int)
     
 }
 
 protocol PatientsSearchDataStore {
-    
+    var selectedPatient: Patient? { get set }
+    var selectedPatientAttributes: PatientAttributes? { get set }
 }
 
 class PatientsSearchInteractor: PatientsSearchBusinessLogic, PatientsSearchDataStore {
     
     var presenter: PatientsSearchPresentationLogic?
+    
+    var selectedPatient: Patient?
+    var selectedPatientAttributes: PatientAttributes?
     
     private var searchOperations: [Int: Operation] = [:]
     
@@ -60,6 +66,33 @@ class PatientsSearchInteractor: PatientsSearchBusinessLogic, PatientsSearchDataS
         }
         searchOperations[request.page] = operation
         NetworkingManager.shared.addNetwork(operation: operation)
+    }
+    
+    func retrievePatientAttributes(request: PatientsSearch.Attributes.Request) {
+        
+        let operation = GetPatientAttributesOperation(patientId: request.selectedPatient.id) { [weak self] result in
+            guard let strongSelf = self else {
+                return
+            }
+            switch result {
+            case let .success(responseObject):
+                if let value = responseObject.value  {
+                    strongSelf.selectedPatient = request.selectedPatient
+                    strongSelf.selectedPatientAttributes = value
+                    strongSelf.presenter?.handlePatientAttributesResult(response: PatientsSearch.Attributes.Response(isSuccessful: true, error: nil))
+
+                } else {
+                    strongSelf.presenter?.handlePatientAttributesResult(response: PatientsSearch.Attributes.Response(isSuccessful: false, error: nil))
+                }
+            case let .failure(responseObject):
+                log.error(responseObject.description)
+                strongSelf.presenter?.handlePatientAttributesResult(response: PatientsSearch.Attributes.Response(isSuccessful: false, error: responseObject))
+                
+            }
+            
+        }
+        NetworkingManager.shared.addNetwork(operation: operation)
+        
     }
     
     func cancelSearchRequestFor(page: Int) {

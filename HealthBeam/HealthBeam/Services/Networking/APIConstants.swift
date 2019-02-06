@@ -29,6 +29,7 @@ struct APIConstants {
         case user
         case userDeviceToken
         case patients
+        case patientAttributes
         case subscriptions
         
         
@@ -44,10 +45,14 @@ struct APIConstants {
                 return "/user/assignToken"
             case .patients:
                 return "/patients"
+            case .patientAttributes:
+                return "/patients/\(APIConstants.EndPoint.patientIdSubstitutionKey)/attributes"
             case .subscriptions:
                 return "/user/subscriptions"
             }
         }
+        
+        static let patientIdSubstitutionKey = "patientId"
     }
 }
 

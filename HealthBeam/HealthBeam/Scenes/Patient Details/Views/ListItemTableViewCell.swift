@@ -18,6 +18,11 @@ class ListItemTableViewCell: UITableViewCell, NibLoadableView {
         containerView.internalColor = .white
         containerView.cornerRadius = StyleCoordinator.Metrics.subCardViewCornerRadius
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        indicatorImageView.isHidden = false
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

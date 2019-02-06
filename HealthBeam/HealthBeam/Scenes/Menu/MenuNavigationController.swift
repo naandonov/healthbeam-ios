@@ -16,7 +16,7 @@ class MenuNavigationController: UINavigationController {
         navigationBar.prefersLargeTitles = true
         let backgroundImage = CAGradientLayer(applicationStyleWithFrame: navigationBar.bounds).gradientImage()
         navigationBar.barTintColor = UIColor(patternImage: backgroundImage!)
-        navigationBar.barTintColor = .white
+//        navigationBar.barTintColor = .white
         navigationBar.shadowImage = UIImage()
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
 
@@ -25,5 +25,9 @@ class MenuNavigationController: UINavigationController {
         navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
 
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }

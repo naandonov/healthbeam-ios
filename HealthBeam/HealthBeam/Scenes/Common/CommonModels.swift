@@ -8,6 +8,12 @@
 
 import Foundation
 
+struct PatientTag: Codable {
+    let id: Int
+    let minor: Int
+    let major: Int
+}
+
 struct Patient: Codable {
     let id: Int
     var fullName: String
@@ -16,7 +22,25 @@ struct Patient: Codable {
     var birthDate: Date
     var bloodType: String
     var alergies: [String]
-    var premiseLocation: String
+    var chronicConditions: [String]
+    var notes: String?
+    var premiseLocation: String?
+}
+
+struct PatientAttributes: Codable {
+    let observers: [UserProfile.ExternalModel]?
+    let healthRecords: [HealthRecord]?
+    let patientTag: PatientTag?
+}
+
+struct HealthRecord: Codable {
+    let id: Int
+    var diagnosis: String
+    var treatment: String
+    var prescription: String
+    var notes: String?
+    var createdDate: Date
+    var creator: UserProfile.ExternalModel?
 }
 
 struct BatchResult<T: Codable>: Codable {
