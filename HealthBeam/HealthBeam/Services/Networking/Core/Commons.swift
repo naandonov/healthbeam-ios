@@ -51,7 +51,11 @@ public struct RequestBody {
     
     /// Codable
     public static func codable<T: Codable>(_ data: T) -> RequestBody {
-        return try! RequestBody(JSONEncoder().encode(data), as: .rawData)
+        return RequestBody(data, as: .custom({ _ in
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            return try! encoder.encode(data)
+        }))
     }
     
     /// jSON

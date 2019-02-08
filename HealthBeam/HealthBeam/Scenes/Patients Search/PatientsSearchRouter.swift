@@ -13,6 +13,7 @@ protocol PatientsSearchRoutingLogic {
     var viewController: PatientsSearchViewController? { get set }
     
     func routeToPatientDetails()
+    func routeToCreatePatient()
 }
 
 protocol PatientsSearchDataPassing {
@@ -25,6 +26,7 @@ class PatientsSearchRouter:  PatientsSearchRoutingLogic, PatientsSearchDataPassi
   var dataStore: PatientsSearchDataStore?
     
     private let patientDetailsViewControllerProvider: Provider<PatientDetailsViewController>
+    private let patientModificationViewControllerProvider: Provider<PatientModificationViewController>
     
     func routeToPatientDetails() {
         let patientDetailsViewController = patientDetailsViewControllerProvider.get()
@@ -34,8 +36,19 @@ class PatientsSearchRouter:  PatientsSearchRoutingLogic, PatientsSearchDataPassi
         viewController?.navigationController?.pushViewController(patientDetailsViewController, animated: true)
     }
     
-    init(patientDetailsViewControllerProvider: Provider<PatientDetailsViewController>) {
+    func routeToCreatePatient() {
+        let patientModificationViewController = patientModificationViewControllerProvider.get()
+        patientModificationViewController.modificationDelegate = viewController
+        patientModificationViewController.mode = .create
+        patientModificationViewController.router?.dataStore?.patient = Patient.emptySnapshot()
+        viewController?.navigationController?.pushViewController(patientModificationViewController, animated: true)
+    }
+
+    
+    init(patientDetailsViewControllerProvider: Provider<PatientDetailsViewController>,
+         patientModificationViewControllerProvider: Provider<PatientModificationViewController>) {
         self.patientDetailsViewControllerProvider = patientDetailsViewControllerProvider
+        self.patientModificationViewControllerProvider = patientModificationViewControllerProvider
     }
     
 }

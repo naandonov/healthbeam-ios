@@ -333,6 +333,36 @@
             </objects>
             <point key="canvasLocation" x="552.79999999999995" y="142.57871064467767"/>
         </scene>
+        <!--Patient Modification View Controller-->
+        <scene sceneID="Tms-Ff-Uco">
+            <objects>
+                <viewController storyboardIdentifier="PatientModificationViewController" id="qQ4-mA-Rf9" customClass="PatientModificationViewController" customModule="HealthBeam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PWC-iP-QhX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAJ-hw-d7d">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="w3z-Q8-AYg" firstAttribute="trailing" secondItem="oAJ-hw-d7d" secondAttribute="trailing" id="PSh-Tv-Wzr"/>
+                            <constraint firstItem="oAJ-hw-d7d" firstAttribute="leading" secondItem="w3z-Q8-AYg" secondAttribute="leading" id="ZBF-Gz-7qo"/>
+                            <constraint firstAttribute="bottom" secondItem="oAJ-hw-d7d" secondAttribute="bottom" id="p9u-p5-MXz"/>
+                            <constraint firstItem="oAJ-hw-d7d" firstAttribute="top" secondItem="w3z-Q8-AYg" secondAttribute="top" id="x2Q-1d-Hrs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="w3z-Q8-AYg"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableContainerView" destination="oAJ-hw-d7d" id="zFg-wp-zce"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0dV-Uk-VyZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1297" y="139"/>
+        </scene>
     </scenes>
     <resources>
         <image name="avatarIconLarge" width="126" height="126"/>

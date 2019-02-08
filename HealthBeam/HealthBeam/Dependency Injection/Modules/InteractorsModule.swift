@@ -27,5 +27,9 @@ class InteractorsModule: Module {
         binder
             .bind(PatientDetailsInteractorProtocol.self)
             .to(factory: PatientDetailsInteractor.init)
+        
+        binder
+            .bind(PatientModificationInteractorProtocol.self)
+            .to(factory: PatientModificationInteractor.init)
     }
 }

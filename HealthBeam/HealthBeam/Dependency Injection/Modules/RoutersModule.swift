@@ -27,6 +27,10 @@ class RoutersModule: Module {
         binder
             .bind(PatientDetailsRouterProtocol.self)
             .to(factory: PatientDetailsRouter.init)
+        
+        binder
+            .bind(PatientModificationRouterProtocol.self)
+            .to(factory: PatientModificationRouter.init)
 
     }
 }

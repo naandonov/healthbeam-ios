@@ -17,7 +17,7 @@ class DeletePatientOperation: BaseSignedOperation<GenericResponse> {
     convenience init(patientId: Int, completion: CompletionBlock<ResponseType>?) {
         self.init()
         self.request = Request(method: .delete,
-                               endpoint: APIConstants.EndPoint.patientModification.endpointString,
+                               endpoint: APIConstants.EndPoint.patientDelete.endpointString,
                                params: [APIConstants.EndPoint.patientIdSubstitutionKey: patientId],
                                fields: nil,
                                body: nil)

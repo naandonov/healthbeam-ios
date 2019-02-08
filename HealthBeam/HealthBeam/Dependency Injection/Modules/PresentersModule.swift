@@ -27,6 +27,10 @@ class PresentersModule: Module {
         binder
             .bind(PatientDetailsPresenterProtocol.self)
             .to(factory: PatientDetailsPresenter.init)
+        
+        binder
+            .bind(PatientModificationPresenterProtocol.self)
+            .to(factory: PatientModificationPresenter.init)
 
     }
 }

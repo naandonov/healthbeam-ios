@@ -70,8 +70,12 @@ class PatientsSearchInteractor: PatientsSearchBusinessLogic, PatientsSearchDataS
     }
     
     func retrievePatientAttributes(request: PatientsSearch.Attributes.Request) {
+        guard let patientId = request.selectedPatient.id else {
+            presenter?.handlePatientAttributesResult(response: PatientsSearch.Attributes.Response(isSuccessful: false, error: nil))
+            return
+        }
         
-        let operation = GetPatientAttributesOperation(patientId: request.selectedPatient.id) { [weak self] result in
+        let operation = GetPatientAttributesOperation(patientId: patientId) { [weak self] result in
             guard let strongSelf = self else {
                 return
             }

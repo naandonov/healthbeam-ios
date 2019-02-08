@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import Cleanse
 
 protocol PatientDetailsRoutingLogic {
     var viewController: PatientDetailsViewController? { get set }
+    
+    func routeToUpdatePatientScreen(for patient: Patient)
+    
 }
 
 protocol PatientDetailsDataPassing {
@@ -21,4 +25,20 @@ class PatientDetailsRouter:  PatientDetailsRoutingLogic, PatientDetailsDataPassi
   weak var viewController: PatientDetailsViewController?
   var dataStore: PatientDetailsDataStore?
     
+    private let patientModificationViewControllerProvider: Provider<PatientModificationViewController>
+    
+    func routeToUpdatePatientScreen(for patient: Patient) {
+        let patientModificationViewController = patientModificationViewControllerProvider.get()
+        if let patientsSearchViewController = viewController?.navigationController?.viewControllers.filter({ $0 is PatientsSearchViewController }).first as? PatientsSearchViewController {
+            patientModificationViewController.modificationDelegate = patientsSearchViewController
+        }
+        patientModificationViewController.attributesUpdateHandler = viewController
+        patientModificationViewController.mode = .update
+        patientModificationViewController.router?.dataStore?.patient = patient
+        viewController?.navigationController?.pushViewController(patientModificationViewController, animated: true)
+    }
+    
+    init(patientModificationViewControllerProvider: Provider<PatientModificationViewController>) {
+        self.patientModificationViewControllerProvider = patientModificationViewControllerProvider
+    }
 }

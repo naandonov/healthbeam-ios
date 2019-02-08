@@ -51,7 +51,12 @@ class PatientDetailsInteractor: PatientDetailsBusinessLogic, PatientDetailsDataS
     }
     
     func deletePatient(request: PatientDetails.Delete.Request) {
-        let operation = DeletePatientOperation(patientId: request.patient.id) { [weak self] result in
+        guard let patientId = request.patient.id else {
+            presenter?.processDeletePatientOperation(response: PatientDetails.Delete.Response(isSuccessful: false, patient: request.patient, error: nil))
+            return
+        }
+        
+        let operation = DeletePatientOperation(patientId: patientId) { [weak self] result in
             guard let strongSelf = self else {
                 return
             }

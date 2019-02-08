@@ -42,7 +42,7 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
     private var keyboardScrollHandler: KeyboardScrollHandler?
     
     private var failedVerificationIndexPaths: [IndexPath] = []
-    
+        
     private lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date

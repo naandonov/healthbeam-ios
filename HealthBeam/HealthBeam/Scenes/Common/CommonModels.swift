@@ -15,16 +15,20 @@ struct PatientTag: Codable {
 }
 
 struct Patient: Codable {
-    let id: Int
+    let id: Int?
     var fullName: String
     var gender: String
     var personalIdentification: String
-    var birthDate: Date
+    var birthDate: Date?
     var bloodType: String
     var alergies: [String]
     var chronicConditions: [String]
     var notes: String?
     var premiseLocation: String?
+    
+    static func emptySnapshot() -> Patient {
+        return Patient(id: nil, fullName: "", gender: "", personalIdentification: "", birthDate: nil, bloodType: "", alergies: [], chronicConditions: [], notes: nil, premiseLocation: nil)
+    }
 }
 
 struct PatientAttributes: Codable {

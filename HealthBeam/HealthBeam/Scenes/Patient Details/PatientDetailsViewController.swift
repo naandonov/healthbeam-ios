@@ -17,6 +17,10 @@ protocol PatientDetailsDisplayLogic: class {
     func displayDeletePatientResult(viewModel: PatientDetails.Delete.ViewModel)
 }
 
+protocol AttributesUpdateProtocol: class {
+    func didUpdatePatient(_: Patient)
+}
+
 class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic {
     
     var interactor: PatientDetailsInteractorProtocol?
@@ -110,7 +114,7 @@ class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic
         premiseLocationLabel.text = patient.premiseLocation
         patientInformationLabel.text = patient.notes
         
-        ageValueLabel.text = patient.birthDate.yearsSince()
+        ageValueLabel.text = patient.birthDate?.yearsSince() ?? ""
         ageTitleLabel.text = "Age".localized()
         
         bloodTypeValueLabel.text = patient.bloodType
@@ -176,7 +180,10 @@ extension PatientDetailsViewController {
     }
     
     @objc private func editBarButtonAction(barButton: UIBarButtonItem) {
-        
+        guard let patient = patientDetails?.patient else {
+            return
+        }
+        router?.routeToUpdatePatientScreen(for: patient)
     }
     
     @IBAction func subscriptionButtonAction(_ sender: UIButton) {
@@ -311,5 +318,11 @@ extension PatientDetailsViewController: UITableViewDataSource {
         }
         return 0
     }
-    
+}
+
+extension PatientDetailsViewController: AttributesUpdateProtocol {
+    func didUpdatePatient(_ patient: Patient) {
+    patientDetails?.patient = patient
+        updateDetails()
+    }
 }

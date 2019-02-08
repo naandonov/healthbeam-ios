@@ -20,6 +20,7 @@ protocol PatientsSearchDisplayLogic: class {
 protocol PatientsModificationProtocol: class {
     func didDeletePatient(_ patient: Patient)
     func didUpdatePatient(_ patient: Patient)
+    func didCreatePatient(_ patient: Patient)
 }
 
 class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic {
@@ -44,8 +45,10 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
         pageElementsController?.configureSearchBarIn(viewController: self, style: .light)
         pageElementsController?.configureScopeSelectionControlWith(scopeTitles: [allSegment.title, observedSegment.title], style: .light)
         pageElementsController?.reset()
-                
-//        navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                            target: self,
+                                                            action: #selector(createPatientBarButtonAction))
     }
     
     //MARK: - Setup UI
@@ -100,7 +103,9 @@ extension PatientsSearchViewController: PatientsModificationProtocol {
         pageElementsController?.reset()
     }
     
-    
+    func didCreatePatient(_ patient: Patient) {
+        pageElementsController?.reset()
+    }
 }
 
 //MARK: - Properties Injection
@@ -128,7 +133,7 @@ extension PatientsSearchViewController: PagedElementsControllerSearchDelegate {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as PatientTableViewCell
         
         cell.nameLabel.text = item.fullName
-        cell.ageLabel.text = item.birthDate.yearsSince()
+        cell.ageLabel.text = item.birthDate?.yearsSince() ?? ""
         cell.locationLabel.text = item.premiseLocation
         cell.healthRecordsLabel.text = item.personalIdentification
         cell.selectionStyle = .none
@@ -164,5 +169,14 @@ extension PatientsSearchViewController: PagedElementsControllerSearchDelegate {
     func didSelectItem(_ item: Patient) {
         LoadingOverlay.showOn(navigationController?.view ?? view)
         interactor?.retrievePatientAttributes(request: PatientsSearch.Attributes.Request(selectedPatient: item))
+    }
+}
+
+//MARK: - Button Actions
+
+extension PatientsSearchViewController {
+    
+    @objc func createPatientBarButtonAction(_ sender: UIBarButtonItem) {
+        router?.routeToCreatePatient()
     }
 }
