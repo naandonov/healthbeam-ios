@@ -18,6 +18,7 @@ protocol PatientDetailsBusinessLogic {
 protocol PatientDetailsDataStore {
     var patient: Patient? { get set }
     var patientAttributes: PatientAttributes? { get set }
+    var modificationDelegate: PatientsModificationProtocol? { get set }
 }
 
 class PatientDetailsInteractor: PatientDetailsBusinessLogic, PatientDetailsDataStore {
@@ -28,6 +29,7 @@ class PatientDetailsInteractor: PatientDetailsBusinessLogic, PatientDetailsDataS
     private let networkingManager: NetworkingManager
     
     var presenter: PatientDetailsPresentationLogic?
+    weak var modificationDelegate: PatientsModificationProtocol?
     
     func handlePatientDetails(request: PatientDetails.AttributeProcessing.Request) {
         guard let patient = patient, let patientAttributes = patientAttributes else {

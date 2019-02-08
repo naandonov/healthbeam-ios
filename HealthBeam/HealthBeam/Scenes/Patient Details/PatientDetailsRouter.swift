@@ -13,7 +13,7 @@ protocol PatientDetailsRoutingLogic {
     var viewController: PatientDetailsViewController? { get set }
     
     func routeToUpdatePatientScreen(for patient: Patient)
-    
+    func performNavigationCleanupIfNeeded()
 }
 
 protocol PatientDetailsDataPassing {
@@ -29,15 +29,21 @@ class PatientDetailsRouter:  PatientDetailsRoutingLogic, PatientDetailsDataPassi
     
     func routeToUpdatePatientScreen(for patient: Patient) {
         let patientModificationViewController = patientModificationViewControllerProvider.get()
-        if let patientsSearchViewController = viewController?.navigationController?.viewControllers.filter({ $0 is PatientsSearchViewController }).first as? PatientsSearchViewController {
-            patientModificationViewController.modificationDelegate = patientsSearchViewController
-        }
+        patientModificationViewController.router?.dataStore?.modificationDelegate = dataStore?.modificationDelegate
         patientModificationViewController.attributesUpdateHandler = viewController
         patientModificationViewController.mode = .update
         patientModificationViewController.router?.dataStore?.patient = patient
         viewController?.navigationController?.pushViewController(patientModificationViewController, animated: true)
     }
-    
+
+    func performNavigationCleanupIfNeeded() {
+        if let viewControllersCount = viewController?.navigationController?.viewControllers.count,
+            viewControllersCount > 2,
+        let _ = viewController?.navigationController?.viewControllers[viewControllersCount - 2] as? PatientModificationViewController {
+            viewController?.navigationController?.viewControllers.remove(at: viewControllersCount - 1)
+        }
+    }
+
     init(patientModificationViewControllerProvider: Provider<PatientModificationViewController>) {
         self.patientModificationViewControllerProvider = patientModificationViewControllerProvider
     }

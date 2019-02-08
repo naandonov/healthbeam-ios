@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Cleanse
 
 protocol PatientModificationRoutingLogic {
     var viewController: PatientModificationViewController? { get set }
     
     func routeToPreviousScreen()
+    func routeToPatientDetails(witAttributes attributes: PatientAttributes)
 }
 
 protocol PatientModificationDataPassing {
@@ -20,12 +22,20 @@ protocol PatientModificationDataPassing {
 
 class PatientModificationRouter:  PatientModificationRoutingLogic, PatientModificationDataPassing {
     
-  weak var viewController: PatientModificationViewController?
-  var dataStore: PatientModificationDataStore?
-    
+    weak var viewController: PatientModificationViewController?
+    var dataStore: PatientModificationDataStore?
+
+
     func routeToPreviousScreen() {
         viewController?.navigationController?.popViewController(animated: true)
     }
 
-    
+    func routeToPatientDetails(witAttributes attributes: PatientAttributes) {
+        if let patientDetailsViewController = dataStore?.patientDetailsViewControllerProvider?.get() {
+            patientDetailsViewController.router?.dataStore?.patient = dataStore?.patient
+            patientDetailsViewController.router?.dataStore?.modificationDelegate = dataStore?.modificationDelegate
+            patientDetailsViewController.router?.dataStore?.patientAttributes = attributes
+            viewController?.navigationController?.pushViewController(patientDetailsViewController, animated: true)
+        }
+    }
 }

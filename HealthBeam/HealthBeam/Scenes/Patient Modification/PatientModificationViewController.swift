@@ -32,7 +32,6 @@ class PatientModificationViewController: UIViewController, PatientModificationDi
     private var modificationController: ModificationElementController<Patient>?
     private var notificationCenter: NotificationCenter?
     
-    weak var modificationDelegate: PatientsModificationProtocol?
     weak var attributesUpdateHandler: AttributesUpdateProtocol?
 
     private var dataSource: ModificationDatasource<Patient>?
@@ -79,10 +78,15 @@ class PatientModificationViewController: UIViewController, PatientModificationDi
             UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
         } else {
             if let patient = viewModel.patient {
-                modificationDelegate?.didCreatePatient(patient)
+                interactor?.modificationDelegate?.didCreatePatient(patient)
             }
             LoadingOverlay.hideWithSuccess { [weak self] _ in
-                self?.router?.routeToPreviousScreen()
+                self?.interactor?.getExternalUser(completion: { [weak self]  user in
+                    let patientAttributes = PatientAttributes(observers: [user],
+                                                              healthRecords: [],
+                                                              patientTag: nil)
+                    self?.router?.routeToPatientDetails(witAttributes: patientAttributes)
+                })
             }
         }
     }
@@ -93,7 +97,7 @@ class PatientModificationViewController: UIViewController, PatientModificationDi
             UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
         } else {
             if let patient = viewModel.patient {
-                modificationDelegate?.didUpdatePatient(patient)
+                interactor?.modificationDelegate?.didUpdatePatient(patient)
                 attributesUpdateHandler?.didUpdatePatient(patient)
             }
             LoadingOverlay.hideWithSuccess { [weak self] _ in

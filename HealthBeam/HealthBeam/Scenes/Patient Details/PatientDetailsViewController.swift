@@ -27,8 +27,7 @@ class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic
     var router: PatientDetailsRouterProtocol?
     
     private var patientDetails: PatientDetails.Model?
-    weak var modificationDelegate: PatientsModificationProtocol?
-    
+
     
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -64,6 +63,11 @@ class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic
         super.viewDidLoad()
         setupUI()
         interactor?.handlePatientDetails(request: PatientDetails.AttributeProcessing.Request())
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        router?.performNavigationCleanupIfNeeded()
     }
     
     override func viewDidLayoutSubviews() {
@@ -149,7 +153,7 @@ class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic
     func displayDeletePatientResult(viewModel: PatientDetails.Delete.ViewModel) {
         if viewModel.isSuccessful {
             LoadingOverlay.hideWithSuccess { [unowned self] _ in
-                self.modificationDelegate?.didDeletePatient(viewModel.deletedPatient)
+                self.interactor?.modificationDelegate?.didDeletePatient(viewModel.deletedPatient)
                 self.navigationController?.popViewController(animated: true)
             }
         } else {

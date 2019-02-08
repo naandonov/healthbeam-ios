@@ -55,19 +55,11 @@ class CoreDataHandler {
             let usersFetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
             let users = try? context.fetch(usersFetchRequest)
             
-            if let existingUser = users?.first {
-                let premiseFetchRequest: NSFetchRequest<PremiseEntity> = PremiseEntity.fetchRequest()
-                premiseFetchRequest.predicate = NSPredicate(format: "id = %lld", Int64(existingUser.id))
-                let premises = try? context.fetch(premiseFetchRequest)
-                
-                if let premise = premises?.first {
-                    
-                    if let premiseModel = premise.model() {
-                        let userModel = existingUser.modelWithPremise(premiseModel)
-                        completition(userModel)
-                        return
-                    }
-                }
+            if let existingUser = users?.first,
+                let premise = existingUser.premise,
+                let premiseModel = premise.model(),
+                let userModel = existingUser.modelWithPremise(premiseModel) {
+                    completition(userModel)
             }
             completition(nil)
         }

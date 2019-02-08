@@ -32,15 +32,16 @@ class PatientsSearchRouter:  PatientsSearchRoutingLogic, PatientsSearchDataPassi
         let patientDetailsViewController = patientDetailsViewControllerProvider.get()
         patientDetailsViewController.router?.dataStore?.patient = dataStore?.selectedPatient
         patientDetailsViewController.router?.dataStore?.patientAttributes = dataStore?.selectedPatientAttributes
-        patientDetailsViewController.modificationDelegate = viewController
+        patientDetailsViewController.router?.dataStore?.modificationDelegate = viewController
         viewController?.navigationController?.pushViewController(patientDetailsViewController, animated: true)
     }
     
     func routeToCreatePatient() {
         let patientModificationViewController = patientModificationViewControllerProvider.get()
-        patientModificationViewController.modificationDelegate = viewController
+        patientModificationViewController.router?.dataStore?.modificationDelegate = viewController
         patientModificationViewController.mode = .create
         patientModificationViewController.router?.dataStore?.patient = Patient.emptySnapshot()
+        patientModificationViewController.router?.dataStore?.patientDetailsViewControllerProvider = patientDetailsViewControllerProvider
         viewController?.navigationController?.pushViewController(patientModificationViewController, animated: true)
     }
 
