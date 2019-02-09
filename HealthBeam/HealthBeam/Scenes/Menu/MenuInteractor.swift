@@ -32,6 +32,12 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
                                          name: "Patients Search".localized(),
                                          description: "Search for a specific patient, who has been registered to your premise".localized())
         model.append(patientsOption)
+        
+        let logoutOption = Menu.Option(type: .logout,
+                                         iconName: "logoutIcon",
+                                         name: "Logout".localized(),
+                                         description: "Sign out to revoke your active session and push notifications".localized())
+        model.append(logoutOption)
         return model
     }()
     
@@ -108,14 +114,27 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
     }
     
     func performUserLogout(request: Menu.UserLogout.Request) {
-        do {
-            presenter?.handleUserLogout(response: Menu.UserLogout.Response(isLogoutSuccessful: true))
-            try authorizationWorker.revokeAuthorization()
-            
-        } catch {
-            presenter?.handleUserLogout(response: Menu.UserLogout.Response(isLogoutSuccessful: false))
-            log.error("Unable to revoke current authorization, reason: \(error.localizedDescription)")
+        
+        let operation = LogoutOperation { [weak self] result in
+            guard let strongSelf = self else {
+                return
+            }
+            switch result {
+            case .success(_):
+                do {
+                    strongSelf.presenter?.handleUserLogout(response: Menu.UserLogout.Response(isLogoutSuccessful: true))
+                    try strongSelf.authorizationWorker.revokeAuthorization()
+                    
+                } catch {
+                    strongSelf.presenter?.handleUserLogout(response: Menu.UserLogout.Response(isLogoutSuccessful: false))
+                    log.error("Unable to revoke current authorization, reason: \(error.localizedDescription)")
+                }
+            case let .failure(responseObject):
+                log.error("Unable to revoke current authorization, reason: \(responseObject.localizedDescription)")
+                strongSelf.presenter?.handleUserLogout(response: Menu.UserLogout.Response(isLogoutSuccessful: false))
+            }
         }
+        networkingManager.addNetwork(operation: operation)
     }
 }
 

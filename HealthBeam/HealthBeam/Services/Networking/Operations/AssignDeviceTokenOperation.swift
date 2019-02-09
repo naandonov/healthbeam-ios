@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AssignDeviceTokenOperation: BaseSignedOperation<String> {
+class AssignDeviceTokenOperation: BaseSignedOperation<GenericResponse> {
     
     private override init() {
         super.init()

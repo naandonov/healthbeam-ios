@@ -149,6 +149,8 @@ extension MenuViewController: UICollectionViewDelegate {
             if let cell = collectionView.cellForItem(at: indexPath) as? MenuCollectionViewCell {
                 router?.routeToPatientsSearch(cell: cell)
             }
+        case .logout:
+            interactor?.performUserLogout(request: Menu.UserLogout.Request())
         }
     }
 }

@@ -51,6 +51,7 @@ struct Menu {
         
         enum OptionType {
             case patientsSearch
+            case logout
         }
     }
 }

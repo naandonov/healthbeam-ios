@@ -17,8 +17,8 @@ class MenuNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.prefersLargeTitles = true
-//        let backgroundImage = CAGradientLayer(applicationStyleWithFrame: navigationBar.bounds).gradientImage()
-//        navigationBar.barTintColor = UIColor(patternImage: backgroundImage!)
+        let backgroundImage = CAGradientLayer(applicationStyleWithFrame: navigationBar.bounds).gradientImage()
+        navigationBar.barTintColor = UIColor(patternImage: backgroundImage!)
 //        navigationBar.isTranslucent = false
 //        navigationBar.barTintColor = .white
         navigationBar.shadowImage = UIImage()

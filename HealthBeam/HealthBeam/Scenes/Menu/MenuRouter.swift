@@ -79,6 +79,9 @@ extension MenuRouter: UINavigationControllerDelegate {
                               animationControllerFor operation: UINavigationController.Operation,
                               from fromVC: UIViewController,
                               to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        navigationController.navigationBar.prefersLargeTitles = false
+
         guard let hideableView = hideableView,
             let innerRect = innerRect,
             let outerRect = outerRect,
