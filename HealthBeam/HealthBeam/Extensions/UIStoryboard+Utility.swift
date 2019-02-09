@@ -30,6 +30,10 @@ extension UIStoryboard {
     class var patients: UIStoryboard {
         return UIStoryboard(name: "Patients", bundle: nil)
     }
+    
+    class var healthRecords: UIStoryboard {
+        return UIStoryboard(name: "HealthRecords", bundle: nil)
+    }
 }
 
 extension UIViewController {

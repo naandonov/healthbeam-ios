@@ -50,6 +50,7 @@ class PatientModificationInteractor: PatientModificationBusinessLogic, PatientMo
             }
             switch result {
             case let .success(responseObject):
+                strongSelf.patient = responseObject.value
                 strongSelf.presenter?.presentCreatedPatient(response: PatientModification.Create.Response(isSuccessful: true, patient: responseObject.value, error: nil))
             case let .failure(responseObject):
                 log.error(responseObject.description)
@@ -65,6 +66,7 @@ class PatientModificationInteractor: PatientModificationBusinessLogic, PatientMo
             }
             switch result {
             case let .success(responseObject):
+                strongSelf.patient = responseObject.value
                 strongSelf.presenter?.presentUpdatePatient(response: PatientModification.Update.Response(isSuccessful: true, patient: responseObject.value, error: nil))
             case let .failure(responseObject):
                 log.error(responseObject.description)

@@ -15,48 +15,64 @@ struct ViewControllersModule: Module {
         
         binder
             .bind(ViewController.self)
-            .to {  (mainStoryboard: TaggedProvider<MainStoryboard>/*, injector: PropertyInjector<ExitPremiseViewController>*/) in
-                let viewController: ViewController! =  mainStoryboard.get().instantiateViewController()
+            .to {  (storyboard: TaggedProvider<MainStoryboard>/*, injector: PropertyInjector<ExitPremiseViewController>*/) in
+                let viewController: ViewController! =  storyboard.get().instantiateViewController()
 //                injecotr.injectProperties(into: viewController)
                 return viewController
         }
         
         binder
             .bind(LoginViewController.self)
-            .to {  (authenticationStoryboard: TaggedProvider<AuthenticationStoryboard>, injector: PropertyInjector<LoginViewController>) in
-                let viewController: LoginViewController! =  authenticationStoryboard.get().instantiateViewController()
+            .to {  (storyboard: TaggedProvider<AuthenticationStoryboard>, injector: PropertyInjector<LoginViewController>) in
+                let viewController: LoginViewController! =  storyboard.get().instantiateViewController()
                 injector.injectProperties(into: viewController)
                 return viewController
         }
         
         binder
             .bind(MenuViewController.self)
-            .to {  (menuStoryboard: TaggedProvider<MenuStoryboard>, injector: PropertyInjector<MenuViewController>) in
-                let viewController: MenuViewController! =  menuStoryboard.get().instantiateViewController()
+            .to {  (storyboard: TaggedProvider<MenuStoryboard>, injector: PropertyInjector<MenuViewController>) in
+                let viewController: MenuViewController! =  storyboard.get().instantiateViewController()
                 injector.injectProperties(into: viewController)
                 return viewController
         }
         
         binder
             .bind(PatientsSearchViewController.self)
-            .to {  (patientsStoryboard: TaggedProvider<PatientsStoryboard>, injector: PropertyInjector<PatientsSearchViewController>) in
-                let viewController: PatientsSearchViewController! =  patientsStoryboard.get().instantiateViewController()
+            .to {  (storyboard: TaggedProvider<PatientsStoryboard>, injector: PropertyInjector<PatientsSearchViewController>) in
+                let viewController: PatientsSearchViewController! =  storyboard.get().instantiateViewController()
                 injector.injectProperties(into: viewController)
                 return viewController
         }
         
         binder
             .bind(PatientDetailsViewController.self)
-            .to {  (patientsStoryboard: TaggedProvider<PatientsStoryboard>, injector: PropertyInjector<PatientDetailsViewController>) in
-                let viewController: PatientDetailsViewController! =  patientsStoryboard.get().instantiateViewController()
+            .to {  (storyboard: TaggedProvider<PatientsStoryboard>, injector: PropertyInjector<PatientDetailsViewController>) in
+                let viewController: PatientDetailsViewController! =  storyboard.get().instantiateViewController()
                 injector.injectProperties(into: viewController)
                 return viewController
         }
         
         binder
             .bind(PatientModificationViewController.self)
-            .to {  (patientsStoryboard: TaggedProvider<PatientsStoryboard>, injector: PropertyInjector<PatientModificationViewController>) in
-                let viewController: PatientModificationViewController! =  patientsStoryboard.get().instantiateViewController()
+            .to {  (storyboard: TaggedProvider<PatientsStoryboard>, injector: PropertyInjector<PatientModificationViewController>) in
+                let viewController: PatientModificationViewController! =  storyboard.get().instantiateViewController()
+                injector.injectProperties(into: viewController)
+                return viewController
+        }
+        
+        binder
+            .bind(HealthRecordViewController.self)
+            .to {  (storyboard: TaggedProvider<HealthRecordsStoryboard>, injector: PropertyInjector<HealthRecordViewController>) in
+                let viewController: HealthRecordViewController! =  storyboard.get().instantiateViewController()
+                injector.injectProperties(into: viewController)
+                return viewController
+        }
+        
+        binder
+            .bind(HealthRecordModificationViewController.self)
+            .to {  (storyboard: TaggedProvider<HealthRecordsStoryboard>, injector: PropertyInjector<HealthRecordModificationViewController>) in
+                let viewController: HealthRecordModificationViewController! =  storyboard.get().instantiateViewController()
                 injector.injectProperties(into: viewController)
                 return viewController
         }
@@ -80,5 +96,13 @@ struct ViewControllersModule: Module {
         binder
             .bindPropertyInjectionOf(PatientModificationViewController.self)
             .to(injector: PatientModificationViewController.injectProperties)
+        
+        binder
+            .bindPropertyInjectionOf(HealthRecordViewController.self)
+            .to(injector: HealthRecordViewController.injectProperties)
+        
+        binder
+            .bindPropertyInjectionOf(HealthRecordModificationViewController.self)
+            .to(injector: HealthRecordModificationViewController.injectProperties)
     }
 }

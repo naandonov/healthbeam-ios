@@ -31,6 +31,9 @@ struct APIConstants {
         case patients
         case patientDelete
         case patientAttributes
+        case healthRecordCreate
+        case healthRecordDelete
+        case healthRecordModification
         case subscriptions
         
         
@@ -50,6 +53,12 @@ struct APIConstants {
                 return "/patients/\(APIConstants.EndPoint.patientIdSubstitutionKey)"
             case .patientAttributes:
                 return "/patients/\(APIConstants.EndPoint.patientIdSubstitutionKey)/attributes"
+            case .healthRecordCreate:
+                return "/patients/\(APIConstants.EndPoint.patientIdSubstitutionKey)/healthRecords"
+            case .healthRecordDelete:
+                return "/healthRecords/\(APIConstants.EndPoint.patientIdSubstitutionKey)"
+            case .healthRecordModification:
+                return "/healthRecords"
             case .subscriptions:
                 return "/user/subscriptions"
             }

@@ -36,7 +36,7 @@ extension DateFormatter {
     
     static let simpleDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yyyy"
+        formatter.dateFormat = "dd MMMM yyyy"
         return formatter
     }()
 }

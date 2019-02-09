@@ -34,7 +34,7 @@ class PatientModificationViewController: UIViewController, PatientModificationDi
     
     weak var attributesUpdateHandler: AttributesUpdateProtocol?
 
-    private var dataSource: ModificationDatasource<Patient>?
+//    private var dataSource: ModificationDatasource<Patient>?
     var mode: Mode?
     
     // MARK:- View lifecycle
@@ -68,7 +68,7 @@ class PatientModificationViewController: UIViewController, PatientModificationDi
     func displayDatasource(viewModel: PatientModification.DataSource.ViewModel) {
         if let notificationCenter = notificationCenter {
             modificationController = ModificationElementController(containerView: tableContainerView, dataSource: viewModel.dataSource, notificationCenter: notificationCenter)
-            dataSource = viewModel.dataSource
+//            dataSource = viewModel.dataSource
         }
     }
     

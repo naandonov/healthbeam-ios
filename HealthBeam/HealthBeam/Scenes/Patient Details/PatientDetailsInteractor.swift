@@ -13,6 +13,8 @@ protocol PatientDetailsBusinessLogic {
     
     func handlePatientDetails(request: PatientDetails.AttributeProcessing.Request)
     func deletePatient(request: PatientDetails.Delete.Request)
+    
+    func getExternalUser(completion: (UserProfile.ExternalModel) -> Void)
 }
 
 protocol PatientDetailsDataStore {
@@ -75,6 +77,17 @@ class PatientDetailsInteractor: PatientDetailsBusinessLogic, PatientDetailsDataS
             }
         }
         networkingManager.addNetwork(operation: operation)
+    }
+    
+    func getExternalUser(completion: (UserProfile.ExternalModel) -> Void) {
+        coreDataHandler.getUserProfile { user in
+            if let user = user {
+                let externalUser = UserProfile.ExternalModel(id: user.id,
+                                                             fullName: user.fullName,
+                                                             designation: user.designation)
+                completion(externalUser)
+            }
+        }
     }
     
     init(coreDataHandler: CoreDataHandler, networkingManager: NetworkingManager) {

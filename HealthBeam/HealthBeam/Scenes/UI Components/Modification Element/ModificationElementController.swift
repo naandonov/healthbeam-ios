@@ -378,9 +378,9 @@ class ModificationElementController<T: Codable>: NSObject, UITableViewDelegate, 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let inputDescriptor = dataSource.inputDescriptors[indexPath.section]
         if case .notes(_, _, _) = inputDescriptor {
-            return 80
+            return 150
         } else if case .notesOptional(_, _, _) = inputDescriptor {
-            return 80
+            return 150
         }
         return 44
     }

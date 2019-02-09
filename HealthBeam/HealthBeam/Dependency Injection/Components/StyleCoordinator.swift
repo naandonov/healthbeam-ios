@@ -15,5 +15,12 @@ struct StyleCoordinator {
         static let cardViewCornerRadius: CGFloat = 30.0
         static let subCardViewCornerRadius: CGFloat = 15.0
     }
+    
+    struct Colors {
+        static let applicationProminent = UIColor.darkBlue
+        static let applicationNeutral = UIColor.neutralBlue
+        static let applicationDiscrete = UIColor.lightBlue
+    }
+    
 }
 

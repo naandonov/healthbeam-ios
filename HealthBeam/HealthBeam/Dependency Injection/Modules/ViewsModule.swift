@@ -19,5 +19,9 @@ struct ViewsModule: Module {
         binder
             .bind(StartupLoadingView.self)
             .to(value: StartupLoadingView.fromNib())
+        
+        binder
+            .bind(InformationCardView.self)
+            .to(value: InformationCardView.fromNib())
     }
 }

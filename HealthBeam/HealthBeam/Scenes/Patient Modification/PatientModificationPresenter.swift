@@ -21,19 +21,6 @@ class PatientModificationPresenter: PatientModificationPresentationLogic {
     
   weak var presenterOutput: PatientModificationDisplayLogic?
     
-    struct Patientzz: Codable {
-        let id: Int
-        var fullName: String
-        var gender: String
-        var personalIdentification: String
-        var birthDate: Date?
-        var bloodType: String
-        var alergies: [String]
-        var chronicConditions: [String]
-        var notes: String?
-        var premiseLocation: String?
-    }
-    
     func presentDatasource(response: PatientModification.DataSource.Response) {
         guard let patient = response.patient else {
             return
@@ -45,10 +32,11 @@ class PatientModificationPresenter: PatientModificationPresentationLogic {
             .standard(title: "Personal Identification".localized(), keyPath: \.personalIdentification, keyboardType: .numberPad, isRequired: true),
             .datePickerOptional(title: "Birth Date".localized(), keyPath: \.birthDate, isRequired: true),
             .itemsPicker(title: "Blood Type".localized(), keyPath: \.bloodType, model: DataProvider.bloodTypes, isRequired: true),
-            .multitude(title: "Alergies".localized(), keyPath: \.alergies, isRequired: false),
+            .standardOptional(title: "Premise Location".localized(), keyPath: \.premiseLocation, keyboardType: .default, isRequired: false),
+                .multitude(title: "Alergies".localized(), keyPath: \.alergies, isRequired: false),
             .multitude(title: "Chronic Conditions".localized(), keyPath: \.chronicConditions, isRequired: false),
-            .notesOptional(title: "Premise Location".localized(), keyPath: \.notes, isRequired: false)
-        ])
+            .notesOptional(title: "Notes".localized(), keyPath: \.notes, isRequired: false)
+            ])
         presenterOutput?.displayDatasource(viewModel: PatientModification.DataSource.ViewModel(dataSource: dataSource))
     }
     

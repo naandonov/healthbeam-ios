@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Health Record View Controller-->
+        <scene sceneID="G6X-MU-vfr">
+            <objects>
+                <viewController storyboardIdentifier="HealthRecordViewController" id="8Bx-wl-DJH" customClass="HealthRecordViewController" customModule="HealthBeam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cXk-dQ-aBc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5j3-JN-e5u">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5j3-JN-e5u" firstAttribute="leading" secondItem="WAe-Yr-6ku" secondAttribute="leading" id="Agg-cF-Y5i"/>
+                            <constraint firstAttribute="bottom" secondItem="5j3-JN-e5u" secondAttribute="bottom" id="EKF-Rm-iBg"/>
+                            <constraint firstItem="WAe-Yr-6ku" firstAttribute="trailing" secondItem="5j3-JN-e5u" secondAttribute="trailing" id="ETa-SF-Cct"/>
+                            <constraint firstItem="5j3-JN-e5u" firstAttribute="top" secondItem="WAe-Yr-6ku" secondAttribute="top" id="Yin-eb-bxm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WAe-Yr-6ku"/>
+                    </view>
+                    <connections>
+                        <outlet property="containerView" destination="5j3-JN-e5u" id="BxE-8t-E43"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DVR-16-G6W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-182" y="-127"/>
+        </scene>
+        <!--Health Record Modification View Controller-->
+        <scene sceneID="YtR-hg-iG4">
+            <objects>
+                <viewController storyboardIdentifier="HealthRecordModificationViewController" id="PT4-gZ-aQg" customClass="HealthRecordModificationViewController" customModule="HealthBeam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VnG-2m-KLu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TC9-v4-STd">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TC9-v4-STd" firstAttribute="leading" secondItem="8wP-8M-Eja" secondAttribute="leading" id="6SO-n6-Quc"/>
+                            <constraint firstAttribute="bottom" secondItem="TC9-v4-STd" secondAttribute="bottom" id="Img-7H-7N0"/>
+                            <constraint firstItem="TC9-v4-STd" firstAttribute="top" secondItem="8wP-8M-Eja" secondAttribute="top" id="eNA-nx-F4T"/>
+                            <constraint firstItem="8wP-8M-Eja" firstAttribute="trailing" secondItem="TC9-v4-STd" secondAttribute="trailing" id="nD4-Qi-qan"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8wP-8M-Eja"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableContainerView" destination="TC9-v4-STd" id="GuX-50-LYL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dV6-Hd-g2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="579" y="-127"/>
+        </scene>
+    </scenes>
+</document>

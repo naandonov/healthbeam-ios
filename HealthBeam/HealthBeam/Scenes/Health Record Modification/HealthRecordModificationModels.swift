@@ -1,61 +1,55 @@
 //
-//  PatientDetailsModels.swift
+//  HealthRecordModificationModels.swift
 //  HealthBeam
 //
-//  Created by Nikolay Andonov on 3.02.19.
+//  Created by Nikolay Andonov on 9.02.19.
 //  Copyright (c) 2019 nikolay.andonov. All rights reserved.
 //
 
 import UIKit
 
-struct PatientDetails {
+struct HealthRecordModification {
     
-    struct Model {
-        var patient: Patient
-        var healthRecords: [HealthRecord]
-        var patientTag: PatientTag?
-        var isObserved: Bool
-    }
-    
-    
-    struct AttributeProcessing {
+    struct DataSource {
         struct Request {
+            
         }
         struct Response {
-            let patientDetails: Model
+            var healthRecord: HealthRecord?
         }
         struct ViewModel {
-            let patientDetails: Model
+            var dataSource: ModificationDatasource<HealthRecord>
         }
     }
     
-    struct Delete {
+    struct Create {
         struct Request {
-            let patient: Patient
+            let healthRecord: HealthRecord
         }
         struct Response {
             let isSuccessful: Bool
-            let patient: Patient
+            let healthRecord: HealthRecord?
             let error: MSError?
         }
         struct ViewModel {
             let isSuccessful: Bool
-            let deletedPatient: Patient
+            let healthRecord: HealthRecord?
             let errorMessage: String?
         }
     }
     
     struct Update {
         struct Request {
-            let patient: Patient
+            let healthRecord: HealthRecord
         }
         struct Response {
             let isSuccessful: Bool
+            let healthRecord: HealthRecord?
             let error: MSError?
         }
         struct ViewModel {
             let isSuccessful: Bool
-            let updatedPatient: Patient?
+            let healthRecord: HealthRecord?
             let errorMessage: String?
         }
     }

@@ -32,19 +32,23 @@ struct Patient: Codable {
 }
 
 struct PatientAttributes: Codable {
-    let observers: [UserProfile.ExternalModel]?
-    let healthRecords: [HealthRecord]?
-    let patientTag: PatientTag?
+    var observers: [UserProfile.ExternalModel]?
+    var healthRecords: [HealthRecord]?
+    var patientTag: PatientTag?
 }
 
 struct HealthRecord: Codable {
-    let id: Int
+    let id: Int?
     var diagnosis: String
     var treatment: String
     var prescription: String
     var notes: String?
     var createdDate: Date
     var creator: UserProfile.ExternalModel?
+    
+    static func emptySnapshot(creator: UserProfile.ExternalModel) -> HealthRecord {
+        return HealthRecord(id: nil, diagnosis: "", treatment: "", prescription: "", notes: "", createdDate: Date(), creator: creator)
+    }
 }
 
 struct BatchResult<T: Codable>: Codable {

@@ -21,6 +21,12 @@ protocol AttributesUpdateProtocol: class {
     func didUpdatePatient(_: Patient)
 }
 
+protocol HealthRecordsModificationProtocol: class {
+    func didDeleteHealthRecord(_ healthRecord: HealthRecord)
+    func didUpdateHealthRecord(_ healthRecord: HealthRecord)
+    func didCreateHealthRecord(_ healthRecord: HealthRecord)
+}
+
 class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic {
     
     var interactor: PatientDetailsInteractorProtocol?
@@ -219,6 +225,19 @@ extension PatientDetailsViewController {
 
 extension PatientDetailsViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if PatientDetailsSection(rawValue: indexPath.section) == .healthRecords,
+            let healthRecords = patientDetails?.healthRecords {
+            //Create Health Record
+            if indexPath.row >= healthRecords.count {
+                interactor?.getExternalUser(completion: { [weak self] user in
+                    self?.router?.routeToCreateHealthRecord(creator: user)
+                })
+            } else {
+                router?.routeToHealthRecord(healthRecords[indexPath.row])
+            }
+        }
+    }
 }
 
 //MARK: - UITableViewDataSource
@@ -324,9 +343,55 @@ extension PatientDetailsViewController: UITableViewDataSource {
     }
 }
 
+//MARK: - AttributesUpdateProtocol
+
 extension PatientDetailsViewController: AttributesUpdateProtocol {
     func didUpdatePatient(_ patient: Patient) {
     patientDetails?.patient = patient
         updateDetails()
     }
+}
+
+//MARK: - HealthRecordsModificationProtocol
+
+extension PatientDetailsViewController: HealthRecordsModificationProtocol {
+    
+    func didDeleteHealthRecord(_ healthRecord: HealthRecord) {
+        guard let patientDetailsUnwrapped = patientDetails else {
+            return
+        }
+        
+        for (index, value) in patientDetailsUnwrapped.healthRecords.enumerated() {
+            if value.id == healthRecord.id {
+                let deletionIndexPath = IndexPath(row: index, section: PatientDetailsSection.healthRecords.rawValue)
+                patientDetails?.healthRecords.remove(at: index)
+                tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
+                break
+            }
+        }
+    }
+    
+    func didUpdateHealthRecord(_ healthRecord: HealthRecord) {
+        guard let patientDetailsUnwrapped = patientDetails else {
+            return
+        }
+        
+        for (index, value) in patientDetailsUnwrapped.healthRecords.enumerated() {
+            if value.id == healthRecord.id {
+                let reloadIndexePaths = IndexPath(row: index, section: PatientDetailsSection.healthRecords.rawValue)
+                patientDetails?.healthRecords[index] = healthRecord
+                tableView.reloadRows(at: [reloadIndexePaths], with: .automatic)
+                break
+            }
+        }
+    }
+    
+    func didCreateHealthRecord(_ healthRecord: HealthRecord) {
+        patientDetails?.healthRecords.append(healthRecord)
+        if let patientDetails = patientDetails {
+            let newIndexPath = IndexPath(row: patientDetails.healthRecords.count - 1, section: PatientDetailsSection.healthRecords.rawValue)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
+    }
+
 }
