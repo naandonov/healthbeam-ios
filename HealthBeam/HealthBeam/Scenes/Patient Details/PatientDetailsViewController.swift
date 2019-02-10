@@ -409,7 +409,8 @@ extension PatientDetailsViewController: UITableViewDataSource {
 
 extension PatientDetailsViewController: AttributesUpdateProtocol {
     func didUpdatePatient(_ patient: Patient) {
-    patientDetails?.patient = patient
+        router?.dataStore?.patient = patient
+        patientDetails?.patient = patient
         updateDetails()
     }
 }
@@ -426,6 +427,7 @@ extension PatientDetailsViewController: HealthRecordsModificationProtocol {
         for (index, value) in patientDetailsUnwrapped.healthRecords.enumerated() {
             if value.id == healthRecord.id {
                 let deletionIndexPath = IndexPath(row: index, section: PatientDetailsSection.healthRecords.rawValue)
+                router?.dataStore?.patientAttributes?.healthRecords?.remove(at: index)
                 patientDetails?.healthRecords.remove(at: index)
                 tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
                 break
@@ -441,6 +443,7 @@ extension PatientDetailsViewController: HealthRecordsModificationProtocol {
         for (index, value) in patientDetailsUnwrapped.healthRecords.enumerated() {
             if value.id == healthRecord.id {
                 let reloadIndexePaths = IndexPath(row: index, section: PatientDetailsSection.healthRecords.rawValue)
+                router?.dataStore?.patientAttributes?.healthRecords?[index] = healthRecord
                 patientDetails?.healthRecords[index] = healthRecord
                 tableView.reloadRows(at: [reloadIndexePaths], with: .automatic)
                 break
@@ -450,6 +453,8 @@ extension PatientDetailsViewController: HealthRecordsModificationProtocol {
     
     func didCreateHealthRecord(_ healthRecord: HealthRecord) {
         patientDetails?.healthRecords.append(healthRecord)
+        router?.dataStore?.patientAttributes?.healthRecords?.append(healthRecord)
+        
         if let patientDetails = patientDetails {
             let newIndexPath = IndexPath(row: patientDetails.healthRecords.count - 1, section: PatientDetailsSection.healthRecords.rawValue)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
