@@ -13,7 +13,7 @@ extension UIView  {
     func addConstraintsForWrappedInsideView(_ childView: UIView, edgeInset: UIEdgeInsets = .zero, respectSafeArea: Bool = false, pinTop: Bool = true, pinBottom: Bool = true) {
         
         if !subviews.contains(childView) {
-            return
+            addSubview(childView)
         }
         
         childView.translatesAutoresizingMaskIntoConstraints = false

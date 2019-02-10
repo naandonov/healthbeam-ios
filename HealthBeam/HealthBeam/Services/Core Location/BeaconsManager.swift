@@ -18,8 +18,7 @@ enum TrackingError: Error {
 extension BeaconsManager {
     enum Constants {
         enum Beacons {
-            static let RegionUUID = "a5e343ee-0a98-11e5-a6c0-1697f925ec7a"
-            static let RegionIdentifier = "SearchingRegion"
+            static let RegionIdentifier = "SearchingTagRegion"
             
             static let BeaconRecordExpirationSeconds = 10.0
             static let BeaconsTrackingStartDelaySeconds = 10.0
@@ -67,12 +66,18 @@ final class BeaconsManager: NSObject {
         return delay
     }
     
-    private var searchingRegion: CLBeaconRegion = {
-        let region = CLBeaconRegion(proximityUUID: UUID(uuidString: Constants.Beacons.RegionUUID)!, identifier: Constants.Beacons.RegionIdentifier)
-        region.notifyOnEntry = true
-        region.notifyOnExit = true
-        return region
-    }()
+//    private var searchingRegion: CLBeaconRegion = {
+//        let region = CLBeaconRegion(proximityUUID: UUID(uuidString: Constants.Beacons.RegionUUID)!, identifier: Constants.Beacons.RegionIdentifier)
+//        region.notifyOnEntry = true
+//        region.notifyOnExit = true
+//        return region
+//    }()
+    
+    private var regions: [CLBeaconRegion] = []
+    
+    private func searchRegionsForUUIDs(_ uuids: [UUID]) -> [CLBeaconRegion] {
+        return uuids.map() { CLBeaconRegion(proximityUUID: $0, identifier: $0.uuidString) }
+    }
     
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -99,13 +104,22 @@ final class BeaconsManager: NSObject {
         }
     }
     
-    func startListentingForBeaconsInProximity() {
-        locationManager.startMonitoring(for: searchingRegion)
+    func startListentingForBeaconsInProximity(searchRegions: [String]) {
+        stopListeningForBeacons()
+        var uuids: [UUID] = []
+        uuids = searchRegions.compactMap({ UUID(uuidString: $0) })
+        let regions = searchRegionsForUUIDs(uuids)
+        for searchingRegion in regions {
+            locationManager.startMonitoring(for: searchingRegion)
+        }
+        self.regions = regions
     }
     
     func stopListeningForBeacons() {
-        locationManager.stopMonitoring(for: searchingRegion)
-        locationManager.stopRangingBeacons(in: searchingRegion)
+        for searchingRegion in regions {
+            locationManager.stopMonitoring(for: searchingRegion)
+            locationManager.stopRangingBeacons(in: searchingRegion)
+        }
     }
     
     func delayNextTrackingEvent() {
@@ -152,10 +166,14 @@ extension BeaconsManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         if state == CLRegionState.inside {
-            locationManager.startRangingBeacons(in: searchingRegion)
+            if let searchRegion = regions.filter({ $0.proximityUUID.uuidString == region.identifier }).first {
+                locationManager.startRangingBeacons(in: searchRegion)
+            }
         }
         else {
-            locationManager.stopRangingBeacons(in: searchingRegion)
+            if let searchRegion = regions.filter({ $0.proximityUUID.uuidString == region.identifier }).first {
+                locationManager.stopRangingBeacons(in: searchRegion)
+            }
         }
     }
     
@@ -169,13 +187,13 @@ extension BeaconsManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         if beacons.count > 0 {
-            if let lastBeaconsUpdate = lastBeaconsUpdate, Date().timeIntervalSince(lastBeaconsUpdate) < interEventsDelay {
-                return
-            }
-            shouldDelayNextTrackingEvent = false
+//            if let lastBeaconsUpdate = lastBeaconsUpdate, Date().timeIntervalSince(lastBeaconsUpdate) < interEventsDelay {
+//                return
+//            }
+//            shouldDelayNextTrackingEvent = false
             
             let parsedBeacons = beacons.compactMap {
-                Beacon(minor: $0.minor.intValue, major: $0.major.intValue, rssi: $0.rssi)
+                Beacon(minor: $0.minor.intValue, major: $0.major.intValue, rssi: $0.rssi, accuracy: $0.accuracy)
             }
             log.verbose("\(parsedBeacons)")
             let beaconsUserInfo = [Constants.Notifications.UserInfoBeaconsKey: parsedBeacons]

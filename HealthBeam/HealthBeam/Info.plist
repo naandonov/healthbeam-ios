@@ -40,5 +40,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>ITSAppUsesNonExemptEncryption</key>
+    <false/>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+        <string>The application requires your location in order to detect patient assigned tag</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+        <string>The application requires your location in order to detect patient assigned tag</string>
 </dict>
 </plist>

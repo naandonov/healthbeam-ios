@@ -60,6 +60,7 @@ class CoreDataHandler {
                 let premiseModel = premise.model(),
                 let userModel = existingUser.modelWithPremise(premiseModel) {
                     completition(userModel)
+                return
             }
             completition(nil)
         }

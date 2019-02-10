@@ -39,6 +39,10 @@ class RoutersModule: Module {
         binder
             .bind(HealthRecordModificationRouterProtocol.self)
             .to(factory: HealthRecordModificationRouter.init)
+        
+        binder
+            .bind(PatientTagsSearchRouterProtocol.self)
+            .to(factory: PatientTagsSearchRouter.init)
 
     }
 }

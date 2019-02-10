@@ -179,8 +179,8 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="125" height="70"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="26" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovf-8S-xYA">
-                                                                                <rect key="frame" x="52" y="0.0" width="21.5" height="44"/>
-                                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                                <rect key="frame" x="52" y="0.0" width="21" height="44"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -213,8 +213,8 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="125" height="70"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AB+" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASO-Va-zPu">
-                                                                                <rect key="frame" x="45.5" y="0.0" width="34" height="44"/>
-                                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                                <rect key="frame" x="46" y="0.0" width="33.5" height="44"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -246,8 +246,8 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="125" height="70"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1554-345" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEw-0v-vZi">
-                                                                                <rect key="frame" x="22.5" y="0.0" width="80.5" height="44"/>
-                                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                                <rect key="frame" x="23" y="0.0" width="79" height="44"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>

@@ -33,6 +33,9 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
     
     @IBOutlet weak var tableView: UITableView!
     
+    private var notificationCenter: NotificationCenter?
+    private var keyboardScrollHandler: KeyboardScrollHandler?
+    
     private var pageElementsController: PagedElementsController<PatientsSearchViewController>?
     
     // MARK:- View lifecycle
@@ -49,6 +52,10 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
                                                             action: #selector(createPatientBarButtonAction))
+        
+        if let notificationCenter = notificationCenter {
+            keyboardScrollHandler = KeyboardScrollHandler(scrollView: tableView, notificationCenter: notificationCenter, enableTapToDismiss: false)
+        }
     }
     
     //MARK: - Setup UI
@@ -113,13 +120,15 @@ extension PatientsSearchViewController: PatientsModificationProtocol {
 extension PatientsSearchViewController {
     func injectProperties(interactor: PatientsSearchInteractorProtocol,
                           presenter: PatientsSearchPresenterProtocol,
-                          router: PatientsSearchRouterProtocol) {
+                          router: PatientsSearchRouterProtocol,
+                          notificationCenter: NotificationCenter) {
         self.interactor = interactor
         self.router = router
         self.router?.dataStore = interactor
         self.interactor?.presenter = presenter
         self.interactor?.presenter?.presenterOutput = self
         self.router?.viewController = self
+        self.notificationCenter = notificationCenter
     }
 }
 

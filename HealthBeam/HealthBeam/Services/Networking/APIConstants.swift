@@ -35,6 +35,9 @@ struct APIConstants {
         case healthRecordDelete
         case healthRecordModification
         case subscriptions
+        case toggleSubscription
+        case assignPatientTag
+        case unassignPatientTag
         
         
         var endpointString: String {
@@ -43,10 +46,16 @@ struct APIConstants {
                 return "/login"
             case .logout:
                 return "/logout"
+                
             case .user:
                 return "/user"
             case .userDeviceToken:
                 return "/user/assignToken"
+            case .subscriptions:
+                return "/user/subscriptions"
+            case .toggleSubscription:
+                return "/user/toggleSubscription"
+                
             case .patients:
                 return "/patients"
             case .patientDelete:
@@ -55,12 +64,16 @@ struct APIConstants {
                 return "/patients/\(APIConstants.EndPoint.patientIdSubstitutionKey)/attributes"
             case .healthRecordCreate:
                 return "/patients/\(APIConstants.EndPoint.patientIdSubstitutionKey)/healthRecords"
+            case .assignPatientTag:
+                return "/patients/\(APIConstants.EndPoint.patientIdSubstitutionKey)/assignTag"
+            case .unassignPatientTag:
+                return "/patients/\(APIConstants.EndPoint.patientIdSubstitutionKey)/unassignTag"
+                
             case .healthRecordDelete:
                 return "/healthRecords/\(APIConstants.EndPoint.patientIdSubstitutionKey)"
             case .healthRecordModification:
                 return "/healthRecords"
-            case .subscriptions:
-                return "/user/subscriptions"
+                
             }
         }
         

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PatientTagTableViewCell" customModule="HealthBeam" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YPg-7U-NFO">
+                        <rect key="frame" x="0.0" y="0.0" width="70" height="84.5"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dottedLine" translatesAutoresizingMaskIntoConstraints="NO" id="aW0-pC-Mdr">
+                                <rect key="frame" x="69" y="10" width="1" height="64.5"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardTagIcon" translatesAutoresizingMaskIntoConstraints="NO" id="rbC-ql-SE1">
+                                <rect key="frame" x="20" y="20" width="30" height="45"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="1QM-cx-h5f"/>
+                            <constraint firstItem="rbC-ql-SE1" firstAttribute="centerX" secondItem="YPg-7U-NFO" secondAttribute="centerX" id="HJQ-uT-mmJ"/>
+                            <constraint firstAttribute="trailing" secondItem="aW0-pC-Mdr" secondAttribute="trailing" id="P41-bB-UCt"/>
+                            <constraint firstItem="aW0-pC-Mdr" firstAttribute="top" secondItem="YPg-7U-NFO" secondAttribute="top" constant="10" id="RF3-i0-HsX"/>
+                            <constraint firstAttribute="bottom" secondItem="aW0-pC-Mdr" secondAttribute="bottom" constant="10" id="azc-Mu-xb4"/>
+                            <constraint firstItem="rbC-ql-SE1" firstAttribute="centerY" secondItem="YPg-7U-NFO" secondAttribute="centerY" id="fsS-Nl-DSI"/>
+                        </constraints>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ish-vv-ALf">
+                        <rect key="frame" x="89" y="10" width="211" height="64.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1545-324" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3J6-40-ehf">
+                                <rect key="frame" x="0.0" y="0.0" width="211" height="41.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.6m away" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lx-aj-CaN">
+                                <rect key="frame" x="0.0" y="23.5" width="211" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ish-vv-ALf" firstAttribute="leading" secondItem="YPg-7U-NFO" secondAttribute="trailing" constant="19" id="7Ez-qU-cl9"/>
+                    <constraint firstItem="ish-vv-ALf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="OnX-EG-2JZ"/>
+                    <constraint firstItem="YPg-7U-NFO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Qci-aH-WQd"/>
+                    <constraint firstAttribute="trailing" secondItem="ish-vv-ALf" secondAttribute="trailing" constant="20" id="WxR-WH-OqF"/>
+                    <constraint firstAttribute="bottom" secondItem="ish-vv-ALf" secondAttribute="bottom" constant="10" id="b0Q-XT-DsO"/>
+                    <constraint firstAttribute="bottom" secondItem="YPg-7U-NFO" secondAttribute="bottom" id="oI4-HY-iry"/>
+                    <constraint firstItem="YPg-7U-NFO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="sgr-rc-a95"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="subtitleLabel" destination="0lx-aj-CaN" id="W8l-BT-mUG"/>
+                <outlet property="tagImageView" destination="rbC-ql-SE1" id="Tkj-yR-p74"/>
+                <outlet property="titleLabel" destination="3J6-40-ehf" id="m8L-MU-d24"/>
+            </connections>
+            <point key="canvasLocation" x="137.59999999999999" y="139.880059970015"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="cardTagIcon" width="30" height="45"/>
+        <image name="dottedLine" width="1" height="112"/>
+    </resources>
+</document>

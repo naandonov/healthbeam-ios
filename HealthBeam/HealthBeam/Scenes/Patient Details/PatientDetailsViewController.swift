@@ -15,6 +15,10 @@ typealias PatientDetailsRouterProtocol = PatientDetailsRoutingLogic & PatientDet
 protocol PatientDetailsDisplayLogic: class {
     func displayPatientDetails(viewModel: PatientDetails.AttributeProcessing.ViewModel)
     func displayDeletePatientResult(viewModel: PatientDetails.Delete.ViewModel)
+    
+    func displayAssignedPatientTag(viewModel: PatientDetails.AssignTag.ViewModel)
+    func displayUnassignedPatientTag(viewModel: PatientDetails.UnassignTag.ViewModel)
+    func displayPerformedSubscriptionToggle(viewModel: PatientDetails.SubscribeToggle.ViewModel)
 }
 
 protocol AttributesUpdateProtocol: class {
@@ -27,7 +31,11 @@ protocol HealthRecordsModificationProtocol: class {
     func didCreateHealthRecord(_ healthRecord: HealthRecord)
 }
 
-class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic {
+protocol PatientTagAssignHandler: class {
+    func didAssignBeacon(_ beacon: Beacon)
+}
+
+class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic, PatientTagAssignHandler {
     
     var interactor: PatientDetailsInteractorProtocol?
     var router: PatientDetailsRouterProtocol?
@@ -108,6 +116,16 @@ class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic
 
     }
     
+    func didAssignBeacon(_ beacon: Beacon) {
+        router?.dimissPopUpContainer() { [weak self] in
+            guard let strongSelf = self else {
+                return
+            }
+            LoadingOverlay.showOn(strongSelf.navigationController?.view ?? strongSelf.view)
+            strongSelf.interactor?.assignPatientTag(request: PatientDetails.AssignTag.Request(beacon: beacon))
+        }
+    }
+    
     //MARK: - Displaying Logic
     
     func displayPatientDetails(viewModel: PatientDetails.AttributeProcessing.ViewModel) {
@@ -168,6 +186,44 @@ class PatientDetailsViewController: UIViewController, PatientDetailsDisplayLogic
         }
     }
     
+    func displayAssignedPatientTag(viewModel: PatientDetails.AssignTag.ViewModel) {
+        if viewModel.isSuccessful {
+            LoadingOverlay.hideWithSuccess { [unowned self] _ in
+                self.patientDetails?.patientTag = viewModel.patientTag
+                self.interactor?.handlePatientDetails(request: PatientDetails.AttributeProcessing.Request())
+            }
+        } else {
+            LoadingOverlay.hide()
+            UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
+        }
+    }
+    
+    func displayUnassignedPatientTag(viewModel: PatientDetails.UnassignTag.ViewModel) {
+        if viewModel.isSuccessful {
+            LoadingOverlay.hideWithSuccess { [unowned self] _ in
+                self.patientDetails?.patientTag = nil
+                self.interactor?.handlePatientDetails(request: PatientDetails.AttributeProcessing.Request())
+            }
+        } else {
+            LoadingOverlay.hide()
+            UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
+        }
+    }
+    
+    func displayPerformedSubscriptionToggle(viewModel: PatientDetails.SubscribeToggle.ViewModel) {
+        if viewModel.isSuccessful {
+            LoadingOverlay.hideWithSuccess { [unowned self] _ in
+                self.interactor?.handlePatientDetails(request: PatientDetails.AttributeProcessing.Request())
+                if let patient = self.router?.dataStore?.patient {
+                    self.router?.dataStore?.modificationDelegate?.didUpdatePatient(patient)
+                }
+            }
+        } else {
+            LoadingOverlay.hide()
+            UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
+        }
+    }
+    
 }
 
 //MARK:- Button Actions
@@ -197,12 +253,18 @@ extension PatientDetailsViewController {
     }
     
     @IBAction func subscriptionButtonAction(_ sender: UIButton) {
-        
-        
+        LoadingOverlay.showOn(navigationController?.view ?? view)
+        interactor?.performSubscriptionToggle(request: PatientDetails.SubscribeToggle.Request())
     }
     
     @IBAction func tagAssignButtonAction(_ sender: UIButton) {
-
+        if let _ = patientDetails?.patientTag {
+            LoadingOverlay.showOn(navigationController?.view ?? view)
+            interactor?.unassignPatientTag(request: PatientDetails.UnassignTag.Request())
+            
+        } else {
+            router?.routeToPatientTagsSearch()
+        }
     }
 }
 

@@ -9,7 +9,7 @@
 import Foundation
 
 struct PatientTag: Codable {
-    let id: Int
+    var id: Int?
     let minor: Int
     let major: Int
 }

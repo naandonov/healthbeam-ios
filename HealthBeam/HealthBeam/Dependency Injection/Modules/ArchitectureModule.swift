@@ -16,6 +16,5 @@ class ArchitectureModule: Module {
         binder.include(module: InteractorsModule.self)
         binder.include(module: PresentersModule.self)
         binder.include(module: RoutersModule.self)
-        binder.include(module: WorkersModule.self)
     }
 }

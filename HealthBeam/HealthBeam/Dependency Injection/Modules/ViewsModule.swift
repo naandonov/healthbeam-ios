@@ -11,17 +11,25 @@ import Cleanse
 
 struct ViewsModule: Module {
     static func configure(binder: SingletonBinder) {
-        
+
         binder
             .bind(LightLogoView.self)
-            .to(value: LightLogoView.fromNib())
+            .to { return LightLogoView.fromNib() }
         
         binder
             .bind(StartupLoadingView.self)
-            .to(value: StartupLoadingView.fromNib())
-        
+            .to { return StartupLoadingView.fromNib() }
+
         binder
             .bind(InformationCardView.self)
-            .to(value: InformationCardView.fromNib())
+            .to { return InformationCardView.fromNib() }
+  
+        binder
+            .bind(ScanningView.self)
+            .to { return ScanningView.fromNib() }
+        
+        binder
+            .bind(EmptyStateView.self)
+            .to { return EmptyStateView.fromNib() }
     }
 }

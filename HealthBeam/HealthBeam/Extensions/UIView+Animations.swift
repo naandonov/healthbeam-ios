@@ -42,6 +42,8 @@ extension UIView {
     
     func animateFade(positive: Bool, duration: TimeInterval = 0.3, completition: AnimationCompletition?) {
         let endAlpha: CGFloat = positive ? 1.0 : 0.0
+        let startAlpha: CGFloat = positive ? 0.0 : 1.0
+        alpha = startAlpha
         UIView.animate(withDuration: duration, animations: { [weak self] in
             self?.alpha = endAlpha
         }) { (success) in

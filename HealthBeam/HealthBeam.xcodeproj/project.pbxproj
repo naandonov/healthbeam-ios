@@ -42,7 +42,6 @@
 		4E0FEFE621D6C4030046303F /* StoryboardsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFD921D6C4030046303F /* StoryboardsModule.swift */; };
 		4E0FEFE821D6C4030046303F /* UIKitCommonModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFDB21D6C4030046303F /* UIKitCommonModule.swift */; };
 		4E0FEFE921D6C4030046303F /* ManagersModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFDC21D6C4030046303F /* ManagersModule.swift */; };
-		4E0FEFEA21D6C4030046303F /* WorkersModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFDD21D6C4030046303F /* WorkersModule.swift */; };
 		4E0FEFEB21D6C4030046303F /* UserInterfaceModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFDE21D6C4030046303F /* UserInterfaceModule.swift */; };
 		4E0FEFEC21D6C4030046303F /* ViewsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFDF21D6C4030046303F /* ViewsModule.swift */; };
 		4E0FEFED21D6C4030046303F /* ArchitectureModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFE021D6C4030046303F /* ArchitectureModule.swift */; };
@@ -59,6 +58,15 @@
 		4E0FF00221D7B7490046303F /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FEFFD21D7B7490046303F /* LoginInteractor.swift */; };
 		4E0FF00421D7B86D0046303F /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E0FF00321D7B86D0046303F /* Authentication.storyboard */; };
 		4E0FF00621D7C2700046303F /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0FF00521D7C2700046303F /* RoundedButton.swift */; };
+		4E141F6422106C6700502A30 /* PatientTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E141F6222106C6700502A30 /* PatientTagTableViewCell.swift */; };
+		4E141F6522106C6700502A30 /* PatientTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E141F6322106C6700502A30 /* PatientTagTableViewCell.xib */; };
+		4E141F672210877A00502A30 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E141F662210877A00502A30 /* EmptyStateView.swift */; };
+		4E141F692210878200502A30 /* EmptyStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E141F682210878200502A30 /* EmptyStateView.xib */; };
+		4E141F6B2210917C00502A30 /* TagsLocatingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E141F6A2210917C00502A30 /* TagsLocatingInteractor.swift */; };
+		4E141F6D22109A2800502A30 /* Double+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E141F6C22109A2800502A30 /* Double+Utilities.swift */; };
+		4E141F6F2210C43100502A30 /* SubscriptionToggleOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E141F6E2210C43100502A30 /* SubscriptionToggleOperation.swift */; };
+		4E141F712210C52B00502A30 /* AssignPatientTagOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E141F702210C52B00502A30 /* AssignPatientTagOperation.swift */; };
+		4E141F732210C68100502A30 /* UnassignPatientTagOperatioin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E141F722210C68100502A30 /* UnassignPatientTagOperatioin.swift */; };
 		4E17F18221FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F18121FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift */; };
 		4E17F18421FC6B020083AE50 /* CAGradientLayer+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F18321FC6B020083AE50 /* CAGradientLayer+Utilities.swift */; };
 		4E17F3D7220389A900E113ED /* AddMoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3D5220389A900E113ED /* AddMoreTableViewCell.swift */; };
@@ -73,6 +81,11 @@
 		4E17F3EA2207219700E113ED /* PatientDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3E52207219700E113ED /* PatientDetailsViewController.swift */; };
 		4E17F3EB2207219700E113ED /* PatientDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3E62207219700E113ED /* PatientDetailsInteractor.swift */; };
 		4E17F3ED22072B1300E113ED /* OutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3EC22072B1300E113ED /* OutlineView.swift */; };
+		4E20F38F220F8238009D97C4 /* ScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E20F38E220F8238009D97C4 /* ScanningView.swift */; };
+		4E20F391220F8242009D97C4 /* ScanningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E20F390220F8242009D97C4 /* ScanningView.xib */; };
+		4E20F39522104B69009D97C4 /* PopUpContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E20F39322104B69009D97C4 /* PopUpContainerViewController.swift */; };
+		4E20F39622104B69009D97C4 /* PopUpContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E20F39422104B69009D97C4 /* PopUpContainerViewController.xib */; };
+		4E20F398221062C5009D97C4 /* PatientTags.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E20F397221062C5009D97C4 /* PatientTags.storyboard */; };
 		4E24BE8F220A140300E89F0E /* HealthRecordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BE8A220A140300E89F0E /* HealthRecordPresenter.swift */; };
 		4E24BE90220A140300E89F0E /* HealthRecordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BE8B220A140300E89F0E /* HealthRecordRouter.swift */; };
 		4E24BE91220A140300E89F0E /* HealthRecordModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E24BE8C220A140300E89F0E /* HealthRecordModels.swift */; };
@@ -221,7 +234,6 @@
 		4E0FEFD921D6C4030046303F /* StoryboardsModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardsModule.swift; sourceTree = "<group>"; };
 		4E0FEFDB21D6C4030046303F /* UIKitCommonModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitCommonModule.swift; sourceTree = "<group>"; };
 		4E0FEFDC21D6C4030046303F /* ManagersModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagersModule.swift; sourceTree = "<group>"; };
-		4E0FEFDD21D6C4030046303F /* WorkersModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkersModule.swift; sourceTree = "<group>"; };
 		4E0FEFDE21D6C4030046303F /* UserInterfaceModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInterfaceModule.swift; sourceTree = "<group>"; };
 		4E0FEFDF21D6C4030046303F /* ViewsModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewsModule.swift; sourceTree = "<group>"; };
 		4E0FEFE021D6C4030046303F /* ArchitectureModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchitectureModule.swift; sourceTree = "<group>"; };
@@ -238,6 +250,15 @@
 		4E0FEFFD21D7B7490046303F /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		4E0FF00321D7B86D0046303F /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		4E0FF00521D7C2700046303F /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		4E141F6222106C6700502A30 /* PatientTagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientTagTableViewCell.swift; sourceTree = "<group>"; };
+		4E141F6322106C6700502A30 /* PatientTagTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PatientTagTableViewCell.xib; sourceTree = "<group>"; };
+		4E141F662210877A00502A30 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		4E141F682210878200502A30 /* EmptyStateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyStateView.xib; sourceTree = "<group>"; };
+		4E141F6A2210917C00502A30 /* TagsLocatingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsLocatingInteractor.swift; sourceTree = "<group>"; };
+		4E141F6C22109A2800502A30 /* Double+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Utilities.swift"; sourceTree = "<group>"; };
+		4E141F6E2210C43100502A30 /* SubscriptionToggleOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionToggleOperation.swift; sourceTree = "<group>"; };
+		4E141F702210C52B00502A30 /* AssignPatientTagOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignPatientTagOperation.swift; sourceTree = "<group>"; };
+		4E141F722210C68100502A30 /* UnassignPatientTagOperatioin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnassignPatientTagOperatioin.swift; sourceTree = "<group>"; };
 		4E17F18121FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubscribedPatientsOperation.swift; sourceTree = "<group>"; };
 		4E17F18321FC6B020083AE50 /* CAGradientLayer+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+Utilities.swift"; sourceTree = "<group>"; };
 		4E17F3D5220389A900E113ED /* AddMoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoreTableViewCell.swift; sourceTree = "<group>"; };
@@ -252,6 +273,11 @@
 		4E17F3E52207219700E113ED /* PatientDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailsViewController.swift; sourceTree = "<group>"; };
 		4E17F3E62207219700E113ED /* PatientDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailsInteractor.swift; sourceTree = "<group>"; };
 		4E17F3EC22072B1300E113ED /* OutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineView.swift; sourceTree = "<group>"; };
+		4E20F38E220F8238009D97C4 /* ScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningView.swift; sourceTree = "<group>"; };
+		4E20F390220F8242009D97C4 /* ScanningView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScanningView.xib; sourceTree = "<group>"; };
+		4E20F39322104B69009D97C4 /* PopUpContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpContainerViewController.swift; sourceTree = "<group>"; };
+		4E20F39422104B69009D97C4 /* PopUpContainerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpContainerViewController.xib; sourceTree = "<group>"; };
+		4E20F397221062C5009D97C4 /* PatientTags.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PatientTags.storyboard; sourceTree = "<group>"; };
 		4E24BE8A220A140300E89F0E /* HealthRecordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordPresenter.swift; sourceTree = "<group>"; };
 		4E24BE8B220A140300E89F0E /* HealthRecordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordRouter.swift; sourceTree = "<group>"; };
 		4E24BE8C220A140300E89F0E /* HealthRecordModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordModels.swift; sourceTree = "<group>"; };
@@ -488,6 +514,9 @@
 				4E5160CF220E6CE5009DD6AA /* DeleteHealthRecordOperation.swift */,
 				4E5160D1220E6CF4009DD6AA /* UpdateHealthRecordOperation.swift */,
 				4E5160D3220E6D01009DD6AA /* CreateHealthRecordOperation.swift */,
+				4E141F6E2210C43100502A30 /* SubscriptionToggleOperation.swift */,
+				4E141F702210C52B00502A30 /* AssignPatientTagOperation.swift */,
+				4E141F722210C68100502A30 /* UnassignPatientTagOperatioin.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -523,6 +552,7 @@
 				4E0FEFB521D6BEAE0046303F /* AuthorizationWorker.swift */,
 				4ED74C1121DBC346009AB7C3 /* CommonModels.swift */,
 				8C196B7121EE3EAE004F2549 /* NotificationManager.swift */,
+				4E141F6A2210917C00502A30 /* TagsLocatingInteractor.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -549,6 +579,7 @@
 				4E17F18321FC6B020083AE50 /* CAGradientLayer+Utilities.swift */,
 				4EBC81FB21FC810E008427A8 /* UIImage+Utilities.swift */,
 				8C8E3ADF21FF517D00563059 /* UIView+ImageProcessing.swift */,
+				4E141F6C22109A2800502A30 /* Double+Utilities.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -561,6 +592,7 @@
 				4EF9E2AF21ED18F300E0DDD0 /* Menu.storyboard */,
 				4E2DEA6221F655C7000E0C61 /* Patients.storyboard */,
 				4E5160BD220E2CB8009DD6AA /* HealthRecords.storyboard */,
+				4E20F397221062C5009D97C4 /* PatientTags.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -599,7 +631,6 @@
 				4E0FEFE221D6C4030046303F /* InteractorsModule.swift */,
 				4E0FEFE321D6C4030046303F /* PresentersModule.swift */,
 				4E0FEFE421D6C4030046303F /* RoutersModule.swift */,
-				4E0FEFDD21D6C4030046303F /* WorkersModule.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -607,6 +638,7 @@
 		4E0FEFF221D796590046303F /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
+				4E20F39222104B30009D97C4 /* Popup Container */,
 				4E5160B6220E1E36009DD6AA /* Content Display */,
 				4E17F3D42203890800E113ED /* Modification Element */,
 				4E0FEFF321D796660046303F /* Views */,
@@ -635,6 +667,10 @@
 				4E93EA3C21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.swift */,
 				4E93EA3D21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib */,
 				4E17F3EC22072B1300E113ED /* OutlineView.swift */,
+				4E20F38E220F8238009D97C4 /* ScanningView.swift */,
+				4E20F390220F8242009D97C4 /* ScanningView.xib */,
+				4E141F662210877A00502A30 /* EmptyStateView.swift */,
+				4E141F682210878200502A30 /* EmptyStateView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -649,6 +685,15 @@
 				4E0FEFFD21D7B7490046303F /* LoginInteractor.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		4E141F6122106C4000502A30 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4E141F6222106C6700502A30 /* PatientTagTableViewCell.swift */,
+				4E141F6322106C6700502A30 /* PatientTagTableViewCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		4E17F3D42203890800E113ED /* Modification Element */ = {
@@ -680,6 +725,15 @@
 			path = "Patient Details";
 			sourceTree = "<group>";
 		};
+		4E20F39222104B30009D97C4 /* Popup Container */ = {
+			isa = PBXGroup;
+			children = (
+				4E20F39322104B69009D97C4 /* PopUpContainerViewController.swift */,
+				4E20F39422104B69009D97C4 /* PopUpContainerViewController.xib */,
+			);
+			path = "Popup Container";
+			sourceTree = "<group>";
+		};
 		4E24BE89220A13D600E89F0E /* Health Record */ = {
 			isa = PBXGroup;
 			children = (
@@ -696,6 +750,7 @@
 		4E24BE96220A191100E89F0E /* PatientTagsSearch */ = {
 			isa = PBXGroup;
 			children = (
+				4E141F6122106C4000502A30 /* Views */,
 				4E24BE97220A195100E89F0E /* PatientTagsSearchPresenter.swift */,
 				4E24BE98220A195100E89F0E /* PatientTagsSearchRouter.swift */,
 				4E24BE99220A195100E89F0E /* PatientTagsSearchModels.swift */,
@@ -956,14 +1011,17 @@
 				4EF9E2C321EE7AE200E0DDD0 /* StartupLoadingView.xib in Resources */,
 				4E93801E21DA98510083ED03 /* LoadingOverlayView.xib in Resources */,
 				4E39ECB721D381B60041F44C /* LaunchScreen.storyboard in Resources */,
+				4E141F692210878200502A30 /* EmptyStateView.xib in Resources */,
 				4E5160C3220E3B62009DD6AA /* InformationCardView.xib in Resources */,
 				4E6EB79F220766C200146B8C /* HealthRecordPreviewTableViewCell.xib in Resources */,
 				4E6EB7A3220766D100146B8C /* AddHealthRecordTableViewCell.xib in Resources */,
+				4E20F398221062C5009D97C4 /* PatientTags.storyboard in Resources */,
 				4E39ECB421D381B60041F44C /* Assets.xcassets in Resources */,
 				4E48E58B21DAC3D900069CC4 /* loading.json in Resources */,
 				4E93EA3B21F661E5007C8BE8 /* PatientTableViewCell.xib in Resources */,
 				4E2DEA6321F655C7000E0C61 /* Patients.storyboard in Resources */,
 				4E39ECB221D381B40041F44C /* Main.storyboard in Resources */,
+				4E141F6522106C6700502A30 /* PatientTagTableViewCell.xib in Resources */,
 				4E62DF0F2200E6E40090BFAF /* ModificationElementTableViewCell.xib in Resources */,
 				4E6EB79B220766A600146B8C /* ListItemTableViewCell.xib in Resources */,
 				4E17F3D8220389A900E113ED /* AddMoreTableViewCell.xib in Resources */,
@@ -973,10 +1031,12 @@
 				4E2DEA5221F4E31C000E0C61 /* MenuCollectionViewCell.xib in Resources */,
 				4E0FEFF721D796B00046303F /* LightLogoView.xib in Resources */,
 				4E0FF00421D7B86D0046303F /* Authentication.storyboard in Resources */,
+				4E20F39622104B69009D97C4 /* PopUpContainerViewController.xib in Resources */,
 				4E48E58921DAC29C00069CC4 /* done.json in Resources */,
 				4E93801A21DA979D0083ED03 /* pulse_loader.json in Resources */,
 				4E93EA3F21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib in Resources */,
 				4E17F3DC2204E27700E113ED /* NotesTableViewCell.xib in Resources */,
+				4E20F391220F8242009D97C4 /* ScanningView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1036,6 +1096,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E141F6F2210C43100502A30 /* SubscriptionToggleOperation.swift in Sources */,
+				4E141F712210C52B00502A30 /* AssignPatientTagOperation.swift in Sources */,
 				4ED74C1A21DBC6A7009AB7C3 /* UserProfileRouter.swift in Sources */,
 				4E17F3E82207219700E113ED /* PatientDetailsRouter.swift in Sources */,
 				4E0FEFC421D6BF050046303F /* UIStoryboard+Utility.swift in Sources */,
@@ -1047,6 +1109,8 @@
 				4E0FEFC321D6BF050046303F /* UINavigationController+Utilities.swift in Sources */,
 				4ED74C1C21DBC6A7009AB7C3 /* UserProfileViewController.swift in Sources */,
 				4E17F3DE2205A10C00E113ED /* ModificationBaseTableViewCell.swift in Sources */,
+				4E141F6D22109A2800502A30 /* Double+Utilities.swift in Sources */,
+				4E141F732210C68100502A30 /* UnassignPatientTagOperatioin.swift in Sources */,
 				4E0FEFFE21D7B7490046303F /* LoginPresenter.swift in Sources */,
 				4ED74C1F21DBCBBA009AB7C3 /* GetUserProfileOperation.swift in Sources */,
 				4E0FEFE621D6C4030046303F /* StoryboardsModule.swift in Sources */,
@@ -1085,7 +1149,10 @@
 				4E24BE9F220A195100E89F0E /* PatientTagsSearchViewController.swift in Sources */,
 				4E5160D0220E6CE5009DD6AA /* DeleteHealthRecordOperation.swift in Sources */,
 				4E5160C1220E3B57009DD6AA /* InformationCardView.swift in Sources */,
+				4E20F38F220F8238009D97C4 /* ScanningView.swift in Sources */,
+				4E141F6422106C6700502A30 /* PatientTagTableViewCell.swift in Sources */,
 				4E93801321D981020083ED03 /* UIView+Utilities.swift in Sources */,
+				4E20F39522104B69009D97C4 /* PopUpContainerViewController.swift in Sources */,
 				4E0FF00621D7C2700046303F /* RoundedButton.swift in Sources */,
 				4ED74C0E21DBC19E009AB7C3 /* BaseSignedOperation.swift in Sources */,
 				4EC355DC21DF8F0F0011D723 /* PagedElementsController.swift in Sources */,
@@ -1103,13 +1170,13 @@
 				4E0FF00121D7B7490046303F /* LoginViewController.swift in Sources */,
 				4E48E59321DB9A3200069CC4 /* HealthBeamModel.xcdatamodeld in Sources */,
 				4E0FEFA521D6BCB20046303F /* APIConstants.swift in Sources */,
-				4E0FEFEA21D6C4030046303F /* WorkersModule.swift in Sources */,
 				4E17F3E72207219700E113ED /* PatientDetailsPresenter.swift in Sources */,
 				4E0FEFFF21D7B7490046303F /* LoginRouter.swift in Sources */,
 				4E5160CC220E6542009DD6AA /* HealthRecordModificationModels.swift in Sources */,
 				4E0FEFAD21D6BCB20046303F /* NetworkingManager.swift in Sources */,
 				4E24BEA8220B953B00E89F0E /* CreatePatientOperation.swift in Sources */,
 				4E39ECAF21D381B40041F44C /* ViewController.swift in Sources */,
+				4E141F672210877A00502A30 /* EmptyStateView.swift in Sources */,
 				4E0FEFC821D6BF050046303F /* NotificationCenter+Utilities.swift in Sources */,
 				4E17F3E022070E2C00E113ED /* ModificationStandardTextField.swift in Sources */,
 				4E93EA3E21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.swift in Sources */,
@@ -1183,6 +1250,7 @@
 				4E48E58F21DB989200069CC4 /* CoreDataManager.swift in Sources */,
 				4E0FEFCB21D6BF050046303F /* UIView+LayoutConstraints.swift in Sources */,
 				4E0FEFD321D6C2430046303F /* NibLoadableView.swift in Sources */,
+				4E141F6B2210917C00502A30 /* TagsLocatingInteractor.swift in Sources */,
 				4EF9E2B821ED1AD300E0DDD0 /* MenuRouter.swift in Sources */,
 				4E17F18421FC6B020083AE50 /* CAGradientLayer+Utilities.swift in Sources */,
 				4E93800E21D949B30083ED03 /* FloatingTextField.swift in Sources */,

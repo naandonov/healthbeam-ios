@@ -17,6 +17,14 @@ struct PatientDetails {
         var isObserved: Bool
     }
     
+    struct SubscriptionToggleRequest: Codable {
+        let patientId: Int
+    }
+    
+    struct SubscriptionToggleResult: Codable {
+        let patientId: Int
+        let isSubscribed: Bool
+    }
     
     struct AttributeProcessing {
         struct Request {
@@ -26,6 +34,51 @@ struct PatientDetails {
         }
         struct ViewModel {
             let patientDetails: Model
+        }
+    }
+    
+    struct AssignTag {
+        struct Request {
+            let beacon: Beacon
+            
+        }
+        struct Response {
+            let isSuccessful: Bool
+            let error: MSError?
+            let patientTag: PatientTag?
+        }
+        struct ViewModel {
+            let isSuccessful: Bool
+            let errorMessage: String?
+            let patientTag: PatientTag?
+        }
+    }
+    
+    struct UnassignTag {
+        struct Request {
+        }
+        struct Response {
+            let isSuccessful: Bool
+            let error: MSError?
+        }
+        struct ViewModel {
+            let isSuccessful: Bool
+            let errorMessage: String?
+        }
+    }
+    
+    struct SubscribeToggle {
+        struct Request {
+        }
+        struct Response {
+            let isSuccessful: Bool
+            let isSubscribed: Bool?
+            let error: MSError?
+        }
+        struct ViewModel {
+            let isSuccessful: Bool
+            let isSubscribed: Bool?
+            let errorMessage: String?
         }
     }
     

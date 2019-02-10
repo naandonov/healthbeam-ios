@@ -16,7 +16,8 @@ protocol PatientDetailsRoutingLogic {
     func performNavigationCleanupIfNeeded()
     func routeToHealthRecord(_ healthRecord: HealthRecord)
     func routeToCreateHealthRecord(creator: UserProfile.ExternalModel)
-
+    func routeToPatientTagsSearch()
+    func dimissPopUpContainer(completion: (() -> Void)?)
 }
 
 protocol PatientDetailsDataPassing {
@@ -31,6 +32,8 @@ class PatientDetailsRouter:  PatientDetailsRoutingLogic, PatientDetailsDataPassi
     private let patientModificationViewControllerProvider: Provider<PatientModificationViewController>
     private let healthRecordViewControllerProvider: Provider<HealthRecordViewController>
     private let healthRecordModificationViewControllerProvider: Provider<HealthRecordModificationViewController>
+    private let patientTagsSearchViewControllerProvider: Provider<PatientTagsSearchViewController>
+    private var popUpContainerViewController: PopUpContainerViewController?
     
     func routeToUpdatePatientScreen(for patient: Patient) {
         let patientModificationViewController = patientModificationViewControllerProvider.get()
@@ -65,11 +68,27 @@ class PatientDetailsRouter:  PatientDetailsRoutingLogic, PatientDetailsDataPassi
         healthRecordModificationViewController.mode = .create
         viewController?.navigationController?.pushViewController(healthRecordModificationViewController, animated: true)
     }
+    
+    func routeToPatientTagsSearch() {
+        let patientTagsSearchViewController = patientTagsSearchViewControllerProvider.get()
+        patientTagsSearchViewController.router?.dataStore?.patientTagAssignHandler = viewController
+        let navigationController = MenuNavigationController(rootViewController: patientTagsSearchViewController)
+        let popUpContainerViewController = PopUpContainerViewController.generate(forContainedViewController: navigationController)
+        viewController?.present(popUpContainerViewController, animated: true, completion: nil)
+        self.popUpContainerViewController = popUpContainerViewController
+    }
+    
+    func dimissPopUpContainer(completion: (() -> Void)?) {
+        popUpContainerViewController?.dismiss(animated: true, completion: completion)
+    }
 
     init(patientModificationViewControllerProvider: Provider<PatientModificationViewController>,
-         healthRecordViewControllerProvider: Provider<HealthRecordViewController>, healthRecordModificationViewControllerProvider: Provider<HealthRecordModificationViewController>) {
+         healthRecordViewControllerProvider: Provider<HealthRecordViewController>,
+         healthRecordModificationViewControllerProvider: Provider<HealthRecordModificationViewController>,
+         patientTagsSearchViewControllerProvider: Provider<PatientTagsSearchViewController>) {
         self.patientModificationViewControllerProvider = patientModificationViewControllerProvider
         self.healthRecordViewControllerProvider = healthRecordViewControllerProvider
         self.healthRecordModificationViewControllerProvider = healthRecordModificationViewControllerProvider
+        self.patientTagsSearchViewControllerProvider = patientTagsSearchViewControllerProvider
     }
 }

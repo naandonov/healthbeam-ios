@@ -10,15 +10,15 @@ import UIKit
 
 struct PatientTagsSearch {
     
-    struct Placeholder {
+    struct Locate {
         struct Request {
             
         }
         struct Response {
-            
+            let beacons: [Beacon]
         }
         struct ViewModel {
-            
+            let beacons: [Beacon]
         }
     }
 }

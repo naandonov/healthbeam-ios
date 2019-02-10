@@ -11,7 +11,8 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate {//, PagedElementsControllerDelegate, PagedElementsControllerSearchDelegate {
     
     @IBOutlet weak var containerView: UIView!
-
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    var viewz: ScanningView?
     var modificaitonElementController: ModificationElementController<Element>?
     
     struct Element: Codable {
@@ -32,6 +33,11 @@ class ViewController: UIViewController, UITableViewDelegate {//, PagedElementsCo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+       
+        
+        
         
 //        let dataSource = ModificationDatasource(element: element, inputDescriptors: [
 //            .standardOptional(title: "Full Name", keyPath: \Element.name, isRequired: true),
@@ -57,19 +63,40 @@ class ViewController: UIViewController, UITableViewDelegate {//, PagedElementsCo
              .standardOptional(title: "Title", keyPath: \Element.title, keyboardType: .default, isRequired: false),
             ])
         
-        modificaitonElementController = ModificationElementController(containerView: containerView, dataSource: dataSource, notificationCenter: NotificationCenter.default)
+        //modificaitonElementController = ModificationElementController(containerView: containerView, dataSource: dataSource, notificationCenter: NotificationCenter.default)
+        
+        
+//        viewz = ScanningView.fromNib()
+//        containerView.addSubview(viewz!)
+//        view.addConstraintsForWrappedInsideView(viewz!)
+        
+       
+        
     }
     
     @IBAction func validate(_ sender: Any) {
         
-        do {
-           let a = try modificaitonElementController?.requestModifiedElement()
-            print(a)
-        } catch ModificationError.failedInputValidation {
-            print("validation error")
-        }
-        catch {
-        }
+        let vc2: PatientTagsSearchViewController! =  UIStoryboard.patientTags.instantiateViewController()
+        let vc = PopUpContainerViewController.generate(forContainedViewController: vc2)
+        present(vc, animated: true, completion: nil)
+        
+        
+//        UIView.animate(withDuration: 3) {
+//            self.bottomConstraint.constant = 500
+//            self.viewz!.animationView.layoutIfNeeded()
+//            self.viewz!.layoutIfNeeded()
+//
+//
+//        }
+        
+//        do {
+//           let a = try modificaitonElementController?.requestModifiedElement()
+//            print(a)
+//        } catch ModificationError.failedInputValidation {
+//            print("validation error")
+//        }
+//        catch {
+//        }
         
     }
     

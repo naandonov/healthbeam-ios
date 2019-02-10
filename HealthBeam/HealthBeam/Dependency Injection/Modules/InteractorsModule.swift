@@ -39,5 +39,9 @@ class InteractorsModule: Module {
         binder
             .bind(HealthRecordModificationInteractorProtocol.self)
             .to(factory: HealthRecordModificationInteractor.init)
+        
+        binder
+            .bind(PatientTagsSearchInteractorProtocol.self)
+            .to(factory: PatientTagsSearchInteractor.init)
     }
 }

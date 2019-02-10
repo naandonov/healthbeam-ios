@@ -39,6 +39,10 @@ class PresentersModule: Module {
         binder
             .bind(HealthRecordModificationPresenterProtocol.self)
             .to(factory: HealthRecordModificationPresenter.init)
+        
+        binder
+            .bind(PatientTagsSearchPresenterProtocol.self)
+            .to(factory: PatientTagsSearchPresenter.init)
 
     }
 }
