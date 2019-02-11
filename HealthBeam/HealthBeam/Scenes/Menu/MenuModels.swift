@@ -50,7 +50,9 @@ struct Menu {
         let description: String
         
         enum OptionType {
+            case patientsLocate
             case patientsSearch
+            case about
             case logout
         }
     }

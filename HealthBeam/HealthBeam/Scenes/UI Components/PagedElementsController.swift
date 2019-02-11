@@ -92,6 +92,10 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
         return segmentedControl?.selectedSegmentIndex
     }
     
+    func displayEmptyResult() {
+        reset(placeholderCollection: [0:0])
+    }
+    
     func configureScopeSelectionControlWith(scopeTitles: [String], style: BarStyle = .infered) {
         
         let containerView = ApplicationThemedView()
@@ -191,7 +195,6 @@ extension PagedElementsController: SearchResultHandler where Delegate: PagedElem
         viewController.definesPresentationContext = true
         let searchBar = searchController.searchBar
         
-        viewController.view.setApplicationGradientBackground()
 
         switch style {
         case .infered:
@@ -232,8 +235,8 @@ extension PagedElementsController: SearchResultHandler where Delegate: PagedElem
 
 extension PagedElementsController  {
     
-    func reset() {
-        estimatedCollection = [0:20]
+    func reset(placeholderCollection: [Int:Int] = [0:20]) {
+        estimatedCollection = placeholderCollection
         modelCollection = [:]
         pendingPageRequests = []
         tableView?.reloadData()

@@ -43,6 +43,10 @@ class RoutersModule: Module {
         binder
             .bind(PatientTagsSearchRouterProtocol.self)
             .to(factory: PatientTagsSearchRouter.init)
+        
+        binder
+            .bind(LocatePatientsRouterProtocol.self)
+            .to(factory: LocatePatientsRouter.init)
 
     }
 }

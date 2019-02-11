@@ -27,11 +27,23 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
     var presenter: MenuPresentationLogic?
     let options: [Menu.Option] = {
         var model:[Menu.Option] = []
+        let patientsLocateOption = Menu.Option(type: .patientsLocate,
+                                         iconName: "patientsLocatorIcon",
+                                         name: "Locate Patients".localized(),
+                                         description: "Search for nearby patients, which have been assigned with a tag".localized())
+        model.append(patientsLocateOption)
+        
         let patientsOption = Menu.Option(type: .patientsSearch,
                                          iconName: "patientsIcon",
-                                         name: "Patients Search".localized(),
+                                         name: "Search Patients".localized(),
                                          description: "Search for a specific patient, who has been registered to your premise".localized())
         model.append(patientsOption)
+        
+        let aboutOption = Menu.Option(type: .about,
+                                         iconName: "neutralBlueLogo",
+                                         name: "About".localized(),
+                                         description: "Explore HealthBeam's terms and conditions and privacy policies".localized())
+        model.append(aboutOption)
         
         let logoutOption = Menu.Option(type: .logout,
                                          iconName: "logoutIcon",

@@ -57,6 +57,14 @@ struct BatchResult<T: Codable>: Codable {
     let elementsInPage: Int
     let currentPage: Int
     let totalElementsCount: Int
+    
+    static func generateOnePageResultForModel(_ model: [T]) -> BatchResult<T> {
+        return BatchResult(items: model,
+                           totalPagesCount: 1,
+                           elementsInPage: model.count,
+                           currentPage: 1,
+                           totalElementsCount: model.count)
+    }
 }
 
 struct GenericResponse: Codable {

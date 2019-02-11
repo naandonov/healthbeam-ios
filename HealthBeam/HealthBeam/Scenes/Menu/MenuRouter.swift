@@ -14,6 +14,7 @@ protocol MenuRoutingLogic {
     
     func routeToAuthorization(withHandler handler: PostAuthorizationHandler?, animated: Bool)
     func routeToPatientsSearch(cell: MenuCollectionViewCell)
+    func routeToLocatePatients(cell: MenuCollectionViewCell)
 }
 
 protocol MenuDataPassing {
@@ -39,6 +40,7 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
     
     private let loginViewControllerProvider: Provider<LoginViewController>
     private let patientsSearchViewControllerProvider: Provider<PatientsSearchViewController>
+    private let locatePatientsViewControllerProvider: Provider<LocatePatientsViewController>
     
     func routeToAuthorization(withHandler handler: PostAuthorizationHandler?, animated: Bool) {
         if viewController?.presentedViewController != nil {
@@ -50,11 +52,22 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
     }
     
     func routeToPatientsSearch(cell: MenuCollectionViewCell) {
+        let patientsSearchViewController = patientsSearchViewControllerProvider.get()
+        patientsSearchViewController.router?.dataStore?.mode = .searchAll
+        animatedTransitionToViewController(patientsSearchViewController, cell: cell)
+    }
+    
+    func routeToLocatePatients(cell: MenuCollectionViewCell) {
+        let locatePatientsViewController = patientsSearchViewControllerProvider.get()
+        locatePatientsViewController.router?.dataStore?.mode = .locateNearby
+       animatedTransitionToViewController(locatePatientsViewController, cell: cell)
+    }
+    
+    private func animatedTransitionToViewController(_ providedViewController: UIViewController, cell: MenuCollectionViewCell) {
         guard viewController?.navigationController?.viewControllers.count == 1 else {
             return
         }
-        let patientsSearchViewController = patientsSearchViewControllerProvider.get()
-        patientsSearchViewController.view.layoutSubviews()
+        providedViewController.view.layoutSubviews()
         
         hideableView = cell
         if let view = viewController?.view {
@@ -63,13 +76,15 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
         }
         innerSnapshot = cell.innerContainerView.snapshot()
         
-        navigationController?.pushViewController(patientsSearchViewController, animated: true)
+        navigationController?.pushViewController(providedViewController, animated: true)
     }
     
     init(loginViewControllerProvider: Provider<LoginViewController>,
-         patientsSearchViewControllerProvider: Provider<PatientsSearchViewController>) {
+         patientsSearchViewControllerProvider: Provider<PatientsSearchViewController>,
+         locatePatientsViewControllerProvider: Provider<LocatePatientsViewController>) {
         self.loginViewControllerProvider = loginViewControllerProvider
         self.patientsSearchViewControllerProvider = patientsSearchViewControllerProvider
+        self.locatePatientsViewControllerProvider = locatePatientsViewControllerProvider
     }
 }
 

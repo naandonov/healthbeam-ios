@@ -43,5 +43,9 @@ class InteractorsModule: Module {
         binder
             .bind(PatientTagsSearchInteractorProtocol.self)
             .to(factory: PatientTagsSearchInteractor.init)
+        
+        binder
+            .bind(LocatePatientsInteractorProtocol.self)
+            .to(factory: LocatePatientsInteractor.init)
     }
 }

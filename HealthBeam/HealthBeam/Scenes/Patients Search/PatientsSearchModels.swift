@@ -54,4 +54,23 @@ struct PatientsSearch {
             let errorMessage: String?
         }
     }
+    
+    struct Nearby {
+        struct Request {
+            let handler: PatientsSearchHandler
+        }
+        struct Response {
+            let isSuccessful: Bool
+            let error: MSError?
+        }
+        struct ViewModel {
+            let isSuccessful: Bool
+            let errorMessage: String?
+        }
+    }
+    
+    enum Mode {
+        case searchAll
+        case locateNearby
+    }
 }

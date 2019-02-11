@@ -43,6 +43,10 @@ class PresentersModule: Module {
         binder
             .bind(PatientTagsSearchPresenterProtocol.self)
             .to(factory: PatientTagsSearchPresenter.init)
+        
+        binder
+            .bind(LocatePatientsPresenterProtocol.self)
+            .to(factory: LocatePatientsPresenter.init)
 
     }
 }

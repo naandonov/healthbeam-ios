@@ -75,8 +75,10 @@ class HealthRecordModificationInteractor: HealthRecordModificationBusinessLogic,
             }
             switch result {
             case let .success(responseObject):
+                let creator = strongSelf.healthRecord?.creator
                 strongSelf.healthRecord = responseObject.value
-                strongSelf.presenter?.presentUpdateHealthRecord(response: HealthRecordModification.Update.Response(isSuccessful: true, healthRecord: responseObject.value, error: nil))
+                strongSelf.healthRecord?.creator = creator
+                strongSelf.presenter?.presentUpdateHealthRecord(response: HealthRecordModification.Update.Response(isSuccessful: true, healthRecord: strongSelf.healthRecord, error: nil))
             case let .failure(responseObject):
                 log.error(responseObject.description)
                 strongSelf.presenter?.presentUpdateHealthRecord(response: HealthRecordModification.Update.Response(isSuccessful: false, healthRecord: nil, error: responseObject))

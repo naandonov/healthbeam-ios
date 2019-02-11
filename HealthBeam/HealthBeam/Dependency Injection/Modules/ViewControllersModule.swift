@@ -86,6 +86,14 @@ struct ViewControllersModule: Module {
         }
         
         binder
+            .bind(LocatePatientsViewController.self)
+            .to {  (storyboard: TaggedProvider<PatientsStoryboard>, injector: PropertyInjector<LocatePatientsViewController>) in
+                let viewController: LocatePatientsViewController! =  storyboard.get().instantiateViewController()
+                injector.injectProperties(into: viewController)
+                return viewController
+        }
+        
+        binder
             .bindPropertyInjectionOf(LoginViewController.self)
             .to(injector: LoginViewController.injectProperties)
         
@@ -116,5 +124,9 @@ struct ViewControllersModule: Module {
         binder
             .bindPropertyInjectionOf(PatientTagsSearchViewController.self)
             .to(injector: PatientTagsSearchViewController.injectProperties)
+        
+        binder
+            .bindPropertyInjectionOf(LocatePatientsViewController.self)
+            .to(injector: LocatePatientsViewController.injectProperties)
     }
 }

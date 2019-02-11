@@ -38,6 +38,7 @@ struct APIConstants {
         case toggleSubscription
         case assignPatientTag
         case unassignPatientTag
+        case locateNearbyPatients
         
         
         var endpointString: String {
@@ -68,6 +69,8 @@ struct APIConstants {
                 return "/patients/\(APIConstants.EndPoint.patientIdSubstitutionKey)/assignTag"
             case .unassignPatientTag:
                 return "/patients/\(APIConstants.EndPoint.patientIdSubstitutionKey)/unassignTag"
+            case .locateNearbyPatients:
+                return "/patients/nearby"
                 
             case .healthRecordDelete:
                 return "/healthRecords/\(APIConstants.EndPoint.patientIdSubstitutionKey)"

@@ -14,6 +14,7 @@ typealias PatientsSearchRouterProtocol = PatientsSearchRoutingLogic & PatientsSe
 
 protocol PatientsSearchDisplayLogic: class {
     func processPatientsSearchReult(viewModel: PatientsSearch.Retrieval.ViewModel)
+    func processLocateNearbyPatientsReult(viewModel: PatientsSearch.Nearby.ViewModel)
     func processPatientAttributesReult(viewModel: PatientsSearch.Attributes.ViewModel)
 }
 
@@ -32,9 +33,11 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
     private let observedSegment = PatientsSearch.Segment.observed
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var animationContainerView: UIView!
     
     private var notificationCenter: NotificationCenter?
     private var keyboardScrollHandler: KeyboardScrollHandler?
+    private var scanningView: ScanningView?
     
     private var pageElementsController: PagedElementsController<PatientsSearchViewController>?
     
@@ -43,27 +46,53 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
-        pageElementsController = PagedElementsController(tableView: tableView, delegate: self)
-        pageElementsController?.configureSearchBarIn(viewController: self, style: .light)
-        pageElementsController?.configureScopeSelectionControlWith(scopeTitles: [allSegment.title, observedSegment.title], style: .light)
-        pageElementsController?.reset()
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                            target: self,
-                                                            action: #selector(createPatientBarButtonAction))
-        
-        if let notificationCenter = notificationCenter {
-            keyboardScrollHandler = KeyboardScrollHandler(scrollView: tableView, notificationCenter: notificationCenter, enableTapToDismiss: false)
-        }
     }
     
     //MARK: - Setup UI
     
     private func setupUI() {
-        navigationItem.title = "Patients".localized()
+        guard let mode = router?.dataStore?.mode else {
+            return
+        }
+        
+        
+        pageElementsController = PagedElementsController(tableView: tableView, delegate: self)
+        switch mode {
+        case .searchAll:
+            
+            pageElementsController?.configureSearchBarIn(viewController: self, style: .light)
+            pageElementsController?.configureScopeSelectionControlWith(scopeTitles: [allSegment.title, observedSegment.title], style: .light)
+            
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                                target: self,
+                                                                action: #selector(createPatientBarButtonAction))
+            
+            if let notificationCenter = notificationCenter {
+                keyboardScrollHandler = KeyboardScrollHandler(scrollView: tableView, notificationCenter: notificationCenter, enableTapToDismiss: false)
+            }
+            
+            navigationItem.title = "Patients".localized()
+
+            
+        case .locateNearby:
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Scan".localized(),
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: #selector(scanButtonAction))
+            
+            navigationItem.title = "Nearby Patients".localized()
+            if let scanningView = scanningView {
+                animationContainerView.backgroundColor = .white
+                animationContainerView.isHidden = true
+                animationContainerView.addConstraintsForWrappedInsideView(scanningView, respectSafeArea: true)
+                scanningView.titleLabel.text = "Scanning for Patients".localized()
+                scanningView.subtitleLabel.text = "Get in proximity to the designated devices".localized()
+            }
+            
+        }
+        
+        view.setApplicationGradientBackground()
         navigationItem.largeTitleDisplayMode = .always
-    
         view.backgroundColor = .paleGray
         
         tableView.contentInsetAdjustmentBehavior = .never
@@ -73,6 +102,9 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
         tableView.tableFooterView = UIView()
         tableView.registerNib(PatientTableViewCell.self)
         tableView.registerNib(PatientPlaceholderTableViewCell.self)
+        
+        pageElementsController?.reset()
+
     }
 
     
@@ -86,6 +118,7 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
     func processPatientsSearchReult(viewModel: PatientsSearch.Retrieval.ViewModel) {
         if !viewModel.isSuccessful {
             UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
+            pageElementsController?.displayEmptyResult()
         }
     }
     
@@ -95,6 +128,18 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
             UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
         } else {
             router?.routeToPatientDetails()
+        }
+    }
+    
+    func processLocateNearbyPatientsReult(viewModel: PatientsSearch.Nearby.ViewModel) {
+        animationContainerView.animateFade(positive: false) { [weak self] _ in
+            self?.animationContainerView?.isHidden = true
+        }
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
+        
+        if !viewModel.isSuccessful {
+            UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
+            pageElementsController?.displayEmptyResult()
         }
     }
 }
@@ -121,7 +166,8 @@ extension PatientsSearchViewController {
     func injectProperties(interactor: PatientsSearchInteractorProtocol,
                           presenter: PatientsSearchPresenterProtocol,
                           router: PatientsSearchRouterProtocol,
-                          notificationCenter: NotificationCenter) {
+                          notificationCenter: NotificationCenter,
+                          scanningView: ScanningView) {
         self.interactor = interactor
         self.router = router
         self.router?.dataStore = interactor
@@ -129,6 +175,8 @@ extension PatientsSearchViewController {
         self.interactor?.presenter?.presenterOutput = self
         self.router?.viewController = self
         self.notificationCenter = notificationCenter
+        
+        self.scanningView = scanningView
     }
 }
 
@@ -160,15 +208,28 @@ extension PatientsSearchViewController: PagedElementsControllerSearchDelegate {
     }
     
     func requestPage(_ page: Int, in tableView: UITableView, scopeIndex: Int?, handler: @escaping ((BatchResult<Patient>) -> ())) {
-        let searchTerm = navigationItem.searchController?.searchBar.text
-        var segment: PatientsSearch.Segment?
-        if let scopeIndex = scopeIndex {
-            segment = PatientsSearch.Segment(rawValue: scopeIndex)
+        guard let mode = router?.dataStore?.mode else {
+            return
         }
-        interactor?.retrievePatients(request: PatientsSearch.Retrieval.Request(page: page,
-                                                                               searchQuery: searchTerm,
-                                                                               segment: segment,
-                                                                               handler: handler))
+        
+        switch mode {
+
+        case .searchAll:
+            let searchTerm = navigationItem.searchController?.searchBar.text
+            var segment: PatientsSearch.Segment?
+            if let scopeIndex = scopeIndex {
+                segment = PatientsSearch.Segment(rawValue: scopeIndex)
+            }
+            interactor?.retrievePatients(request: PatientsSearch.Retrieval.Request(page: page,
+                                                                                   searchQuery: searchTerm,
+                                                                                   segment: segment,
+                                                                                   handler: handler))
+        case .locateNearby:
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            animationContainerView.isHidden = false
+            animationContainerView.animateFade(positive: true, completition: nil)
+            interactor?.retrieveNearbyPatients(request: PatientsSearch.Nearby.Request(handler: handler))
+        }
     }
     
     func discardRequestForPage(_ page: Int) {
@@ -187,5 +248,9 @@ extension PatientsSearchViewController {
     
     @objc func createPatientBarButtonAction(_ sender: UIBarButtonItem) {
         router?.routeToCreatePatient()
+    }
+    
+    @objc func scanButtonAction(_ sender: UIBarButtonItem) {
+        pageElementsController?.reset()
     }
 }
