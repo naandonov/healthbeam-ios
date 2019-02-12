@@ -39,7 +39,11 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
     private var keyboardScrollHandler: KeyboardScrollHandler?
     private var scanningView: ScanningView?
     
+    @IBOutlet weak var emptyStateView: UIView!
+    @IBOutlet weak var emptyStateLabel: UILabel!
     private var pageElementsController: PagedElementsController<PatientsSearchViewController>?
+    
+    private var isInitialSetup = true
     
     // MARK:- View lifecycle
     
@@ -82,14 +86,19 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
             
             navigationItem.title = "Nearby Patients".localized()
             if let scanningView = scanningView {
-                animationContainerView.backgroundColor = .white
-                animationContainerView.isHidden = true
-                animationContainerView.addConstraintsForWrappedInsideView(scanningView, respectSafeArea: true)
+                animationContainerView.addConstraintsForWrappedInsideView(scanningView)
                 scanningView.titleLabel.text = "Scanning for Patients".localized()
                 scanningView.subtitleLabel.text = "Get in proximity to the designated devices".localized()
+                scanningView.backgroundColor = .clear
+                scanningView.titleLabel.textColor = .white
+                scanningView.subtitleLabel.textColor = .white
+                animationContainerView.backgroundColor = .white
             }
             
         }
+        
+        pageElementsController?.configureEmptyStateView(emptyStateView)
+        emptyStateLabel.text = "No Results Found".localized()
         
         view.setApplicationGradientBackground()
         navigationItem.largeTitleDisplayMode = .always
@@ -104,7 +113,16 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
         tableView.registerNib(PatientPlaceholderTableViewCell.self)
         
         pageElementsController?.reset()
+        
 
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if isInitialSetup {
+            animationContainerView.setApplicationGradientBackground()
+            isInitialSetup = false
+        }
     }
 
     
@@ -134,6 +152,7 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
     func processLocateNearbyPatientsReult(viewModel: PatientsSearch.Nearby.ViewModel) {
         animationContainerView.animateFade(positive: false) { [weak self] _ in
             self?.animationContainerView?.isHidden = true
+            self?.tableView.isHidden = false
         }
         self.navigationItem.rightBarButtonItem?.isEnabled = true
         
@@ -227,6 +246,7 @@ extension PatientsSearchViewController: PagedElementsControllerSearchDelegate {
         case .locateNearby:
             navigationItem.rightBarButtonItem?.isEnabled = false
             animationContainerView.isHidden = false
+            tableView.isHidden = true
             animationContainerView.animateFade(positive: true, completition: nil)
             interactor?.retrieveNearbyPatients(request: PatientsSearch.Nearby.Request(handler: handler))
         }

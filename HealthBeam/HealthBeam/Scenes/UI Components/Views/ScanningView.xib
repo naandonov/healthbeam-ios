@@ -17,7 +17,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r24-mS-Y2c" customClass="LOTAnimationView">
                     <rect key="frame" x="0.0" y="208.5" width="375" height="250"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="r24-mS-Y2c" secondAttribute="height" multiplier="3:2" id="rab-eB-R7Z"/>
                     </constraints>
@@ -26,13 +26,13 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Locating Patient Tags" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BO-Fc-s4n">
-                    <rect key="frame" x="30" y="458.5" width="315" height="25.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <rect key="frame" x="20" y="458.5" width="335" height="25.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
                     <color key="textColor" red="0.39607843139999999" green="0.66666666669999997" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get in proximity to the designated devices" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzr-cW-yLP">
-                    <rect key="frame" x="30" y="492" width="315" height="17"/>
+                    <rect key="frame" x="20" y="492" width="335" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -40,14 +40,14 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7BO-Fc-s4n" secondAttribute="trailing" constant="30" id="1j5-V0-R4C"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7BO-Fc-s4n" secondAttribute="trailing" constant="20" id="1j5-V0-R4C"/>
                 <constraint firstItem="xzr-cW-yLP" firstAttribute="top" secondItem="7BO-Fc-s4n" secondAttribute="bottom" constant="8" id="86d-Fn-XMB"/>
                 <constraint firstItem="7BO-Fc-s4n" firstAttribute="top" secondItem="r24-mS-Y2c" secondAttribute="bottom" id="AEj-Xe-hko"/>
                 <constraint firstItem="r24-mS-Y2c" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="L0W-4G-atU"/>
                 <constraint firstItem="xzr-cW-yLP" firstAttribute="leading" secondItem="7BO-Fc-s4n" secondAttribute="leading" id="OCB-wq-Aii"/>
                 <constraint firstItem="r24-mS-Y2c" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="YdU-Sr-qNw"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="r24-mS-Y2c" secondAttribute="trailing" id="cKr-Bd-x4v"/>
-                <constraint firstItem="7BO-Fc-s4n" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="jI6-gJ-61M"/>
+                <constraint firstItem="7BO-Fc-s4n" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="jI6-gJ-61M"/>
                 <constraint firstItem="xzr-cW-yLP" firstAttribute="trailing" secondItem="7BO-Fc-s4n" secondAttribute="trailing" id="t80-W3-7yf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

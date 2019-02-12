@@ -76,6 +76,8 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
     private var searchBar: UISearchBar?
     private var segmentedControl: UISegmentedControl?
     
+    private weak var emptyStateView: UIView?
+    
     private var previousSearchTerm = ""
     
     init(tableView: UITableView, delegate: Delegate) {
@@ -122,6 +124,10 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
         self.segmentedControl = segmentedControl
     }
     
+    func configureEmptyStateView(_ emptyStateView: UIView) {
+        self.emptyStateView = emptyStateView
+    }
+    
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         reset()
     }
@@ -137,6 +143,8 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
     //MARK:- UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        let elements = estimatedCollection.values.reduce(0, +)
+        emptyStateView?.isHidden = elements > 0
         return estimatedCollection.count
     }
     

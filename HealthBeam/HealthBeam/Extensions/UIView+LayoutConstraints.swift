@@ -42,4 +42,13 @@ extension UIView  {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1.0).isActive = true
     }
+    
+    func centerInSuperView(superView: UIView) {
+        if !superView.contains(self) {
+            superView.addSubview(self)
+        }
+        translatesAutoresizingMaskIntoConstraints = false
+        centerXAnchor.constraint(equalTo: superView.centerXAnchor)
+        centerYAnchor.constraint(equalTo: superView.centerYAnchor)
+    }
 }

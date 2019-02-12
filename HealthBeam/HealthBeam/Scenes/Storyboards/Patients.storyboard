@@ -21,9 +21,25 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBn-7f-piC">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBn-7f-piC">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2vt-Qa-deB">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZG-ga-AKf">
+                                        <rect key="frame" x="146.5" y="313" width="82.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="vZG-ga-AKf" firstAttribute="centerY" secondItem="2vt-Qa-deB" secondAttribute="centerY" id="CJI-ZR-Ows"/>
+                                    <constraint firstItem="vZG-ga-AKf" firstAttribute="centerX" secondItem="2vt-Qa-deB" secondAttribute="centerX" id="kUw-cn-bV5"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -33,14 +49,20 @@
                             <constraint firstItem="TAz-OW-RcG" firstAttribute="top" secondItem="zVd-ww-8fk" secondAttribute="top" id="K1l-di-9Ry"/>
                             <constraint firstAttribute="bottom" secondItem="OBn-7f-piC" secondAttribute="bottom" id="QaD-5Z-lvl"/>
                             <constraint firstItem="zVd-ww-8fk" firstAttribute="trailing" secondItem="OBn-7f-piC" secondAttribute="trailing" id="SGq-Yn-Es1"/>
+                            <constraint firstItem="zVd-ww-8fk" firstAttribute="trailing" secondItem="2vt-Qa-deB" secondAttribute="trailing" id="Uhi-ni-ewv"/>
+                            <constraint firstItem="2vt-Qa-deB" firstAttribute="top" secondItem="zVd-ww-8fk" secondAttribute="top" id="VKl-ny-DKr"/>
+                            <constraint firstItem="zVd-ww-8fk" firstAttribute="bottom" secondItem="2vt-Qa-deB" secondAttribute="bottom" id="Vjy-yl-LGq"/>
+                            <constraint firstItem="2vt-Qa-deB" firstAttribute="leading" secondItem="zVd-ww-8fk" secondAttribute="leading" id="ZpL-71-hAc"/>
                             <constraint firstItem="TAz-OW-RcG" firstAttribute="leading" secondItem="zVd-ww-8fk" secondAttribute="leading" id="cIZ-w0-xo3"/>
-                            <constraint firstItem="OBn-7f-piC" firstAttribute="top" secondItem="zVd-ww-8fk" secondAttribute="top" id="cb9-kH-U38"/>
+                            <constraint firstItem="OBn-7f-piC" firstAttribute="top" secondItem="HSq-wx-UZf" secondAttribute="top" id="cb9-kH-U38"/>
                             <constraint firstItem="zVd-ww-8fk" firstAttribute="trailing" secondItem="TAz-OW-RcG" secondAttribute="trailing" id="gaR-0l-dJl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zVd-ww-8fk"/>
                     </view>
                     <connections>
                         <outlet property="animationContainerView" destination="OBn-7f-piC" id="edY-GT-G1z"/>
+                        <outlet property="emptyStateLabel" destination="vZG-ga-AKf" id="aOA-kd-VTD"/>
+                        <outlet property="emptyStateView" destination="2vt-Qa-deB" id="dwI-xJ-QVu"/>
                         <outlet property="tableView" destination="TAz-OW-RcG" id="jTa-SU-VOr"/>
                     </connections>
                 </viewController>
