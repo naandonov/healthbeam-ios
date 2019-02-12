@@ -130,9 +130,14 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
 extension LoginViewController {
     
     @IBAction func forgotPasswordButtonAction(_ sender: Any) {
+        UIAlertController.presentAlertControllerWithTitleMessage("Forgotten Password".localized(), message: "Please contact your system administrator".localized(), on: self)
     }
     @IBAction func loginButtonAction(_ sender: Any) {
         initiateLogin()
+    }
+    
+    @IBAction func noAccountAction(_ sender: Any) {
+        UIAlertController.presentAlertControllerWithTitleMessage("Don't have an account?".localized(), message: "Please contact your system administrator".localized(), on: self)
     }
 }
 

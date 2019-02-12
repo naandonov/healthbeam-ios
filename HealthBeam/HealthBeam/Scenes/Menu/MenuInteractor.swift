@@ -39,6 +39,12 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
                                          description: "Search for a specific patient, who has been registered to your premise".localized())
         model.append(patientsOption)
         
+        let patientAlertsOption = Menu.Option(type: .patientAlerts,
+                                         iconName: "alertIcon",
+                                         name: "Patient Alerts".localized(),
+                                         description: "Explore and respond to your pending patient alerts".localized())
+        model.append(patientAlertsOption)
+        
         let aboutOption = Menu.Option(type: .about,
                                          iconName: "neutralBlueLogo",
                                          name: "About".localized(),

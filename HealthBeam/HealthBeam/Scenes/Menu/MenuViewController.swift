@@ -153,6 +153,8 @@ extension MenuViewController: UICollectionViewDelegate {
             if let cell = collectionView.cellForItem(at: indexPath) as? MenuCollectionViewCell {
                 router?.routeToPatientsSearch(cell: cell)
             }
+        case .patientAlerts:
+            UIAlertController.presentAlertControllerWithTitleMessage("Patient Alerts".localized(), message: "This feature is cooming soon".localized(), on: self)
         case .about:
             break
         case .logout:

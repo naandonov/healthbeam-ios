@@ -121,6 +121,9 @@
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <state key="normal" title="Don't have an account?"/>
+                                                                        <connections>
+                                                                            <action selector="noAccountAction:" destination="368-JC-mDd" eventType="touchUpInside" id="0wa-62-DgW"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <constraints>
