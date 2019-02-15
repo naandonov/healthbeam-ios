@@ -98,6 +98,7 @@
 		4E1DE56622174C5000C2541B /* WebContentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DE56122174C5000C2541B /* WebContentModels.swift */; };
 		4E1DE56722174C5000C2541B /* WebContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DE56222174C5000C2541B /* WebContentViewController.swift */; };
 		4E1DE56822174C5000C2541B /* WebContentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DE56322174C5000C2541B /* WebContentInteractor.swift */; };
+		4E1DE56A221757B500C2541B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E1DE569221757B500C2541B /* GoogleService-Info.plist */; };
 		4E20F38F220F8238009D97C4 /* ScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E20F38E220F8238009D97C4 /* ScanningView.swift */; };
 		4E20F391220F8242009D97C4 /* ScanningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E20F390220F8242009D97C4 /* ScanningView.xib */; };
 		4E20F39522104B69009D97C4 /* PopUpContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E20F39322104B69009D97C4 /* PopUpContainerViewController.swift */; };
@@ -307,6 +308,7 @@
 		4E1DE56122174C5000C2541B /* WebContentModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentModels.swift; sourceTree = "<group>"; };
 		4E1DE56222174C5000C2541B /* WebContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentViewController.swift; sourceTree = "<group>"; };
 		4E1DE56322174C5000C2541B /* WebContentInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentInteractor.swift; sourceTree = "<group>"; };
+		4E1DE569221757B500C2541B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4E20F38E220F8238009D97C4 /* ScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningView.swift; sourceTree = "<group>"; };
 		4E20F390220F8242009D97C4 /* ScanningView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScanningView.xib; sourceTree = "<group>"; };
 		4E20F39322104B69009D97C4 /* PopUpContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpContainerViewController.swift; sourceTree = "<group>"; };
@@ -890,6 +892,7 @@
 			children = (
 				4E39ECBE21D3890B0041F44C /* HealthBeam.entitlements */,
 				4E39ECB821D381B60041F44C /* Info.plist */,
+				4E1DE569221757B500C2541B /* GoogleService-Info.plist */,
 				4E39ECAC21D381B40041F44C /* AppDelegate.swift */,
 				4E39ECAE21D381B40041F44C /* ViewController.swift */,
 				4E0FEFCD21D6C1A90046303F /* Utilities */,
@@ -1098,6 +1101,7 @@
 				4E39ECB221D381B40041F44C /* Main.storyboard in Resources */,
 				4E141F6522106C6700502A30 /* PatientTagTableViewCell.xib in Resources */,
 				4E62DF0F2200E6E40090BFAF /* ModificationElementTableViewCell.xib in Resources */,
+				4E1DE56A221757B500C2541B /* GoogleService-Info.plist in Resources */,
 				4E6EB79B220766A600146B8C /* ListItemTableViewCell.xib in Resources */,
 				4E17F3D8220389A900E113ED /* AddMoreTableViewCell.xib in Resources */,
 				4E5160BE220E2CB8009DD6AA /* HealthRecords.storyboard in Resources */,
@@ -1146,19 +1150,23 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-HealthBeam/Pods-HealthBeam-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Cleanse/Cleanse.framework",
 				"${BUILT_PRODUCTS_DIR}/DGActivityIndicatorView/DGActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/UnderLineTextField/UnderLineTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cleanse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UnderLineTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

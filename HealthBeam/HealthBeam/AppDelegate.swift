@@ -10,6 +10,7 @@ import UIKit
 import UserNotifications
 import Cleanse
 import SwiftyBeaver
+import Firebase
 
 //Global Logger
 let log = SwiftyBeaver.self
@@ -24,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         injectDependenciesGraph()
         applicationSetup()
+        FirebaseApp.configure()
         return true
     }
     

@@ -8,5 +8,6 @@ target 'HealthBeam' do
   pod 'UnderLineTextField', '~> 2.1'
   pod 'lottie-ios', '~> 2.5.0'
   pod 'SwiftyBeaver'
+  pod 'Firebase/Core'
 
 end

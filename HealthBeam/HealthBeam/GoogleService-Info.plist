@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>343772516523-8ppo74i3ogd4v3lvecjfld4j1n5vd1um.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.343772516523-8ppo74i3ogd4v3lvecjfld4j1n5vd1um</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB8JiI0HP1CTM3D9R0L_rC8WFu2IqZHJtE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>343772516523</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>io.healthbeam.mobile</string>
+	<key>PROJECT_ID</key>
+	<string>healthbeam-mobile</string>
+	<key>STORAGE_BUCKET</key>
+	<string>healthbeam-mobile.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:343772516523:ios:046926898331fe76</string>
+	<key>DATABASE_URL</key>
+	<string>https://healthbeam-mobile.firebaseio.com</string>
+</dict>
+</plist>
