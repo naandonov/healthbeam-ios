@@ -311,9 +311,9 @@ extension PatientDetailsViewController: UITableViewDataSource {
             
             switch patientDetailsSection {
                 
-            case .alergies:
-                let alergies = patientDetails.patient.alergies
-                return alergies.count > 0 ? alergies.count : 1
+            case .allergies:
+                let allergies = patientDetails.patient.allergies
+                return allergies.count > 0 ? allergies.count : 1
             case .chronicConditions:
                 let chronicConditions = patientDetails.patient.chronicConditions
                 return chronicConditions.count > 0 ? chronicConditions.count : 1
@@ -335,14 +335,14 @@ extension PatientDetailsViewController: UITableViewDataSource {
             let patientDetails = patientDetails {
             
             switch patientDetailsSection {
-            case .alergies:
+            case .allergies:
                 let cell: ListItemTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                if patientDetails.patient.alergies.count == 0 {
+                if patientDetails.patient.allergies.count == 0 {
                     cell.titleLabel.text = "None".localized()
                     cell.indicatorImageView.isHidden = true
                 } else {
-                    let alergy = patientDetails.patient.alergies[indexPath.row]
-                    cell.titleLabel.text = alergy
+                    let allergy = patientDetails.patient.allergies[indexPath.row]
+                    cell.titleLabel.text = allergy
                     cell.indicatorImageView.image = UIImage(named: "pointDarkIcon")
                 }
                 returnCell = cell
@@ -393,7 +393,7 @@ extension PatientDetailsViewController: UITableViewDataSource {
             
             switch patientDetailsSection {
                 
-            case .alergies:
+            case .allergies:
                 return 60
             case .chronicConditions:
                 return 60

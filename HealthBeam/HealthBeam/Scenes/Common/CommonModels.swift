@@ -21,13 +21,13 @@ struct Patient: Codable {
     var personalIdentification: String
     var birthDate: Date?
     var bloodType: String
-    var alergies: [String]
+    var allergies: [String]
     var chronicConditions: [String]
     var notes: String?
     var premiseLocation: String?
     
     static func emptySnapshot() -> Patient {
-        return Patient(id: nil, fullName: "", gender: "", personalIdentification: "", birthDate: nil, bloodType: "", alergies: [], chronicConditions: [], notes: nil, premiseLocation: nil)
+        return Patient(id: nil, fullName: "", gender: "", personalIdentification: "", birthDate: nil, bloodType: "", allergies: [], chronicConditions: [], notes: nil, premiseLocation: nil)
     }
 }
 

@@ -33,7 +33,7 @@ class PatientModificationPresenter: PatientModificationPresentationLogic {
             .datePickerOptional(title: "Birth Date".localized(), keyPath: \.birthDate, isRequired: true),
             .itemsPicker(title: "Blood Type".localized(), keyPath: \.bloodType, model: DataProvider.bloodTypes, isRequired: true),
             .standardOptional(title: "Premise Location".localized(), keyPath: \.premiseLocation, keyboardType: .default, isRequired: false),
-                .multitude(title: "Alergies".localized(), keyPath: \.alergies, isRequired: false),
+                .multitude(title: "Allergies".localized(), keyPath: \.allergies, isRequired: false),
             .multitude(title: "Chronic Conditions".localized(), keyPath: \.chronicConditions, isRequired: false),
             .notesOptional(title: "Notes".localized(), keyPath: \.notes, isRequired: false)
             ])

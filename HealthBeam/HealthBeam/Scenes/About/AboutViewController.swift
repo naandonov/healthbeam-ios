@@ -80,7 +80,7 @@ extension AboutViewController: UITableViewDataSource {
         let option = datasource[indexPath.section].options[indexPath.row]
         switch option {
         case .termsAndConditions:
-            cell.textLabel?.text = "Terms And Conditions".localized()
+            cell.textLabel?.text = "Terms and Conditions".localized()
         case .privacyPolicy:
             cell.textLabel?.text = "Privacy Policy".localized()
         }

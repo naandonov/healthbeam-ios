@@ -120,7 +120,7 @@ extension PatientModificationViewController {
         }
         catch  {
             if error is ModificationError {
-                UIAlertController.presentAlertControllerWithErrorMessage("Missing required fields".localized(), on: self)
+                UIAlertController.presentAlertControllerWithErrorMessage("Required fields are missing".localized(), on: self)
             }
         }
     }
@@ -134,7 +134,7 @@ extension PatientModificationViewController {
         }
         catch  {
             if error is ModificationError {
-                UIAlertController.presentAlertControllerWithErrorMessage("Missing required fields".localized(), on: self)
+                UIAlertController.presentAlertControllerWithErrorMessage("Required fields are missing".localized(), on: self)
             }
         }
     }

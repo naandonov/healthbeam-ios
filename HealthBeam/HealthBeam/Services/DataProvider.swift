@@ -12,17 +12,21 @@ struct DataProvider {
     
     static var genders: [String] {
         return [
-            "male".localized(),
-            "female".localized()
+            "Male".localized(),
+            "Female".localized()
         ]
     }
     
     static var bloodTypes: [String] {
         return [
-            "A".localized(),
-            "B".localized(),
-            "AB".localized(),
-            "0".localized()
+            "A+".localized(),
+            "A-".localized(),
+            "B+".localized(),
+            "B-".localized(),
+            "AB+".localized(),
+            "AB-".localized(),
+            "0+".localized(),
+            "0-".localized()
         ]
     }
     

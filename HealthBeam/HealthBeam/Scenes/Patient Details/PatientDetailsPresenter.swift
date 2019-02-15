@@ -21,15 +21,15 @@ protocol PatientDetailsPresentationLogic {
 }
 
 enum PatientDetailsSection: Int {
-    case alergies
+    case allergies
     case chronicConditions
     case healthRecords
     
     var sectionTitle: String {
         switch self {
             
-        case .alergies:
-            return "Alergies".localized()
+        case .allergies:
+            return "Allergies".localized()
         case .chronicConditions:
             return "Chronic Conditions".localized()
         case .healthRecords:

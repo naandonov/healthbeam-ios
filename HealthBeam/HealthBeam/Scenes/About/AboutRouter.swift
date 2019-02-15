@@ -30,7 +30,7 @@ class AboutRouter:  AboutRoutingLogic, AboutDataPassing {
         let webContentViewController = webContentViewControllerProvider.get()
          let url = APIConstants.BaseURL.healthBeamWeb.urlString + APIConstants.EndPoint.termsAndConditions.endpointString
         webContentViewController.router?.dataStore?.urlString = url
-        webContentViewController.router?.dataStore?.title = "Terms And Conditions".localized()
+        webContentViewController.router?.dataStore?.title = "Terms and Conditions".localized()
         viewController?.navigationController?.pushViewController(webContentViewController, animated: true)
     }
     

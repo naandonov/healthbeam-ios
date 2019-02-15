@@ -29,32 +29,32 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
         var model:[Menu.Option] = []
         let patientsLocateOption = Menu.Option(type: .patientsLocate,
                                          iconName: "patientsLocatorIcon",
-                                         name: "Locate Patients".localized(),
-                                         description: "Search for nearby patients, which have been assigned with a tag".localized())
+                                         name: "Nearby Patients".localized(),
+                                         description: "Locate nearby patients assigned with a tag within your discovery regions".localized())
         model.append(patientsLocateOption)
         
         let patientsOption = Menu.Option(type: .patientsSearch,
                                          iconName: "patientsIcon",
-                                         name: "Search Patients".localized(),
-                                         description: "Search for a specific patient, who has been registered to your premise".localized())
+                                         name: "All Patients".localized(),
+                                         description: "Search among lists of all patients registered to your premise".localized())
         model.append(patientsOption)
         
         let patientAlertsOption = Menu.Option(type: .patientAlerts,
                                          iconName: "alertIcon",
                                          name: "Patient Alerts".localized(),
-                                         description: "Explore and respond to your pending patient alerts".localized())
+                                         description: "Respond to patients in need of immediate medical attention".localized())
         model.append(patientAlertsOption)
         
         let aboutOption = Menu.Option(type: .about,
                                          iconName: "neutralBlueLogo",
                                          name: "About".localized(),
-                                         description: "Explore HealthBeam's terms and conditions and privacy policies".localized())
+                                         description: "Explore information and resources about operating with HealthBeam".localized())
         model.append(aboutOption)
         
         let logoutOption = Menu.Option(type: .logout,
                                          iconName: "logoutIcon",
-                                         name: "Logout".localized(),
-                                         description: "Sign out to revoke your active session and push notifications".localized())
+                                         name: "Log Out".localized(),
+                                         description: "Sign out of your HealthBeam account".localized())
         model.append(logoutOption)
         return model
     }()

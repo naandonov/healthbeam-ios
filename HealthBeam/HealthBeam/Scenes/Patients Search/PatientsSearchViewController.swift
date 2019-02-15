@@ -87,8 +87,8 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
             navigationItem.title = "Nearby Patients".localized()
             if let scanningView = scanningView {
                 animationContainerView.addConstraintsForWrappedInsideView(scanningView)
-                scanningView.titleLabel.text = "Scanning for Patients".localized()
-                scanningView.subtitleLabel.text = "Get in proximity to the designated devices".localized()
+                scanningView.titleLabel.text = "Locating Patients".localized()
+                scanningView.subtitleLabel.text = "Get closer to a patient tag".localized()
                 scanningView.backgroundColor = .clear
                 scanningView.titleLabel.textColor = .white
                 scanningView.subtitleLabel.textColor = .white

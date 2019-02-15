@@ -52,11 +52,11 @@ class PatientTagsSearchViewController: UIViewController, PatientTagsSearchDispla
         
         if let scanningView = scanningView {
             view.addConstraintsForWrappedInsideView(scanningView)
-            scanningView.titleLabel.text = "Scanning for Patient Tags".localized()
-            scanningView.subtitleLabel.text = "Get in proximity to the designated devices".localized()
+            scanningView.titleLabel.text = "Locating Patient Tags".localized()
+            scanningView.subtitleLabel.text = "Get closer to a patient tag".localized()
         }
         
-        let barButtonItem = UIBarButtonItem(title: "Scan".localized(), style: .plain, target: self, action: #selector(scanButtonAction))
+        let barButtonItem = UIBarButtonItem(title: "Locate".localized(), style: .plain, target: self, action: #selector(scanButtonAction))
         navigationItem.leftBarButtonItem = barButtonItem
         navigationItem.title = "Assign Tag".localized()
         

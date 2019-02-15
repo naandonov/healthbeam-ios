@@ -43,7 +43,7 @@ class HealthRecordPresenter: HealthRecordPresentationLogic {
     private func dataSourceForHealthRecord(_ healthRecord: HealthRecord) -> HealthRecordModel.DataSource {
         let healthRecord = healthRecord
         var displayElements: [ContentDisplayController.DisplayElement] = [
-            .standard(title: "Treatement".localized(), content: healthRecord.treatment),
+            .standard(title: "Treatment".localized(), content: healthRecord.treatment),
             .standard(title: "Prescription".localized(), content: healthRecord.prescription)
         ]
         
