@@ -33,6 +33,9 @@ struct PatientTagsStoryboard: Tag {
     typealias Element = UIStoryboard
 }
 
+struct AboutStoryboard: Tag {
+    typealias Element = UIStoryboard
+}
 
 struct StoryboardsModule: Module {
     static func configure(binder: SingletonBinder) {
@@ -66,5 +69,10 @@ struct StoryboardsModule: Module {
             .bind()
             .tagged(with: PatientTagsStoryboard.self)
             .to(value: UIStoryboard.patientTags)
+        
+        binder
+            .bind()
+            .tagged(with: AboutStoryboard.self)
+            .to(value: UIStoryboard.about)
     }
 }

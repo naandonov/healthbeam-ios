@@ -15,6 +15,7 @@ protocol MenuRoutingLogic {
     func routeToAuthorization(withHandler handler: PostAuthorizationHandler?, animated: Bool)
     func routeToPatientsSearch(cell: MenuCollectionViewCell)
     func routeToLocatePatients(cell: MenuCollectionViewCell)
+    func routeToAboutSection(cell: MenuCollectionViewCell)
 }
 
 protocol MenuDataPassing {
@@ -41,6 +42,7 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
     private let loginViewControllerProvider: Provider<LoginViewController>
     private let patientsSearchViewControllerProvider: Provider<PatientsSearchViewController>
     private let locatePatientsViewControllerProvider: Provider<LocatePatientsViewController>
+    private let aboutViewControllerProvider: Provider<AboutViewController>
     
     func routeToAuthorization(withHandler handler: PostAuthorizationHandler?, animated: Bool) {
         if viewController?.presentedViewController != nil {
@@ -63,6 +65,11 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
        animatedTransitionToViewController(locatePatientsViewController, cell: cell)
     }
     
+    func routeToAboutSection(cell: MenuCollectionViewCell) {
+        let aboutViewController = aboutViewControllerProvider.get()
+        animatedTransitionToViewController(aboutViewController, cell: cell)
+    }
+    
     private func animatedTransitionToViewController(_ providedViewController: UIViewController, cell: MenuCollectionViewCell) {
         guard viewController?.navigationController?.viewControllers.count == 1 else {
             return
@@ -81,10 +88,12 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
     
     init(loginViewControllerProvider: Provider<LoginViewController>,
          patientsSearchViewControllerProvider: Provider<PatientsSearchViewController>,
-         locatePatientsViewControllerProvider: Provider<LocatePatientsViewController>) {
+         locatePatientsViewControllerProvider: Provider<LocatePatientsViewController>,
+         aboutViewControllerProvider: Provider<AboutViewController>) {
         self.loginViewControllerProvider = loginViewControllerProvider
         self.patientsSearchViewControllerProvider = patientsSearchViewControllerProvider
         self.locatePatientsViewControllerProvider = locatePatientsViewControllerProvider
+        self.aboutViewControllerProvider = aboutViewControllerProvider
     }
 }
 

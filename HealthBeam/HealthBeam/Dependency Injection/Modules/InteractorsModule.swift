@@ -47,5 +47,13 @@ class InteractorsModule: Module {
         binder
             .bind(LocatePatientsInteractorProtocol.self)
             .to(factory: LocatePatientsInteractor.init)
+        
+        binder
+            .bind(AboutInteractorProtocol.self)
+            .to(factory: AboutInteractor.init)
+        
+        binder
+            .bind(WebContentInteractorProtocol.self)
+            .to(factory: WebContentInteractor.init)
     }
 }

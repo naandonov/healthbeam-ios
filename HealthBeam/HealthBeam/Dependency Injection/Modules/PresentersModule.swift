@@ -47,6 +47,14 @@ class PresentersModule: Module {
         binder
             .bind(LocatePatientsPresenterProtocol.self)
             .to(factory: LocatePatientsPresenter.init)
+        
+        binder
+            .bind(AboutPresenterProtocol.self)
+            .to(factory: AboutPresenter.init)
+        
+        binder
+            .bind(WebContentPresenterProtocol.self)
+            .to(factory: WebContentPresenter.init)
 
     }
 }

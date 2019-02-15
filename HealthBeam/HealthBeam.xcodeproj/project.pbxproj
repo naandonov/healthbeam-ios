@@ -87,6 +87,17 @@
 		4E17F3EA2207219700E113ED /* PatientDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3E52207219700E113ED /* PatientDetailsViewController.swift */; };
 		4E17F3EB2207219700E113ED /* PatientDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3E62207219700E113ED /* PatientDetailsInteractor.swift */; };
 		4E17F3ED22072B1300E113ED /* OutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17F3EC22072B1300E113ED /* OutlineView.swift */; };
+		4E1DE5572217435100C2541B /* AboutPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DE5522217435100C2541B /* AboutPresenter.swift */; };
+		4E1DE5582217435100C2541B /* AboutRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DE5532217435100C2541B /* AboutRouter.swift */; };
+		4E1DE5592217435100C2541B /* AboutModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DE5542217435100C2541B /* AboutModels.swift */; };
+		4E1DE55A2217435100C2541B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DE5552217435100C2541B /* AboutViewController.swift */; };
+		4E1DE55B2217435100C2541B /* AboutInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DE5562217435100C2541B /* AboutInteractor.swift */; };
+		4E1DE55D221743F000C2541B /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E1DE55C221743F000C2541B /* About.storyboard */; };
+		4E1DE56422174C5000C2541B /* WebContentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DE55F22174C5000C2541B /* WebContentPresenter.swift */; };
+		4E1DE56522174C5000C2541B /* WebContentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DE56022174C5000C2541B /* WebContentRouter.swift */; };
+		4E1DE56622174C5000C2541B /* WebContentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DE56122174C5000C2541B /* WebContentModels.swift */; };
+		4E1DE56722174C5000C2541B /* WebContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DE56222174C5000C2541B /* WebContentViewController.swift */; };
+		4E1DE56822174C5000C2541B /* WebContentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DE56322174C5000C2541B /* WebContentInteractor.swift */; };
 		4E20F38F220F8238009D97C4 /* ScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E20F38E220F8238009D97C4 /* ScanningView.swift */; };
 		4E20F391220F8242009D97C4 /* ScanningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E20F390220F8242009D97C4 /* ScanningView.xib */; };
 		4E20F39522104B69009D97C4 /* PopUpContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E20F39322104B69009D97C4 /* PopUpContainerViewController.swift */; };
@@ -285,6 +296,17 @@
 		4E17F3E52207219700E113ED /* PatientDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailsViewController.swift; sourceTree = "<group>"; };
 		4E17F3E62207219700E113ED /* PatientDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailsInteractor.swift; sourceTree = "<group>"; };
 		4E17F3EC22072B1300E113ED /* OutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineView.swift; sourceTree = "<group>"; };
+		4E1DE5522217435100C2541B /* AboutPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPresenter.swift; sourceTree = "<group>"; };
+		4E1DE5532217435100C2541B /* AboutRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutRouter.swift; sourceTree = "<group>"; };
+		4E1DE5542217435100C2541B /* AboutModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutModels.swift; sourceTree = "<group>"; };
+		4E1DE5552217435100C2541B /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		4E1DE5562217435100C2541B /* AboutInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutInteractor.swift; sourceTree = "<group>"; };
+		4E1DE55C221743F000C2541B /* About.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
+		4E1DE55F22174C5000C2541B /* WebContentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentPresenter.swift; sourceTree = "<group>"; };
+		4E1DE56022174C5000C2541B /* WebContentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentRouter.swift; sourceTree = "<group>"; };
+		4E1DE56122174C5000C2541B /* WebContentModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentModels.swift; sourceTree = "<group>"; };
+		4E1DE56222174C5000C2541B /* WebContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentViewController.swift; sourceTree = "<group>"; };
+		4E1DE56322174C5000C2541B /* WebContentInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentInteractor.swift; sourceTree = "<group>"; };
 		4E20F38E220F8238009D97C4 /* ScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningView.swift; sourceTree = "<group>"; };
 		4E20F390220F8242009D97C4 /* ScanningView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScanningView.xib; sourceTree = "<group>"; };
 		4E20F39322104B69009D97C4 /* PopUpContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpContainerViewController.swift; sourceTree = "<group>"; };
@@ -431,6 +453,8 @@
 		4E0FEF5421D6BA6A0046303F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				4E1DE55E22174C2B00C2541B /* WebContent View */,
+				4E1DE5512217433D00C2541B /* About */,
 				4E141F74221213AA00502A30 /* Locate Patients  */,
 				4E5160C4220E6521009DD6AA /* Health Record Modification */,
 				4E24BEA9220CC5C900E89F0E /* Patient Modification */,
@@ -607,6 +631,7 @@
 				4E2DEA6221F655C7000E0C61 /* Patients.storyboard */,
 				4E5160BD220E2CB8009DD6AA /* HealthRecords.storyboard */,
 				4E20F397221062C5009D97C4 /* PatientTags.storyboard */,
+				4E1DE55C221743F000C2541B /* About.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -749,6 +774,30 @@
 				4E17F3E62207219700E113ED /* PatientDetailsInteractor.swift */,
 			);
 			path = "Patient Details";
+			sourceTree = "<group>";
+		};
+		4E1DE5512217433D00C2541B /* About */ = {
+			isa = PBXGroup;
+			children = (
+				4E1DE5522217435100C2541B /* AboutPresenter.swift */,
+				4E1DE5532217435100C2541B /* AboutRouter.swift */,
+				4E1DE5542217435100C2541B /* AboutModels.swift */,
+				4E1DE5552217435100C2541B /* AboutViewController.swift */,
+				4E1DE5562217435100C2541B /* AboutInteractor.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		4E1DE55E22174C2B00C2541B /* WebContent View */ = {
+			isa = PBXGroup;
+			children = (
+				4E1DE55F22174C5000C2541B /* WebContentPresenter.swift */,
+				4E1DE56022174C5000C2541B /* WebContentRouter.swift */,
+				4E1DE56122174C5000C2541B /* WebContentModels.swift */,
+				4E1DE56222174C5000C2541B /* WebContentViewController.swift */,
+				4E1DE56322174C5000C2541B /* WebContentInteractor.swift */,
+			);
+			path = "WebContent View";
 			sourceTree = "<group>";
 		};
 		4E20F39222104B30009D97C4 /* Popup Container */ = {
@@ -1060,6 +1109,7 @@
 				4E20F39622104B69009D97C4 /* PopUpContainerViewController.xib in Resources */,
 				4E48E58921DAC29C00069CC4 /* done.json in Resources */,
 				4E93801A21DA979D0083ED03 /* pulse_loader.json in Resources */,
+				4E1DE55D221743F000C2541B /* About.storyboard in Resources */,
 				4E93EA3F21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib in Resources */,
 				4E17F3DC2204E27700E113ED /* NotesTableViewCell.xib in Resources */,
 				4E20F391220F8242009D97C4 /* ScanningView.xib in Resources */,
@@ -1125,6 +1175,7 @@
 				4E141F6F2210C43100502A30 /* SubscriptionToggleOperation.swift in Sources */,
 				4E141F712210C52B00502A30 /* AssignPatientTagOperation.swift in Sources */,
 				4ED74C1A21DBC6A7009AB7C3 /* UserProfileRouter.swift in Sources */,
+				4E1DE5592217435100C2541B /* AboutModels.swift in Sources */,
 				4E17F3E82207219700E113ED /* PatientDetailsRouter.swift in Sources */,
 				4E0FEFC421D6BF050046303F /* UIStoryboard+Utility.swift in Sources */,
 				4ED74C0821DBAA9A009AB7C3 /* CoreDataHandler.swift in Sources */,
@@ -1170,6 +1221,7 @@
 				4E24BEB2220CC65300E89F0E /* PatientModificationViewController.swift in Sources */,
 				4E6EB7962207643F00146B8C /* String+Calculations.swift in Sources */,
 				4E24BE91220A140300E89F0E /* HealthRecordModels.swift in Sources */,
+				4E1DE56422174C5000C2541B /* WebContentPresenter.swift in Sources */,
 				4E0FF00021D7B7490046303F /* LoginModels.swift in Sources */,
 				4EF9E2BA21ED1AD300E0DDD0 /* MenuViewController.swift in Sources */,
 				4E0FEFA421D6BCB20046303F /* Request.swift in Sources */,
@@ -1179,6 +1231,7 @@
 				4E5160D0220E6CE5009DD6AA /* DeleteHealthRecordOperation.swift in Sources */,
 				4E5160C1220E3B57009DD6AA /* InformationCardView.swift in Sources */,
 				4E20F38F220F8238009D97C4 /* ScanningView.swift in Sources */,
+				4E1DE56722174C5000C2541B /* WebContentViewController.swift in Sources */,
 				4E141F6422106C6700502A30 /* PatientTagTableViewCell.swift in Sources */,
 				4E93801321D981020083ED03 /* UIView+Utilities.swift in Sources */,
 				4E20F39522104B69009D97C4 /* PopUpContainerViewController.swift in Sources */,
@@ -1191,6 +1244,7 @@
 				4E24BE92220A140300E89F0E /* HealthRecordViewController.swift in Sources */,
 				4E5160CD220E6542009DD6AA /* HealthRecordModificationViewController.swift in Sources */,
 				4E24BE90220A140300E89F0E /* HealthRecordRouter.swift in Sources */,
+				4E1DE55B2217435100C2541B /* AboutInteractor.swift in Sources */,
 				4E17F18221FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift in Sources */,
 				4E0FEFC721D6BF050046303F /* UIView+Animations.swift in Sources */,
 				4E93EA4421F91A55007C8BE8 /* PremiseEntity+Mapping.swift in Sources */,
@@ -1208,12 +1262,16 @@
 				4E141F672210877A00502A30 /* EmptyStateView.swift in Sources */,
 				4E0FEFC821D6BF050046303F /* NotificationCenter+Utilities.swift in Sources */,
 				4E17F3E022070E2C00E113ED /* ModificationStandardTextField.swift in Sources */,
+				4E1DE5572217435100C2541B /* AboutPresenter.swift in Sources */,
 				4E93EA3E21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.swift in Sources */,
+				4E1DE55A2217435100C2541B /* AboutViewController.swift in Sources */,
 				4E93EA3A21F661E5007C8BE8 /* PatientTableViewCell.swift in Sources */,
 				4E0FEF9D21D6BCB20046303F /* ResponseProtocol.swift in Sources */,
 				4ED74C1221DBC346009AB7C3 /* CommonModels.swift in Sources */,
+				4E1DE56522174C5000C2541B /* WebContentRouter.swift in Sources */,
 				4E24BEA0220A195100E89F0E /* PatientTagsSearchInteractor.swift in Sources */,
 				4ED74C1021DBC30F009AB7C3 /* LogoutOperation.swift in Sources */,
+				4E1DE56622174C5000C2541B /* WebContentModels.swift in Sources */,
 				4E0FEF9C21D6BCB20046303F /* OperationProtocol.swift in Sources */,
 				4E0FEFF521D796A40046303F /* LightLogoView.swift in Sources */,
 				4E0FEF9B21D6BCB20046303F /* Commons.swift in Sources */,
@@ -1221,6 +1279,7 @@
 				4E39ECAD21D381B40041F44C /* AppDelegate.swift in Sources */,
 				4E0FEFC221D6BF050046303F /* String+Localization.swift in Sources */,
 				4E5160CB220E6542009DD6AA /* HealthRecordModificationRouter.swift in Sources */,
+				4E1DE5582217435100C2541B /* AboutRouter.swift in Sources */,
 				4E17F3ED22072B1300E113ED /* OutlineView.swift in Sources */,
 				4E0FF00221D7B7490046303F /* LoginInteractor.swift in Sources */,
 				4E24BEA2220A1FB900E89F0E /* GetPatientAttributesOperation.swift in Sources */,
@@ -1266,6 +1325,7 @@
 				4E0FEFF121D6C4030046303F /* RoutersModule.swift in Sources */,
 				4E48E58D21DAD62100069CC4 /* LoadingOverlay.swift in Sources */,
 				4ED74C1921DBC6A7009AB7C3 /* UserProfilePresenter.swift in Sources */,
+				4E1DE56822174C5000C2541B /* WebContentInteractor.swift in Sources */,
 				4E0FEFC621D6BF050046303F /* UIView+Nib.swift in Sources */,
 				4E24BEB5220CCE2500E89F0E /* DataProvider.swift in Sources */,
 				4E0FEFE821D6C4030046303F /* UIKitCommonModule.swift in Sources */,

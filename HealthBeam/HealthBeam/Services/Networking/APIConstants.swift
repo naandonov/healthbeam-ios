@@ -12,6 +12,7 @@ struct APIConstants {
     enum BaseURL {
         case localHost
         case healthBeamRoot
+        case healthBeamWeb
         
         var urlString: String {
             switch self {
@@ -19,11 +20,13 @@ struct APIConstants {
                 return "http://localhost:8080/v1"
             case .healthBeamRoot:
                 return "https://healthbeam.io/v1"
+            case .healthBeamWeb:
+                return "https://healthbeam.io"
             }
         }
     }
     
-    enum EndPoint {
+    enum EndPoint: String {
         case login
         case logout
         case user
@@ -39,6 +42,8 @@ struct APIConstants {
         case assignPatientTag
         case unassignPatientTag
         case locateNearbyPatients
+        case termsAndConditions
+        case privacyPolicy
         
         
         var endpointString: String {
@@ -77,6 +82,10 @@ struct APIConstants {
             case .healthRecordModification:
                 return "/healthRecords"
                 
+            case .termsAndConditions:
+                return "/terms-and-conditions"
+            case .privacyPolicy:
+                return "/privacy-policy"
             }
         }
         

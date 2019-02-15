@@ -156,7 +156,9 @@ extension MenuViewController: UICollectionViewDelegate {
         case .patientAlerts:
             UIAlertController.presentAlertControllerWithTitleMessage("Patient Alerts".localized(), message: "This feature is cooming soon".localized(), on: self)
         case .about:
-            break
+            if let cell = collectionView.cellForItem(at: indexPath) as? MenuCollectionViewCell {
+                router?.routeToAboutSection(cell: cell)
+            }
         case .logout:
             interactor?.performUserLogout(request: Menu.UserLogout.Request())
         }

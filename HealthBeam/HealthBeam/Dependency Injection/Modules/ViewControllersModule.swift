@@ -94,6 +94,22 @@ struct ViewControllersModule: Module {
         }
         
         binder
+            .bind(AboutViewController.self)
+            .to {  (storyboard: TaggedProvider<AboutStoryboard>, injector: PropertyInjector<AboutViewController>) in
+                let viewController: AboutViewController! =  storyboard.get().instantiateViewController()
+                injector.injectProperties(into: viewController)
+                return viewController
+        }
+        
+        binder
+            .bind(WebContentViewController.self)
+            .to {  (storyboard: TaggedProvider<AboutStoryboard>, injector: PropertyInjector<WebContentViewController>) in
+                let viewController: WebContentViewController! =  storyboard.get().instantiateViewController()
+                injector.injectProperties(into: viewController)
+                return viewController
+        }
+        
+        binder
             .bindPropertyInjectionOf(LoginViewController.self)
             .to(injector: LoginViewController.injectProperties)
         
@@ -128,5 +144,13 @@ struct ViewControllersModule: Module {
         binder
             .bindPropertyInjectionOf(LocatePatientsViewController.self)
             .to(injector: LocatePatientsViewController.injectProperties)
+        
+        binder
+            .bindPropertyInjectionOf(AboutViewController.self)
+            .to(injector: AboutViewController.injectProperties)
+        
+        binder
+            .bindPropertyInjectionOf(WebContentViewController.self)
+            .to(injector: WebContentViewController.injectProperties)
     }
 }

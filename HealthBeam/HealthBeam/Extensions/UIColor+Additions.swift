@@ -34,6 +34,11 @@ extension UIColor {
         return UIColor(hexString: "#E8E8E8")
     }
     
+    class func applicationGradientColorFoBounds(_ bounds: CGRect) -> UIColor {
+        let backgroundImage = CAGradientLayer(applicationStyleWithFrame: bounds).gradientImage()
+        return UIColor(patternImage: backgroundImage!)
+    }
+    
     //MARK: - Utilities
     
     convenience init(hexString: String) {

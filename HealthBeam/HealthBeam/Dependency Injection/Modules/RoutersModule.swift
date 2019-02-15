@@ -47,6 +47,14 @@ class RoutersModule: Module {
         binder
             .bind(LocatePatientsRouterProtocol.self)
             .to(factory: LocatePatientsRouter.init)
+        
+        binder
+            .bind(AboutRouterProtocol.self)
+            .to(factory: AboutRouter.init)
+        
+        binder
+            .bind(WebContentRouterProtocol.self)
+            .to(factory: WebContentRouter.init)
 
     }
 }

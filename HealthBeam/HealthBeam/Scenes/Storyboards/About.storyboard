@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--About View Controller-->
+        <scene sceneID="IZs-sj-nH9">
+            <objects>
+                <viewController storyboardIdentifier="AboutViewController" id="GhJ-tV-S8t" customClass="AboutViewController" customModule="HealthBeam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PvJ-0s-KCH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZBM-2T-A5u">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ZBM-2T-A5u" secondAttribute="bottom" id="DJ5-Ed-2qo"/>
+                            <constraint firstItem="Wrd-ae-IvS" firstAttribute="trailing" secondItem="ZBM-2T-A5u" secondAttribute="trailing" id="HZO-xM-d7W"/>
+                            <constraint firstItem="ZBM-2T-A5u" firstAttribute="leading" secondItem="Wrd-ae-IvS" secondAttribute="leading" id="dt1-bA-vX9"/>
+                            <constraint firstItem="ZBM-2T-A5u" firstAttribute="top" secondItem="Wrd-ae-IvS" secondAttribute="top" id="mlh-Hz-Ypq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Wrd-ae-IvS"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="ZBM-2T-A5u" id="yVp-td-eVf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cIx-9A-OSb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="210" y="120"/>
+        </scene>
+        <!--Web Content View Controller-->
+        <scene sceneID="Bsb-lE-PuU">
+            <objects>
+                <viewController storyboardIdentifier="WebContentViewController" id="hsg-Mw-NE0" customClass="WebContentViewController" customModule="HealthBeam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ArB-Q6-EPa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIs-6S-n9G">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iIs-6S-n9G" firstAttribute="leading" secondItem="2Zi-O1-dBA" secondAttribute="leading" id="RHR-0H-q6H"/>
+                            <constraint firstItem="2Zi-O1-dBA" firstAttribute="trailing" secondItem="iIs-6S-n9G" secondAttribute="trailing" id="XFr-kM-9TZ"/>
+                            <constraint firstAttribute="bottom" secondItem="iIs-6S-n9G" secondAttribute="bottom" id="htt-s5-7dN"/>
+                            <constraint firstItem="iIs-6S-n9G" firstAttribute="top" secondItem="2Zi-O1-dBA" secondAttribute="top" id="iLT-bV-nsQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2Zi-O1-dBA"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="iIs-6S-n9G" id="aMh-ox-0Kn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gfj-Gk-X2K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="896" y="110"/>
+        </scene>
+    </scenes>
+</document>
