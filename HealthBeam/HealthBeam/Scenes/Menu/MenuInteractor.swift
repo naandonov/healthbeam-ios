@@ -61,7 +61,7 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
     
     private lazy var authorizationWorker: AuthorizationWorker = {
         guard var authorizationWorker = Injector.authorizationWorker else {
-            assert(false, "Missing AuthorizationWorker implementaion")
+            fatalError("Missing AuthorizationWorker implementaion")
         }
         authorizationWorker.delegate = self
         return authorizationWorker

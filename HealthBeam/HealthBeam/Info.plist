@@ -18,8 +18,19 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>The application requires your location in order to detect patient assigned tag</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The application requires your location in order to detect patient assigned tag</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -28,11 +39,6 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -40,11 +46,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>ITSAppUsesNonExemptEncryption</key>
-    <false/>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-        <string>The application requires your location in order to detect patient assigned tag</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-        <string>The application requires your location in order to detect patient assigned tag</string>
 </dict>
 </plist>

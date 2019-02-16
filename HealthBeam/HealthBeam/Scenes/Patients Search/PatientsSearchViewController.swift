@@ -79,7 +79,7 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
 
             
         case .locateNearby:
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Scan".localized(),
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Locate".localized(),
                                                                 style: .plain,
                                                                 target: self,
                                                                 action: #selector(scanButtonAction))

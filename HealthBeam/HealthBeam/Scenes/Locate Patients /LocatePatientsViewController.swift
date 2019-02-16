@@ -34,7 +34,7 @@ class LocatePatientsViewController: UIViewController, LocatePatientsDisplayLogic
         pageElementsController = PagedElementsController(tableView: tableView, delegate: self)
         pageElementsController?.reset()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Scan".localized(),
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Locate".localized(),
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(scanButtonAction))
