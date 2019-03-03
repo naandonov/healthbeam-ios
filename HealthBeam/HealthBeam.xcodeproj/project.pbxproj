@@ -182,6 +182,7 @@
 		4E93EA3F21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E93EA3D21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib */; };
 		4E93EA4121F918A7007C8BE8 /* UserEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93EA4021F918A7007C8BE8 /* UserEntity+Mapping.swift */; };
 		4E93EA4421F91A55007C8BE8 /* PremiseEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93EA4321F91A55007C8BE8 /* PremiseEntity+Mapping.swift */; };
+		4EB68CEB222C1D37002083C8 /* alarm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4EB68CEA222C1D37002083C8 /* alarm.wav */; };
 		4EBC81FC21FC810E008427A8 /* UIImage+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC81FB21FC810E008427A8 /* UIImage+Utilities.swift */; };
 		4EBC81FE21FE06CD008427A8 /* MenuTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC81FD21FE06CD008427A8 /* MenuTransition.swift */; };
 		4EC355D121DF62180011D723 /* GetPatientsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC355D021DF62180011D723 /* GetPatientsOperation.swift */; };
@@ -395,6 +396,7 @@
 		4E93EA3D21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PatientPlaceholderTableViewCell.xib; sourceTree = "<group>"; };
 		4E93EA4021F918A7007C8BE8 /* UserEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+Mapping.swift"; sourceTree = "<group>"; };
 		4E93EA4321F91A55007C8BE8 /* PremiseEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PremiseEntity+Mapping.swift"; sourceTree = "<group>"; };
+		4EB68CEA222C1D37002083C8 /* alarm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = alarm.wav; sourceTree = "<group>"; };
 		4EBC81FB21FC810E008427A8 /* UIImage+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utilities.swift"; sourceTree = "<group>"; };
 		4EBC81FD21FE06CD008427A8 /* MenuTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTransition.swift; sourceTree = "<group>"; };
 		4EC355D021DF62180011D723 /* GetPatientsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPatientsOperation.swift; sourceTree = "<group>"; };
@@ -589,6 +591,7 @@
 		4E0FEFB421D6BE960046303F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4E2DEA5321F50126000E0C61 /* StyleCoordinator.swift */,
 				4E0FEFB521D6BEAE0046303F /* AuthorizationWorker.swift */,
 				4ED74C1121DBC346009AB7C3 /* CommonModels.swift */,
 				8C196B7121EE3EAE004F2549 /* NotificationManager.swift */,
@@ -653,7 +656,6 @@
 			isa = PBXGroup;
 			children = (
 				4E0FEFD521D6C3F60046303F /* ApplicationComponent.swift */,
-				4E2DEA5321F50126000E0C61 /* StyleCoordinator.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -908,6 +910,7 @@
 		4E48E59021DB99E100069CC4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4EB68CE9222C1CFC002083C8 /* Sound */,
 				4E93801621DA97600083ED03 /* Lottie */,
 				4E39ECB521D381B60041F44C /* LaunchScreen.storyboard */,
 				4E39ECB321D381B60041F44C /* Assets.xcassets */,
@@ -985,6 +988,14 @@
 				4E93EA4321F91A55007C8BE8 /* PremiseEntity+Mapping.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4EB68CE9222C1CFC002083C8 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				4EB68CEA222C1D37002083C8 /* alarm.wav */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 		4ED74C1321DBC67D009AB7C3 /* User Profile */ = {
@@ -1104,6 +1115,7 @@
 				4E1DE56A221757B500C2541B /* GoogleService-Info.plist in Resources */,
 				4E6EB79B220766A600146B8C /* ListItemTableViewCell.xib in Resources */,
 				4E17F3D8220389A900E113ED /* AddMoreTableViewCell.xib in Resources */,
+				4EB68CEB222C1D37002083C8 /* alarm.wav in Resources */,
 				4E5160BE220E2CB8009DD6AA /* HealthRecords.storyboard in Resources */,
 				4E5160BC220E213F009DD6AA /* StandardContentDisplayTableViewCell.xib in Resources */,
 				4EF9E2B021ED18F300E0DDD0 /* Menu.storyboard in Resources */,
@@ -1503,6 +1515,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = HealthBeam/HealthBeam.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 4X3GS7NXAQ;
 				INFOPLIST_FILE = HealthBeam/Info.plist;

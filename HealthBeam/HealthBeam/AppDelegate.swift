@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     private var userNotificationCenter: UNUserNotificationCenter?
     private var notificationManager: NotificationManger?
+    private var beaconsManager: BeaconsManager?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         injectDependenciesGraph()
@@ -43,7 +44,8 @@ extension AppDelegate {
         let console = ConsoleDestination()
         log.addDestination(console)
 //        try? KeychainManager.deleteAuthorizationToken()
-        userNotificationCenter?.requestAuthorization(options: [.sound, .alert], completionHandler: { _,_ in })
+        userNotificationCenter?.requestAuthorization(options: [.sound, .alert, .badge], completionHandler: { _,_ in })
+        beaconsManager?.handleLocationServiceAuthorization()
         window?.makeKeyAndVisible()
     }
     
@@ -62,10 +64,15 @@ extension AppDelegate {
 //MARK: - Properties Injection
 
 extension AppDelegate {
-    func injectProperties(_ window: UIWindow, userNotificationCenter: UNUserNotificationCenter, notificationManager: NotificationManger, authorizationWorker: AuthorizationWorker) {
+    func injectProperties(_ window: UIWindow,
+                          userNotificationCenter: UNUserNotificationCenter,
+                          notificationManager: NotificationManger,
+                          authorizationWorker: AuthorizationWorker,
+                          beaconsManager: BeaconsManager) {
         self.window = window
         self.userNotificationCenter = userNotificationCenter
         self.notificationManager = notificationManager
+        self.beaconsManager = beaconsManager
         
         //Manual Injection
         Injector.authorizationWorker = authorizationWorker
