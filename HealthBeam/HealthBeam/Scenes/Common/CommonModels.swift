@@ -51,6 +51,27 @@ struct HealthRecord: Codable {
     }
 }
 
+struct PatientAlert: Codable {
+    var id: Int
+    let creationDate: Date
+    var status: String
+    let patient: Patient
+    let gateway: Gateway
+}
+
+struct Premise: Codable {
+    let id: Int
+    let name: String
+    let type: String
+}
+
+struct Gateway: Codable {
+    let id: Int
+    let codeIdentifier: String
+    let premise: Premise
+    let name: String
+}
+
 struct BatchResult<T: Codable>: Codable {
     let items: [T]
     let totalPagesCount: Int

@@ -102,7 +102,6 @@ class PatientsSearchViewController: UIViewController, PatientsSearchDisplayLogic
         
         view.setApplicationGradientBackground()
         navigationItem.largeTitleDisplayMode = .always
-        view.backgroundColor = .paleGray
         
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.showsVerticalScrollIndicator = false

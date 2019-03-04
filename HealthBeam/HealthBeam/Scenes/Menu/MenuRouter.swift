@@ -16,6 +16,7 @@ protocol MenuRoutingLogic {
     func routeToPatientsSearch(cell: MenuCollectionViewCell)
     func routeToLocatePatients(cell: MenuCollectionViewCell)
     func routeToAboutSection(cell: MenuCollectionViewCell)
+    func routeToPatientAlerts(cell: MenuCollectionViewCell)
 }
 
 protocol MenuDataPassing {
@@ -43,6 +44,7 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
     private let patientsSearchViewControllerProvider: Provider<PatientsSearchViewController>
     private let locatePatientsViewControllerProvider: Provider<LocatePatientsViewController>
     private let aboutViewControllerProvider: Provider<AboutViewController>
+    private let patientAlertsControllerProvider: Provider<PatientAlertsViewController>
     
     func routeToAuthorization(withHandler handler: PostAuthorizationHandler?, animated: Bool) {
         if viewController?.presentedViewController != nil {
@@ -70,6 +72,11 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
         animatedTransitionToViewController(aboutViewController, cell: cell)
     }
     
+    func routeToPatientAlerts(cell: MenuCollectionViewCell) {
+        let patientAlertsController = patientAlertsControllerProvider.get()
+        animatedTransitionToViewController(patientAlertsController, cell: cell)
+    }
+    
     private func animatedTransitionToViewController(_ providedViewController: UIViewController, cell: MenuCollectionViewCell) {
         guard viewController?.navigationController?.viewControllers.count == 1 else {
             return
@@ -89,11 +96,13 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
     init(loginViewControllerProvider: Provider<LoginViewController>,
          patientsSearchViewControllerProvider: Provider<PatientsSearchViewController>,
          locatePatientsViewControllerProvider: Provider<LocatePatientsViewController>,
-         aboutViewControllerProvider: Provider<AboutViewController>) {
+         aboutViewControllerProvider: Provider<AboutViewController>,
+         patientAlertsControllerProvider: Provider<PatientAlertsViewController>) {
         self.loginViewControllerProvider = loginViewControllerProvider
         self.patientsSearchViewControllerProvider = patientsSearchViewControllerProvider
         self.locatePatientsViewControllerProvider = locatePatientsViewControllerProvider
         self.aboutViewControllerProvider = aboutViewControllerProvider
+        self.patientAlertsControllerProvider = patientAlertsControllerProvider
     }
 }
 
@@ -104,7 +113,8 @@ extension MenuRouter: UINavigationControllerDelegate {
                               from fromVC: UIViewController,
                               to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if toVC is PatientsSearchViewController {
+        if toVC is PatientsSearchViewController ||
+            toVC is PatientAlertsViewController {
             navigationController.navigationBar.prefersLargeTitles = true
         } else {
             navigationController.navigationBar.prefersLargeTitles = false

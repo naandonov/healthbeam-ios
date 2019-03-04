@@ -55,5 +55,9 @@ class InteractorsModule: Module {
         binder
             .bind(WebContentInteractorProtocol.self)
             .to(factory: WebContentInteractor.init)
+        
+        binder
+            .bind(PatientAlertsInteractorProtocol.self)
+            .to(factory: PatientAlertsInteractor.init)
     }
 }

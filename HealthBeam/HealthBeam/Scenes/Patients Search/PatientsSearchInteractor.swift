@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias PatientsSearchHandler = (BatchResult<Patient>) -> ()
+typealias PatientsSearchHandler = (BatchResult<Patient>) -> Void
 
 protocol PatientsSearchBusinessLogic {
     var presenter: PatientsSearchPresentationLogic? { get set }

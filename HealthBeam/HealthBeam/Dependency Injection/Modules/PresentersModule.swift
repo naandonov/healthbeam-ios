@@ -55,6 +55,10 @@ class PresentersModule: Module {
         binder
             .bind(WebContentPresenterProtocol.self)
             .to(factory: WebContentPresenter.init)
+        
+        binder
+            .bind(PatientAlertsPresenterProtocol.self)
+            .to(factory: PatientAlertsPresenter.init)
 
     }
 }

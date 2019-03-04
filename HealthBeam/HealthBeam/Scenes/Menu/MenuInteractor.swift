@@ -16,6 +16,7 @@ protocol MenuBusinessLogic {
     func performUserLogout(request: Menu.UserLogout.Request)
     func requestNotificationServices()
     func updateDeviceToken()
+    func checkForPendingAlerts(request: Menu.CheckForPendingAlerts.Request)
 }
 
 protocol MenuDataStore {
@@ -25,12 +26,23 @@ protocol MenuDataStore {
 class MenuInteractor: MenuBusinessLogic, MenuDataStore {
     
     var presenter: MenuPresentationLogic?
-    let options: [Menu.Option] = {
+    lazy var options: [Menu.Option] = {
+        return generateOptions()
+    }()
+    
+    var pendingAlertsExist = false {
+        didSet {
+            options = generateOptions()
+            presenter?.updatePatientAlertsOption(response: Menu.UpdatePatientAlertsOption.Response())
+        }
+    }
+    
+    private func generateOptions() -> [Menu.Option] {
         var model:[Menu.Option] = []
         let patientsLocateOption = Menu.Option(type: .patientsLocate,
-                                         iconName: "patientsLocatorIcon",
-                                         name: "Nearby Patients".localized(),
-                                         description: "Locate nearby patients assigned with a tag within your discovery regions".localized())
+                                               iconName: "patientsLocatorIcon",
+                                               name: "Nearby Patients".localized(),
+                                               description: "Locate nearby patients assigned with a tag within your discovery regions".localized())
         model.append(patientsLocateOption)
         
         let patientsOption = Menu.Option(type: .patientsSearch,
@@ -40,24 +52,24 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
         model.append(patientsOption)
         
         let patientAlertsOption = Menu.Option(type: .patientAlerts,
-                                         iconName: "alertIcon",
-                                         name: "Patient Alerts".localized(),
-                                         description: "Respond to patients in need of immediate medical attention".localized())
+                                              iconName: pendingAlertsExist ? "badgeAlertIcon" : "alertIcon",
+                                              name: "Patient Alerts".localized(),
+                                              description: "Respond to patients in need of immediate medical attention".localized())
         model.append(patientAlertsOption)
         
         let aboutOption = Menu.Option(type: .about,
-                                         iconName: "neutralBlueLogo",
-                                         name: "About".localized(),
-                                         description: "Explore information and resources about operating with HealthBeam".localized())
+                                      iconName: "neutralBlueLogo",
+                                      name: "About".localized(),
+                                      description: "Explore information and resources about operating with HealthBeam".localized())
         model.append(aboutOption)
         
         let logoutOption = Menu.Option(type: .logout,
-                                         iconName: "logoutIcon",
-                                         name: "Log Out".localized(),
-                                         description: "Sign out of your HealthBeam account".localized())
+                                       iconName: "logoutIcon",
+                                       name: "Log Out".localized(),
+                                       description: "Sign out of your HealthBeam account".localized())
         model.append(logoutOption)
         return model
-    }()
+    }
     
     private lazy var authorizationWorker: AuthorizationWorker = {
         guard var authorizationWorker = Injector.authorizationWorker else {
@@ -150,6 +162,29 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
             case let .failure(responseObject):
                 log.error("Unable to revoke current authorization, reason: \(responseObject.localizedDescription)")
                 strongSelf.presenter?.handleUserLogout(response: Menu.UserLogout.Response(isLogoutSuccessful: false))
+            }
+        }
+        networkingManager.addNetwork(operation: operation)
+    }
+    
+    func checkForPendingAlerts(request: Menu.CheckForPendingAlerts.Request) {
+        
+        let operation = GetPendingAlertsCountOperation() { [weak self] result in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            switch result {
+            case let .success(responseObject):
+                if let value = responseObject.value  {
+                    strongSelf.pendingAlertsExist = value.count > 0
+                    strongSelf.presenter?.handlePendingAlertsCheck(response:
+                        Menu.CheckForPendingAlerts.Response(pendingAlertsExist: strongSelf.pendingAlertsExist))
+                } else {
+               
+                }
+            case let .failure(responseObject):
+                log.error(responseObject.description)
             }
         }
         networkingManager.addNetwork(operation: operation)

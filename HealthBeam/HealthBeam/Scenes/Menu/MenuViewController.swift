@@ -18,6 +18,8 @@ protocol MenuDisplayLogic: class {
     func didPerformProfileUpdate(viewModel: Menu.UserProfileUpdate.ViewModel)
     func didPerformUserLogout(viewModel: Menu.UserLogout.ViewModel)
     func didReceiveAuthorizationRevocation()
+    func didPerformPendingAlertsCheck(viewModel: Menu.CheckForPendingAlerts.ViewModel)
+    func performPatientAlertsOpetionUpdate(viewModel: Menu.UpdatePatientAlertsOption.ViewModel)
 }
 
 class MenuViewController: UIViewController, MenuDisplayLogic {
@@ -89,6 +91,7 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
             router?.routeToAuthorization(withHandler: self, animated: false)
         }
         else {
+            interactor?.checkForPendingAlerts(request: Menu.CheckForPendingAlerts.Request())
             interactor?.updateUserProfile(request: Menu.UserProfileUpdate.Request())
             if let startupLoadingView = startupLoadingView {
                 view.addSubview(startupLoadingView)
@@ -117,6 +120,18 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
     func didPerformUserLogout(viewModel: Menu.UserLogout.ViewModel) {
         if viewModel.isLogoutSuccessful {
             router?.routeToAuthorization(withHandler: self, animated: true)
+        }
+    }
+    
+    func didPerformPendingAlertsCheck(viewModel: Menu.CheckForPendingAlerts.ViewModel) {
+        if let warrningMessage = viewModel.warningMessage {
+            UIAlertController.presentAlertControllerWithTitleMessage("Patient Alert".localized(), message: warrningMessage, on: self)
+        }
+    }
+    
+    func performPatientAlertsOpetionUpdate(viewModel: Menu.UpdatePatientAlertsOption.ViewModel) {
+        if let index = interactor?.options.enumerated().filter({ $1.type == .patientAlerts }).map({ $0.offset}).first {
+            menuCollectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
         }
     }
     
@@ -154,7 +169,9 @@ extension MenuViewController: UICollectionViewDelegate {
                 router?.routeToPatientsSearch(cell: cell)
             }
         case .patientAlerts:
-            UIAlertController.presentAlertControllerWithTitleMessage("Patient Alerts".localized(), message: "This feature is cooming soon".localized(), on: self)
+            if let cell = collectionView.cellForItem(at: indexPath) as? MenuCollectionViewCell {
+                router?.routeToPatientAlerts(cell: cell)
+            }
         case .about:
             if let cell = collectionView.cellForItem(at: indexPath) as? MenuCollectionViewCell {
                 router?.routeToAboutSection(cell: cell)
@@ -191,6 +208,7 @@ extension MenuViewController: UICollectionViewDataSource {
 extension MenuViewController: PostAuthorizationHandler {
     func handleSuccessfullAuthorization(userProfile: UserProfile.Model) {
         updateDeviceToken()
+        interactor?.checkForPendingAlerts(request: Menu.CheckForPendingAlerts.Request())
         setProfileInformation(userProfile: userProfile)
     }
 }

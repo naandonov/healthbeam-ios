@@ -424,6 +424,58 @@
             </objects>
             <point key="canvasLocation" x="-151" y="833"/>
         </scene>
+        <!--Patient Alerts View Controller-->
+        <scene sceneID="ObG-5S-2Cv">
+            <objects>
+                <viewController storyboardIdentifier="PatientAlertsViewController" id="9oB-9z-r9A" customClass="PatientAlertsViewController" customModule="HealthBeam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tpn-34-Wdc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="np3-YB-Exu">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tC8-ig-8hP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOv-hy-ZHd">
+                                        <rect key="frame" x="146.5" y="323" width="82.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="nOv-hy-ZHd" firstAttribute="centerX" secondItem="tC8-ig-8hP" secondAttribute="centerX" id="M7O-p1-mi3"/>
+                                    <constraint firstItem="nOv-hy-ZHd" firstAttribute="centerY" secondItem="tC8-ig-8hP" secondAttribute="centerY" id="Qdy-HD-taK"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tC8-ig-8hP" firstAttribute="trailing" secondItem="sWB-2B-ERs" secondAttribute="trailing" id="5GJ-y5-fFN"/>
+                            <constraint firstItem="sWB-2B-ERs" firstAttribute="bottom" secondItem="tC8-ig-8hP" secondAttribute="bottom" id="9W9-Hv-wHS"/>
+                            <constraint firstItem="tC8-ig-8hP" firstAttribute="top" secondItem="tpn-34-Wdc" secondAttribute="top" id="B7K-Om-m5g"/>
+                            <constraint firstItem="sWB-2B-ERs" firstAttribute="trailing" secondItem="np3-YB-Exu" secondAttribute="trailing" id="G9b-Ne-Gp8"/>
+                            <constraint firstItem="tC8-ig-8hP" firstAttribute="leading" secondItem="sWB-2B-ERs" secondAttribute="leading" id="Mdp-I1-sJw"/>
+                            <constraint firstItem="sWB-2B-ERs" firstAttribute="bottom" secondItem="np3-YB-Exu" secondAttribute="bottom" id="mS2-dQ-cv9"/>
+                            <constraint firstItem="np3-YB-Exu" firstAttribute="top" secondItem="sWB-2B-ERs" secondAttribute="top" id="th9-dP-HC8"/>
+                            <constraint firstItem="np3-YB-Exu" firstAttribute="leading" secondItem="sWB-2B-ERs" secondAttribute="leading" id="y1t-Wz-GAw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sWB-2B-ERs"/>
+                    </view>
+                    <connections>
+                        <outlet property="emptyStateLabel" destination="nOv-hy-ZHd" id="hLZ-LP-0m3"/>
+                        <outlet property="emptyStateView" destination="tC8-ig-8hP" id="wub-W8-UtP"/>
+                        <outlet property="tableView" destination="np3-YB-Exu" id="chR-JZ-7bt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zru-es-tU4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-152" y="1509"/>
+        </scene>
     </scenes>
     <resources>
         <image name="avatarIconLarge" width="126" height="126"/>

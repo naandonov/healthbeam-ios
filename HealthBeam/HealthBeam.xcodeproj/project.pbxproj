@@ -183,6 +183,17 @@
 		4E93EA4121F918A7007C8BE8 /* UserEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93EA4021F918A7007C8BE8 /* UserEntity+Mapping.swift */; };
 		4E93EA4421F91A55007C8BE8 /* PremiseEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93EA4321F91A55007C8BE8 /* PremiseEntity+Mapping.swift */; };
 		4EB68CEB222C1D37002083C8 /* alarm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4EB68CEA222C1D37002083C8 /* alarm.wav */; };
+		4EB68CF2222C4908002083C8 /* PatientAlertsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68CED222C4908002083C8 /* PatientAlertsPresenter.swift */; };
+		4EB68CF3222C4908002083C8 /* PatientAlertsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68CEE222C4908002083C8 /* PatientAlertsRouter.swift */; };
+		4EB68CF4222C4908002083C8 /* PatientAlertsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68CEF222C4908002083C8 /* PatientAlertsModels.swift */; };
+		4EB68CF5222C4908002083C8 /* PatientAlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68CF0222C4908002083C8 /* PatientAlertsViewController.swift */; };
+		4EB68CF6222C4908002083C8 /* PatientAlertsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68CF1222C4908002083C8 /* PatientAlertsInteractor.swift */; };
+		4EB68CFB222C4D01002083C8 /* AlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68CF9222C4D01002083C8 /* AlertTableViewCell.swift */; };
+		4EB68CFC222C4D01002083C8 /* AlertTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB68CFA222C4D01002083C8 /* AlertTableViewCell.xib */; };
+		4EB68CFF222C5008002083C8 /* AlertPlaceholderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68CFD222C5008002083C8 /* AlertPlaceholderTableViewCell.swift */; };
+		4EB68D00222C5008002083C8 /* AlertPlaceholderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB68CFE222C5008002083C8 /* AlertPlaceholderTableViewCell.xib */; };
+		4EB68D02222C5C2B002083C8 /* GetPendingAlertsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68D01222C5C2B002083C8 /* GetPendingAlertsOperation.swift */; };
+		4EB68D04222DB2B3002083C8 /* GetPendingAlertsCountOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68D03222DB2B3002083C8 /* GetPendingAlertsCountOperation.swift */; };
 		4EBC81FC21FC810E008427A8 /* UIImage+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC81FB21FC810E008427A8 /* UIImage+Utilities.swift */; };
 		4EBC81FE21FE06CD008427A8 /* MenuTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC81FD21FE06CD008427A8 /* MenuTransition.swift */; };
 		4EC355D121DF62180011D723 /* GetPatientsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC355D021DF62180011D723 /* GetPatientsOperation.swift */; };
@@ -397,6 +408,17 @@
 		4E93EA4021F918A7007C8BE8 /* UserEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+Mapping.swift"; sourceTree = "<group>"; };
 		4E93EA4321F91A55007C8BE8 /* PremiseEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PremiseEntity+Mapping.swift"; sourceTree = "<group>"; };
 		4EB68CEA222C1D37002083C8 /* alarm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = alarm.wav; sourceTree = "<group>"; };
+		4EB68CED222C4908002083C8 /* PatientAlertsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientAlertsPresenter.swift; sourceTree = "<group>"; };
+		4EB68CEE222C4908002083C8 /* PatientAlertsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientAlertsRouter.swift; sourceTree = "<group>"; };
+		4EB68CEF222C4908002083C8 /* PatientAlertsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientAlertsModels.swift; sourceTree = "<group>"; };
+		4EB68CF0222C4908002083C8 /* PatientAlertsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientAlertsViewController.swift; sourceTree = "<group>"; };
+		4EB68CF1222C4908002083C8 /* PatientAlertsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientAlertsInteractor.swift; sourceTree = "<group>"; };
+		4EB68CF9222C4D01002083C8 /* AlertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCell.swift; sourceTree = "<group>"; };
+		4EB68CFA222C4D01002083C8 /* AlertTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertTableViewCell.xib; sourceTree = "<group>"; };
+		4EB68CFD222C5008002083C8 /* AlertPlaceholderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPlaceholderTableViewCell.swift; sourceTree = "<group>"; };
+		4EB68CFE222C5008002083C8 /* AlertPlaceholderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertPlaceholderTableViewCell.xib; sourceTree = "<group>"; };
+		4EB68D01222C5C2B002083C8 /* GetPendingAlertsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPendingAlertsOperation.swift; sourceTree = "<group>"; };
+		4EB68D03222DB2B3002083C8 /* GetPendingAlertsCountOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPendingAlertsCountOperation.swift; sourceTree = "<group>"; };
 		4EBC81FB21FC810E008427A8 /* UIImage+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utilities.swift"; sourceTree = "<group>"; };
 		4EBC81FD21FE06CD008427A8 /* MenuTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTransition.swift; sourceTree = "<group>"; };
 		4EC355D021DF62180011D723 /* GetPatientsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPatientsOperation.swift; sourceTree = "<group>"; };
@@ -457,6 +479,7 @@
 		4E0FEF5421D6BA6A0046303F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				4EB68CEC222C48D2002083C8 /* Patient Alerts */,
 				4E1DE55E22174C2B00C2541B /* WebContent View */,
 				4E1DE5512217433D00C2541B /* About */,
 				4E141F74221213AA00502A30 /* Locate Patients  */,
@@ -559,6 +582,8 @@
 				4E141F702210C52B00502A30 /* AssignPatientTagOperation.swift */,
 				4E141F722210C68100502A30 /* UnassignPatientTagOperatioin.swift */,
 				4E141F7F221225EE00502A30 /* LocateNearbyPatientsOpearation.swift */,
+				4EB68D01222C5C2B002083C8 /* GetPendingAlertsOperation.swift */,
+				4EB68D03222DB2B3002083C8 /* GetPendingAlertsCountOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -714,6 +739,10 @@
 				4E20F390220F8242009D97C4 /* ScanningView.xib */,
 				4E141F662210877A00502A30 /* EmptyStateView.swift */,
 				4E141F682210878200502A30 /* EmptyStateView.xib */,
+				4EB68CF9222C4D01002083C8 /* AlertTableViewCell.swift */,
+				4EB68CFA222C4D01002083C8 /* AlertTableViewCell.xib */,
+				4EB68CFD222C5008002083C8 /* AlertPlaceholderTableViewCell.swift */,
+				4EB68CFE222C5008002083C8 /* AlertPlaceholderTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -998,6 +1027,18 @@
 			path = Sound;
 			sourceTree = "<group>";
 		};
+		4EB68CEC222C48D2002083C8 /* Patient Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				4EB68CED222C4908002083C8 /* PatientAlertsPresenter.swift */,
+				4EB68CEE222C4908002083C8 /* PatientAlertsRouter.swift */,
+				4EB68CEF222C4908002083C8 /* PatientAlertsModels.swift */,
+				4EB68CF0222C4908002083C8 /* PatientAlertsViewController.swift */,
+				4EB68CF1222C4908002083C8 /* PatientAlertsInteractor.swift */,
+			);
+			path = "Patient Alerts";
+			sourceTree = "<group>";
+		};
 		4ED74C1321DBC67D009AB7C3 /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1109,6 +1150,7 @@
 				4E48E58B21DAC3D900069CC4 /* loading.json in Resources */,
 				4E93EA3B21F661E5007C8BE8 /* PatientTableViewCell.xib in Resources */,
 				4E2DEA6321F655C7000E0C61 /* Patients.storyboard in Resources */,
+				4EB68D00222C5008002083C8 /* AlertPlaceholderTableViewCell.xib in Resources */,
 				4E39ECB221D381B40041F44C /* Main.storyboard in Resources */,
 				4E141F6522106C6700502A30 /* PatientTagTableViewCell.xib in Resources */,
 				4E62DF0F2200E6E40090BFAF /* ModificationElementTableViewCell.xib in Resources */,
@@ -1128,6 +1170,7 @@
 				4E1DE55D221743F000C2541B /* About.storyboard in Resources */,
 				4E93EA3F21F7C2D3007C8BE8 /* PatientPlaceholderTableViewCell.xib in Resources */,
 				4E17F3DC2204E27700E113ED /* NotesTableViewCell.xib in Resources */,
+				4EB68CFC222C4D01002083C8 /* AlertTableViewCell.xib in Resources */,
 				4E20F391220F8242009D97C4 /* ScanningView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1196,6 +1239,7 @@
 				4E141F712210C52B00502A30 /* AssignPatientTagOperation.swift in Sources */,
 				4ED74C1A21DBC6A7009AB7C3 /* UserProfileRouter.swift in Sources */,
 				4E1DE5592217435100C2541B /* AboutModels.swift in Sources */,
+				4EB68CF3222C4908002083C8 /* PatientAlertsRouter.swift in Sources */,
 				4E17F3E82207219700E113ED /* PatientDetailsRouter.swift in Sources */,
 				4E0FEFC421D6BF050046303F /* UIStoryboard+Utility.swift in Sources */,
 				4ED74C0821DBAA9A009AB7C3 /* CoreDataHandler.swift in Sources */,
@@ -1206,7 +1250,10 @@
 				4E0FEFC321D6BF050046303F /* UINavigationController+Utilities.swift in Sources */,
 				4ED74C1C21DBC6A7009AB7C3 /* UserProfileViewController.swift in Sources */,
 				4E17F3DE2205A10C00E113ED /* ModificationBaseTableViewCell.swift in Sources */,
+				4EB68CF5222C4908002083C8 /* PatientAlertsViewController.swift in Sources */,
+				4EB68CFF222C5008002083C8 /* AlertPlaceholderTableViewCell.swift in Sources */,
 				4E141F6D22109A2800502A30 /* Double+Utilities.swift in Sources */,
+				4EB68CF2222C4908002083C8 /* PatientAlertsPresenter.swift in Sources */,
 				4E141F732210C68100502A30 /* UnassignPatientTagOperatioin.swift in Sources */,
 				4E0FEFFE21D7B7490046303F /* LoginPresenter.swift in Sources */,
 				4E141F7A221213C400502A30 /* LocatePatientsPresenter.swift in Sources */,
@@ -1264,14 +1311,17 @@
 				4E24BE92220A140300E89F0E /* HealthRecordViewController.swift in Sources */,
 				4E5160CD220E6542009DD6AA /* HealthRecordModificationViewController.swift in Sources */,
 				4E24BE90220A140300E89F0E /* HealthRecordRouter.swift in Sources */,
+				4EB68CF6222C4908002083C8 /* PatientAlertsInteractor.swift in Sources */,
 				4E1DE55B2217435100C2541B /* AboutInteractor.swift in Sources */,
 				4E17F18221FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift in Sources */,
 				4E0FEFC721D6BF050046303F /* UIView+Animations.swift in Sources */,
 				4E93EA4421F91A55007C8BE8 /* PremiseEntity+Mapping.swift in Sources */,
+				4EB68D04222DB2B3002083C8 /* GetPendingAlertsCountOperation.swift in Sources */,
 				4E0FEFAB21D6BCB20046303F /* BaseOperation.swift in Sources */,
 				4E0FEFEC21D6C4030046303F /* ViewsModule.swift in Sources */,
 				4E0FF00121D7B7490046303F /* LoginViewController.swift in Sources */,
 				4E48E59321DB9A3200069CC4 /* HealthBeamModel.xcdatamodeld in Sources */,
+				4EB68D02222C5C2B002083C8 /* GetPendingAlertsOperation.swift in Sources */,
 				4E0FEFA521D6BCB20046303F /* APIConstants.swift in Sources */,
 				4E17F3E72207219700E113ED /* PatientDetailsPresenter.swift in Sources */,
 				4E0FEFFF21D7B7490046303F /* LoginRouter.swift in Sources */,
@@ -1330,6 +1380,7 @@
 				4E0FEF9F21D6BCB20046303F /* ServiceProtocol.swift in Sources */,
 				4E0FEFB021D6BCB20046303F /* BeaconsManager.swift in Sources */,
 				4E5160D2220E6CF4009DD6AA /* UpdateHealthRecordOperation.swift in Sources */,
+				4EB68CF4222C4908002083C8 /* PatientAlertsModels.swift in Sources */,
 				4E141F80221225EE00502A30 /* LocateNearbyPatientsOpearation.swift in Sources */,
 				4E93801121D9795A0083ED03 /* KeyboardScrollHandler.swift in Sources */,
 				4E0FEF9E21D6BCB20046303F /* Service.swift in Sources */,
@@ -1338,6 +1389,7 @@
 				4ED74C0C21DBBFE8009AB7C3 /* BaseUnsignedOperation.swift in Sources */,
 				4E24BEAF220CC65300E89F0E /* PatientModificationPresenter.swift in Sources */,
 				4E0FEFA221D6BCB20046303F /* RequestProtocol.swift in Sources */,
+				4EB68CFB222C4D01002083C8 /* AlertTableViewCell.swift in Sources */,
 				4E17F3E92207219700E113ED /* PatientDetailsModels.swift in Sources */,
 				4E93EA4121F918A7007C8BE8 /* UserEntity+Mapping.swift in Sources */,
 				4E24BE9C220A195100E89F0E /* PatientTagsSearchPresenter.swift in Sources */,

@@ -55,6 +55,10 @@ class RoutersModule: Module {
         binder
             .bind(WebContentRouterProtocol.self)
             .to(factory: WebContentRouter.init)
+        
+        binder
+            .bind(PatientAlertsRouterProtocol.self)
+            .to(factory: PatientAlertsRouter.init)
 
     }
 }

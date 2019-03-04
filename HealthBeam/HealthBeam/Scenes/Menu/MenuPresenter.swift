@@ -14,7 +14,9 @@ protocol MenuPresentationLogic {
     func handleAuthorization(response: Menu.AuthorizationCheck.Response)
     func handleUserProfileUpdate(response: Menu.UserProfileUpdate.Response)
     func handleUserLogout(response: Menu.UserLogout.Response)
+    func handlePendingAlertsCheck(response: Menu.CheckForPendingAlerts.Response)
     func handleAuthorizationRevocation()
+    func updatePatientAlertsOption(response: Menu.UpdatePatientAlertsOption.Response)
     
 }
 
@@ -38,5 +40,17 @@ class MenuPresenter: MenuPresentationLogic {
     
     func handleUserLogout(response: Menu.UserLogout.Response) {
         presenterOutput?.didPerformUserLogout(viewModel: Menu.UserLogout.ViewModel(isLogoutSuccessful: response.isLogoutSuccessful))
+    }
+    
+    func handlePendingAlertsCheck(response: Menu.CheckForPendingAlerts.Response) {
+        var warningMessage: String?
+        if response.pendingAlertsExist {
+            warningMessage = "Patients which you are observing need immediate medical assistance!\n Further information can be found in the Patient Alerts section.".localized()
+        }
+        presenterOutput?.didPerformPendingAlertsCheck(viewModel: Menu.CheckForPendingAlerts.ViewModel(warningMessage: warningMessage))
+    }
+    
+    func updatePatientAlertsOption(response: Menu.UpdatePatientAlertsOption.Response) {
+        presenterOutput?.performPatientAlertsOpetionUpdate(viewModel: Menu.UpdatePatientAlertsOption.ViewModel())
     }
 }

@@ -8,12 +8,6 @@
 
 import UIKit
 
-struct Premise: Codable {
-    let id: Int
-    let name: String
-    let type: String
-}
-
 struct UserProfile {
     
     struct ExternalModel: Codable {

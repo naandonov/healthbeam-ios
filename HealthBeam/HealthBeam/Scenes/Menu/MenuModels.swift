@@ -32,6 +32,17 @@ struct Menu {
         }
     }
     
+    struct CheckForPendingAlerts {
+        struct Request {
+        }
+        struct Response {
+            let pendingAlertsExist: Bool
+        }
+        struct ViewModel {
+            let warningMessage: String?
+        }
+    }
+    
     struct UserLogout {
         struct Request {
         }
@@ -40,6 +51,15 @@ struct Menu {
         }
         struct ViewModel {
              let isLogoutSuccessful: Bool
+        }
+    }
+    
+    struct UpdatePatientAlertsOption {
+        struct Request {
+        }
+        struct Response {
+        }
+        struct ViewModel {
         }
     }
     
