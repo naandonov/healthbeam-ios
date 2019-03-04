@@ -14,6 +14,10 @@ extension CAGradientLayer {
         self.init(linearWithFrame: frame, colors: [UIColor.darkBlue, UIColor.lightBlue])
     }
     
+    convenience init(applicationAlertStyleWithFrame frame: CGRect) {
+        self.init(linearWithFrame: frame, colors: [UIColor.darkRed, UIColor.lightRed])
+    }
+    
     convenience init(linearWithFrame frame: CGRect, colors: [UIColor]) {
         self.init()
         self.frame = frame

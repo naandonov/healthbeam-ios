@@ -11,11 +11,35 @@ import Lottie
 
 class ScanningView: UIView {
 
+    enum Mode {
+        case standard
+        case alert
+        
+        var textColor: UIColor {
+            switch self {
+            case .standard:
+                return .neutralBlue
+            case .alert:
+                return .neutralRed
+            }
+        }
+        
+        var animationColor: UIColor {
+            switch self {
+            case .standard:
+                return .lightBlue
+            case .alert:
+                return .lightRed
+            }
+        }
+    }
+    
     var pulsingAnimationColor: LOTColorValueCallback!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var animationView: LOTAnimationView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,12 +47,9 @@ class ScanningView: UIView {
         animationView.play()
         animationView.contentMode = .scaleAspectFill
         animationView.loopAnimation = true
-        
-        titleLabel.textColor = .neutralBlue
-        
     }
     
-    private func configurePulsingAnimation() {
+    private func configurePulsingAnimation(forMode mode: Mode = .standard) {
     
         let pathStroke1 = "Shape Layer 1.Ellipse 1.Stroke 1.Color"
         let pathStroke2 = "Shape Layer 2.Ellipse 1.Stroke 1.Color"
@@ -40,7 +61,8 @@ class ScanningView: UIView {
         let keypathStroke3 = LOTKeypath(string: pathStroke3)
         let keypathStroke4 = LOTKeypath(string: pathStroke4)
         
-        let color = UIColor.lightBlue
+        titleLabel.textColor = mode.textColor
+        let color = mode.animationColor
         pulsingAnimationColor = LOTColorValueCallback(color:color.cgColor)
         animationView.setValueDelegate(pulsingAnimationColor, for: keypathStroke1)
          animationView.setValueDelegate(pulsingAnimationColor, for: keypathStroke2)

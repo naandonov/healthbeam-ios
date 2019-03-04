@@ -26,6 +26,18 @@ extension UIColor {
         return UIColor(hexString: "#f7f7f7")
     }
     
+    class var darkRed: UIColor {
+        return UIColor(hexString: "#9F041B")
+    }
+    
+    class var neutralRed: UIColor {
+        return UIColor(hexString: "#C8293C")
+    }
+    
+    class var lightRed: UIColor {
+        return UIColor(hexString: "#F5515F")
+    }
+    
     class var shadowColor: UIColor {
         return UIColor(hexString: "#979797")
     }
@@ -35,6 +47,11 @@ extension UIColor {
     }
     
     class func applicationGradientColorFoBounds(_ bounds: CGRect) -> UIColor {
+        let backgroundImage = CAGradientLayer(applicationStyleWithFrame: bounds).gradientImage()
+        return UIColor(patternImage: backgroundImage!)
+    }
+    
+    class func applicationAlertColorFoBounds(_ bounds: CGRect) -> UIColor {
         let backgroundImage = CAGradientLayer(applicationStyleWithFrame: bounds).gradientImage()
         return UIColor(patternImage: backgroundImage!)
     }
