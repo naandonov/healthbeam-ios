@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum StyleMode {
+    case standard
+    case alert
+}
+
 struct PatientTag: Codable {
     var id: Int?
     let minor: Int

@@ -9,21 +9,35 @@
 import UIKit
 
 class PopUpContainerViewController: UIViewController {
+    
 
     @IBOutlet weak var containerView: CardView!
     
     private weak var containedViewController: UIViewController?
+    private var mode: StyleMode?
     
-    static func generate(forContainedViewController containedViewController: UIViewController) -> PopUpContainerViewController {
+    @IBOutlet weak var dismissButton: UIButton!
+    static func generate(forContainedViewController containedViewController: UIViewController, mode: StyleMode = .standard) -> PopUpContainerViewController {
         let viewController = PopUpContainerViewController(nibName: "PopUpContainerViewController", bundle: nil)
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.modalTransitionStyle = .crossDissolve
         viewController.containedViewController = containedViewController
+        viewController.mode = mode
         return viewController
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let mode = mode {
+            switch mode {
+            case .standard:
+                dismissButton.setImage(UIImage(named: "dismissLightShadowIcon"), for: .normal)
+            case .alert:
+                dismissButton.setImage(UIImage(named: "dismissAlertButton"), for: .normal)
+            }
+        }
+        
         if let containedViewController = containedViewController {
 //            containerView.clipsToBounds = true
 //            containerView.layer.cornerRadius = StyleCoordinator.Metrics.cardViewCornerRadius

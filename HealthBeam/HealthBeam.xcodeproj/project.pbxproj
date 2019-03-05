@@ -194,6 +194,12 @@
 		4EB68D00222C5008002083C8 /* AlertPlaceholderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB68CFE222C5008002083C8 /* AlertPlaceholderTableViewCell.xib */; };
 		4EB68D02222C5C2B002083C8 /* GetPendingAlertsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68D01222C5C2B002083C8 /* GetPendingAlertsOperation.swift */; };
 		4EB68D04222DB2B3002083C8 /* GetPendingAlertsCountOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68D03222DB2B3002083C8 /* GetPendingAlertsCountOperation.swift */; };
+		4EB68D0B222F10CE002083C8 /* AlertRespondNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68D06222F10CE002083C8 /* AlertRespondNavigationPresenter.swift */; };
+		4EB68D0C222F10CE002083C8 /* AlertRespondNavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68D07222F10CE002083C8 /* AlertRespondNavigationRouter.swift */; };
+		4EB68D0D222F10CE002083C8 /* AlertRespondNavigationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68D08222F10CE002083C8 /* AlertRespondNavigationModels.swift */; };
+		4EB68D0E222F10CE002083C8 /* AlertRespondNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68D09222F10CE002083C8 /* AlertRespondNavigationViewController.swift */; };
+		4EB68D0F222F10CE002083C8 /* AlertRespondNavigationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB68D0A222F10CE002083C8 /* AlertRespondNavigationInteractor.swift */; };
+		4EB68D11222F1DA1002083C8 /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EB68D10222F1DA1002083C8 /* Alerts.storyboard */; };
 		4EBC81FC21FC810E008427A8 /* UIImage+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC81FB21FC810E008427A8 /* UIImage+Utilities.swift */; };
 		4EBC81FE21FE06CD008427A8 /* MenuTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC81FD21FE06CD008427A8 /* MenuTransition.swift */; };
 		4EC355D121DF62180011D723 /* GetPatientsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC355D021DF62180011D723 /* GetPatientsOperation.swift */; };
@@ -419,6 +425,12 @@
 		4EB68CFE222C5008002083C8 /* AlertPlaceholderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertPlaceholderTableViewCell.xib; sourceTree = "<group>"; };
 		4EB68D01222C5C2B002083C8 /* GetPendingAlertsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPendingAlertsOperation.swift; sourceTree = "<group>"; };
 		4EB68D03222DB2B3002083C8 /* GetPendingAlertsCountOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPendingAlertsCountOperation.swift; sourceTree = "<group>"; };
+		4EB68D06222F10CE002083C8 /* AlertRespondNavigationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertRespondNavigationPresenter.swift; sourceTree = "<group>"; };
+		4EB68D07222F10CE002083C8 /* AlertRespondNavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertRespondNavigationRouter.swift; sourceTree = "<group>"; };
+		4EB68D08222F10CE002083C8 /* AlertRespondNavigationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertRespondNavigationModels.swift; sourceTree = "<group>"; };
+		4EB68D09222F10CE002083C8 /* AlertRespondNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertRespondNavigationViewController.swift; sourceTree = "<group>"; };
+		4EB68D0A222F10CE002083C8 /* AlertRespondNavigationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertRespondNavigationInteractor.swift; sourceTree = "<group>"; };
+		4EB68D10222F1DA1002083C8 /* Alerts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alerts.storyboard; sourceTree = "<group>"; };
 		4EBC81FB21FC810E008427A8 /* UIImage+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utilities.swift"; sourceTree = "<group>"; };
 		4EBC81FD21FE06CD008427A8 /* MenuTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTransition.swift; sourceTree = "<group>"; };
 		4EC355D021DF62180011D723 /* GetPatientsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPatientsOperation.swift; sourceTree = "<group>"; };
@@ -479,6 +491,7 @@
 		4E0FEF5421D6BA6A0046303F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				4EB68D05222F103B002083C8 /* Alert Respond */,
 				4EB68CEC222C48D2002083C8 /* Patient Alerts */,
 				4E1DE55E22174C2B00C2541B /* WebContent View */,
 				4E1DE5512217433D00C2541B /* About */,
@@ -662,6 +675,7 @@
 				4E5160BD220E2CB8009DD6AA /* HealthRecords.storyboard */,
 				4E20F397221062C5009D97C4 /* PatientTags.storyboard */,
 				4E1DE55C221743F000C2541B /* About.storyboard */,
+				4EB68D10222F1DA1002083C8 /* Alerts.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1039,6 +1053,18 @@
 			path = "Patient Alerts";
 			sourceTree = "<group>";
 		};
+		4EB68D05222F103B002083C8 /* Alert Respond */ = {
+			isa = PBXGroup;
+			children = (
+				4EB68D06222F10CE002083C8 /* AlertRespondNavigationPresenter.swift */,
+				4EB68D07222F10CE002083C8 /* AlertRespondNavigationRouter.swift */,
+				4EB68D08222F10CE002083C8 /* AlertRespondNavigationModels.swift */,
+				4EB68D09222F10CE002083C8 /* AlertRespondNavigationViewController.swift */,
+				4EB68D0A222F10CE002083C8 /* AlertRespondNavigationInteractor.swift */,
+			);
+			path = "Alert Respond";
+			sourceTree = "<group>";
+		};
 		4ED74C1321DBC67D009AB7C3 /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1146,6 +1172,7 @@
 				4E6EB79F220766C200146B8C /* HealthRecordPreviewTableViewCell.xib in Resources */,
 				4E6EB7A3220766D100146B8C /* AddHealthRecordTableViewCell.xib in Resources */,
 				4E20F398221062C5009D97C4 /* PatientTags.storyboard in Resources */,
+				4EB68D11222F1DA1002083C8 /* Alerts.storyboard in Resources */,
 				4E39ECB421D381B60041F44C /* Assets.xcassets in Resources */,
 				4E48E58B21DAC3D900069CC4 /* loading.json in Resources */,
 				4E93EA3B21F661E5007C8BE8 /* PatientTableViewCell.xib in Resources */,
@@ -1338,6 +1365,7 @@
 				4E93EA3A21F661E5007C8BE8 /* PatientTableViewCell.swift in Sources */,
 				4E0FEF9D21D6BCB20046303F /* ResponseProtocol.swift in Sources */,
 				4ED74C1221DBC346009AB7C3 /* CommonModels.swift in Sources */,
+				4EB68D0D222F10CE002083C8 /* AlertRespondNavigationModels.swift in Sources */,
 				4E1DE56522174C5000C2541B /* WebContentRouter.swift in Sources */,
 				4E24BEA0220A195100E89F0E /* PatientTagsSearchInteractor.swift in Sources */,
 				4ED74C1021DBC30F009AB7C3 /* LogoutOperation.swift in Sources */,
@@ -1356,8 +1384,11 @@
 				4E2DEA5121F4E31C000E0C61 /* MenuCollectionViewCell.swift in Sources */,
 				8C196B7221EE3EAE004F2549 /* NotificationManager.swift in Sources */,
 				4E62DF0B2200E6360090BFAF /* ModificationElementController.swift in Sources */,
+				4EB68D0C222F10CE002083C8 /* AlertRespondNavigationRouter.swift in Sources */,
+				4EB68D0E222F10CE002083C8 /* AlertRespondNavigationViewController.swift in Sources */,
 				4E0FEFA021D6BCB20046303F /* ServiceConfig.swift in Sources */,
 				4E0FEFE521D6C4030046303F /* ViewControllersModule.swift in Sources */,
+				4EB68D0F222F10CE002083C8 /* AlertRespondNavigationInteractor.swift in Sources */,
 				4E0FEFAE21D6BCB20046303F /* KeychainManager.swift in Sources */,
 				4E0FEFCA21D6BF050046303F /* UIColor+Additions.swift in Sources */,
 				4E17F3EB2207219700E113ED /* PatientDetailsInteractor.swift in Sources */,
@@ -1388,6 +1419,7 @@
 				4EF9E2BD21ED1C0A00E0DDD0 /* MenuNavigationController.swift in Sources */,
 				4ED74C0C21DBBFE8009AB7C3 /* BaseUnsignedOperation.swift in Sources */,
 				4E24BEAF220CC65300E89F0E /* PatientModificationPresenter.swift in Sources */,
+				4EB68D0B222F10CE002083C8 /* AlertRespondNavigationPresenter.swift in Sources */,
 				4E0FEFA221D6BCB20046303F /* RequestProtocol.swift in Sources */,
 				4EB68CFB222C4D01002083C8 /* AlertTableViewCell.swift in Sources */,
 				4E17F3E92207219700E113ED /* PatientDetailsModels.swift in Sources */,

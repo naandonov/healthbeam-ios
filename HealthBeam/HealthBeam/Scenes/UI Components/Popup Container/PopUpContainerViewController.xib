@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopUpContainerViewController" customModule="HealthBeam" customModuleProvider="target">
             <connections>
                 <outlet property="containerView" destination="cpm-t0-AmH" id="Zhq-p4-eL0"/>
+                <outlet property="dismissButton" destination="v4L-wA-Zu7" id="xbB-Mc-T2l"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

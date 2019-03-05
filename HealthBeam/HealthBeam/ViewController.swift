@@ -77,7 +77,9 @@ class ViewController: UIViewController, UITableViewDelegate {//, PagedElementsCo
     @IBAction func validate(_ sender: Any) {
         
         let vc2: PatientTagsSearchViewController! =  UIStoryboard.patientTags.instantiateViewController()
-        let vc = PopUpContainerViewController.generate(forContainedViewController: vc2)
+        let vc3: AlertRespondNavigationViewController! =  UIStoryboard.alerts.instantiateViewController()
+
+        let vc = PopUpContainerViewController.generate(forContainedViewController: vc3, mode: .alert)
         present(vc, animated: true, completion: nil)
         
         

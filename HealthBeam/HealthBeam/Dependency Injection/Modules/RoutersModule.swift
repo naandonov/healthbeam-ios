@@ -59,6 +59,10 @@ class RoutersModule: Module {
         binder
             .bind(PatientAlertsRouterProtocol.self)
             .to(factory: PatientAlertsRouter.init)
+        
+        binder
+            .bind(AlertRespondNavigationRouterProtocol.self)
+            .to(factory: AlertRespondNavigationRouter.init)
 
     }
 }

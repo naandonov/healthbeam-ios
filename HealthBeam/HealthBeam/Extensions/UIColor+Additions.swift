@@ -52,7 +52,7 @@ extension UIColor {
     }
     
     class func applicationAlertColorFoBounds(_ bounds: CGRect) -> UIColor {
-        let backgroundImage = CAGradientLayer(applicationStyleWithFrame: bounds).gradientImage()
+        let backgroundImage = CAGradientLayer(applicationAlertStyleWithFrame: bounds).gradientImage()
         return UIColor(patternImage: backgroundImage!)
     }
     

@@ -59,6 +59,10 @@ class PresentersModule: Module {
         binder
             .bind(PatientAlertsPresenterProtocol.self)
             .to(factory: PatientAlertsPresenter.init)
+        
+        binder
+            .bind(AlertRespondNavigationPresenterProtocol.self)
+            .to(factory: AlertRespondNavigationPresenter.init)
 
     }
 }

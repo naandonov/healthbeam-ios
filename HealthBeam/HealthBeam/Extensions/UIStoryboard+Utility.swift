@@ -42,6 +42,10 @@ extension UIStoryboard {
     class var about: UIStoryboard {
         return UIStoryboard(name: "About", bundle: nil)
     }
+    
+    class var alerts: UIStoryboard {
+        return UIStoryboard(name: "Alerts", bundle: nil)
+    }
 }
 
 extension UIViewController {

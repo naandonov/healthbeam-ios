@@ -59,5 +59,9 @@ class InteractorsModule: Module {
         binder
             .bind(PatientAlertsInteractorProtocol.self)
             .to(factory: PatientAlertsInteractor.init)
+        
+        binder
+            .bind(AlertRespondNavigationInteractorProtocol.self)
+            .to(factory: AlertRespondNavigationInteractor.init)
     }
 }
