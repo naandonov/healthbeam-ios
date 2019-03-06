@@ -15,7 +15,8 @@ class PatientTagTableViewCell: UITableViewCell, NibLoadableView {
     @IBOutlet weak var subtitleLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        separatorInset = .zero
+        layoutMargins = .zero
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -169,6 +169,8 @@
 		4E6EB79F220766C200146B8C /* HealthRecordPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E6EB79D220766C200146B8C /* HealthRecordPreviewTableViewCell.xib */; };
 		4E6EB7A2220766D100146B8C /* AddHealthRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EB7A0220766D100146B8C /* AddHealthRecordTableViewCell.swift */; };
 		4E6EB7A3220766D100146B8C /* AddHealthRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E6EB7A1220766D100146B8C /* AddHealthRecordTableViewCell.xib */; };
+		4E8DAAA222305EC7006BCD22 /* AlertDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAA122305EC7006BCD22 /* AlertDescriptionViewController.swift */; };
+		4E8DAAA422307EA6006BCD22 /* RoundedAlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAA322307EA6006BCD22 /* RoundedAlertButton.swift */; };
 		4E93800E21D949B30083ED03 /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93800D21D949B30083ED03 /* FloatingTextField.swift */; };
 		4E93801121D9795A0083ED03 /* KeyboardScrollHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */; };
 		4E93801321D981020083ED03 /* UIView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801221D981020083ED03 /* UIView+Utilities.swift */; };
@@ -400,6 +402,8 @@
 		4E6EB79D220766C200146B8C /* HealthRecordPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HealthRecordPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		4E6EB7A0220766D100146B8C /* AddHealthRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHealthRecordTableViewCell.swift; sourceTree = "<group>"; };
 		4E6EB7A1220766D100146B8C /* AddHealthRecordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddHealthRecordTableViewCell.xib; sourceTree = "<group>"; };
+		4E8DAAA122305EC7006BCD22 /* AlertDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDescriptionViewController.swift; sourceTree = "<group>"; };
+		4E8DAAA322307EA6006BCD22 /* RoundedAlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedAlertButton.swift; sourceTree = "<group>"; };
 		4E93800D21D949B30083ED03 /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
 		4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollHandler.swift; sourceTree = "<group>"; };
 		4E93801221D981020083ED03 /* UIView+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utilities.swift"; sourceTree = "<group>"; };
@@ -736,6 +740,7 @@
 				4E2DEA5021F4E31C000E0C61 /* MenuCollectionViewCell.xib */,
 				4E2DEA5521F504E7000E0C61 /* CardView.swift */,
 				4E0FF00521D7C2700046303F /* RoundedButton.swift */,
+				4E8DAAA322307EA6006BCD22 /* RoundedAlertButton.swift */,
 				4E0FEFF421D796A40046303F /* LightLogoView.swift */,
 				4E0FEFF621D796B00046303F /* LightLogoView.xib */,
 				4E93800D21D949B30083ED03 /* FloatingTextField.swift */,
@@ -1061,6 +1066,7 @@
 				4EB68D08222F10CE002083C8 /* AlertRespondNavigationModels.swift */,
 				4EB68D09222F10CE002083C8 /* AlertRespondNavigationViewController.swift */,
 				4EB68D0A222F10CE002083C8 /* AlertRespondNavigationInteractor.swift */,
+				4E8DAAA122305EC7006BCD22 /* AlertDescriptionViewController.swift */,
 			);
 			path = "Alert Respond";
 			sourceTree = "<group>";
@@ -1324,6 +1330,7 @@
 				4E24BE9F220A195100E89F0E /* PatientTagsSearchViewController.swift in Sources */,
 				4E5160D0220E6CE5009DD6AA /* DeleteHealthRecordOperation.swift in Sources */,
 				4E5160C1220E3B57009DD6AA /* InformationCardView.swift in Sources */,
+				4E8DAAA222305EC7006BCD22 /* AlertDescriptionViewController.swift in Sources */,
 				4E20F38F220F8238009D97C4 /* ScanningView.swift in Sources */,
 				4E1DE56722174C5000C2541B /* WebContentViewController.swift in Sources */,
 				4E141F6422106C6700502A30 /* PatientTagTableViewCell.swift in Sources */,
@@ -1410,6 +1417,7 @@
 				4E24BE9D220A195100E89F0E /* PatientTagsSearchRouter.swift in Sources */,
 				4E0FEF9F21D6BCB20046303F /* ServiceProtocol.swift in Sources */,
 				4E0FEFB021D6BCB20046303F /* BeaconsManager.swift in Sources */,
+				4E8DAAA422307EA6006BCD22 /* RoundedAlertButton.swift in Sources */,
 				4E5160D2220E6CF4009DD6AA /* UpdateHealthRecordOperation.swift in Sources */,
 				4EB68CF4222C4908002083C8 /* PatientAlertsModels.swift in Sources */,
 				4E141F80221225EE00502A30 /* LocateNearbyPatientsOpearation.swift in Sources */,

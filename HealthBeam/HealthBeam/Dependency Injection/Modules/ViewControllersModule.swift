@@ -117,6 +117,14 @@ struct ViewControllersModule: Module {
                 return viewController
         }
         
+//        binder
+//            .bind(AlertDescriptionViewController.self)
+//            .to {  (storyboard: TaggedProvider<AlertsStoryboard>, injector: PropertyInjector<AlertDescriptionViewController>) in
+//                let viewController: AlertDescriptionViewController! =  storyboard.get().instantiateViewController()
+//                injector.injectProperties(into: viewController)
+//                return viewController
+//        }
+        
         binder
             .bindPropertyInjectionOf(LoginViewController.self)
             .to(injector: LoginViewController.injectProperties)
@@ -164,5 +172,9 @@ struct ViewControllersModule: Module {
         binder
             .bindPropertyInjectionOf(PatientAlertsViewController.self)
             .to(injector: PatientAlertsViewController.injectProperties)
+        
+//        binder
+//            .bindPropertyInjectionOf(AlertDescriptionViewController.self)
+//            .to(injector: AlertDescriptionViewController.injectProperties)
     }
 }

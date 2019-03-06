@@ -13,13 +13,19 @@ typealias AlertRespondNavigationPresenterProtocol =  AlertRespondNavigationPrese
 typealias AlertRespondNavigationRouterProtocol = AlertRespondNavigationRoutingLogic & AlertRespondNavigationDataPassing
 
 protocol AlertRespondNavigationDisplayLogic: class {
-    
+    func processAlertDescriptionDatasource(viewModel: AlertRespondNavigation.DescriptionDatasource.ViewModel)
+}
+
+protocol AlertDescriptionViewOutput: class {
+    func didPressRespondButton()
 }
 
 class AlertRespondNavigationViewController: MenuNavigationController, AlertRespondNavigationDisplayLogic {
     
     var interactor: AlertRespondNavigationInteractorProtocol?
     var router: AlertRespondNavigationRouterProtocol?
+    
+    private weak var alertDescriptionViewInput: AlertDescriptionViewInput?
     
     // MARK:- View lifecycle
     
@@ -30,8 +36,7 @@ class AlertRespondNavigationViewController: MenuNavigationController, AlertRespo
         view.backgroundColor = UIColor.applicationAlertColorFoBounds(view.bounds)
         navigationBar.prefersLargeTitles = true
         
-//        viewControllers.last?.view.backgroundColor = UIColor.applicationAlertColorFoBounds(view.bounds)
-        
+       interactor?.requestAlertDescription(request: AlertRespondNavigation.DescriptionDatasource.Request())
     }
     
     //MARK: - Setup UI
@@ -40,6 +45,21 @@ class AlertRespondNavigationViewController: MenuNavigationController, AlertRespo
         
     }
     
+    //MARK: - Setup UI
+    
+    func processAlertDescriptionDatasource(viewModel: AlertRespondNavigation.DescriptionDatasource.ViewModel) {
+        if let dataSource = viewModel.dataSource, viewModel.isSuccessful == true {
+            alertDescriptionViewInput?.dataSource = dataSource
+        }
+    }
+}
+
+extension AlertRespondNavigationViewController: AlertDescriptionViewOutput {
+    
+    func didPressRespondButton() {
+        
+    }
+
 }
 
 //MARK: - Properties Injection
@@ -54,5 +74,7 @@ extension AlertRespondNavigationViewController {
         self.interactor?.presenter = presenter
         self.interactor?.presenter?.presenterOutput = self
         self.router?.viewController = self
+        
+        alertDescriptionViewInput = viewControllers.first as? AlertDescriptionViewInput
     }
 }

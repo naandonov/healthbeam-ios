@@ -25,33 +25,103 @@
             </objects>
             <point key="canvasLocation" x="-703" y="116"/>
         </scene>
-        <!--View Controller-->
+        <!--Alert Description View Controller-->
         <scene sceneID="kKT-OS-EN3">
             <objects>
-                <viewController id="Fk6-bb-FAg" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AlertDescriptionViewController" id="Fk6-bb-FAg" customClass="AlertDescriptionViewController" customModule="HealthBeam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tVg-bU-uaf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gI1-S5-30y">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="495"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ZA-tc-gbe">
+                                <rect key="frame" x="0.0" y="559" width="375" height="108"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DkD-UQ-cRD" customClass="RoundedAlertButton" customModule="HealthBeam" customModuleProvider="target">
+                                        <rect key="frame" x="80" y="38" width="215" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="mjI-53-zuS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Respond"/>
+                                        <connections>
+                                            <action selector="respondButtonAction:" destination="Fk6-bb-FAg" eventType="touchUpInside" id="9zS-LV-dCh"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSQ-I7-6VC">
+                                        <rect key="frame" x="16" y="8" width="343" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="DkD-UQ-cRD" secondAttribute="bottom" constant="20" id="5CQ-Py-tlj"/>
+                                    <constraint firstItem="DkD-UQ-cRD" firstAttribute="leading" secondItem="2ZA-tc-gbe" secondAttribute="leading" constant="80" id="Iu6-dd-5uy"/>
+                                    <constraint firstItem="KSQ-I7-6VC" firstAttribute="top" secondItem="2ZA-tc-gbe" secondAttribute="top" constant="8" id="NqB-S1-tdQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="KSQ-I7-6VC" secondAttribute="trailing" constant="16" id="Pj2-Ub-Q2h"/>
+                                    <constraint firstItem="DkD-UQ-cRD" firstAttribute="top" secondItem="KSQ-I7-6VC" secondAttribute="bottom" constant="13" id="dig-uK-2Az"/>
+                                    <constraint firstItem="KSQ-I7-6VC" firstAttribute="leading" secondItem="2ZA-tc-gbe" secondAttribute="leading" constant="16" id="wPa-qf-O68"/>
+                                    <constraint firstAttribute="trailing" secondItem="DkD-UQ-cRD" secondAttribute="trailing" constant="80" id="zSF-1j-4uL"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="2ZA-tc-gbe" firstAttribute="trailing" secondItem="NdV-UV-CCQ" secondAttribute="trailing" id="06V-8y-Icy"/>
+                            <constraint firstItem="2ZA-tc-gbe" firstAttribute="leading" secondItem="NdV-UV-CCQ" secondAttribute="leading" id="42P-y0-oaG"/>
                             <constraint firstItem="gI1-S5-30y" firstAttribute="leading" secondItem="NdV-UV-CCQ" secondAttribute="leading" id="5Zt-w7-7RO"/>
-                            <constraint firstItem="gI1-S5-30y" firstAttribute="bottom" secondItem="NdV-UV-CCQ" secondAttribute="bottom" id="6Qb-uw-2v7"/>
+                            <constraint firstItem="2ZA-tc-gbe" firstAttribute="bottom" secondItem="NdV-UV-CCQ" secondAttribute="bottom" id="NN5-gO-whw"/>
                             <constraint firstItem="gI1-S5-30y" firstAttribute="trailing" secondItem="NdV-UV-CCQ" secondAttribute="trailing" id="SFx-B2-BIV"/>
                             <constraint firstItem="gI1-S5-30y" firstAttribute="top" secondItem="NdV-UV-CCQ" secondAttribute="top" id="ZwI-tY-cyU"/>
+                            <constraint firstItem="2ZA-tc-gbe" firstAttribute="top" secondItem="gI1-S5-30y" secondAttribute="bottom" id="zW4-nb-U4m"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NdV-UV-CCQ"/>
                     </view>
                     <navigationItem key="navigationItem" id="jpq-HN-Tbl"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="KSQ-I7-6VC" id="1O0-ZX-fRH"/>
+                        <outlet property="respondButton" destination="DkD-UQ-cRD" id="TWv-bb-hSH"/>
+                        <outlet property="tableView" destination="gI1-S5-30y" id="lGe-uc-a7C"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C66-lp-N7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="87.200000000000003" y="116.49175412293854"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="v6M-gR-x41">
+            <objects>
+                <viewController id="3Ao-sK-8Ue" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J2m-HT-HtF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="YQW-0O-T13"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vr9-iJ-nN2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="894" y="116"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="3kG-rg-8th">
+            <objects>
+                <viewController id="D04-xZ-aFJ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yfl-tw-4wQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Nmj-19-rBf"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bdv-DC-2hl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1681" y="116"/>
         </scene>
     </scenes>
 </document>

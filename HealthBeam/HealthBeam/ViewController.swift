@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cleanse
 
 class ViewController: UIViewController, UITableViewDelegate {//, PagedElementsControllerDelegate, PagedElementsControllerSearchDelegate {
     
@@ -14,6 +15,8 @@ class ViewController: UIViewController, UITableViewDelegate {//, PagedElementsCo
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     var viewz: ScanningView?
     var modificaitonElementController: ModificationElementController<Element>?
+    
+    var alertNavigationProvider: Provider<AlertRespondNavigationViewController>?
     
     struct Element: Codable {
         var name: String?
@@ -79,6 +82,8 @@ class ViewController: UIViewController, UITableViewDelegate {//, PagedElementsCo
         let vc2: PatientTagsSearchViewController! =  UIStoryboard.patientTags.instantiateViewController()
         let vc3: AlertRespondNavigationViewController! =  UIStoryboard.alerts.instantiateViewController()
 
+        vc3.injectProperties(interactor: AlertRespondNavigationInteractor(), presenter: AlertRespondNavigationPresenter(), router: AlertRespondNavigationRouter())
+        
         let vc = PopUpContainerViewController.generate(forContainedViewController: vc3, mode: .alert)
         present(vc, animated: true, completion: nil)
         
@@ -105,3 +110,10 @@ class ViewController: UIViewController, UITableViewDelegate {//, PagedElementsCo
     
 }
 
+extension ViewController {
+    
+    func injectProperties(alertNavigationProvider: Provider<AlertRespondNavigationViewController>) {
+        self.alertNavigationProvider = alertNavigationProvider
+    }
+    
+}

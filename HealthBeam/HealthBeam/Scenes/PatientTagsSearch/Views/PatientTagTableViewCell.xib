@@ -39,16 +39,16 @@
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ish-vv-ALf">
-                        <rect key="frame" x="89" y="10" width="211" height="64.5"/>
+                        <rect key="frame" x="89" y="5" width="211" height="74.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1545-324" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3J6-40-ehf">
-                                <rect key="frame" x="0.0" y="0.0" width="211" height="41.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="211" height="46.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.6m away" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lx-aj-CaN">
-                                <rect key="frame" x="0.0" y="23.5" width="211" height="41"/>
+                                <rect key="frame" x="0.0" y="28.5" width="211" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -58,10 +58,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="ish-vv-ALf" firstAttribute="leading" secondItem="YPg-7U-NFO" secondAttribute="trailing" constant="19" id="7Ez-qU-cl9"/>
-                    <constraint firstItem="ish-vv-ALf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="OnX-EG-2JZ"/>
+                    <constraint firstItem="ish-vv-ALf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="OnX-EG-2JZ"/>
                     <constraint firstItem="YPg-7U-NFO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Qci-aH-WQd"/>
                     <constraint firstAttribute="trailing" secondItem="ish-vv-ALf" secondAttribute="trailing" constant="20" id="WxR-WH-OqF"/>
-                    <constraint firstAttribute="bottom" secondItem="ish-vv-ALf" secondAttribute="bottom" constant="10" id="b0Q-XT-DsO"/>
+                    <constraint firstAttribute="bottom" secondItem="ish-vv-ALf" secondAttribute="bottom" constant="5" id="b0Q-XT-DsO"/>
                     <constraint firstAttribute="bottom" secondItem="YPg-7U-NFO" secondAttribute="bottom" id="oI4-HY-iry"/>
                     <constraint firstItem="YPg-7U-NFO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="sgr-rc-a95"/>
                 </constraints>
@@ -72,7 +72,7 @@
                 <outlet property="tagImageView" destination="rbC-ql-SE1" id="Tkj-yR-p74"/>
                 <outlet property="titleLabel" destination="3J6-40-ehf" id="m8L-MU-d24"/>
             </connections>
-            <point key="canvasLocation" x="137.59999999999999" y="139.880059970015"/>
+            <point key="canvasLocation" x="137.59999999999999" y="139.43028485757122"/>
         </tableViewCell>
     </objects>
     <resources>

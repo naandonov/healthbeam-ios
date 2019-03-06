@@ -17,10 +17,23 @@ class RoundedButton: UIButton {
         }
     }
     
-    private let gradientLayer: CAGradientLayer = {
+    var startColor: UIColor {
+        return .darkBlue
+    }
+    
+    var middleColor: UIColor {
+        return .neutralBlue
+    }
+    
+    var endColor: UIColor {
+        return .lightBlue
+    }
+
+    
+    private lazy var gradientLayer: CAGradientLayer = {
         let gradientLayer: CAGradientLayer = CAGradientLayer()
         gradientLayer.frame = .zero
-        gradientLayer.colors = [UIColor.darkBlue.cgColor, UIColor.lightBlue.cgColor]
+        gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
         gradientLayer.locations = [NSNumber(floatLiteral: 0.0), NSNumber(floatLiteral: 1.0)]
@@ -54,7 +67,7 @@ class RoundedButton: UIButton {
             setTitleColor(.white, for: .normal)
         } else {
             gradientLayer.mask = shapeLayer
-            setTitleColor(.neutralBlue, for: .normal)
+            setTitleColor(middleColor, for: .normal)
         }
     }
     
