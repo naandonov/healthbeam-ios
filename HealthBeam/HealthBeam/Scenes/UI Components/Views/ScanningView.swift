@@ -10,29 +10,6 @@ import UIKit
 import Lottie
 
 class ScanningView: UIView {
-
-    enum Mode {
-        case standard
-        case alert
-        
-        var textColor: UIColor {
-            switch self {
-            case .standard:
-                return .neutralBlue
-            case .alert:
-                return .neutralRed
-            }
-        }
-        
-        var animationColor: UIColor {
-            switch self {
-            case .standard:
-                return .lightBlue
-            case .alert:
-                return .lightRed
-            }
-        }
-    }
     
     var pulsingAnimationColor: LOTColorValueCallback!
     
@@ -40,6 +17,11 @@ class ScanningView: UIView {
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var animationView: LOTAnimationView!
     
+    var mode: StyleMode = .standard {
+        didSet {
+            configurePulsingAnimation()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,7 +31,7 @@ class ScanningView: UIView {
         animationView.loopAnimation = true
     }
     
-    private func configurePulsingAnimation(forMode mode: Mode = .standard) {
+    private func configurePulsingAnimation() {
     
         let pathStroke1 = "Shape Layer 1.Ellipse 1.Stroke 1.Color"
         let pathStroke2 = "Shape Layer 2.Ellipse 1.Stroke 1.Color"
@@ -61,7 +43,7 @@ class ScanningView: UIView {
         let keypathStroke3 = LOTKeypath(string: pathStroke3)
         let keypathStroke4 = LOTKeypath(string: pathStroke4)
         
-        titleLabel.textColor = mode.textColor
+        titleLabel.textColor = mode.titleColor
         let color = mode.animationColor
         pulsingAnimationColor = LOTColorValueCallback(color:color.cgColor)
         animationView.setValueDelegate(pulsingAnimationColor, for: keypathStroke1)
@@ -71,4 +53,25 @@ class ScanningView: UIView {
     }
     
 
+}
+
+private extension StyleMode {
+    
+    var titleColor: UIColor {
+        switch self {
+        case .standard:
+            return .neutralBlue
+        case .alert:
+            return .darkGray
+        }
+    }
+    
+    var animationColor: UIColor {
+        switch self {
+        case .standard:
+            return .lightBlue
+        case .alert:
+            return .lightRed
+        }
+    }
 }

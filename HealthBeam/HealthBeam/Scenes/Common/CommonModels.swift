@@ -13,10 +13,10 @@ enum StyleMode {
     case alert
 }
 
-struct PatientTag: Codable {
+struct PatientTag: Codable, TagCharacteristics {
     var id: Int?
-    let minor: Int
-    let major: Int
+    var minor: Int
+    var major: Int
 }
 
 struct Patient: Codable {
@@ -62,6 +62,7 @@ struct PatientAlert: Codable {
     var status: String
     let patient: Patient
     let gateway: Gateway
+    let patientTag: PatientTag
 }
 
 struct Premise: Codable {

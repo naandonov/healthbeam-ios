@@ -171,6 +171,7 @@
 		4E6EB7A3220766D100146B8C /* AddHealthRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E6EB7A1220766D100146B8C /* AddHealthRecordTableViewCell.xib */; };
 		4E8DAAA222305EC7006BCD22 /* AlertDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAA122305EC7006BCD22 /* AlertDescriptionViewController.swift */; };
 		4E8DAAA422307EA6006BCD22 /* RoundedAlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAA322307EA6006BCD22 /* RoundedAlertButton.swift */; };
+		4E8DAAA62231B344006BCD22 /* AlertLocatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAA52231B344006BCD22 /* AlertLocatingViewController.swift */; };
 		4E93800E21D949B30083ED03 /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93800D21D949B30083ED03 /* FloatingTextField.swift */; };
 		4E93801121D9795A0083ED03 /* KeyboardScrollHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */; };
 		4E93801321D981020083ED03 /* UIView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801221D981020083ED03 /* UIView+Utilities.swift */; };
@@ -404,6 +405,7 @@
 		4E6EB7A1220766D100146B8C /* AddHealthRecordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddHealthRecordTableViewCell.xib; sourceTree = "<group>"; };
 		4E8DAAA122305EC7006BCD22 /* AlertDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDescriptionViewController.swift; sourceTree = "<group>"; };
 		4E8DAAA322307EA6006BCD22 /* RoundedAlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedAlertButton.swift; sourceTree = "<group>"; };
+		4E8DAAA52231B344006BCD22 /* AlertLocatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLocatingViewController.swift; sourceTree = "<group>"; };
 		4E93800D21D949B30083ED03 /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
 		4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollHandler.swift; sourceTree = "<group>"; };
 		4E93801221D981020083ED03 /* UIView+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utilities.swift"; sourceTree = "<group>"; };
@@ -1067,6 +1069,7 @@
 				4EB68D09222F10CE002083C8 /* AlertRespondNavigationViewController.swift */,
 				4EB68D0A222F10CE002083C8 /* AlertRespondNavigationInteractor.swift */,
 				4E8DAAA122305EC7006BCD22 /* AlertDescriptionViewController.swift */,
+				4E8DAAA52231B344006BCD22 /* AlertLocatingViewController.swift */,
 			);
 			path = "Alert Respond";
 			sourceTree = "<group>";
@@ -1376,6 +1379,7 @@
 				4E1DE56522174C5000C2541B /* WebContentRouter.swift in Sources */,
 				4E24BEA0220A195100E89F0E /* PatientTagsSearchInteractor.swift in Sources */,
 				4ED74C1021DBC30F009AB7C3 /* LogoutOperation.swift in Sources */,
+				4E8DAAA62231B344006BCD22 /* AlertLocatingViewController.swift in Sources */,
 				4E1DE56622174C5000C2541B /* WebContentModels.swift in Sources */,
 				4E0FEF9C21D6BCB20046303F /* OperationProtocol.swift in Sources */,
 				4E0FEFF521D796A40046303F /* LightLogoView.swift in Sources */,

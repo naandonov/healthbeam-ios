@@ -22,6 +22,9 @@ class OutlineView: UIView {
     @IBInspectable
     var right: Bool = false
     
+    @IBInspectable
+    var strokeColor: UIColor = .lightGray
+    
     var manuallyProvidedOutlineSides: OutlineSides?
     var outlinSides: OutlineSides {
         if let manuallyProvidedOutlineSides = manuallyProvidedOutlineSides {
@@ -83,7 +86,7 @@ class OutlineView: UIView {
     
     private func drawLineFrom(_ startPoint: CGPoint, to endPoint: CGPoint, in context: CGContext) {
         context.setLineWidth(1.0)
-        context.setStrokeColor(UIColor.lightGray.cgColor)
+        context.setStrokeColor(strokeColor.cgColor)
         context.move(to: startPoint)
         context.addLine(to: endPoint)
         context.strokePath()

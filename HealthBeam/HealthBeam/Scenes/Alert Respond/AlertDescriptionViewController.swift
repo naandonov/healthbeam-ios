@@ -21,6 +21,7 @@ class AlertDescriptionViewController: UIViewController, AlertDescriptionViewInpu
     
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var respondButton: UIButton!
+    @IBOutlet weak var actionContainerView: OutlineView!
     
     var dataSource: [AlertRespondNavigation.DescriptionModel] = [] {
         didSet {
@@ -38,6 +39,8 @@ class AlertDescriptionViewController: UIViewController, AlertDescriptionViewInpu
         tableView.tableFooterView = UIView()
         tableView.bounces = false
         tableView.backgroundColor = .subtleGray
+        
+        actionContainerView.strokeColor = .subtleGray
         
         descriptionLabel.text = "The patient requires immediate medical assistance.".localized()
         respondButton.setTitle("Respond".localized(), for: .normal)

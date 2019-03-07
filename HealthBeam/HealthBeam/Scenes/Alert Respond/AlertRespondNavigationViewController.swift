@@ -20,6 +20,9 @@ protocol AlertDescriptionViewOutput: class {
     func didPressRespondButton()
 }
 
+protocol AlertLocatingViewOutput: class {
+}
+
 class AlertRespondNavigationViewController: MenuNavigationController, AlertRespondNavigationDisplayLogic {
     
     var interactor: AlertRespondNavigationInteractorProtocol?
@@ -45,11 +48,12 @@ class AlertRespondNavigationViewController: MenuNavigationController, AlertRespo
         
     }
     
-    //MARK: - Setup UI
+    //MARK: - Setup
     
     func processAlertDescriptionDatasource(viewModel: AlertRespondNavigation.DescriptionDatasource.ViewModel) {
         if let dataSource = viewModel.dataSource, viewModel.isSuccessful == true {
             alertDescriptionViewInput?.dataSource = dataSource
+            alertDescriptionViewInput?.output = self
         }
     }
 }
@@ -57,9 +61,12 @@ class AlertRespondNavigationViewController: MenuNavigationController, AlertRespo
 extension AlertRespondNavigationViewController: AlertDescriptionViewOutput {
     
     func didPressRespondButton() {
-        
+        router?.routeToLocatingView(output: self)
     }
+}
 
+extension AlertRespondNavigationViewController: AlertLocatingViewOutput {
+    
 }
 
 //MARK: - Properties Injection

@@ -16,6 +16,9 @@ protocol PatientAlertsDisplayLogic: class {
     func processPendingPatientAlertsResult(viewModel: PatientAlerts.Pending.ViewModel)
 }
 
+protocol AlertResponderHandler: class {
+}
+
 class PatientAlertsViewController: UIViewController, PatientAlertsDisplayLogic {
     
     var interactor: PatientAlertsInteractorProtocol?
@@ -105,9 +108,12 @@ extension PatientAlertsViewController: PagedElementsControllerSearchDelegate {
     }
     
     func didSelectItem(_ item: PatientAlert) {
-//        LoadingOverlay.showOn(navigationController?.view ?? view)
-//        interactor?.retrievePatientAttributes(request: PatientsSearch.Attributes.Request(selectedPatient: item))
+        router?.routeToAlertResponder(patientAlert: item, handler: self)
     }
+}
+
+extension PatientAlertsViewController: AlertResponderHandler {
+    
 }
 
 //MARK: - Properties Injection

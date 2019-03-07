@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,15 +18,18 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpm-t0-AmH" customClass="CardView" customModule="HealthBeam" customModuleProvider="target">
-                    <rect key="frame" x="20" y="111" width="335" height="445"/>
+                    <rect key="frame" x="20" y="177.5" width="374" height="541"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" priority="750" constant="541" id="mpH-ea-nDb"/>
+                    </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4L-wA-Zu7">
-                    <rect key="frame" x="307" y="87" width="48" height="48"/>
+                    <rect key="frame" x="346" y="153.5" width="48" height="48"/>
                     <state key="normal" image="dismissLightShadowIcon"/>
                     <connections>
                         <action selector="dismissButtonAction:" destination="-1" eventType="touchUpInside" id="cEr-Rc-eDy"/>
@@ -36,8 +39,9 @@
             <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cpm-t0-AmH" secondAttribute="trailing" constant="20" id="3gG-Gg-EHj"/>
+                <constraint firstItem="cpm-t0-AmH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="62e-M3-CpD"/>
                 <constraint firstItem="cpm-t0-AmH" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="8oO-hU-q54"/>
-                <constraint firstItem="cpm-t0-AmH" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="2:3" id="gYj-gZ-6JE"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cpm-t0-AmH" secondAttribute="bottom" constant="40" id="bj8-Z4-Hgl"/>
                 <constraint firstItem="v4L-wA-Zu7" firstAttribute="top" secondItem="cpm-t0-AmH" secondAttribute="top" constant="-24" id="mH1-f9-jHT"/>
                 <constraint firstItem="cpm-t0-AmH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="nB3-Ji-opm"/>
                 <constraint firstItem="v4L-wA-Zu7" firstAttribute="trailing" secondItem="cpm-t0-AmH" secondAttribute="trailing" id="poM-Tc-sFo"/>

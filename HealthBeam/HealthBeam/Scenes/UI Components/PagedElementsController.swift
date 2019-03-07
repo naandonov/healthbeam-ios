@@ -68,6 +68,7 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
     private weak var tableView: UITableView?
     private weak var delegate: Delegate?
     private var searchResultsUpdatingWrapper: SearchResultsUpdatingWrapper?
+    private let refreshControl = UIRefreshControl()
     
     private var modelCollection: [Int: BatchResult<Delegate.ElementType>] = [:]
     private var estimatedCollection: [Int: Int] = [:]
@@ -87,7 +88,15 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.refreshControl = refreshControl
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(refreshControlAction), for: .valueChanged)
+        
 //        tableView.prefetchDataSource = self
+    }
+    
+    @objc private func refreshControlAction() {
+        reset(placeholderCollection: estimatedCollection)
     }
     
     var scopeIndex: Int? {
@@ -281,6 +290,8 @@ extension PagedElementsController  {
             guard let strongSelf = self else {
                 return
             }
+            
+            strongSelf.refreshControl.endRefreshing()
             
             let currentPageElements = tableView.numberOfRows(inSection: section)
             let newPageElements = batchElement.elementsInPage

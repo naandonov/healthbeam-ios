@@ -82,7 +82,7 @@ class ViewController: UIViewController, UITableViewDelegate {//, PagedElementsCo
         let vc2: PatientTagsSearchViewController! =  UIStoryboard.patientTags.instantiateViewController()
         let vc3: AlertRespondNavigationViewController! =  UIStoryboard.alerts.instantiateViewController()
 
-        vc3.injectProperties(interactor: AlertRespondNavigationInteractor(), presenter: AlertRespondNavigationPresenter(), router: AlertRespondNavigationRouter())
+//        vc3.injectProperties(interactor: AlertRespondNavigationInteractor(), presenter: AlertRespondNavigationPresenter(), router: AlertRespondNavigationRouter())
         
         let vc = PopUpContainerViewController.generate(forContainedViewController: vc3, mode: .alert)
         present(vc, animated: true, completion: nil)

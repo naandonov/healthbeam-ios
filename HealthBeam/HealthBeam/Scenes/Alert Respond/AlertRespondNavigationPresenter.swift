@@ -24,7 +24,7 @@ class AlertRespondNavigationPresenter: AlertRespondNavigationPresentationLogic {
                 let age = patient.birthDate?.yearsSince(),
                 let triggerLocation = response.triggerLocation,
                 let triggerDate = response.triggerDate,
-                let beacon = response.beacon else {
+                let tagCharecteristics = response.tagCharecteristics else {
             presenterOutput?.processAlertDescriptionDatasource(viewModel: AlertRespondNavigation.DescriptionDatasource.ViewModel(dataSource: nil, isSuccessful: false))
             return
         }
@@ -35,7 +35,7 @@ class AlertRespondNavigationPresenter: AlertRespondNavigationPresentationLogic {
                                                                                             gender: patient.gender)))
         dataSource.append(AlertRespondNavigation.DescriptionModel(designation: .trgiggerLocation(location: triggerLocation)))
         dataSource.append(AlertRespondNavigation.DescriptionModel(designation: .triggerDate(date: triggerDate)))
-        dataSource.append(AlertRespondNavigation.DescriptionModel(designation: .patientTag(beacon: beacon)))
+        dataSource.append(AlertRespondNavigation.DescriptionModel(designation: .tagCharecteristics(tagCharecteristics: tagCharecteristics)))
         
         presenterOutput?.processAlertDescriptionDatasource(viewModel: AlertRespondNavigation.DescriptionDatasource.ViewModel(dataSource: dataSource, isSuccessful: true))
     }

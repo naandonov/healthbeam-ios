@@ -37,7 +37,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="495"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ZA-tc-gbe">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ZA-tc-gbe" customClass="OutlineView" customModule="HealthBeam" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="559" width="375" height="108"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DkD-UQ-cRD" customClass="RoundedAlertButton" customModule="HealthBeam" customModuleProvider="target">
@@ -68,6 +68,9 @@
                                     <constraint firstItem="KSQ-I7-6VC" firstAttribute="leading" secondItem="2ZA-tc-gbe" secondAttribute="leading" constant="16" id="wPa-qf-O68"/>
                                     <constraint firstAttribute="trailing" secondItem="DkD-UQ-cRD" secondAttribute="trailing" constant="80" id="zSF-1j-4uL"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="top" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -84,6 +87,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="jpq-HN-Tbl"/>
                     <connections>
+                        <outlet property="actionContainerView" destination="2ZA-tc-gbe" id="we8-AV-BJ3"/>
                         <outlet property="descriptionLabel" destination="KSQ-I7-6VC" id="1O0-ZX-fRH"/>
                         <outlet property="respondButton" destination="DkD-UQ-cRD" id="TWv-bb-hSH"/>
                         <outlet property="tableView" destination="gI1-S5-30y" id="lGe-uc-a7C"/>
@@ -93,10 +97,10 @@
             </objects>
             <point key="canvasLocation" x="87.200000000000003" y="116.49175412293854"/>
         </scene>
-        <!--View Controller-->
+        <!--Alert Locating View Controller-->
         <scene sceneID="v6M-gR-x41">
             <objects>
-                <viewController id="3Ao-sK-8Ue" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AlertLocatingViewController" id="3Ao-sK-8Ue" customClass="AlertLocatingViewController" customModule="HealthBeam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J2m-HT-HtF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

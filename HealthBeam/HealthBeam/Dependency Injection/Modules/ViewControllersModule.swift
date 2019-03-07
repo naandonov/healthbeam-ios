@@ -117,13 +117,21 @@ struct ViewControllersModule: Module {
                 return viewController
         }
         
-//        binder
-//            .bind(AlertDescriptionViewController.self)
-//            .to {  (storyboard: TaggedProvider<AlertsStoryboard>, injector: PropertyInjector<AlertDescriptionViewController>) in
-//                let viewController: AlertDescriptionViewController! =  storyboard.get().instantiateViewController()
-//                injector.injectProperties(into: viewController)
-//                return viewController
-//        }
+        binder
+            .bind(AlertLocatingViewController.self)
+            .to {  (storyboard: TaggedProvider<AlertsStoryboard>, injector: PropertyInjector<AlertLocatingViewController>) in
+                let viewController: AlertLocatingViewController! =  storyboard.get().instantiateViewController()
+                injector.injectProperties(into: viewController)
+                return viewController
+        }
+        
+        binder
+            .bind(AlertRespondNavigationViewController.self)
+            .to {  (storyboard: TaggedProvider<AlertsStoryboard>, injector: PropertyInjector<AlertRespondNavigationViewController>) in
+                let viewController: AlertRespondNavigationViewController! =  storyboard.get().instantiateViewController()
+                injector.injectProperties(into: viewController)
+                return viewController
+        }
         
         binder
             .bindPropertyInjectionOf(LoginViewController.self)
@@ -173,8 +181,13 @@ struct ViewControllersModule: Module {
             .bindPropertyInjectionOf(PatientAlertsViewController.self)
             .to(injector: PatientAlertsViewController.injectProperties)
         
-//        binder
-//            .bindPropertyInjectionOf(AlertDescriptionViewController.self)
-//            .to(injector: AlertDescriptionViewController.injectProperties)
+        binder
+            .bindPropertyInjectionOf(AlertLocatingViewController.self)
+            .to(injector: AlertLocatingViewController.injectProperties)
+        
+        binder
+            .bindPropertyInjectionOf(AlertRespondNavigationViewController.self)
+            .to(injector: AlertRespondNavigationViewController.injectProperties)
+        
     }
 }

@@ -15,7 +15,7 @@ struct AlertRespondNavigation {
             case patientInfo(name: String, age: String, gender: String)
             case trgiggerLocation(location: String)
             case triggerDate(date: Date)
-            case patientTag(beacon: Beacon)
+            case tagCharecteristics(tagCharecteristics: TagCharacteristics)
         }
         
         private(set) var title: String
@@ -47,11 +47,11 @@ struct AlertRespondNavigation {
                 subtitle = "Trigger Date".localized()
                 imageName = "clockIcon"
                 titleColor = .darkGray
-            case .patientTag(let beacon):
+            case .tagCharecteristics(let tagCharecteristics):
                 
-                title = beacon.representationName
+                title = tagCharecteristics.representationName
                 subtitle = "Patient Tag".localized()
-                imageName = beacon.representationImageName
+                imageName = tagCharecteristics.representationImageName
                 titleColor = .darkGray
             }
         }
@@ -65,7 +65,7 @@ struct AlertRespondNavigation {
             var patient: Patient?
             var triggerLocation: String?
             var triggerDate: Date?
-            var beacon: Beacon?
+            var tagCharecteristics: TagCharacteristics?
         }
         struct ViewModel {
             let dataSource: [DescriptionModel]?

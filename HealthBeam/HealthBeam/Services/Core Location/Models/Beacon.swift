@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct Beacon: Equatable, Codable {
-    let minor: Int
-    let major: Int
-    let rssi: Int
-    let accuracy: Double
-    
+protocol TagCharacteristics {
+    var minor: Int { get set }
+    var major: Int { get set }
+}
+
+extension TagCharacteristics {
     var representationImageName: String {
         return minor < 1000 ? "braceletTagIcon" : "cardTagIcon"
     }
@@ -21,6 +21,13 @@ struct Beacon: Equatable, Codable {
     var representationName: String {
         return "\(minor)-\(major)"
     }
+}
+
+struct Beacon: Equatable, Codable, TagCharacteristics {
+    var minor: Int
+    var major: Int
+    let rssi: Int
+    let accuracy: Double
     
     public static func == (lhs: Beacon, rhs: Beacon) -> Bool {
         return lhs.major == rhs.major && lhs.minor == rhs.minor
