@@ -75,8 +75,14 @@ final class BeaconsManager: NSObject {
     
     private var regions: [CLBeaconRegion] = []
     
-    private func searchRegionsForUUIDs(_ uuids: [UUID]) -> [CLBeaconRegion] {
-        return uuids.map() { CLBeaconRegion(proximityUUID: $0, identifier: $0.uuidString) }
+    private func searchRegionsForUUIDs(_ uuids: [UUID], minor: Int?, major: Int?) -> [CLBeaconRegion] {
+        return uuids.map() {
+            if let minor = minor, let major = major {
+                return CLBeaconRegion(proximityUUID: $0, major: CLBeaconMajorValue(major), minor: CLBeaconMajorValue(minor), identifier: $0.uuidString)
+            } else {
+                return CLBeaconRegion(proximityUUID: $0, identifier: $0.uuidString)
+            }
+        }
     }
     
     private lazy var locationManager: CLLocationManager = {
@@ -104,11 +110,11 @@ final class BeaconsManager: NSObject {
         }
     }
     
-    func startListentingForBeaconsInProximity(searchRegions: [String]) {
+    func startListentingForBeaconsInProximity(searchRegions: [String], minor: Int? = nil, major: Int? = nil) {
         stopListeningForBeacons()
         var uuids: [UUID] = []
         uuids = searchRegions.compactMap({ UUID(uuidString: $0) })
-        let regions = searchRegionsForUUIDs(uuids)
+        let regions = searchRegionsForUUIDs(uuids, minor: minor, major: major)
         for searchingRegion in regions {
             locationManager.startMonitoring(for: searchingRegion)
         }

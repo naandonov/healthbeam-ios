@@ -134,6 +134,13 @@ struct ViewControllersModule: Module {
         }
         
         binder
+            .bind(AlertCompletionViewController.self)
+            .to { (storyboard: TaggedProvider<AlertsStoryboard>) in
+                let viewController: AlertCompletionViewController! =  storyboard.get().instantiateViewController()
+                return viewController
+        }
+        
+        binder
             .bindPropertyInjectionOf(LoginViewController.self)
             .to(injector: LoginViewController.injectProperties)
         

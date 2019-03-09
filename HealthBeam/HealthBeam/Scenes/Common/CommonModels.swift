@@ -34,6 +34,10 @@ struct Patient: Codable {
     static func emptySnapshot() -> Patient {
         return Patient(id: nil, fullName: "", gender: "", personalIdentification: "", birthDate: nil, bloodType: "", allergies: [], chronicConditions: [], notes: nil, premiseLocation: nil)
     }
+    
+    var shortDescription: String {
+        return "\(birthDate?.yearsSince() ?? "Unknown age".localized()), \(gender)"
+    }
 }
 
 struct PatientAttributes: Codable {

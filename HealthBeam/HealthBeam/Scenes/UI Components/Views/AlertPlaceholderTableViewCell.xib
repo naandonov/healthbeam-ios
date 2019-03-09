@@ -85,7 +85,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="YVT-5n-526" firstAttribute="leading" secondItem="75B-IS-ma8" secondAttribute="leading" constant="25" id="FKd-mH-ZNu"/>
                                     <constraint firstItem="YVT-5n-526" firstAttribute="centerY" secondItem="75B-IS-ma8" secondAttribute="centerY" id="xYx-pp-3ca"/>
@@ -104,6 +104,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="uCn-hE-D67" secondAttribute="bottom" constant="5.5" id="5Dd-HV-JIj"/>
                     <constraint firstItem="uCn-hE-D67" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="5ss-LJ-enR"/>
@@ -111,6 +112,7 @@
                     <constraint firstItem="uCn-hE-D67" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5.5" id="ukm-c8-HeG"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <point key="canvasLocation" x="55.200000000000003" y="48.125937031484263"/>
         </tableViewCell>

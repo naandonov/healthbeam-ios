@@ -88,7 +88,8 @@ class PagedElementsController<Delegate: PagedElementsControllerDelegate>: NSObje
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.refreshControl = refreshControl
+        //The refreshControll will be used in later versions
+//        tableView.refreshControl = refreshControl
         refreshControl.tintColor = .white
         refreshControl.addTarget(self, action: #selector(refreshControlAction), for: .valueChanged)
         

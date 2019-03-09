@@ -12,6 +12,8 @@ protocol AlertRespondNavigationPresentationLogic {
     var presenterOutput: AlertRespondNavigationDisplayLogic? { get set }
     
     func prepareAlertDescription(response: AlertRespondNavigation.DescriptionDatasource.Response)
+    func preparePatientSearchResult(response: AlertRespondNavigation.PatientSearch.Response)
+    func prepareRespondResult(response: AlertRespondNavigation.Respond.Response)
 }
 
 class AlertRespondNavigationPresenter: AlertRespondNavigationPresentationLogic {
@@ -21,7 +23,6 @@ class AlertRespondNavigationPresenter: AlertRespondNavigationPresentationLogic {
     func prepareAlertDescription(response: AlertRespondNavigation.DescriptionDatasource.Response) {
 
             guard let patient = response.patient,
-                let age = patient.birthDate?.yearsSince(),
                 let triggerLocation = response.triggerLocation,
                 let triggerDate = response.triggerDate,
                 let tagCharecteristics = response.tagCharecteristics else {
@@ -31,12 +32,22 @@ class AlertRespondNavigationPresenter: AlertRespondNavigationPresentationLogic {
             
         var dataSource: [AlertRespondNavigation.DescriptionModel] = []
         dataSource.append(AlertRespondNavigation.DescriptionModel(designation: .patientInfo(name: patient.fullName,
-                                                                                            age: age,
-                                                                                            gender: patient.gender)))
+                                                                                            description: patient.shortDescription)))
         dataSource.append(AlertRespondNavigation.DescriptionModel(designation: .trgiggerLocation(location: triggerLocation)))
         dataSource.append(AlertRespondNavigation.DescriptionModel(designation: .triggerDate(date: triggerDate)))
         dataSource.append(AlertRespondNavigation.DescriptionModel(designation: .tagCharecteristics(tagCharecteristics: tagCharecteristics)))
         
         presenterOutput?.processAlertDescriptionDatasource(viewModel: AlertRespondNavigation.DescriptionDatasource.ViewModel(dataSource: dataSource, isSuccessful: true))
     }
+    
+    func preparePatientSearchResult(response: AlertRespondNavigation.PatientSearch.Response) {
+        let errorMessage = response.isSuccessful ? nil : "Unable to locate patient tags".localized()
+        presenterOutput?.processPatientSearchResult(viewModel: AlertRespondNavigation.PatientSearch.ViewModel(isSuccessful: response.isSuccessful, errorMessage: errorMessage))
+    }
+    
+    func prepareRespondResult(response: AlertRespondNavigation.Respond.Response) {
+        let errorMessage = response.error?.userFiendlyDescription
+        presenterOutput?.processRespondResult(viewModel: AlertRespondNavigation.Respond.ViewModel(isSuccessful: response.isSuccessful, errorMessage: errorMessage))
+    }
+
 }

@@ -178,6 +178,7 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
             case let .success(responseObject):
                 if let value = responseObject.value  {
                     strongSelf.pendingAlertsExist = value.count > 0
+                    strongSelf.notificationManager.setBadgeCount(value.count)
                     strongSelf.presenter?.handlePendingAlertsCheck(response:
                         Menu.CheckForPendingAlerts.Response(pendingAlertsExist: strongSelf.pendingAlertsExist))
                 } else {

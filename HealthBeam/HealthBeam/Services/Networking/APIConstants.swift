@@ -19,7 +19,7 @@ struct APIConstants {
             case .localHost:
                 return "http://localhost:8080/v1"
             case .healthBeamRoot:
-                return "http://localhost:8080/v1" //"https://healthbeam.io/v1"
+                return "https://healthbeam.io/v1"
             case .healthBeamWeb:
                 return "https://healthbeam.io"
             }
@@ -33,6 +33,7 @@ struct APIConstants {
         case userDeviceToken
         case pendingAlerts
         case pendingAlertsCount
+        case respondToAlert
         case patients
         case patientDelete
         case patientAttributes
@@ -67,7 +68,8 @@ struct APIConstants {
                 return "/alerts/pending"
             case .pendingAlertsCount:
                 return "/alerts/pending/count"
-
+            case .respondToAlert:
+                return "/alerts/respond"
                 
             case .patients:
                 return "/patients"

@@ -172,6 +172,8 @@
 		4E8DAAA222305EC7006BCD22 /* AlertDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAA122305EC7006BCD22 /* AlertDescriptionViewController.swift */; };
 		4E8DAAA422307EA6006BCD22 /* RoundedAlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAA322307EA6006BCD22 /* RoundedAlertButton.swift */; };
 		4E8DAAA62231B344006BCD22 /* AlertLocatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAA52231B344006BCD22 /* AlertLocatingViewController.swift */; };
+		4E8DAAAA22340327006BCD22 /* AlertCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAA922340327006BCD22 /* AlertCompletionViewController.swift */; };
+		4E8DAAAF22343587006BCD22 /* RespondToAlertOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAAE22343587006BCD22 /* RespondToAlertOperation.swift */; };
 		4E93800E21D949B30083ED03 /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93800D21D949B30083ED03 /* FloatingTextField.swift */; };
 		4E93801121D9795A0083ED03 /* KeyboardScrollHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */; };
 		4E93801321D981020083ED03 /* UIView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801221D981020083ED03 /* UIView+Utilities.swift */; };
@@ -406,6 +408,8 @@
 		4E8DAAA122305EC7006BCD22 /* AlertDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDescriptionViewController.swift; sourceTree = "<group>"; };
 		4E8DAAA322307EA6006BCD22 /* RoundedAlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedAlertButton.swift; sourceTree = "<group>"; };
 		4E8DAAA52231B344006BCD22 /* AlertLocatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLocatingViewController.swift; sourceTree = "<group>"; };
+		4E8DAAA922340327006BCD22 /* AlertCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCompletionViewController.swift; sourceTree = "<group>"; };
+		4E8DAAAE22343587006BCD22 /* RespondToAlertOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondToAlertOperation.swift; sourceTree = "<group>"; };
 		4E93800D21D949B30083ED03 /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
 		4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollHandler.swift; sourceTree = "<group>"; };
 		4E93801221D981020083ED03 /* UIView+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utilities.swift"; sourceTree = "<group>"; };
@@ -531,6 +535,7 @@
 		4E0FEF7E21D6BCB20046303F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4E8DAAAB2234315A006BCD22 /* Notificaitons */,
 				4E0FEF7F21D6BCB20046303F /* Core Data */,
 				4E0FEF8021D6BCB20046303F /* Networking */,
 				4E0FEF9621D6BCB20046303F /* Keychain */,
@@ -603,6 +608,7 @@
 				4E141F7F221225EE00502A30 /* LocateNearbyPatientsOpearation.swift */,
 				4EB68D01222C5C2B002083C8 /* GetPendingAlertsOperation.swift */,
 				4EB68D03222DB2B3002083C8 /* GetPendingAlertsCountOperation.swift */,
+				4E8DAAAE22343587006BCD22 /* RespondToAlertOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -638,7 +644,6 @@
 				4E2DEA5321F50126000E0C61 /* StyleCoordinator.swift */,
 				4E0FEFB521D6BEAE0046303F /* AuthorizationWorker.swift */,
 				4ED74C1121DBC346009AB7C3 /* CommonModels.swift */,
-				8C196B7121EE3EAE004F2549 /* NotificationManager.swift */,
 				4E141F6A2210917C00502A30 /* TagsLocatingInteractor.swift */,
 			);
 			path = Common;
@@ -1013,6 +1018,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		4E8DAAAB2234315A006BCD22 /* Notificaitons */ = {
+			isa = PBXGroup;
+			children = (
+				8C196B7121EE3EAE004F2549 /* NotificationManager.swift */,
+			);
+			path = Notificaitons;
+			sourceTree = "<group>";
+		};
 		4E93800F21D979460083ED03 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1070,6 +1083,7 @@
 				4EB68D0A222F10CE002083C8 /* AlertRespondNavigationInteractor.swift */,
 				4E8DAAA122305EC7006BCD22 /* AlertDescriptionViewController.swift */,
 				4E8DAAA52231B344006BCD22 /* AlertLocatingViewController.swift */,
+				4E8DAAA922340327006BCD22 /* AlertCompletionViewController.swift */,
 			);
 			path = "Alert Respond";
 			sourceTree = "<group>";
@@ -1306,6 +1320,7 @@
 				4E0FEFEE21D6C4030046303F /* ApplicationModule.swift in Sources */,
 				4E24BE9E220A195100E89F0E /* PatientTagsSearchModels.swift in Sources */,
 				4E2DEA5D21F6557E000E0C61 /* PatientsSearchPresenter.swift in Sources */,
+				4E8DAAAF22343587006BCD22 /* RespondToAlertOperation.swift in Sources */,
 				4EC355DE21DFABD00011D723 /* Collection+Utilities.swift in Sources */,
 				4EBC81FE21FE06CD008427A8 /* MenuTransition.swift in Sources */,
 				4E141F7E221213C400502A30 /* LocatePatientsInteractor.swift in Sources */,
@@ -1459,6 +1474,7 @@
 				4E0FEFCB21D6BF050046303F /* UIView+LayoutConstraints.swift in Sources */,
 				4E0FEFD321D6C2430046303F /* NibLoadableView.swift in Sources */,
 				4E141F6B2210917C00502A30 /* TagsLocatingInteractor.swift in Sources */,
+				4E8DAAAA22340327006BCD22 /* AlertCompletionViewController.swift in Sources */,
 				4EF9E2B821ED1AD300E0DDD0 /* MenuRouter.swift in Sources */,
 				4E17F18421FC6B020083AE50 /* CAGradientLayer+Utilities.swift in Sources */,
 				4E93800E21D949B30083ED03 /* FloatingTextField.swift in Sources */,

@@ -13,6 +13,7 @@ protocol AlertRespondNavigationRoutingLogic {
     var viewController: AlertRespondNavigationViewController? { get set }
     
     func routeToLocatingView(output: AlertLocatingViewOutput)
+    func routeToAlertCompletionView(output: AlertCompletionViewOutput)
 }
 
 protocol AlertRespondNavigationDataPassing {
@@ -23,17 +24,28 @@ class AlertRespondNavigationRouter:  AlertRespondNavigationRoutingLogic, AlertRe
     
     weak var viewController: AlertRespondNavigationViewController?
     var dataStore: AlertRespondNavigationDataStore?
-    weak var alertLocatingViewOutput: AlertLocatingViewOutput?
     
     private let alertLocatingViewControllerProvider: Provider<AlertLocatingViewController>
+    private let alertCompletionViewControllerProvider: Provider<AlertCompletionViewController>
     
     func routeToLocatingView(output: AlertLocatingViewOutput) {
-        alertLocatingViewOutput = output
         let alertLocatingViewController = alertLocatingViewControllerProvider.get()
+        alertLocatingViewController.output = output
+        alertLocatingViewController.patient = dataStore?.patient
+        alertLocatingViewController.tagCharecteristics = dataStore?.tagCharecteristics
         viewController?.pushViewController(alertLocatingViewController, animated: true)
     }
     
-    init(alertLocatingViewControllerProvider: Provider<AlertLocatingViewController>) {
+    func routeToAlertCompletionView(output: AlertCompletionViewOutput) {
+        let alertCompletionViewController = alertCompletionViewControllerProvider.get()
+        alertCompletionViewController.output = output
+        alertCompletionViewController.patient = dataStore?.patient
+        viewController?.pushViewController(alertCompletionViewController, animated: true)
+    }
+    
+    init(alertLocatingViewControllerProvider: Provider<AlertLocatingViewController>,
+         alertCompletionViewControllerProvider: Provider<AlertCompletionViewController>) {
         self.alertLocatingViewControllerProvider = alertLocatingViewControllerProvider
+        self.alertCompletionViewControllerProvider = alertCompletionViewControllerProvider
     }
 }

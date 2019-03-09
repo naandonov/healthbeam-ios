@@ -10,9 +10,14 @@ import UIKit
 
 struct AlertRespondNavigation {
 
+    struct ProcessingRequest: Codable {
+        let patientId: Int
+        let notes: String?
+    }
+    
     struct DescriptionModel {
         enum Designation {
-            case patientInfo(name: String, age: String, gender: String)
+            case patientInfo(name: String, description: String)
             case trgiggerLocation(location: String)
             case triggerDate(date: Date)
             case tagCharecteristics(tagCharecteristics: TagCharacteristics)
@@ -29,10 +34,10 @@ struct AlertRespondNavigation {
         init(designation: Designation) {
             self.designation = designation
             switch designation {
-            case .patientInfo(let name, let age, let gender):
+            case .patientInfo(let name, let description):
                 
                 title = name
-                subtitle = "\(age), \(gender)"
+                subtitle = description
                 imageName = "heartbeatIcon"
                 titleColor = .neutralRed
             case .trgiggerLocation(let location):
@@ -70,6 +75,32 @@ struct AlertRespondNavigation {
         struct ViewModel {
             let dataSource: [DescriptionModel]?
             let isSuccessful: Bool
+        }
+    }
+    
+    struct PatientSearch {
+        struct Request {
+        }
+        struct Response {
+            let isSuccessful: Bool
+        }
+        struct ViewModel {
+            let isSuccessful: Bool
+            var errorMessage: String?
+        }
+    }
+    
+    struct Respond {
+        struct Request {
+            let notes: String? 
+        }
+        struct Response {
+            let isSuccessful: Bool
+            let error: MSError?
+        }
+        struct ViewModel {
+            let isSuccessful: Bool
+            var errorMessage: String?
         }
     }
 }

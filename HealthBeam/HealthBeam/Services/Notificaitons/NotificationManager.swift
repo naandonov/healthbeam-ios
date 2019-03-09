@@ -14,6 +14,9 @@ typealias TokenRequest = ((String) -> Void)
 class NotificationManger: NSObject {
     
     private let userNotificationCenter: UNUserNotificationCenter
+    private let sharedApplication: UIApplication
+    
+    
     private var tokenRequestHandlers: [TokenRequest] = []
     private var deviceTokenString: String?
     
@@ -34,8 +37,15 @@ class NotificationManger: NSObject {
         }
     }
     
-    init(userNotificationCenter: UNUserNotificationCenter) {
+    func setBadgeCount(_ count: Int) {
+        sharedApplication.applicationIconBadgeNumber = count
+    }
+    
+    
+    
+    init(userNotificationCenter: UNUserNotificationCenter, sharedApplication: UIApplication) {
         self.userNotificationCenter = userNotificationCenter
+        self.sharedApplication = sharedApplication
         super.init()
         userNotificationCenter.delegate = self
     }

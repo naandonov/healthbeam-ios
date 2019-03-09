@@ -14,6 +14,8 @@ typealias AlertRespondNavigationRouterProtocol = AlertRespondNavigationRoutingLo
 
 protocol AlertRespondNavigationDisplayLogic: class {
     func processAlertDescriptionDatasource(viewModel: AlertRespondNavigation.DescriptionDatasource.ViewModel)
+    func processPatientSearchResult(viewModel: AlertRespondNavigation.PatientSearch.ViewModel)
+    func processRespondResult(viewModel: AlertRespondNavigation.Respond.ViewModel)
 }
 
 protocol AlertDescriptionViewOutput: class {
@@ -21,6 +23,10 @@ protocol AlertDescriptionViewOutput: class {
 }
 
 protocol AlertLocatingViewOutput: class {
+}
+
+protocol AlertCompletionViewOutput: class {
+    func didCompleteAlertWith(notes: String?)
 }
 
 class AlertRespondNavigationViewController: MenuNavigationController, AlertRespondNavigationDisplayLogic {
@@ -56,17 +62,47 @@ class AlertRespondNavigationViewController: MenuNavigationController, AlertRespo
             alertDescriptionViewInput?.output = self
         }
     }
+    
+    //MARK: - Display logic
+    
+    func processPatientSearchResult(viewModel: AlertRespondNavigation.PatientSearch.ViewModel) {
+        if viewModel.isSuccessful {
+            router?.routeToAlertCompletionView(output: self)
+        } else {
+            UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
+        }
+    }
+    
+    func processRespondResult(viewModel: AlertRespondNavigation.Respond.ViewModel) {
+        if viewModel.isSuccessful {
+            LoadingOverlay.hideWithSuccess { [weak self] _ in
+                self?.dismiss(animated: true, completion: nil)
+            }
+        } else {
+            LoadingOverlay.hide()
+            UIAlertController.presentAlertControllerWithErrorMessage(viewModel.errorMessage ?? "", on: self)
+        }
+    }
 }
 
 extension AlertRespondNavigationViewController: AlertDescriptionViewOutput {
     
     func didPressRespondButton() {
         router?.routeToLocatingView(output: self)
+        interactor?.startSearchingForPatient(request: AlertRespondNavigation.PatientSearch.Request())
     }
 }
 
 extension AlertRespondNavigationViewController: AlertLocatingViewOutput {
     
+}
+
+extension AlertRespondNavigationViewController: AlertCompletionViewOutput {
+    
+    func didCompleteAlertWith(notes: String?) {
+        LoadingOverlay.showOn(view)
+        interactor?.respondToAlert(request: AlertRespondNavigation.Respond.Request(notes: notes))
+    }
 }
 
 //MARK: - Properties Injection
