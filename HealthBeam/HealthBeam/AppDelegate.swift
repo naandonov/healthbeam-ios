@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var userNotificationCenter: UNUserNotificationCenter?
     private var notificationManager: NotificationManger?
     private var beaconsManager: BeaconsManager?
+
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         injectDependenciesGraph()
@@ -32,6 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         notificationManager?.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        notificationManager?.didReceiveRemoteNotificaitonWith(userInfo: userInfo)
+        completionHandler(.noData)
     }
 
 }

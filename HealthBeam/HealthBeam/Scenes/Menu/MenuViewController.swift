@@ -19,7 +19,9 @@ protocol MenuDisplayLogic: class {
     func didPerformUserLogout(viewModel: Menu.UserLogout.ViewModel)
     func didReceiveAuthorizationRevocation()
     func didPerformPendingAlertsCheck(viewModel: Menu.CheckForPendingAlerts.ViewModel)
-    func performPatientAlertsOpetionUpdate(viewModel: Menu.UpdatePatientAlertsOption.ViewModel)
+    func didPerformPatientAlertsOperationUpdate(viewModel: Menu.UpdatePatientAlertsOption.ViewModel)
+    func didRetrievePatientAlert(viewModel: Menu.RetrievePatientAlert.ViewModel)
+    func didReceivePatientAlert()
 }
 
 class MenuViewController: UIViewController, MenuDisplayLogic {
@@ -129,9 +131,21 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
         }
     }
     
-    func performPatientAlertsOpetionUpdate(viewModel: Menu.UpdatePatientAlertsOption.ViewModel) {
+    func didPerformPatientAlertsOperationUpdate(viewModel: Menu.UpdatePatientAlertsOption.ViewModel) {
         if let index = interactor?.options.enumerated().filter({ $1.type == .patientAlerts }).map({ $0.offset}).first {
             menuCollectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
+        }
+    }
+    
+    func didReceivePatientAlert() {
+        if let patientAlertsViewController = navigationController?.topViewController as? PatientAlertsViewController {
+            patientAlertsViewController.resetContent()
+        }
+    }
+    
+    func didRetrievePatientAlert(viewModel: Menu.RetrievePatientAlert.ViewModel) {
+        if viewModel.isSuccessful, let patientAlert = viewModel.patientAlert {
+            router?.routeToPatientAlertResponer(patientAlert: patientAlert)
         }
     }
     

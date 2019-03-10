@@ -17,7 +17,9 @@ protocol MenuPresentationLogic {
     func handlePendingAlertsCheck(response: Menu.CheckForPendingAlerts.Response)
     func handleAuthorizationRevocation()
     func updatePatientAlertsOption(response: Menu.UpdatePatientAlertsOption.Response)
+    func handlePatientAlertRetrievalResult(response: Menu.RetrievePatientAlert.Response)
     
+    func handleReceivedPatientAlertNotification()
 }
 
 class MenuPresenter: MenuPresentationLogic {
@@ -51,6 +53,15 @@ class MenuPresenter: MenuPresentationLogic {
     }
     
     func updatePatientAlertsOption(response: Menu.UpdatePatientAlertsOption.Response) {
-        presenterOutput?.performPatientAlertsOpetionUpdate(viewModel: Menu.UpdatePatientAlertsOption.ViewModel())
+        presenterOutput?.didPerformPatientAlertsOperationUpdate(viewModel: Menu.UpdatePatientAlertsOption.ViewModel())
+    }
+    
+    func handlePatientAlertRetrievalResult(response: Menu.RetrievePatientAlert.Response) {
+        let errorMessage = response.error?.userFiendlyDescription
+        presenterOutput?.didRetrievePatientAlert(viewModel: Menu.RetrievePatientAlert.ViewModel(isSuccessful: response.isSuccessful, patientAlert: response.patientAlert, errorMessage: errorMessage))
+    }
+    
+    func handleReceivedPatientAlertNotification() {
+        presenterOutput?.didReceivePatientAlert()
     }
 }

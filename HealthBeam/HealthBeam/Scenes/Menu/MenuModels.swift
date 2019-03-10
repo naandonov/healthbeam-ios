@@ -63,6 +63,22 @@ struct Menu {
         }
     }
     
+    struct RetrievePatientAlert {
+        struct Request {
+            let alertId: String
+        }
+        struct Response {
+            let isSuccessful: Bool
+            var patientAlert: PatientAlert?
+            var error: MSError?
+        }
+        struct ViewModel {
+            let isSuccessful: Bool
+            var patientAlert: PatientAlert?
+            var errorMessage: String?
+        }
+    }
+    
     struct Option {
         let type: OptionType
         let iconName: String

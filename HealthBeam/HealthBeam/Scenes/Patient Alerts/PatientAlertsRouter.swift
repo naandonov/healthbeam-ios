@@ -29,10 +29,7 @@ class PatientAlertsRouter:  PatientAlertsRoutingLogic, PatientAlertsDataPassing 
     func routeToAlertResponder(patientAlert: PatientAlert, handler: AlertResponderHandler) {
         let alertRespondNavigationViewController = alertRespondNavigationViewControllerProvider.get()
         alertRespondNavigationViewController.router?.dataStore?.alertResponderHandler = handler
-        alertRespondNavigationViewController.router?.dataStore?.patient = patientAlert.patient
-        alertRespondNavigationViewController.router?.dataStore?.tagCharecteristics = patientAlert.patientTag
-        alertRespondNavigationViewController.router?.dataStore?.triggerDate = patientAlert.creationDate
-        alertRespondNavigationViewController.router?.dataStore?.triggerLocation = patientAlert.gateway.name
+        alertRespondNavigationViewController.router?.dataStore?.patientAlert = patientAlert
         
         let popUpContainerViewController = PopUpContainerViewController.generate(forContainedViewController: alertRespondNavigationViewController, mode: .alert)
         viewController?.present(popUpContainerViewController, animated: true, completion: nil)

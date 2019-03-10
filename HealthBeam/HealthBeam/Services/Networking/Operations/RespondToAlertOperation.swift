@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RespondToAlertOperation: BaseSignedOperation<GenericResponse> {
+class RespondToAlertOperation: BaseSignedOperation<AlertRespondNavigation.ProcessingResponse> {
     
     private override init() {
         super.init()

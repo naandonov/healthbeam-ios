@@ -38,6 +38,10 @@ class PatientAlertsViewController: UIViewController, PatientAlertsDisplayLogic {
         setupUI()
     }
     
+    func resetContent() {
+        pageElementsController?.reset()
+    }
+    
     //MARK: - Setup UI
     
     private func setupUI() {

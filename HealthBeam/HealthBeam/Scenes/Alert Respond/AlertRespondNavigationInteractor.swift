@@ -17,10 +17,7 @@ protocol AlertRespondNavigationBusinessLogic {
 }
 
 protocol AlertRespondNavigationDataStore {
-    var patient: Patient? { get set }
-    var triggerLocation: String? { get set }
-    var triggerDate: Date? { get set }
-    var tagCharecteristics: TagCharacteristics? { get set }
+    var patientAlert: PatientAlert? { get set }
     
     var alertResponderHandler: AlertResponderHandler? { get set }
 }
@@ -31,21 +28,20 @@ class AlertRespondNavigationInteractor: AlertRespondNavigationBusinessLogic, Ale
     
     weak var alertResponderHandler: AlertResponderHandler?
     
-    var patient: Patient?
-    var triggerLocation: String?
-    var triggerDate: Date?
-    var tagCharecteristics: TagCharacteristics?
+    var patientAlert: PatientAlert?
     
     private let coreDataHandler: CoreDataHandler
     private let notificationCenter: NotificationCenter
+    private let notificationManager: NotificationManger
     private let beaconsManager: BeaconsManager
     private let networkingManager: NetworkingManager
     
-    init(coreDataHandler: CoreDataHandler, notificationCenter: NotificationCenter, beaconsManager: BeaconsManager, networkingManager: NetworkingManager) {
+    init(coreDataHandler: CoreDataHandler, notificationCenter: NotificationCenter, beaconsManager: BeaconsManager, networkingManager: NetworkingManager, notificationManager: NotificationManger) {
         self.coreDataHandler = coreDataHandler
         self.notificationCenter = notificationCenter
         self.beaconsManager = beaconsManager
         self.networkingManager = networkingManager
+        self.notificationManager = notificationManager
     }
     
     deinit {
@@ -53,14 +49,14 @@ class AlertRespondNavigationInteractor: AlertRespondNavigationBusinessLogic, Ale
     }
     
     func requestAlertDescription(request: AlertRespondNavigation.DescriptionDatasource.Request) {
-        presenter?.prepareAlertDescription(response: AlertRespondNavigation.DescriptionDatasource.Response(patient: patient,
-                                                                                                           triggerLocation: triggerLocation,
-                                                                                                           triggerDate: triggerDate,
-                                                                                                           tagCharecteristics: tagCharecteristics))
+        presenter?.prepareAlertDescription(response: AlertRespondNavigation.DescriptionDatasource.Response(patient: patientAlert?.patient,
+                                                                                                           triggerLocation: patientAlert?.gateway.name,
+                                                                                                           triggerDate: patientAlert?.creationDate,
+                                                                                                           tagCharecteristics: patientAlert?.patientTag))
     }
     
     func startSearchingForPatient(request: AlertRespondNavigation.PatientSearch.Request) {
-        guard let minor = tagCharecteristics?.minor, let major = tagCharecteristics?.major else {
+        guard let minor = patientAlert?.patientTag.minor, let major = patientAlert?.patientTag.major else {
             presenter?.preparePatientSearchResult(response: AlertRespondNavigation.PatientSearch.Response(isSuccessful: false))
             return
         }
@@ -74,7 +70,7 @@ class AlertRespondNavigationInteractor: AlertRespondNavigationBusinessLogic, Ale
     }
     
     func respondToAlert(request: AlertRespondNavigation.Respond.Request) {
-        guard let patientId = patient?.id else {
+        guard let patientId = patientAlert?.patient.id else {
             presenter?.prepareRespondResult(response: AlertRespondNavigation.Respond.Response(isSuccessful: false, error: nil))
             return
         }
@@ -88,8 +84,11 @@ class AlertRespondNavigationInteractor: AlertRespondNavigationBusinessLogic, Ale
             
             switch result {
             case let .success(responseObject):
-                if let value = responseObject.value, value.type == .success  {
+                if let value = responseObject.value {
                     strongSelf.presenter?.prepareRespondResult(response: AlertRespondNavigation.Respond.Response(isSuccessful: true, error: nil))
+                    if let pendingAlertsCount = value.remainingPendingAlertsCount {
+                        strongSelf.notificationManager.setBadgeCount(pendingAlertsCount)
+                    }
                 } else {
                     strongSelf.presenter?.prepareRespondResult(response: AlertRespondNavigation.Respond.Response(isSuccessful: false, error: nil))
                 }

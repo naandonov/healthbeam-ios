@@ -17,6 +17,7 @@ protocol MenuBusinessLogic {
     func requestNotificationServices()
     func updateDeviceToken()
     func checkForPendingAlerts(request: Menu.CheckForPendingAlerts.Request)
+    func retrievePatientAlert(request: Menu.RetrievePatientAlert.Request)
 }
 
 protocol MenuDataStore {
@@ -79,6 +80,7 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
         return authorizationWorker
     } ()
     
+    private let notificationCenter: NotificationCenter
     private let notificationManager: NotificationManger
     private let networkingManager: NetworkingManager
     private let coreDataHandler: CoreDataHandler
@@ -86,10 +88,24 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
     
     init(notificationManager: NotificationManger,
          networkingManager: NetworkingManager,
-         coreDataHandler: CoreDataHandler) {
+         coreDataHandler: CoreDataHandler,
+         notificationCenter: NotificationCenter) {
         self.notificationManager = notificationManager
         self.networkingManager = networkingManager
         self.coreDataHandler = coreDataHandler
+        self.notificationCenter = notificationCenter
+        registerForApplicationEvents()
+    }
+    
+    deinit {
+        notificationCenter.removeObserver(self)
+    }
+    
+    private func registerForApplicationEvents() {
+        notificationCenter.addObserver(self,
+                                       selector: #selector(applicationDidBecomeActive),
+                                       name: UIApplication.didBecomeActiveNotification,
+                                       object: nil)
     }
     
     func performAuthorizationCheck(request: Menu.AuthorizationCheck.Request) {
@@ -98,6 +114,7 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
     }
     
     func requestNotificationServices() {
+        notificationManager.delegate = self
         notificationManager.requestNotifiationServices()
     }
     
@@ -190,7 +207,44 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
         }
         networkingManager.addNetwork(operation: operation)
     }
+    
+    func retrievePatientAlert(request: Menu.RetrievePatientAlert.Request) {
+        let operation = GetAlertOperation(alertId: request.alertId) { [weak self] result in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            switch result {
+            case let .success(responseObject):
+                if let value = responseObject.value  {
+                    strongSelf.presenter?.handlePatientAlertRetrievalResult(response: Menu.RetrievePatientAlert.Response(isSuccessful: true, patientAlert: value, error: nil))
+                } else {
+                    strongSelf.presenter?.handlePatientAlertRetrievalResult(response: Menu.RetrievePatientAlert.Response(isSuccessful: false, patientAlert: nil, error: nil))
+                }
+            case let .failure(responseObject):
+                log.error(responseObject.description)
+                  strongSelf.presenter?.handlePatientAlertRetrievalResult(response: Menu.RetrievePatientAlert.Response(isSuccessful: false, patientAlert: nil, error: responseObject))
+            }
+        }
+        networkingManager.addNetwork(operation: operation)
+    }
 }
+
+//MARK: - NotificationMangerDelegate
+
+extension MenuInteractor: NotificationMangerDelegate {
+    func didReceivePendingAlertNotification(alertId: String) {
+        retrievePatientAlert(request: Menu.RetrievePatientAlert.Request(alertId: alertId))
+    }
+    
+    func didSetBadgeCount(_ badgecount: Int) {
+        presenter?.handleReceivedPatientAlertNotification()
+        pendingAlertsExist = badgecount != 0
+    }
+}
+
+
+//MARK: - AutorizationEvents
 
 extension MenuInteractor: AutorizationEvents {
     func authorizationHasExpired() {
@@ -212,4 +266,15 @@ extension MenuInteractor {
         }
     }
     
+}
+
+//MARK: - Notification observers
+
+extension MenuInteractor {
+
+    @objc func applicationDidBecomeActive(_ sender: Any) {
+        if authorizationWorker.checkForAuthorization() {
+            checkForPendingAlerts(request: Menu.CheckForPendingAlerts.Request())
+        }
+    }
 }

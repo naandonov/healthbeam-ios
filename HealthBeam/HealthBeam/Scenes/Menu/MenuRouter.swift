@@ -17,6 +17,7 @@ protocol MenuRoutingLogic {
     func routeToLocatePatients(cell: MenuCollectionViewCell)
     func routeToAboutSection(cell: MenuCollectionViewCell)
     func routeToPatientAlerts(cell: MenuCollectionViewCell)
+    func routeToPatientAlertResponer(patientAlert: PatientAlert)
 }
 
 protocol MenuDataPassing {
@@ -45,6 +46,7 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
     private let locatePatientsViewControllerProvider: Provider<LocatePatientsViewController>
     private let aboutViewControllerProvider: Provider<AboutViewController>
     private let patientAlertsControllerProvider: Provider<PatientAlertsViewController>
+    private let alertRespondNavigationViewControllerProvider: Provider<AlertRespondNavigationViewController>
     
     func routeToAuthorization(withHandler handler: PostAuthorizationHandler?, animated: Bool) {
         if viewController?.presentedViewController != nil {
@@ -77,6 +79,15 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
         animatedTransitionToViewController(patientAlertsController, cell: cell)
     }
     
+    func routeToPatientAlertResponer(patientAlert: PatientAlert) {
+        
+        let alertRespondNavigationViewController = alertRespondNavigationViewControllerProvider.get()
+        alertRespondNavigationViewController.router?.dataStore?.patientAlert = patientAlert
+        
+        let popUpContainerViewController = PopUpContainerViewController.generate(forContainedViewController: alertRespondNavigationViewController, mode: .alert)
+        viewController?.present(popUpContainerViewController, animated: true, completion: nil)
+    }
+    
     private func animatedTransitionToViewController(_ providedViewController: UIViewController, cell: MenuCollectionViewCell) {
         guard viewController?.navigationController?.viewControllers.count == 1 else {
             return
@@ -97,12 +108,14 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
          patientsSearchViewControllerProvider: Provider<PatientsSearchViewController>,
          locatePatientsViewControllerProvider: Provider<LocatePatientsViewController>,
          aboutViewControllerProvider: Provider<AboutViewController>,
-         patientAlertsControllerProvider: Provider<PatientAlertsViewController>) {
+         patientAlertsControllerProvider: Provider<PatientAlertsViewController>,
+         alertRespondNavigationViewControllerProvider: Provider<AlertRespondNavigationViewController>) {
         self.loginViewControllerProvider = loginViewControllerProvider
         self.patientsSearchViewControllerProvider = patientsSearchViewControllerProvider
         self.locatePatientsViewControllerProvider = locatePatientsViewControllerProvider
         self.aboutViewControllerProvider = aboutViewControllerProvider
         self.patientAlertsControllerProvider = patientAlertsControllerProvider
+        self.alertRespondNavigationViewControllerProvider = alertRespondNavigationViewControllerProvider
     }
 }
 

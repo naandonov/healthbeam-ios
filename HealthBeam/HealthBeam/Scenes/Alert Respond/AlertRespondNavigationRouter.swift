@@ -31,15 +31,15 @@ class AlertRespondNavigationRouter:  AlertRespondNavigationRoutingLogic, AlertRe
     func routeToLocatingView(output: AlertLocatingViewOutput) {
         let alertLocatingViewController = alertLocatingViewControllerProvider.get()
         alertLocatingViewController.output = output
-        alertLocatingViewController.patient = dataStore?.patient
-        alertLocatingViewController.tagCharecteristics = dataStore?.tagCharecteristics
+        alertLocatingViewController.patient = dataStore?.patientAlert?.patient
+        alertLocatingViewController.tagCharecteristics = dataStore?.patientAlert?.patientTag
         viewController?.pushViewController(alertLocatingViewController, animated: true)
     }
     
     func routeToAlertCompletionView(output: AlertCompletionViewOutput) {
         let alertCompletionViewController = alertCompletionViewControllerProvider.get()
         alertCompletionViewController.output = output
-        alertCompletionViewController.patient = dataStore?.patient
+        alertCompletionViewController.patient = dataStore?.patientAlert?.patient
         viewController?.pushViewController(alertCompletionViewController, animated: true)
     }
     

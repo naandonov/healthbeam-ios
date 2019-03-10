@@ -15,6 +15,10 @@ struct AlertRespondNavigation {
         let notes: String?
     }
     
+    struct ProcessingResponse: Codable {
+        let remainingPendingAlertsCount: Int?
+    }
+    
     struct DescriptionModel {
         enum Designation {
             case patientInfo(name: String, description: String)

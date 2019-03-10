@@ -33,6 +33,7 @@ struct APIConstants {
         case userDeviceToken
         case pendingAlerts
         case pendingAlertsCount
+        case alert
         case respondToAlert
         case patients
         case patientDelete
@@ -70,6 +71,8 @@ struct APIConstants {
                 return "/alerts/pending/count"
             case .respondToAlert:
                 return "/alerts/respond"
+            case .alert:
+                return "/alerts/\(APIConstants.EndPoint.alertIdSubstitutionKey)"
                 
             case .patients:
                 return "/patients"
@@ -99,6 +102,7 @@ struct APIConstants {
         }
         
         static let patientIdSubstitutionKey = "patientId"
+        static let alertIdSubstitutionKey = "alertId"
     }
 }
 

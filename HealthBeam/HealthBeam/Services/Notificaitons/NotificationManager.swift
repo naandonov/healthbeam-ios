@@ -11,19 +11,45 @@ import UserNotifications
 
 typealias TokenRequest = ((String) -> Void)
 
+protocol NotificationMangerDelegate: class {
+    func didReceivePendingAlertNotification(alertId: String)
+    func didSetBadgeCount(_ badgeCount: Int)
+}
+
 class NotificationManger: NSObject {
     
     private let userNotificationCenter: UNUserNotificationCenter
     private let sharedApplication: UIApplication
     
-    
     private var tokenRequestHandlers: [TokenRequest] = []
     private var deviceTokenString: String?
     
+    private(set) var pendingNotificationAlertId: String?
+    
+    weak var delegate: NotificationMangerDelegate?
     
     func requestNotifiationServices() {
         userNotificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { success, error in
 
+        }
+    }
+    
+    func didReceiveRemoteNotificaitonWith(userInfo: [AnyHashable : Any]) {
+        guard let extra = userInfo["extra"] as? [String: String],
+        let aps = userInfo["aps"] as? [String: Any],
+            let alertId = extra["alertId"],
+            let status = extra["alertStatus"] else {
+                return
+        }
+        
+        pendingNotificationAlertId = alertId
+        if let badgeCount = aps["badge"] as? Int {
+            delegate?.didSetBadgeCount(badgeCount)
+        }
+        
+        if status == "pending", let delegate = delegate {
+            delegate.didReceivePendingAlertNotification(alertId: alertId)
+            pendingNotificationAlertId = nil
         }
     }
     
@@ -38,7 +64,10 @@ class NotificationManger: NSObject {
     }
     
     func setBadgeCount(_ count: Int) {
-        sharedApplication.applicationIconBadgeNumber = count
+        if sharedApplication.applicationIconBadgeNumber != count {
+            sharedApplication.applicationIconBadgeNumber = count
+            delegate?.didSetBadgeCount(count)
+        }
     }
     
     
