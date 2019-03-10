@@ -169,6 +169,12 @@
 		4E6EB79F220766C200146B8C /* HealthRecordPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E6EB79D220766C200146B8C /* HealthRecordPreviewTableViewCell.xib */; };
 		4E6EB7A2220766D100146B8C /* AddHealthRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EB7A0220766D100146B8C /* AddHealthRecordTableViewCell.swift */; };
 		4E6EB7A3220766D100146B8C /* AddHealthRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E6EB7A1220766D100146B8C /* AddHealthRecordTableViewCell.xib */; };
+		4E7905582235943E00EFA074 /* EKGTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7905562235943E00EFA074 /* EKGTableViewCell.swift */; };
+		4E7905592235943E00EFA074 /* EKGTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E7905572235943E00EFA074 /* EKGTableViewCell.xib */; };
+		4E79055D223599A900EFA074 /* ekg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E79055C223599A800EFA074 /* ekg.png */; };
+		4E7905602235AAFB00EFA074 /* XRayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E79055E2235AAFB00EFA074 /* XRayTableViewCell.swift */; };
+		4E7905612235AAFB00EFA074 /* XRayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E79055F2235AAFB00EFA074 /* XRayTableViewCell.xib */; };
+		4E7905632235AC3C00EFA074 /* xray.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7905622235AC3C00EFA074 /* xray.jpeg */; };
 		4E8DAAA222305EC7006BCD22 /* AlertDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAA122305EC7006BCD22 /* AlertDescriptionViewController.swift */; };
 		4E8DAAA422307EA6006BCD22 /* RoundedAlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAA322307EA6006BCD22 /* RoundedAlertButton.swift */; };
 		4E8DAAA62231B344006BCD22 /* AlertLocatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAA52231B344006BCD22 /* AlertLocatingViewController.swift */; };
@@ -407,6 +413,12 @@
 		4E6EB79D220766C200146B8C /* HealthRecordPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HealthRecordPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		4E6EB7A0220766D100146B8C /* AddHealthRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHealthRecordTableViewCell.swift; sourceTree = "<group>"; };
 		4E6EB7A1220766D100146B8C /* AddHealthRecordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddHealthRecordTableViewCell.xib; sourceTree = "<group>"; };
+		4E7905562235943E00EFA074 /* EKGTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKGTableViewCell.swift; sourceTree = "<group>"; };
+		4E7905572235943E00EFA074 /* EKGTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EKGTableViewCell.xib; sourceTree = "<group>"; };
+		4E79055C223599A800EFA074 /* ekg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ekg.png; path = ../../../../../../../../../Desktop/ekg.png; sourceTree = "<group>"; };
+		4E79055E2235AAFB00EFA074 /* XRayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayTableViewCell.swift; sourceTree = "<group>"; };
+		4E79055F2235AAFB00EFA074 /* XRayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XRayTableViewCell.xib; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
+		4E7905622235AC3C00EFA074 /* xray.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = xray.jpeg; sourceTree = "<group>"; };
 		4E8DAAA122305EC7006BCD22 /* AlertDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDescriptionViewController.swift; sourceTree = "<group>"; };
 		4E8DAAA322307EA6006BCD22 /* RoundedAlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedAlertButton.swift; sourceTree = "<group>"; };
 		4E8DAAA52231B344006BCD22 /* AlertLocatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLocatingViewController.swift; sourceTree = "<group>"; };
@@ -985,7 +997,13 @@
 			children = (
 				4E5160B7220E1E59009DD6AA /* ContentDisplayController.swift */,
 				4E5160B9220E213F009DD6AA /* StandardContentDisplayTableViewCell.swift */,
+				4E79055C223599A800EFA074 /* ekg.png */,
 				4E5160BA220E213F009DD6AA /* StandardContentDisplayTableViewCell.xib */,
+				4E7905562235943E00EFA074 /* EKGTableViewCell.swift */,
+				4E7905572235943E00EFA074 /* EKGTableViewCell.xib */,
+				4E79055E2235AAFB00EFA074 /* XRayTableViewCell.swift */,
+				4E7905622235AC3C00EFA074 /* xray.jpeg */,
+				4E79055F2235AAFB00EFA074 /* XRayTableViewCell.xib */,
 			);
 			path = "Content Display";
 			sourceTree = "<group>";
@@ -1197,9 +1215,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EF9E2C321EE7AE200E0DDD0 /* StartupLoadingView.xib in Resources */,
+				4E79055D223599A900EFA074 /* ekg.png in Resources */,
 				4E93801E21DA98510083ED03 /* LoadingOverlayView.xib in Resources */,
 				4E39ECB721D381B60041F44C /* LaunchScreen.storyboard in Resources */,
 				4E141F692210878200502A30 /* EmptyStateView.xib in Resources */,
+				4E7905612235AAFB00EFA074 /* XRayTableViewCell.xib in Resources */,
 				4E5160C3220E3B62009DD6AA /* InformationCardView.xib in Resources */,
 				4E6EB79F220766C200146B8C /* HealthRecordPreviewTableViewCell.xib in Resources */,
 				4E6EB7A3220766D100146B8C /* AddHealthRecordTableViewCell.xib in Resources */,
@@ -1207,12 +1227,14 @@
 				4EB68D11222F1DA1002083C8 /* Alerts.storyboard in Resources */,
 				4E39ECB421D381B60041F44C /* Assets.xcassets in Resources */,
 				4E48E58B21DAC3D900069CC4 /* loading.json in Resources */,
+				4E7905592235943E00EFA074 /* EKGTableViewCell.xib in Resources */,
 				4E93EA3B21F661E5007C8BE8 /* PatientTableViewCell.xib in Resources */,
 				4E2DEA6321F655C7000E0C61 /* Patients.storyboard in Resources */,
 				4EB68D00222C5008002083C8 /* AlertPlaceholderTableViewCell.xib in Resources */,
 				4E39ECB221D381B40041F44C /* Main.storyboard in Resources */,
 				4E141F6522106C6700502A30 /* PatientTagTableViewCell.xib in Resources */,
 				4E62DF0F2200E6E40090BFAF /* ModificationElementTableViewCell.xib in Resources */,
+				4E7905632235AC3C00EFA074 /* xray.jpeg in Resources */,
 				4E1DE56A221757B500C2541B /* GoogleService-Info.plist in Resources */,
 				4E6EB79B220766A600146B8C /* ListItemTableViewCell.xib in Resources */,
 				4E17F3D8220389A900E113ED /* AddMoreTableViewCell.xib in Resources */,
@@ -1377,6 +1399,7 @@
 				4EB68CF6222C4908002083C8 /* PatientAlertsInteractor.swift in Sources */,
 				4E1DE55B2217435100C2541B /* AboutInteractor.swift in Sources */,
 				4E17F18221FBA4A80083AE50 /* GetSubscribedPatientsOperation.swift in Sources */,
+				4E7905602235AAFB00EFA074 /* XRayTableViewCell.swift in Sources */,
 				4E0FEFC721D6BF050046303F /* UIView+Animations.swift in Sources */,
 				4E93EA4421F91A55007C8BE8 /* PremiseEntity+Mapping.swift in Sources */,
 				4EB68D04222DB2B3002083C8 /* GetPendingAlertsCountOperation.swift in Sources */,
@@ -1447,6 +1470,7 @@
 				4E24BE9D220A195100E89F0E /* PatientTagsSearchRouter.swift in Sources */,
 				4E0FEF9F21D6BCB20046303F /* ServiceProtocol.swift in Sources */,
 				4E0FEFB021D6BCB20046303F /* BeaconsManager.swift in Sources */,
+				4E7905582235943E00EFA074 /* EKGTableViewCell.swift in Sources */,
 				4E8DAAA422307EA6006BCD22 /* RoundedAlertButton.swift in Sources */,
 				4E5160D2220E6CF4009DD6AA /* UpdateHealthRecordOperation.swift in Sources */,
 				4EB68CF4222C4908002083C8 /* PatientAlertsModels.swift in Sources */,

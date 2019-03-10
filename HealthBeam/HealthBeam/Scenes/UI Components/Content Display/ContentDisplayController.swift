@@ -12,6 +12,8 @@ class ContentDisplayController: NSObject {
     
     enum DisplayElement {
         case standard(title: String, content: String)
+        case ekg()
+        case xray()
     }
     
     private weak var containerView: UIView?
@@ -35,6 +37,8 @@ class ContentDisplayController: NSObject {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.registerNib(StandardContentDisplayTableViewCell.self)
+        tableView.registerNib(EKGTableViewCell.self)
+        tableView.registerNib(XRayTableViewCell.self)
     }
     
     func setDisplayElements(_ displayElements: [DisplayElement]) {
@@ -56,6 +60,10 @@ extension ContentDisplayController: UITableViewDataSource {
         switch  displayElement {
         case .standard(title: _, content: _):
             return 1
+        case .ekg:
+            return 1
+        case .xray:
+            return 1
         }
     }
     
@@ -68,6 +76,15 @@ extension ContentDisplayController: UITableViewDataSource {
             let cell: StandardContentDisplayTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             configureStandardDisplayCell(cell: cell, content: content)
             returnCell = cell
+        case .ekg:
+            
+            let cell: EKGTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            returnCell = cell
+        case .xray:
+            
+            let cell: XRayTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            returnCell = cell
+            
         }
         returnCell.selectionStyle = .none
         return returnCell
@@ -78,6 +95,10 @@ extension ContentDisplayController: UITableViewDataSource {
         switch  displayElement {
         case let .standard(title: title, content: _):
             return title
+        case .ekg:
+            return "EKG"
+        case .xray:
+            return "X-RAY"
         }
     }
     

@@ -79,7 +79,16 @@ class HealthRecordViewController: UIViewController, HealthRecordDisplayLogic {
         informationCardView?.innerValueLabel.text = dataSource.creatorName
         informationCardView?.innerSubtitleLabel.text = dataSource.creatorDesignation
         
-        contentDisplayController?.setDisplayElements(dataSource.displayElements)
+        var elements: [ContentDisplayController.DisplayElement] = []
+        if router?.dataStore?.healthRecord?.id == 39 {
+            elements.append(.ekg())
+        }
+        if router?.dataStore?.healthRecord?.id == 38 {
+            elements.append(.xray())
+        }
+        elements += dataSource.displayElements
+        
+        contentDisplayController?.setDisplayElements(elements)
     }
     
     //MARK: - Displaying Logic
