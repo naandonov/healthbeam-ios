@@ -76,6 +76,7 @@ struct Menu {
             let isSuccessful: Bool
             var patientAlert: PatientAlert?
             var errorMessage: String?
+            var patientAlertMessage: String?
         }
     }
     

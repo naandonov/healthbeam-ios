@@ -30,26 +30,32 @@ class NotificationManger: NSObject {
     
     func requestNotifiationServices() {
         userNotificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { success, error in
-
+            
         }
+    }
+    
+    func clearPendingNotificationAlertId() {
+        pendingNotificationAlertId = nil
     }
     
     func didReceiveRemoteNotificaitonWith(userInfo: [AnyHashable : Any]) {
         guard let extra = userInfo["extra"] as? [String: String],
-        let aps = userInfo["aps"] as? [String: Any],
+            let aps = userInfo["aps"] as? [String: Any],
             let alertId = extra["alertId"],
             let status = extra["alertStatus"] else {
                 return
         }
         
-        pendingNotificationAlertId = alertId
         if let badgeCount = aps["badge"] as? Int {
-            delegate?.didSetBadgeCount(badgeCount)
+            setBadgeCount(badgeCount)
         }
         
-        if status == "pending", let delegate = delegate {
-            delegate.didReceivePendingAlertNotification(alertId: alertId)
-            pendingNotificationAlertId = nil
+        if status == "pending" {
+            pendingNotificationAlertId = alertId
+            if let delegate = delegate {
+                delegate.didReceivePendingAlertNotification(alertId: alertId)
+                pendingNotificationAlertId = nil
+            }
         }
     }
     

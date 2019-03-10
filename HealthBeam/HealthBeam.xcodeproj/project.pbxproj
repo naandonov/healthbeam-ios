@@ -175,6 +175,7 @@
 		4E8DAAAA22340327006BCD22 /* AlertCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAA922340327006BCD22 /* AlertCompletionViewController.swift */; };
 		4E8DAAAF22343587006BCD22 /* RespondToAlertOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAAE22343587006BCD22 /* RespondToAlertOperation.swift */; };
 		4E8DAAB122346EAE006BCD22 /* GetAlertOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAB022346EAE006BCD22 /* GetAlertOperation.swift */; };
+		4E8DAAB322349FA2006BCD22 /* UIViewController+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DAAB222349FA2006BCD22 /* UIViewController+Utilities.swift */; };
 		4E93800E21D949B30083ED03 /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93800D21D949B30083ED03 /* FloatingTextField.swift */; };
 		4E93801121D9795A0083ED03 /* KeyboardScrollHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */; };
 		4E93801321D981020083ED03 /* UIView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93801221D981020083ED03 /* UIView+Utilities.swift */; };
@@ -412,6 +413,7 @@
 		4E8DAAA922340327006BCD22 /* AlertCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCompletionViewController.swift; sourceTree = "<group>"; };
 		4E8DAAAE22343587006BCD22 /* RespondToAlertOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondToAlertOperation.swift; sourceTree = "<group>"; };
 		4E8DAAB022346EAE006BCD22 /* GetAlertOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAlertOperation.swift; sourceTree = "<group>"; };
+		4E8DAAB222349FA2006BCD22 /* UIViewController+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utilities.swift"; sourceTree = "<group>"; };
 		4E93800D21D949B30083ED03 /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
 		4E93801021D9795A0083ED03 /* KeyboardScrollHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollHandler.swift; sourceTree = "<group>"; };
 		4E93801221D981020083ED03 /* UIView+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utilities.swift"; sourceTree = "<group>"; };
@@ -670,6 +672,7 @@
 				4E6EB7952207643F00146B8C /* String+Calculations.swift */,
 				4ED74C2021DBE0FD009AB7C3 /* NSManagedObject+Utilities.swift */,
 				4ED74C2221DBE95A009AB7C3 /* UIAlertController+Utilities.swift */,
+				4E8DAAB222349FA2006BCD22 /* UIViewController+Utilities.swift */,
 				4EC355DD21DFABD00011D723 /* Collection+Utilities.swift */,
 				4E17F18321FC6B020083AE50 /* CAGradientLayer+Utilities.swift */,
 				4EBC81FB21FC810E008427A8 /* UIImage+Utilities.swift */,
@@ -1325,6 +1328,7 @@
 				4E2DEA6121F6557E000E0C61 /* PatientsSearchInteractor.swift in Sources */,
 				4E0FEFEE21D6C4030046303F /* ApplicationModule.swift in Sources */,
 				4E24BE9E220A195100E89F0E /* PatientTagsSearchModels.swift in Sources */,
+				4E8DAAB322349FA2006BCD22 /* UIViewController+Utilities.swift in Sources */,
 				4E2DEA5D21F6557E000E0C61 /* PatientsSearchPresenter.swift in Sources */,
 				4E8DAAAF22343587006BCD22 /* RespondToAlertOperation.swift in Sources */,
 				4EC355DE21DFABD00011D723 /* Collection+Utilities.swift in Sources */,

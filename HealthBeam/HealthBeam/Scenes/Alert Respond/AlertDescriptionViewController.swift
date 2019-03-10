@@ -42,7 +42,7 @@ class AlertDescriptionViewController: UIViewController, AlertDescriptionViewInpu
         
         actionContainerView.strokeColor = .subtleGray
         
-        descriptionLabel.text = "The patient requires immediate medical assistance.".localized()
+        descriptionLabel.text = "The patient requires immediate medical assistance!".localized()
         respondButton.setTitle("Respond".localized(), for: .normal)
     }
     

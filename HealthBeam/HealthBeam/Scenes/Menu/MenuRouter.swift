@@ -85,7 +85,7 @@ class MenuRouter: NSObject, MenuRoutingLogic, MenuDataPassing {
         alertRespondNavigationViewController.router?.dataStore?.patientAlert = patientAlert
         
         let popUpContainerViewController = PopUpContainerViewController.generate(forContainedViewController: alertRespondNavigationViewController, mode: .alert)
-        viewController?.present(popUpContainerViewController, animated: true, completion: nil)
+            viewController?.topMostPresentedViewController.present(popUpContainerViewController, animated: true, completion: nil)
     }
     
     private func animatedTransitionToViewController(_ providedViewController: UIViewController, cell: MenuCollectionViewCell) {

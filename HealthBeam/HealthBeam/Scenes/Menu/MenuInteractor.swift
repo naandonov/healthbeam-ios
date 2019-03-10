@@ -186,6 +186,12 @@ class MenuInteractor: MenuBusinessLogic, MenuDataStore {
     
     func checkForPendingAlerts(request: Menu.CheckForPendingAlerts.Request) {
         
+        if let alertId = notificationManager.pendingNotificationAlertId {
+            retrievePatientAlert(request: Menu.RetrievePatientAlert.Request(alertId: alertId))
+            notificationManager.clearPendingNotificationAlertId()
+            return
+        }
+        
         let operation = GetPendingAlertsCountOperation() { [weak self] result in
             guard let strongSelf = self else {
                 return

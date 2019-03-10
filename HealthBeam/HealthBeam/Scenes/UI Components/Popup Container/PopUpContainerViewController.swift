@@ -56,7 +56,9 @@ class PopUpContainerViewController: UIViewController {
             let contentMaskLayer = CAShapeLayer()
             contentMaskLayer.frame = containerView.bounds
             contentMaskLayer.path = maskLayer.path
-            containedViewController!.view.layer.mask = contentMaskLayer
+            if let containedViewController = containedViewController {
+                containedViewController.view.layer.mask = contentMaskLayer
+            }
         }
 
     }

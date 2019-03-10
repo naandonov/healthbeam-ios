@@ -47,7 +47,8 @@ class MenuPresenter: MenuPresentationLogic {
     func handlePendingAlertsCheck(response: Menu.CheckForPendingAlerts.Response) {
         var warningMessage: String?
         if response.pendingAlertsExist {
-            warningMessage = "Patients which you are observing need immediate medical assistance!\n Further information can be found in the Patient Alerts section.".localized()
+            warningMessage = "Patients which you are observing need immediate medical assistance!".localized() + "\n\n"
+                + "Further information can be found in the Patient Alerts section.".localized()
         }
         presenterOutput?.didPerformPendingAlertsCheck(viewModel: Menu.CheckForPendingAlerts.ViewModel(warningMessage: warningMessage))
     }
@@ -58,7 +59,13 @@ class MenuPresenter: MenuPresentationLogic {
     
     func handlePatientAlertRetrievalResult(response: Menu.RetrievePatientAlert.Response) {
         let errorMessage = response.error?.userFiendlyDescription
-        presenterOutput?.didRetrievePatientAlert(viewModel: Menu.RetrievePatientAlert.ViewModel(isSuccessful: response.isSuccessful, patientAlert: response.patientAlert, errorMessage: errorMessage))
+        var patientAlertMessage: String?
+        if let patientAlert = response.patientAlert {
+            patientAlertMessage = patientAlert.patient.fullName + " "
+                + "requires immediate medical assistance" + "\n\n"
+                + "Further information can be found in the Patient Alerts section.".localized()
+        }
+        presenterOutput?.didRetrievePatientAlert(viewModel: Menu.RetrievePatientAlert.ViewModel(isSuccessful: response.isSuccessful, patientAlert: response.patientAlert, errorMessage: errorMessage, patientAlertMessage: patientAlertMessage))
     }
     
     func handleReceivedPatientAlertNotification() {

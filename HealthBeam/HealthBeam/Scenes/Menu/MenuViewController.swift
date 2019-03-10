@@ -112,7 +112,7 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
             return
         }
         setProfileInformation(userProfile: user)
-        updateDeviceToken()
+        postAuthorizationSetup()
     }
     
     func didReceiveAuthorizationRevocation() {
@@ -126,8 +126,10 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
     }
     
     func didPerformPendingAlertsCheck(viewModel: Menu.CheckForPendingAlerts.ViewModel) {
-        if let warrningMessage = viewModel.warningMessage {
-            UIAlertController.presentAlertControllerWithTitleMessage("Patient Alert".localized(), message: warrningMessage, on: self)
+        if let warrningMessage = viewModel.warningMessage, let topStackViewController = navigationController?.topViewController {
+            if !(topStackViewController is PatientAlertsViewController) {
+                UIAlertController.presentAlertControllerWithTitleMessage("Patient Alert".localized(), message: warrningMessage, on: self)
+            }
         }
     }
     
@@ -145,13 +147,16 @@ class MenuViewController: UIViewController, MenuDisplayLogic {
     
     func didRetrievePatientAlert(viewModel: Menu.RetrievePatientAlert.ViewModel) {
         if viewModel.isSuccessful, let patientAlert = viewModel.patientAlert {
+//            if let presentedViewController = presentedViewController, let patientAlertMessage = viewModel.patientAlertMessage {
+//                UIAlertController.presentAlertControllerWithTitleMessage("Patient Alert".localized(), message: patientAlertMessage, on: presentedViewController)
+//            }
             router?.routeToPatientAlertResponer(patientAlert: patientAlert)
         }
     }
     
     //MARK:- Setup
     
-    func updateDeviceToken() {
+    func postAuthorizationSetup() {
         interactor?.requestNotificationServices()
         interactor?.updateDeviceToken()
     }
@@ -221,7 +226,7 @@ extension MenuViewController: UICollectionViewDataSource {
 
 extension MenuViewController: PostAuthorizationHandler {
     func handleSuccessfullAuthorization(userProfile: UserProfile.Model) {
-        updateDeviceToken()
+        postAuthorizationSetup()
         interactor?.checkForPendingAlerts(request: Menu.CheckForPendingAlerts.Request())
         setProfileInformation(userProfile: userProfile)
     }
